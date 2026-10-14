@@ -25,7 +25,7 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 .top5{list-style:none;margin:8px 0 0;padding:0}.top5 li{display:grid;grid-template-columns:28px 1fr auto;gap:2px 8px;align-items:center;padding:7px 6px;border-radius:8px;cursor:pointer}
 .top5 li:hover{background:#25603f}.top5 .rk{grid-row:span 2;font-weight:700;font-size:1.2em;text-align:center}.top5 .tn{font-weight:600}.top5 .tm{grid-column:2/4;font-size:.8em;color:#cfe0ee}
 .card.flash{border-color:#ffd27f;box-shadow:0 0 0 3px #ffd27f88}
-#mapsec{padding:0 16px}#map{height:420px;border-radius:10px;margin:8px 0}.sec2{color:#7fd1ff;margin:16px 0 6px}
+#mapsec{padding:0 16px}#map{height:62vh;min-height:420px;touch-action:none;border-radius:10px;margin:8px 0}.sec2{color:#7fd1ff;margin:16px 0 6px}
 .tagbar{display:flex;gap:10px}.big{flex:1;font-size:1.1em;padding:14px;border:0;border-radius:10px;background:#2e6a96;color:#fff;font-weight:700;cursor:pointer}.big.fish{background:#2f8a57}
 .maplegend{display:flex;gap:6px;flex-wrap:wrap}.maplegend button{min-height:44px;padding:8px 12px;border-radius:22px;border:1px solid #355a7a;background:#243c55;color:#e8eef4;font-size:.85em;cursor:pointer}.maplegend button.off{opacity:.4;text-decoration:line-through;background:#15222f}.logbox{background:#1b2d40;border-radius:10px;padding:10px;margin:10px 0}.logbox summary{cursor:pointer;font-weight:600}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}.row input{flex:1;min-width:200px;padding:8px;border-radius:6px;border:1px solid #355a7a;background:#0f1d2b;color:#e8eef4}
@@ -44,11 +44,20 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 #cal .now{background:#2c4a2f!important;outline:2px solid #9be89b}#cal td.run{background:#3a5f86}#cal td.peak{background:#5f8fc4;font-weight:700}#cal .grp td{background:#14324a;font-weight:700;text-align:left}
 #cal .ev{display:inline-block;background:#8e5bd1;border-radius:8px;padding:1px 5px;margin:1px;font-size:.9em}.regs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin:8px 0}.reg{background:#1b2d40;border-radius:10px;padding:10px;font-size:.85em}.reg h4{margin:0 0 6px}.st{padding:2px 8px;border-radius:10px;font-weight:700;font-size:.85em}.st.open{background:#1f6b3a}.st.closed{background:#8b1f1f}
 #calNow{background:#1d4a33;border:1px solid #2f8a57;border-radius:10px;padding:10px;margin:8px 0}
+@media (max-width:700px){#map{height:55vh}}
+.fsbtn{display:block;width:44px;height:44px;line-height:44px;text-align:center;font-size:24px;background:#fff;color:#333;text-decoration:none;border-radius:4px}
+#fsClose{display:none}
+body.mapfs{overflow:hidden;touch-action:none}
+#mapsec.full{position:fixed;inset:0;z-index:5000;background:#0f1d2b;padding:6px;margin:0;display:flex;flex-direction:column;overflow:hidden}
+#mapsec.full #mapHead{display:none}#mapsec.full #mapBody{display:flex!important;flex-direction:column;flex:1;min-height:0;overflow-y:auto}
+#mapsec.full #map{flex:1 0 auto;height:auto;min-height:55vh;margin:4px 0}#mapsec.full .tagbar .big{padding:10px}
+#mapsec.full #fsClose{display:block;position:absolute;top:10px;right:10px;z-index:6000;width:48px;height:48px;border-radius:24px;border:0;background:#c62828;color:#fff;font-size:22px;cursor:pointer}
+#mapsec.full .tagbar{padding-right:56px}
 </style></head><body>
 <header><h1>🎣 Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
 <div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
-<section id="mapsec"><h2 class="sec2">🗺️ Map, access & fishing log</h2>
+<section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
 <div id="map"></div>
 <div class="maplegend"><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="reports">🔶 reported catches</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
@@ -57,7 +66,7 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
 <div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
 <div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
-<div id="tagList"></div></details></section>
+<div id="tagList"></div></details></div></section>
 <section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
 <div id="app"></div>
 <div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
@@ -160,6 +169,18 @@ const dataReady=new Promise(r=>document.body.dataset.ready?r():addEventListener(
 async function init(){
  try{AD=await (await fetch("access-data.json")).json()}catch(e){console.warn("access data",e)}
  map=L.map("map",{scrollWheelZoom:false}).setView([42.62,-83.05],10);
+ {const sec=document.getElementById("mapsec"),body=document.getElementById("mapBody"),hd=document.getElementById("mapHead"),K="mapCollapsed";
+  const setOpen=o=>{body.style.display=o?"":"none";hd.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(K,o?"0":"1");if(o)setTimeout(()=>map.invalidateSize(),50)};
+  hd.onclick=()=>setOpen(body.style.display==="none");setOpen(localStorage.getItem(K)!=="1");
+  let fsBtn;const fs=on=>{sec.classList.toggle("full",on);document.body.classList.toggle("mapfs",on);fsBtn.innerHTML=on?"✕":"⛶";fsBtn.title=on?"Exit full screen":"Full screen map";
+   try{if(on&&!document.fullscreenElement&&sec.requestFullscreen)sec.requestFullscreen().catch(()=>{});else if(!on&&document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}
+   map.dragging.enable();on?map.scrollWheelZoom.enable():map.scrollWheelZoom.disable();setTimeout(()=>map.invalidateSize(),60);setTimeout(()=>map.invalidateSize(),400)};
+  const FC=L.Control.extend({options:{position:"topleft"},onAdd(){fsBtn=L.DomUtil.create("a","fsbtn leaflet-bar");fsBtn.href="#";fsBtn.setAttribute("role","button");fsBtn.innerHTML="⛶";fsBtn.title="Full screen map";
+   L.DomEvent.on(fsBtn,"click",e=>{L.DomEvent.stop(e);fs(!sec.classList.contains("full"))});return fsBtn}});new FC().addTo(map);
+  document.getElementById("fsClose").onclick=()=>fs(false);
+  addEventListener("keydown",e=>{if(e.key==="Escape"&&sec.classList.contains("full"))fs(false)});
+  document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&sec.classList.contains("full"))fs(false)});
+  addEventListener("resize",()=>map.invalidateSize());window._mapFs=fs}
  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
  const LY={stock:L.layerGroup(),reports:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
  const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));
