@@ -30,6 +30,8 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 #tagdlg{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-start;justify-content:center;z-index:10000;overflow:auto}#tagdlg .box{background:#1b2d40;margin:20px 10px;padding:16px;border-radius:12px;width:min(480px,100%);box-sizing:border-box}
 #tagform label{display:block;margin:8px 0;font-size:.85em}#tagform input,#tagform textarea{display:block;width:100%;box-sizing:border-box;padding:8px;border-radius:6px;border:1px solid #355a7a;background:#0f1d2b;color:#e8eef4;font-size:1em}
 .leaflet-popup-content{color:#111}.pin{font-size:20px;text-align:center;line-height:24px}
+.locbtn{display:block;width:44px;height:44px;line-height:42px;text-align:center;font-size:28px;background:#fff;color:#333;text-decoration:none;border-radius:4px;margin-top:8px!important}
+.locbtn.on{color:#1e88e5}.locbtn.follow{background:#1e88e5;color:#fff}#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:8px;z-index:20000;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw}#toast.on{opacity:1}
 </style></head><body>
 <header><h1>🎣 Clinton River & Paint Creek — Trout Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
@@ -136,7 +138,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
 (()=>{const DIR=(la,ln)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${ln}`,GM=(la,ln)=>`https://www.google.com/maps/search/?api=1&query=${la},${ln}`;
 const esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mi=(a,b,c,d)=>{const r=Math.PI/180,x=Math.sin((c-a)*r/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin((d-b)*r/2)**2;return 7917.6*Math.asin(Math.sqrt(x))};
-let AD={gages:{},access:[]},map,tagLayer;const KEY="fishTags",URLK="sheetUrl";
+const GEO={enableHighAccuracy:true,maximumAge:0,timeout:15000};let AD={gages:{},access:[]},map,tagLayer;const KEY="fishTags",URLK="sheetUrl";
 const tags=()=>JSON.parse(localStorage.getItem(KEY)||"[]"),saveTags=t=>{localStorage.setItem(KEY,JSON.stringify(t));renderTags()};
 const icon=(e)=>L.divIcon({className:"pin",html:e,iconSize:[24,24],iconAnchor:[12,12]});
 const dataReady=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
@@ -148,12 +150,27 @@ async function init(){
  for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#e0a800":"#2f8a57";
   L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(accL)}
  L.control.layers(null,{"Access points":accL,"Gages":gL,"My tags":tagLayer},{collapsed:true}).addTo(map);
- await dataReady;
+ addLocate();await dataReady;
  for(const [id,g] of Object.entries(AD.gages)){const i=INFO[id];
   L.circleMarker([g.lat,g.lng],{radius:9,color:"#fff",weight:2,fillColor:i?"#1e88e5":"#777",fillOpacity:1}).bindPopup(`<b>${esc(NAME[id])}</b><br>USGS ${id}<br>${i?`${i.flow??"—"} cfs${i.tempF!=null?" · "+i.tempF.toFixed(0)+"°F":""}<br>🐟 ${esc(i.t.label)}`:"offline"}<br>${esc(g.address)}<br><a href="${DIR(g.lat,g.lng)}" target="_blank">Directions</a> · <a href="#site-${id}">Card</a>`).addTo(gL);
   const card=document.getElementById("site-"+id);if(card){const a=document.createElement("div");a.className="addr";a.innerHTML=`📍 Near ${esc(g.address)} <a href="${DIR(g.lat,g.lng)}" target="_blank">Directions ↗</a>`;
    a.querySelector("a").onclick=e=>e.stopPropagation();card.querySelector(".sub").after(a)}}
  renderTags();document.getElementById("sheetUrl").value=localStorage.getItem(URLK)||"";document.body.dataset.mapready=1}
+function toast(m){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t)}t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),4500)}
+function addLocate(){let state=0,watch=null,dot=null,circ=null,btn;
+ const set=(s)=>{state=s;btn.classList.toggle("on",s>0);btn.classList.toggle("follow",s===2);btn.title=["Show my precise location","Tap for live follow","Following — tap to stop"][s]};
+ const err=e=>{toast(e.code===1?"Location permission denied — enable it in your browser/site settings.":e.code===2?"Location unavailable — try moving to open sky.":e.code===3?"Location timed out — try again.":"Location error: "+e.message);stop()};
+ const stop=()=>{if(watch!=null)navigator.geolocation.clearWatch(watch);watch=null;set(0)};
+ const show=(p,zoom)=>{const la=p.coords.latitude,ln=p.coords.longitude,acc=p.coords.accuracy,ll=[la,ln],n=nearestGage(la,ln);
+  if(!dot){circ=L.circle(ll,{radius:acc,color:"#1e88e5",weight:1,fillOpacity:.12}).addTo(map);dot=L.circleMarker(ll,{radius:8,color:"#fff",weight:3,fillColor:"#1e88e5",fillOpacity:1}).addTo(map)}
+  else{dot.setLatLng(ll);circ.setLatLng(ll).setRadius(acc)}
+  dot.bindPopup(`<b>You are here</b><br>${la.toFixed(6)}, ${ln.toFixed(6)}<br>±${Math.round(acc*3.28084)} ft<br>${n?`Nearest gage: ${esc(NAME[n.id])} (${n.d.toFixed(2)} mi)`:""}`);
+  if(zoom){map.setView(ll,16);dot.openPopup()}else map.panTo(ll)};
+ const C=L.Control.extend({options:{position:"topleft"},onAdd(){btn=L.DomUtil.create("a","locbtn leaflet-bar");btn.href="#";btn.setAttribute("role","button");btn.innerHTML="⌖";set(0);
+  L.DomEvent.on(btn,"click",e=>{L.DomEvent.stop(e);if(!navigator.geolocation)return toast("Geolocation not supported on this device.");
+   if(state===0){toast("Getting precise location…");navigator.geolocation.getCurrentPosition(p=>{show(p,true);set(1)},err,GEO)}
+   else if(state===1){watch=navigator.geolocation.watchPosition(p=>show(p,false),err,GEO);set(2);toast("Live follow on")}
+   else{stop();toast("Live follow off")}});return btn}});new C().addTo(map)}
 function nearestGage(la,ln){let best=null;for(const [id,g] of Object.entries(AD.gages)){if(!INFO[id])continue;const d=mi(la,ln,g.lat,g.lng);if(!best||d<best.d)best={id,d}}return best}
 let pending=null;
 function startTag(type){const go=pos=>{const la=+pos.coords.latitude.toFixed(6),ln=+pos.coords.longitude.toFixed(6),n=nearestGage(la,ln),i=n&&INFO[n.id];
@@ -164,7 +181,7 @@ function startTag(type){const go=pos=>{const la=+pos.coords.latitude.toFixed(6),
   document.getElementById("tagCtx").textContent=`${la}, ${ln} · nearest gage ${pending.gage_name} (${pending.gage_dist_mi} mi): ${pending.flow_cfs} cfs${pending.temp_f!==""?", "+pending.temp_f+"°F":""}, ${pending.rating}`;
   document.getElementById("tagdlg").style.display="flex"};
  if(!navigator.geolocation)return alert("Geolocation not available");
- navigator.geolocation.getCurrentPosition(go,e=>alert("Couldn't get location: "+e.message),{enableHighAccuracy:true,timeout:15000})}
+ navigator.geolocation.getCurrentPosition(go,e=>alert("Couldn't get location: "+e.message),GEO)}
 document.getElementById("btnTag").onclick=()=>startTag("spot");document.getElementById("btnFish").onclick=()=>startTag("fish");
 document.getElementById("tagCancel").onclick=()=>{document.getElementById("tagdlg").style.display="none";pending=null};
 document.getElementById("tagform").onsubmit=e=>{e.preventDefault();if(!pending)return;const fd=new FormData(e.target);for(const [k,v] of fd)pending[k]=v;
