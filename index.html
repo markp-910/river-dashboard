@@ -16,6 +16,7 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 #modal .box{background:#1b2d40;margin:20px 10px;padding:16px;border-radius:12px;width:min(900px,100%);box-sizing:border-box}
 #modal .bigchart{position:relative;height:260px;margin-bottom:18px}#close{float:right;font-size:1.4em;background:none;border:0;color:#fff;cursor:pointer}
 .legend{font-size:.75em;color:#9fb3c8;padding:0 16px}.legend i{display:inline-block;width:10px;height:10px;margin:0 3px 0 8px;vertical-align:middle}
+.sec{cursor:pointer;user-select:none;font-size:1.15em}.sec .cnt{font-size:.6em;color:#9fb3c8;font-weight:400}.sec small{color:#cfe0ee}
 </style></head><body>
 <header><h1>🎣 Clinton River & Paint Creek — Trout Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
@@ -23,23 +24,24 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 <div id="app"></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
-const GROUPS={"Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
-"Clinton River (main stem)":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"]],
-"Clinton River branches":[["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]]};
+const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
+"Tier 2 · Clinton River & branches":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"],["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]],
+"Tier 3 · Other nearby streams":[["04162010","Red Run at Ryan Rd near Warren"],["04163400","Plum Brook at Utica"],["04164100","East Pond Creek at Romeo"],["04164300","East Branch Coon Creek at Armada"],["04166100","River Rouge at Southfield"]]};
 const ALL=Object.values(GROUPS).flat().map(s=>s[0]),NAME=Object.fromEntries(Object.values(GROUPS).flat());
 // nearest site that reports water temp
-const TEMP_PROXY={"04161000":"04161820","04164000":"04161820","04164151":"04165500","04164500":"04165500","04164800":"04165500","04161540":"04161820","04161500":"04161820"};
-const PARAMS={"00060":["cfs","Discharge (cfs)"],"00065":["gage ft","Gage height (ft)"],"00010":["water °F","Water temp (°F)"]};
+const TEMP_PROXY={"04161000":"04161820","04164000":"04161820","04164151":"04165500","04164500":"04165500","04164800":"04165500","04161540":"04161820","04161500":"04161820","04163400":"04162010","04164100":"04165500","04164300":"04165500"};
+const PARAMS={"00060":["cfs","Discharge (cfs)"],"00065":["gage ft","Gage height (ft)"],"00010":["water °F","Water temp (°F)"],"00300":["DO mg/L","Dissolved oxygen (mg/L)"],"63680":["turb FNU","Turbidity (FNU)"]};
 const fmt=d=>new Date(d).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET";
 document.getElementById("now").textContent="Loaded "+fmt(Date.now());
-const C2F=c=>c*9/5+32;
+const PORDER=["00060","00065","00010","00300","63680"];const C2F=c=>c*9/5+32;
 const bandPlugin={id:"bands",beforeDraw(ch,a,o){if(!o.on)return;const {ctx,chartArea:ca,scales:{y}}=ch;
  [[-99,40,"#4a6fa5"],[40,50,"#6b7f99"],[50,65,"#2f8a57"],[65,68,"#b8860b"],[68,200,"#b22222"]].forEach(([lo,hi,c])=>{
   const t=Math.max(ca.top,y.getPixelForValue(hi)),b=Math.min(ca.bottom,y.getPixelForValue(lo));if(b>t){ctx.save();ctx.globalAlpha=.25;ctx.fillStyle=c;ctx.fillRect(ca.left,t,ca.right-ca.left,b-t);ctx.restore()}})}};
 Chart.register(bandPlugin);
 async function medians(){const t=new Date(),m=t.getMonth()+1,d=t.getDate(),out={};
- try{const r=await (await fetch(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${ALL.join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`)).text();
- let h=null;for(const l of r.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(!h){h=c;continue}if(c[0]!=="USGS")continue;
+ try{const ch=[];for(let i=0;i<ALL.length;i+=8)ch.push(ALL.slice(i,i+8));
+ const r=(await Promise.all(ch.map(c=>fetch(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${c.join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`).then(x=>x.text())))).join("\n");
+ let h=null;for(const l of r.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(c[0]==="agency_cd"){h=c;continue}if(!h)continue;if(c[0]!=="USGS")continue;
  const o=Object.fromEntries(h.map((k,i)=>[k,c[i]]));if(+o.month_nu===m&&+o.day_nu===d)out[o.site_no]=+o.p50_va;}}catch(e){console.warn(e)}return out}
 function trend(v){if(v.length<5)return["—","",0];const L=v[v.length-1],ago=v.find(p=>p.x>=L.x-6*3600e3)?.y;if(!ago)return["—","",0];const p=(L.y-ago)/ago*100;
  return p>5?["▲ Rising","up",1]:p<-5?["▼ Falling","down",-1]:["● Steady","steady",0]}
@@ -62,23 +64,25 @@ function trout(tempF,pct,tr){let score=0,parts=[],cls="g";
 const charts=[];
 function mkChart(canvas,series,p,big){const s=p==="00010"?series.map(q=>({x:q.x,y:C2F(q.y)})):series;
  return new Chart(canvas,{type:"line",data:{labels:s.map(q=>new Date(q.x).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric"})),
- datasets:[{data:s.map(q=>q.y),borderColor:p==="00010"?"#ffd27f":p==="00065"?"#b39dff":"#7fd1ff",pointRadius:0,borderWidth:1.5}]},
+ datasets:[{data:s.map(q=>q.y),borderColor:p==="00010"?"#ffd27f":p==="00065"?"#b39dff":p==="00300"?"#8ef0c0":p==="63680"?"#d9a066":"#7fd1ff",pointRadius:0,borderWidth:1.5}]},
  options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},bands:{on:p==="00010"},title:{display:!!big,text:PARAMS[p][1],color:"#e8eef4"}},
  scales:{x:{ticks:{maxTicksLimit:7,color:"#9fb3c8",callback(v){return this.getLabelForValue(v).split(",")[0]}}},y:{title:{display:true,text:PARAMS[p][1],color:"#9fb3c8"},ticks:{color:"#9fb3c8"},
  ...(p==="00010"?{suggestedMin:40,suggestedMax:72}:{})}}}})}
-let DATA={},MED={},INFO={};
+const SECS=[];let DATA={},MED={},INFO={};
 function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("mbox");
  box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
  <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p>`;
- for(const p of Object.keys(PARAMS))if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
+ for(const p of PORDER)if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
  document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
 function closeModal(){document.getElementById("modal").style.display="none"}
 document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-(async()=>{const [iv,med]=await Promise.all([fetch(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ALL.join(",")}&parameterCd=00060,00065,00010&period=P7D&siteStatus=all`).then(r=>r.json()),medians()]);MED=med;
+(async()=>{const [iv,med]=await Promise.all([fetch(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ALL.join(",")}&parameterCd=00060,00065,00010,00300,63680&period=P7D&siteStatus=all`).then(r=>r.json()),medians()]);MED=med;
  for(const ts of iv.value.timeSeries){const s=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;
   const vals=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(vals.length)(DATA[s]??={})[p]=vals}
  const last=a=>a&&a.length?a[a.length-1]:null,app=document.getElementById("app"),ranked=[];
- for(const [g,sites] of Object.entries(GROUPS)){app.insertAdjacentHTML("beforeend",`<h2>${g}</h2>`);const grid=document.createElement("div");grid.className="grid";app.appendChild(grid);
+ for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="grid";app.appendChild(grid);
+  const setOpen=o=>{grid.style.display=o?"":"none";h2.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(key,o?"0":"1")};
+  h2.innerHTML=`<span class="arr">▼</span> ${g} <span class="cnt"></span>`;h2.onclick=()=>setOpen(grid.style.display==="none");const secRank=[];SECS.push([h2,secRank]);
   for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";grid.appendChild(c);
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
    if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name}</h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
@@ -86,15 +90,18 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
-   INFO[id]={t,updated:(ql||hl).x,tempMsg};ranked.push({id,t,tempF,pct});
-   const tabs=Object.keys(PARAMS).filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
+   INFO[id]={t,updated:(ql||hl).x,tempMsg};ranked.push({id,t,tempF,pct});secRank.push({id,t,tempF});
+   const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
    c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
    <span class="badge ${t.cls}">🐟 ${t.label}</span><p class="note">${t.note||""}${tempMsg?"<br>"+tempMsg:""}</p>
    <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="chartbox"><canvas></canvas></div>`;
    let ch;const show=p=>{ch&&ch.destroy();ch=mkChart(c.querySelector("canvas"),d[p],p);c.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.p===p))};
    c.querySelectorAll(".tab").forEach(b=>b.onclick=e=>{e.stopPropagation();show(b.dataset.p)});c.querySelector("a").onclick=e=>e.stopPropagation();
-   c.onclick=()=>openModal(id);show(d["00060"]?"00060":"00065")}}
+   c.onclick=()=>openModal(id);show(d["00060"]?"00060":"00065")}
+  h2.querySelector(".cnt").dataset.n=sites.length;setOpen(localStorage.getItem(key)!=="1")}
+ const rk=x=>x.t.score+(x.tempF!=null?.5:0);
+ for(const [h2,r] of SECS){r.sort((a,b)=>rk(b)-rk(a));const c=h2.querySelector(".cnt");c.innerHTML=`(${c.dataset.n} sites)`+(r[0]?` · best: <span class="badge ${r[0].t.cls}">${r[0].t.label.split(" · ")[0]}</span> <small>${NAME[r[0].id]}</small>`:" · no live data")}
  ranked.sort((a,b)=>(b.t.score+(b.tempF!=null?.5:0))-(a.t.score+(a.tempF!=null?.5:0)));const b=ranked[0];
  document.getElementById("banner").innerHTML=b?`🏆 <b>Best-looking right now:</b> ${NAME[b.id]} — <span class="badge ${b.t.cls}">${b.t.label}</span><div class="note">${b.t.note}</div>`:"No live data.";
  document.body.dataset.ready=1})();
