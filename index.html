@@ -38,6 +38,12 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 .locbtn.on{color:#1e88e5}.locbtn.follow{background:#1e88e5;color:#fff}#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#222;color:#fff;padding:10px 16px;border-radius:8px;z-index:20000;opacity:0;transition:opacity .3s;pointer-events:none;max-width:90vw}#toast.on{opacity:1}
 .trash{border:1px solid #c33;background:#3a1a1a;color:#fff;border-radius:6px;padding:6px 10px;min-height:36px;cursor:pointer;margin-top:4px}.leaflet-popup-content .trash{background:#fbe9e9;color:#a00}
 .thumb{display:block;max-width:180px;max-height:180px;border-radius:6px;margin-top:6px}
+.filt label{font-size:.85em}.filt select{padding:8px;border-radius:6px;background:#0f1d2b;color:#e8eef4;border:1px solid #355a7a;min-height:40px}
+#calsec{padding:0 16px}#calsec summary{cursor:pointer}.calwrap{overflow-x:auto}#cal{border-collapse:collapse;font-size:.78em;min-width:760px;width:100%;table-layout:fixed}#cal th:first-child{width:220px}#cal th:last-child{width:80px}
+#cal th,#cal td{border:1px solid #2a4560;padding:4px;text-align:center;vertical-align:middle}#cal td.nm{text-align:left;white-space:nowrap;max-width:240px;overflow:hidden;text-overflow:ellipsis}
+#cal .now{background:#2c4a2f!important;outline:2px solid #9be89b}#cal td.run{background:#3a5f86}#cal td.peak{background:#5f8fc4;font-weight:700}#cal .grp td{background:#14324a;font-weight:700;text-align:left}
+#cal .ev{display:inline-block;background:#8e5bd1;border-radius:8px;padding:1px 5px;margin:1px;font-size:.9em}.regs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin:8px 0}.reg{background:#1b2d40;border-radius:10px;padding:10px;font-size:.85em}.reg h4{margin:0 0 6px}.st{padding:2px 8px;border-radius:10px;font-weight:700;font-size:.85em}.st.open{background:#1f6b3a}.st.closed{background:#8b1f1f}
+#calNow{background:#1d4a33;border:1px solid #2f8a57;border-radius:10px;padding:10px;margin:8px 0}
 </style></head><body>
 <header><h1>🎣 Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
@@ -45,12 +51,14 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 <section id="mapsec"><h2 class="sec2">🗺️ Map, access & fishing log</h2>
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
 <div id="map"></div>
-<div class="maplegend"><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="maplegend"><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="reports">🔶 reported catches</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
 <div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
 <div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></section>
+<section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
 <div id="app"></div>
 <div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
 <div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Smallmouth bass<option>Steelhead<option>Salmon</datalist>
@@ -153,13 +161,13 @@ async function init(){
  try{AD=await (await fetch("access-data.json")).json()}catch(e){console.warn("access data",e)}
  map=L.map("map",{scrollWheelZoom:false}).setView([42.62,-83.05],10);
  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
- const LY={gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
+ const LY={stock:L.layerGroup(),reports:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
  const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));
  document.querySelectorAll(".maplegend button").forEach(b=>{const k=b.dataset.l,ap=()=>{const off=hid.has(k);b.classList.toggle("off",off);b.setAttribute("aria-pressed",String(!off));off?map.removeLayer(LY[k]):LY[k].addTo(map)};ap();
   b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);localStorage.setItem("hiddenLayers",JSON.stringify([...hid]));ap()}});
  for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#e0a800":"#2f8a57";
   L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(LY[p.type]||LY.park)}
- addLocate();await dataReady;
+ addLocate();loadExternal();await dataReady;
  for(const [id,g] of Object.entries(AD.gages)){const i=INFO[id];
   L.circleMarker([g.lat,g.lng],{radius:9,color:"#fff",weight:2,fillColor:i?"#1e88e5":"#777",fillOpacity:1}).bindPopup(`<b>${esc(NAME[id])}</b><br>USGS ${id}<br>${i?`${i.flow??"—"} cfs${i.tempF!=null?" · "+i.tempF.toFixed(0)+"°F":""}<br>🐟 ${esc(i.t.label)}`:"offline"}<br>${esc(g.address)}<br><a href="${DIR(g.lat,g.lng)}" target="_blank">Directions</a> · <a href="#site-${id}">Card</a>`).addTo(gL);
   const card=document.getElementById("site-"+id);if(card){const a=document.createElement("div");a.className="addr";a.innerHTML=`📍 Near ${esc(g.address)} <a href="${DIR(g.lat,g.lng)}" target="_blank">Directions ↗</a>`;
@@ -180,6 +188,36 @@ function addLocate(){let state=0,watch=null,dot=null,circ=null,btn;
    if(state===0){toast("Getting precise location…");navigator.geolocation.getCurrentPosition(p=>{show(p,true);set(1)},err,GEO)}
    else if(state===1){watch=navigator.geolocation.watchPosition(p=>show(p,false),err,GEO);set(2);toast("Live follow on")}
    else{stop();toast("Live follow off")}});return btn}});new C().addTo(map)}
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+async function loadExternal(){let X;try{X=await (await fetch("external-catches.json?v="+Date.now().toString().slice(0,-5))).json()}catch(e){console.warn("external",e);return}
+ const y1=document.getElementById("fY1"),y2=document.getElementById("fY2"),sp=document.getElementById("fSp"),fk="extFilter",st=JSON.parse(localStorage.getItem(fk)||"{}");
+ for(let y=2021;y<=2026;y++){y1.add(new Option(y,y));y2.add(new Option(y,y))}X.species.forEach(g=>sp.add(new Option(g,g)));
+ y1.value=st.y1||2021;y2.value=st.y2||2026;sp.value=st.sp||"";
+ const pass=e=>{const y=+e.date.slice(0,4);return y>=+y1.value&&y<=+y2.value&&(!sp.value||e.group===sp.value)};
+ const draw=()=>{localStorage.setItem(fk,JSON.stringify({y1:y1.value,y2:y2.value,sp:sp.value}));_LY.stock.clearLayers();_LY.reports.clearLayers();let ns=0,nc=0;
+  for(const s of X.sites){const ev=s.events.filter(pass);if(!ev.length)continue;ns+=ev.length;
+   L.circleMarker([s.lat,s.lng],{radius:9,color:"#fff",weight:2,fillColor:"#8e5bd1",fillOpacity:.9}).bindPopup(`<b>🟣 ${esc(s.name)}</b><br><span style="font-size:.85em">Approximate location (road crossing) · last stocked ${esc(s.last)}</span><div style="max-height:220px;overflow:auto;font-size:.85em">${ev.map(e=>`<div style="border-top:1px solid #ddd;padding:3px 0"><b>${esc(e.date)}</b> ${esc(e.species)}<br>${esc(e.size||"")}${e.note?`<br><i>${esc(e.note)}</i>`:""}<br><a href="${esc(e.url)}" target="_blank">${esc(e.source)}</a></div>`).join("")}</div><a href="${DIR(s.lat,s.lng)}" target="_blank">Directions</a>`,{maxWidth:280}).addTo(_LY.stock)}
+  for(const c of X.catches){if(!pass(c))continue;nc++;const ex=c.precision==="exact",lbl={exact:"Exact GPS",approximate:"Approximate",area:"General area only"}[c.precision]||c.precision;
+   const pop=`<b>🔶 ${esc(c.species)}</b>${c.size?" · "+esc(c.size):""}<br>${esc(c.date)} · ${esc(c.location)}<br><span style="font-size:.85em">Precision: ${esc(lbl)}</span>${c.note?`<br><i style="font-size:.85em">${esc(c.note)}</i>`:""}<br><a href="${esc(c.url)}" target="_blank">${esc(c.source)}</a>`;
+   (ex?L.circleMarker([c.lat,c.lng],{radius:6,color:"#7a3d00",weight:1,fillColor:"#ff9800",fillOpacity:.95}):c.precision==="area"?L.circle([c.lat,c.lng],{radius:1200,color:"#ff9800",weight:1,dashArray:"4 4",fillOpacity:.06}):L.circleMarker([c.lat,c.lng],{radius:7,color:"#ff9800",weight:2,fillOpacity:0,dashArray:"3 3"})).bindPopup(pop,{maxWidth:260}).addTo(_LY.reports)}
+  document.getElementById("fCount").textContent=`${ns} stocking events · ${nc} reports`};
+ [y1,y2,sp].forEach(el=>el.onchange=draw);draw();renderCal(X)}
+function lastSatApr(y){const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d}
+function renderRegs(X){const S=X.seasonal,t=new Date(),y=t.getFullYear(),op=lastSatApr(y),cl=new Date(y,8,30,23,59),open=t>=op&&t<=cl,nxt=t<op?op:lastSatApr(y+1),f=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+ const P=S?.rivers?.["Paint Creek"],C=S?.rivers?.["Clinton River"],src=a=>(a||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank">[${i+1}]</a>`).join(" ");
+ document.getElementById("regs").innerHTML=`<div class="regs"><div class="reg"><h4>Paint Creek <span class="st ${open?"open":"closed"}">${open?"OPEN for trout":"CLOSED now"}</span></h4>
+ <b>Type 1 trout stream.</b> Season: last Sat in April – Sept 30. ${open?`Closes ${f(cl)}.`:`Next opener: <b>${f(nxt)}</b>.`}<br><b>Gunn Rd → Tienken Rd (5 mi):</b> artificial lures only, <b>2 trout/day, 14-in minimum</b>, no live bait.<br>Elsewhere Type 1 rules (bait allowed).
+ ${P?.hatches?`<br><span class="sub">Hatches: ${P.hatches.items.map(esc).join(" · ")}</span>`:""}<br><span class="sub">Sources ${src(P?.regulations?.sources)} · verify current DNR regs before fishing</span></div>
+ <div class="reg"><h4>Clinton River <span class="st open">OPEN year-round</span></h4>Not a designated Type 1/2 trout stream — trout open all year.<br>${C?esc(C.regulations.limits)+".<br>"+esc(C.regulations.other)+".":""}<br><span class="sub">Sources ${src(C?.regulations?.sources)} · verify current DNR regs before fishing</span></div></div>`}
+function renderCal(X){renderRegs(X);const now=new Date().getMonth()+1,t=document.getElementById("cal"),hd=`<tr><th>Site / run</th>${MON.map((m,i)=>`<th class="${i+1===now?"now":""}">${m}</th>`).join("")}<th>Last stocked</th></tr>`;
+ const runRows=X.timing.map(r=>`<tr><td class="nm" title="${esc(r.note)}">${esc(r.label)}</td>${MON.map((m,i)=>{const k=i+1,on=r.months.includes(k),pk=(r.peak||[]).includes(k);return `<td class="${on?(pk?"peak":"run"):""} ${k===now?"now":""}">${pk?"★":on?"●":""}</td>`}).join("")}<td><a href="${esc(r.url)}" target="_blank">src</a></td></tr>`).join("");
+ const siteRows=X.sites.map(s=>{const by={};s.events.forEach(e=>{const m=+e.date.slice(5,7);(by[m]??=[]).push(e)});
+  return `<tr><td class="nm" title="${esc(s.name)}">${esc(s.name)}</td>${MON.map((m,i)=>`<td class="${i+1===now?"now":""}">${Object.entries((by[i+1]||[]).reduce((o,e)=>{(o[e.date.slice(0,4)]??=[]).push(e);return o},{})).sort().reverse().map(([y,es])=>`<span class="ev" title="${esc(es.map(e=>e.date+" "+e.species+" "+(e.size||"")).join("\n"))}">'${y.slice(2)}${es.length>1?"×"+es.length:""}</span>`).join("")}</td>`).join("")}<td>${esc(s.last)}</td></tr>`}).join("");
+ t.innerHTML=`<thead>${hd}</thead><tbody><tr class="grp"><td colspan="14">Run & seasonal windows (● season, ★ peak)</td></tr>${runRows}<tr class="grp"><td colspan="14">DNR stocking events by month (year shown)</td></tr>${siteRows}</tbody>`;
+ const runs=X.timing.filter(r=>r.months.includes(now)),stk=X.sites.flatMap(s=>s.events.filter(e=>+e.date.slice(5,7)===now).map(e=>({s,e}))),nx=X.timing.filter(r=>r.months.includes(now%12+1)&&!r.months.includes(now));
+ document.getElementById("calNow").innerHTML=`<b>📌 Happening now (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no major runs in the data for this month"}.
+  ${stk.length?`<br>Past ${MON[now-1]} stockings: ${[...new Set(stk.map(x=>x.s.name))].map(esc).join(", ")}.`:`<br>No DNR stockings recorded in ${MON[now-1]} (2021–2026).`}${nx.length?`<br>Coming next month: ${nx.map(r=>esc(r.label)).join(", ")}.`:""}`;
+ document.getElementById("calSrc").textContent=`Data generated ${X.generated}; timing ${X.timing_source}; ${X.dropped_captive} likely-captive records excluded. Stocking coordinates are approximate.`}
 function nearestGage(la,ln){let best=null;for(const [id,g] of Object.entries(AD.gages)){if(!INFO[id])continue;const d=mi(la,ln,g.lat,g.lng);if(!best||d<best.d)best={id,d}}return best}
 let pending=null;
 function startTag(type){const go=pos=>{const la=+pos.coords.latitude.toFixed(6),ln=+pos.coords.longitude.toFixed(6),n=nearestGage(la,ln),i=n&&INFO[n.id];

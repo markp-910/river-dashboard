@@ -1,0 +1,1646 @@
+{
+ "generated": "2026-10-14",
+ "dropped_captive": 5,
+ "timing_source": "research/seasonal-timing.json (2026-10-14)",
+ "species": [
+  "Brown trout",
+  "Northern pike",
+  "Other",
+  "Rainbow trout",
+  "Salmon",
+  "Smallmouth bass",
+  "Steelhead",
+  "Trout (mixed)",
+  "Walleye"
+ ],
+ "sites": [
+  {
+   "name": "Clinton River - Hamlin Rd crossing, Rochester Hills",
+   "lat": 42.646,
+   "lng": -83.172,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2100,
+     "size": "2100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site HAMLIN ROAD; T03N R11E S29",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2200,
+     "size": "2200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site HAMLIN ROAD; T03N R11E S29",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2100,
+     "size": "2100 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site HAMLIN ROAD; T03N R11E S29",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2025,
+     "size": "2025 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site HAMLIN ROAD; T03N R11E S29",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2250,
+     "size": "2250 fish, avg 17.28 cm (~6.8 in)",
+     "note": "yearling; strain Wild Rose; DNR site HAMLIN ROAD; T03N R11E S29",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Clinton River - Ryan Rd, Sterling Heights (below Yates Dam)",
+   "lat": 42.6,
+   "lng": -83.049,
+   "last": "2026-04-13",
+   "events": [
+    {
+     "date": "2026-04-13",
+     "species": "Rainbow trout (steelhead)",
+     "group": "Steelhead",
+     "count": 37467,
+     "size": "37467 fish, avg 18.7 cm (~7.4 in)",
+     "note": "steelhead smolt; strain Michigan; DNR site RYAN ROAD; T03N R12E S20",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-16",
+     "species": "Rainbow trout (steelhead)",
+     "group": "Steelhead",
+     "count": 37498,
+     "size": "37498 fish, avg 18.6 cm (~7.3 in)",
+     "note": "steelhead smolt; strain Michigan; DNR site RYAN ROAD; T03N R12E S20",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-09",
+     "species": "Rainbow trout (steelhead)",
+     "group": "Steelhead",
+     "count": 37481,
+     "size": "37481 fish, avg 19.0 cm (~7.5 in)",
+     "note": "steelhead smolt; strain Michigan; DNR site RYAN ROAD; T03N R12E S20",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-14",
+     "species": "Rainbow trout (steelhead)",
+     "group": "Steelhead",
+     "count": 37497,
+     "size": "37497 fish, avg 19.0 cm (~7.5 in)",
+     "note": "steelhead smolt; strain Michigan; DNR site RYAN ROAD; T03N R12E S20",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-04-22",
+     "species": "Rainbow trout (steelhead)",
+     "group": "Steelhead",
+     "count": 27197,
+     "size": "27197 fish, avg 21.0 cm (~8.3 in)",
+     "note": "steelhead smolt; strain Michigan; DNR site RYAN ROAD; T03N R12E S20",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Clinton River - Squirrel Rd / Riverside Park, Auburn Hills",
+   "lat": 42.664,
+   "lng": -83.215,
+   "last": "2026-06-12",
+   "events": [
+    {
+     "date": "2026-06-12",
+     "species": "Rainbow trout",
+     "group": "Rainbow trout",
+     "count": 675,
+     "size": "675 fish, avg 30.48 cm (~12.0 in)",
+     "note": "adult/broodstock; strain ; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2100,
+     "size": "2100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2200,
+     "size": "2200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-03-31",
+     "species": "Brown trout (adult)",
+     "group": "Brown trout",
+     "count": 1150,
+     "size": "1,150 fish, 13-18 in",
+     "note": "retired broodstock; Clinton open year-round, 5 trout >8in, max 3 >15in; URL check: 404 via curl / fetch timed out (content from search snippet; corroborated by DNR stocking DB 2025-03-24 Squirrel Rd adults)",
+     "source": "MI DNR news release",
+     "url": "https://www.michigan.gov/dnr/about/newsroom/releases/2025/03/31/adult-trout-stocked-in-clinton-and-huron-rivers-spring-mill-pond"
+    },
+    {
+     "date": "2025-03-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 475,
+     "size": "475 fish, avg 38.9 cm (~15.3 in)",
+     "note": "adult/broodstock; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-03-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 537,
+     "size": "537 fish, avg 38.0 cm (~15.0 in)",
+     "note": "adult/broodstock; strain Wild Rose; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-03-24",
+     "species": "Rainbow trout",
+     "group": "Rainbow trout",
+     "count": 40,
+     "size": "40 fish, avg 44.3 cm (~17.4 in)",
+     "note": "adult/broodstock; strain Eagle Lake; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-03-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 138,
+     "size": "138 fish, avg 42.4 cm (~16.7 in)",
+     "note": "adult/broodstock; strain Wild Rose; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2100,
+     "size": "2100 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-03-25",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 120,
+     "size": "120 fish, avg 40.6 cm (~16.0 in)",
+     "note": "adult/broodstock; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-03-25",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 523,
+     "size": "523 fish, avg 36.3 cm (~14.3 in)",
+     "note": "adult/broodstock; strain Wild Rose; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-05-08",
+     "species": "Rainbow trout",
+     "group": "Rainbow trout",
+     "count": 1018,
+     "size": "1018 fish, avg 31.46 cm (~12.4 in)",
+     "note": "adult/broodstock; strain Eagle Lake; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2025,
+     "size": "2025 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-03-27",
+     "species": "Rainbow trout",
+     "group": "Rainbow trout",
+     "count": 1165,
+     "size": "1165 fish, avg 18.37 cm (~7.2 in)",
+     "note": "yearling; strain Eagle Lake; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 2250,
+     "size": "2250 fish, avg 17.28 cm (~6.8 in)",
+     "note": "yearling; strain Wild Rose; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-03-31",
+     "species": "Brown/rainbow trout (adult)",
+     "group": "Trout (mixed)",
+     "count": null,
+     "size": "~4,900 adult trout across 3 waters",
+     "note": "adult broodstock stocking announcement",
+     "source": "MI DNR Fisheries on X",
+     "url": "https://x.com/MDNR_Fisheries/status/1509567632910991365"
+    },
+    {
+     "date": "2022-03-28",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 244,
+     "size": "244 fish, avg 42.7 cm (~16.8 in)",
+     "note": "adult/broodstock; strain Sturgeon River; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-03-28",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 356,
+     "size": "356 fish, avg 43.7 cm (~17.2 in)",
+     "note": "adult/broodstock; strain Wild Rose; DNR site SQUIRREL ROAD; T03N R10E S25",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Paint Creek - Adams Rd crossing, Oakland Twp",
+   "lat": 42.723,
+   "lng": -83.17,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ADAMS ROAD; T04N R11E S19",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ADAMS ROAD; T04N R11E S19",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1098,
+     "size": "1098 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ADAMS ROAD; T04N R11E S19",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 800,
+     "size": "800 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ADAMS ROAD; T04N R11E S19",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.54 cm (~4.9 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ADAMS ROAD; T04N R11E S19",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Paint Creek - Clarkston/Kern Rd, Orion Twp",
+   "lat": 42.7618,
+   "lng": -83.216,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site CLARKSTON/KERN RDS; T04N R10E S13",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site CLARKSTON/KERN RDS; T04N R10E S13",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1098,
+     "size": "1098 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site CLARKSTON/KERN RDS; T04N R10E S13",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 800,
+     "size": "800 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site CLARKSTON/KERN RDS; T04N R10E S13",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.54 cm (~4.9 in)",
+     "note": "yearling; strain Sturgeon River; DNR site CLARKSTON/KERN RDS; T04N R10E S13",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Paint Creek - Lake Orion Village Park",
+   "lat": 42.7836,
+   "lng": -83.2386,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 750,
+     "size": "750 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site VILLAGE PARK; T04N R10E S02",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 790,
+     "size": "790 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site VILLAGE PARK; T04N R10E S02",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 739,
+     "size": "739 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site VILLAGE PARK; T04N R10E S02",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 500,
+     "size": "500 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site VILLAGE PARK; T04N R10E S02",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 800,
+     "size": "800 fish, avg 12.54 cm (~4.9 in)",
+     "note": "yearling; strain Sturgeon River; DNR site VILLAGE PARK; T04N R10E S02",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Paint Creek - Rochester Municipal Park",
+   "lat": 42.687,
+   "lng": -83.13,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ROCHESTER CITY PARK; T03N R11E S10",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ROCHESTER CITY PARK; T03N R11E S10",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ROCHESTER CITY PARK; T03N R11E S10",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 800,
+     "size": "800 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site ROCHESTER CITY PARK; T03N R11E S10",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 17.28 cm (~6.8 in)",
+     "note": "yearling; strain Wild Rose; DNR site ROCHESTER CITY PARK; T03N R11E S10",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Paint Creek - Tienken Rd crossing, Rochester Hills",
+   "lat": 42.7005,
+   "lng": -83.143,
+   "last": "2026-04-30",
+   "events": [
+    {
+     "date": "2026-04-30",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 11.57 cm (~4.6 in)",
+     "note": "yearling; strain Sturgeon River; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2025-04-22",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1200,
+     "size": "1200 fish, avg 12.89 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2024-04-15",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 1100,
+     "size": "1100 fish, avg 12.6 cm (~5.0 in)",
+     "note": "yearling; strain Sturgeon River; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2023-04-24",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 800,
+     "size": "800 fish, avg 13.02 cm (~5.1 in)",
+     "note": "yearling; strain Sturgeon River; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 392,
+     "size": "392 fish, avg 12.54 cm (~4.9 in)",
+     "note": "yearling; strain Sturgeon River; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-05-05",
+     "species": "Brown trout",
+     "group": "Brown trout",
+     "count": 808,
+     "size": "808 fish, avg 17.28 cm (~6.8 in)",
+     "note": "yearling; strain Wild Rose; DNR site TIENKEN ROAD; T03N R11E S03",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  },
+  {
+   "name": "Stony Creek - Stony Creek Impoundment (Metropark)",
+   "lat": 42.727,
+   "lng": -83.09,
+   "last": "2024-06-12",
+   "events": [
+    {
+     "date": "2024-06-12",
+     "species": "Walleye",
+     "group": "Walleye",
+     "count": 33099,
+     "size": "33099 fish, avg 3.76 cm (~1.5 in)",
+     "note": "fingerling; strain Muskegon; DNR site STONY CREEK IMPD.; T04N R12E S31",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    },
+    {
+     "date": "2022-06-14",
+     "species": "Walleye",
+     "group": "Walleye",
+     "count": 24872,
+     "size": "24872 fish, avg 3.48 cm (~1.4 in)",
+     "note": "fingerling; strain Muskegon; DNR site STONY CREEK IMPD.; T04N R12E S31",
+     "source": "Michigan DNR Fish Stocking Database",
+     "url": "https://www.dnr.state.mi.us/fishstock/"
+    }
+   ]
+  }
+ ],
+ "catches": [
+  {
+   "date": "2026-09-23",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Stony Creek, Rochester Hills, MI, US",
+   "lat": 42.6963291676,
+   "lng": -83.1166155308,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/402876945",
+   "note": "quality=research; acc_m=47; photos=3",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2026-08-31",
+   "species": "Trout (unspecified)",
+   "size": "",
+   "location": "Paint Creek (spot not stated)",
+   "lat": 42.715,
+   "lng": -83.16,
+   "precision": "area",
+   "source": "Reddit r/michiganflyfishing",
+   "url": "https://www.reddit.com/r/michiganflyfishing/comments/1w3na7h/got_my_first_trout_fly_fishing/",
+   "note": "first trout on fly; content via search index (reddit blocks direct fetch)",
+   "type": "catch",
+   "group": "Trout (mixed)"
+  },
+  {
+   "date": "2026-08-15",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "Clinton River, Rochester Hills, MI, US",
+   "lat": 42.6734284297,
+   "lng": -83.0962934919,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/391499811",
+   "note": "quality=research; acc_m=32; photos=1",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2026-08-09",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.6899952146,
+   "lng": -83.0473456467,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/407872261",
+   "note": "quality=research; acc_m=16; photos=1",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2026-08-09",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.7339017446,
+   "lng": -83.0541212651,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/407872064",
+   "note": "quality=research; acc_m=9; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2026-08-09",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Paint Creek, Rochester, MI, US",
+   "lat": 42.6879916667,
+   "lng": -83.1420528333,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/407871889",
+   "note": "quality=research; acc_m=11; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2026-08-09",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Paint Creek, Rochester, MI, US",
+   "lat": 42.6879366728,
+   "lng": -83.1419833333,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/407855375",
+   "note": "quality=research; acc_m=20; photos=1",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2026-08-05",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Orion Rd, Rochester, MI, US",
+   "lat": 42.7347185237,
+   "lng": -83.1661695019,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/388506359",
+   "note": "quality=research; acc_m=45; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2026-08-02",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Clinton River, Rochester Hills, MI, US",
+   "lat": 42.6571168574,
+   "lng": -83.1662811543,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/387731439",
+   "note": "quality=research; acc_m=89; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2026-07-27",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Paint Creek, Rochester, MI, US",
+   "lat": 42.7325736239,
+   "lng": -83.1626572128,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/385829781",
+   "note": "quality=research; acc_m=27; photos=2",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2026-07-27",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Paint Creek, Rochester, MI, US",
+   "lat": 42.7325358517,
+   "lng": -83.1626085088,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/385823228",
+   "note": "quality=research; acc_m=25; photos=2",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2026-07-26",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "N Livernois Rd, Rochester, MI, US",
+   "lat": 42.71455,
+   "lng": -83.1560445,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/385293951",
+   "note": "quality=research; acc_m=8; photos=1",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2026-06-13",
+   "species": "Auburn Hills youth fishing derby (rainbow trout)",
+   "size": "",
+   "location": "Riverside Park, Auburn Hills",
+   "lat": 42.664,
+   "lng": -83.215,
+   "precision": "approximate",
+   "source": "City of Auburn Hills on X",
+   "url": "https://x.com/AuburnHillsMI/status/2049594326552911946",
+   "note": "23rd annual derby 8-10 AM; likely explains DNR 675 adult rainbows stocked at Squirrel Rd 2026-06-12",
+   "type": "report",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2026-05-12",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Stony Creek Metropark, Rochester, MI, US",
+   "lat": 42.7209654888,
+   "lng": -83.0963258293,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/383492809",
+   "note": "quality=research; acc_m=11; photos=1",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2026-04-14",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Lake Orion, MI, US",
+   "lat": 42.7815181252,
+   "lng": -83.2489705988,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/355351857",
+   "note": "quality=research; acc_m=781; photos=1",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2025-11-23",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Ironwood Ct, Rochester, MI, US",
+   "lat": 42.69217,
+   "lng": -83.1454471667,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/331324712",
+   "note": "quality=research; acc_m=19; photos=2",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2025-11-23",
+   "species": "Coho/Chinook jack (salmon)",
+   "size": "",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Okku)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "\"cherry jack\"",
+   "type": "catch",
+   "group": "Salmon"
+  },
+  {
+   "date": "2025-11-20",
+   "species": "Steelhead",
+   "size": "24 in, clipped",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Ramblin Angler)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "",
+   "type": "catch",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-11-15",
+   "species": "Steelhead",
+   "size": "29 in hen",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Okku)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "first cast, head of pool, very low water",
+   "type": "catch",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-11-12",
+   "species": "Chinook salmon (redds)",
+   "size": "",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Okku)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "redds old and new, \"peak salmon run\", no fish seen",
+   "type": "report",
+   "group": "Salmon"
+  },
+  {
+   "date": "2025-11-06",
+   "species": "Steelhead",
+   "size": "",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (psycodad)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "buck on tarnished brass/black body spinner, clear-ish water",
+   "type": "catch",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-11-02",
+   "species": "Steelhead",
+   "size": "~30 in male + 19 in",
+   "location": "Clinton River (unspecified)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Okku)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "low clear water ~4 ft vis; no salmon yet",
+   "type": "catch",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-10-27",
+   "species": "(habitat) Yates Dam bypass repair",
+   "size": "",
+   "location": "Yates Dam, Clinton River, Rochester Hills",
+   "lat": 42.6935,
+   "lng": -83.088,
+   "precision": "approximate",
+   "source": "Oakland County Parks press release",
+   "url": "https://www.oakgov.com/home/showpublisheddocument/29011/638972601623900000",
+   "note": "Clinton River Oaks Park (235 ac); land buy supports $1.4M GLFC project to seal Yates bypass/restore lamprey barrier -> would again block steelhead from Paint Creek",
+   "type": "report",
+   "group": "Other"
+  },
+  {
+   "date": "2025-09-07",
+   "species": "Steelhead (skipper)",
+   "size": "15 in",
+   "location": "Clinton River (unspecified, likely Rochester Hills/Yates area)",
+   "lat": 42.68,
+   "lng": -83.11,
+   "precision": "area",
+   "source": "Michigan Sportsman forum (Okku)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+   "note": "bright unclipped skipper; also walleye, 2 pike, many bass over 2 days; water 57-58F low drought",
+   "type": "catch",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-06-04",
+   "species": "Chinook Salmon",
+   "size": null,
+   "location": "Dickinson St, Mount Clemens, MI, US",
+   "lat": 42.5977018295,
+   "lng": -82.8743488155,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/286876965",
+   "note": "quality=research; acc_m=1178; photos=2",
+   "type": "catch/observation",
+   "group": "Salmon"
+  },
+  {
+   "date": "2025-05-11",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "Wolcott Rd, Ray, MI, US",
+   "lat": 42.766565313,
+   "lng": -82.9292361015,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/281015938",
+   "note": "quality=research; acc_m=24; photos=1",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2025-05-09",
+   "species": "Auburn Hills youth fishing derby (rainbow trout)",
+   "size": "",
+   "location": "Riverside Park, Auburn Hills",
+   "lat": 42.664,
+   "lng": -83.215,
+   "precision": "approximate",
+   "source": "City of Auburn Hills on X",
+   "url": "https://x.com/AuburnHillsMI/status/1920102091453878710",
+   "note": "annual River Day derby, ages 16 and under (post dated 2025-05-07)",
+   "type": "report",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2025-04-25",
+   "species": "Salmons and Trouts",
+   "size": null,
+   "location": "Valley View Dr, Auburn Hills, MI, US",
+   "lat": 42.6671818248,
+   "lng": -83.223033342,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/273346338",
+   "note": "quality=casual; acc_m=161; photos=1",
+   "type": "catch/observation",
+   "group": "Salmon"
+  },
+  {
+   "date": "2025-04-22",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Oakland Township, MI, US",
+   "lat": 42.740905,
+   "lng": -83.1154638333,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/273079898",
+   "note": "quality=research; acc_m=11; photos=1",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2025-04-20",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "Wolcott Rd, Ray, MI, US",
+   "lat": 42.7672260291,
+   "lng": -82.9289242651,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/271830626",
+   "note": "quality=research; acc_m=31; photos=3",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2025-04-09",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Macomb County, MI, USA",
+   "lat": 42.6978638889,
+   "lng": -82.9218972222,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/269548737",
+   "note": "quality=research; acc_m=9; photos=5",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2025-04-05",
+   "species": "Steelhead",
+   "size": "",
+   "location": "Clinton River at Yates / River Bends Park, Rochester Hills/Shelby",
+   "lat": 42.6935,
+   "lng": -83.088,
+   "precision": "approximate",
+   "source": "Reddit r/MichiganFishing",
+   "url": "https://www.reddit.com/r/MichiganFishing/comments/1js17sz/are_there_steelhead_in_the_clinton_river_by_yates/",
+   "note": "\"absolutely still there\" but river flooded after massive rain; no dam effect at Yates (bypass)",
+   "type": "report",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2025-03-23",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Clinton River, Macomb County, MI, USA",
+   "lat": 42.6110919885,
+   "lng": -83.0255598296,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/269726846",
+   "note": "quality=research; acc_m=2200; photos=3",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2025-02-22",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.552260045,
+   "lng": -82.8062826993,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/262758361",
+   "note": "quality=research; acc_m=36; photos=1",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2025-02-22",
+   "species": "Tiger Muskellunge",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.567062386,
+   "lng": -82.807008705,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/262758319",
+   "note": "quality=research; acc_m=47; photos=1",
+   "type": "catch/observation",
+   "group": "Other"
+  },
+  {
+   "date": "2025",
+   "species": "Brown & rainbow trout",
+   "size": "",
+   "location": "Paint Creek, Rochester (Municipal Park vs north of Tienken)",
+   "lat": 42.7005,
+   "lng": -83.143,
+   "precision": "area",
+   "source": "Reddit r/MichiganFishing \"Paint Creek, Rochester\"",
+   "url": "https://www.reddit.com/r/MichiganFishing/comments/1ko0782/paint_creek_rochester/",
+   "note": "date only year-level (search snippet); advice: fish north of Tienken, Rapala CD1/CD3/CD5, small spinners; good until mid-June; historic 19in brown near Silverbell/Dutton",
+   "type": "report",
+   "group": "Trout (mixed)"
+  },
+  {
+   "date": "2024-12-28",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.7288711758,
+   "lng": -83.0541552294,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/256547294",
+   "note": "quality=research; acc_m=15; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2024-12-28",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "N Livernois Rd, Rochester Hills, MI, US",
+   "lat": 42.702545,
+   "lng": -83.1537638333,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/256546668",
+   "note": "quality=research; acc_m=14; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2024-12-28",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Ironwood Ct, Rochester, MI, US",
+   "lat": 42.6886366667,
+   "lng": -83.1440278333,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/256543893",
+   "note": "quality=research; acc_m=144; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2024-11-24",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Paint Creek, Rochester Hills, MI, US",
+   "lat": 42.6969849618,
+   "lng": -83.1493909234,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/252914740",
+   "note": "quality=research; acc_m=31; photos=3",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2024-10-31",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.5263345073,
+   "lng": -82.9273163131,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/269128929",
+   "note": "quality=research; acc_m=213; photos=2",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2024-08-29",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "North Branch Clinton River, Macomb County, MI, USA",
+   "lat": 42.7666995472,
+   "lng": -82.9314279779,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/244073892",
+   "note": "quality=research; acc_m=250; photos=1",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2024-08-29",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "North Branch Clinton River, Macomb County, MI, USA",
+   "lat": 42.7666995472,
+   "lng": -82.9314279779,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/244073884",
+   "note": "quality=research; acc_m=250; photos=1",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2024-08-20",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "M-53 S, Sterling Heights, MI, US",
+   "lat": 42.6007147692,
+   "lng": -83.0287097637,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/242000987",
+   "note": "quality=casual; acc_m=86; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2024-05-06",
+   "species": "Chinook Salmon",
+   "size": null,
+   "location": "North Branch Clinton River, Ray, MI, US",
+   "lat": 42.7671255878,
+   "lng": -82.9287491355,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/214110856",
+   "note": "quality=research; acc_m=49; photos=1",
+   "type": "catch/observation",
+   "group": "Salmon"
+  },
+  {
+   "date": "2024-04-10",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Paint Creek Trail, Lake Orion, MI, US",
+   "lat": 42.7674633333,
+   "lng": -83.219505,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/207860483",
+   "note": "quality=research; acc_m=17; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2023-09-04",
+   "species": "Rainbow Trout",
+   "size": null,
+   "location": "Riverside Park, Auburn Hills, MI, US",
+   "lat": 42.6346091,
+   "lng": -83.2232603,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/192678016",
+   "note": "quality=research; acc_m=75; photos=1",
+   "type": "catch/observation",
+   "group": "Rainbow trout"
+  },
+  {
+   "date": "2023-08-08",
+   "species": "Brown trout (30), rainbow trout (1) + 19 other species",
+   "size": "two browns 15 in, three 12-13 in",
+   "location": "Clinton River at River Woods Park, Auburn Hills",
+   "lat": 42.6612,
+   "lng": -83.2433,
+   "precision": "approximate",
+   "source": "Oakland County Times (Auburn Hills city planner)",
+   "url": "https://oaklandcounty115.com/2023/08/15/survey-of-fish-in-clinton-river-boasts-21-species/",
+   "note": "DNR Fisheries electrofishing \"this past Tuesday\" before Aug 15 2023 = Aug 8; trout larger than prior years; also smallmouth, rock bass, darters",
+   "type": "survey",
+   "group": "Trout (mixed)"
+  },
+  {
+   "date": "2023-08-01",
+   "species": "Brown trout (habitat)",
+   "size": "",
+   "location": "Paint Creek, Dinosaur Hill to Main St, Rochester",
+   "lat": 42.687,
+   "lng": -83.13,
+   "precision": "area",
+   "source": "Rochester Media",
+   "url": "https://rochestermedia.com/paint-creek-restoration-project-two-thumbs-up-from-fishermen-2/",
+   "note": "restoration (step pools, woody debris); article says DNR stocks >6,500 browns/yr; publish date not confirmed (placeholder 2023)",
+   "type": "report",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2023-06-21",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Michigan, US",
+   "lat": 42.6688564692,
+   "lng": -83.1355864945,
+   "precision": "area",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/209199880",
+   "note": "quality=research; acc_m=211; photos=1",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2023-04-08",
+   "species": "Northern Pike",
+   "size": null,
+   "location": "Stony Creek Metropark, Rochester, MI, US",
+   "lat": 42.7299205952,
+   "lng": -83.1164133497,
+   "precision": "approximate",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/154036771",
+   "note": "quality=research; acc_m=104; photos=1",
+   "type": "catch/observation",
+   "group": "Northern pike"
+  },
+  {
+   "date": "2022-10-29",
+   "species": "Smallmouth Bass",
+   "size": null,
+   "location": "Kenwood Ave, Madison Heights, MI, US",
+   "lat": 42.5245684756,
+   "lng": -83.1241153639,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/140395554",
+   "note": "quality=casual; acc_m=20; photos=1",
+   "type": "catch/observation",
+   "group": "Smallmouth bass"
+  },
+  {
+   "date": "2022-10-20",
+   "species": "Brown Trout",
+   "size": null,
+   "location": "Rochester",
+   "lat": 42.6881484985,
+   "lng": -83.142326355,
+   "precision": "exact",
+   "source": "iNaturalist",
+   "url": "https://www.inaturalist.org/observations/235605837",
+   "note": "quality=research; acc_m=None; photos=1",
+   "type": "catch/observation",
+   "group": "Brown trout"
+  },
+  {
+   "date": "2022-08-01",
+   "species": "Brown trout / rainbow (steelhead juveniles)",
+   "size": "",
+   "location": "Paint Creek index sites (Gunn Rd, Tienken Rd) + habitat sites",
+   "lat": 42.715,
+   "lng": -83.16,
+   "precision": "area",
+   "source": "MI DNR 2022 Paint Creek electrofishing presentation (via Vanguard TU)",
+   "url": "https://www.vanguardtu.org/images/pdffiles/Paint_Creek_DNR_2022_Shocking_Powerpoint_.pdf",
+   "note": "2022 survey (month not stated; date placeholder = 2022): brown trout down at index sites, steady/up at habitat sites; lots of juvenile rainbows via Yates bypass, none legal; target 5,600 yearling browns/yr",
+   "type": "survey",
+   "group": "Steelhead"
+  },
+  {
+   "date": "2022-05-30",
+   "species": "Longnose gar",
+   "size": "",
+   "location": "Clinton River at Yates (Yates Cider Mill), Rochester Hills",
+   "lat": 42.6935,
+   "lng": -83.088,
+   "precision": "approximate",
+   "source": "X post @JoeHypnotic",
+   "url": "https://x.com/JoeHypnotic/status/1531370489616154624",
+   "note": "wading, casting",
+   "type": "catch",
+   "group": "Other"
+  },
+  {
+   "date": "2022-04-03",
+   "species": "Brown trout",
+   "size": "",
+   "location": "Clinton River, Auburn Hills",
+   "lat": 42.666,
+   "lng": -83.22,
+   "precision": "area",
+   "source": "X post @rbfritz4",
+   "url": "https://x.com/rbfritz4/status/1510757450533806092",
+   "note": "brown trout fishing, Auburn Hills",
+   "type": "catch",
+   "group": "Brown trout"
+  }
+ ],
+ "timing": [
+  {
+   "label": "Clinton \u2014 steelhead fall run",
+   "river": "Clinton River",
+   "species": "Steelhead",
+   "months": [
+    9,
+    10,
+    11
+   ],
+   "peak": [
+    10,
+    11
+   ],
+   "note": "Fish enter from ~October (forum: 'in system since October'); 2025 catches Sep 7 (skipper) through Nov 23; best after rain + leaf drop",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+  },
+  {
+   "label": "Clinton \u2014 steelhead spring run",
+   "river": "Clinton River",
+   "species": "Steelhead",
+   "months": [
+    2,
+    3,
+    4,
+    5
+   ],
+   "peak": [
+    3,
+    4
+   ],
+   "note": "Feb-April upper river (Auburn Hills/Rochester) after snowmelt; dropbacks into early May",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+  },
+  {
+   "label": "Clinton \u2014 salmon spawn",
+   "river": "Clinton River",
+   "species": "Salmon",
+   "months": [
+    10,
+    11
+   ],
+   "peak": [
+    11
+   ],
+   "note": "late Oct - mid Nov; redds 'peak salmon run' Nov 12 2025; chinook iNat obs North Branch May & Mt Clemens June (likely post-spawn/odd)",
+   "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+  },
+  {
+   "label": "Clinton \u2014 adult trout stocking (Squirrel Rd)",
+   "river": "Clinton River",
+   "species": "Brown trout",
+   "months": [
+    3
+   ],
+   "peak": [
+    3
+   ],
+   "note": "Squirrel Rd/Riverside Park, late March (2022-03-28, 2024-03-25, 2025-03-24) browns 36-44 cm; adult rainbows 2023-03-27, 2023-05-08, 2025-03-24, 2026-06-12 (pre-derby)",
+   "url": "https://www.dnr.state.mi.us/fishstock/"
+  },
+  {
+   "label": "Clinton \u2014 steelhead smolt stocking (Ryan Rd)",
+   "river": "Clinton River",
+   "species": "Steelhead",
+   "months": [
+    4
+   ],
+   "peak": [
+    4
+   ],
+   "note": "Ryan Rd (Sterling Hts), Apr 9-22: 27,197 (2022), ~37,500/yr 2023-2026",
+   "url": "https://www.dnr.state.mi.us/fishstock/"
+  },
+  {
+   "label": "Paint Creek \u2014 trout season open",
+   "river": "Paint Creek",
+   "species": "Brown trout",
+   "months": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ],
+   "peak": [
+    5,
+    6,
+    9
+   ],
+   "note": "last Saturday in April - September 30 (all trout); 2027 opener Apr 24, 2027. Best: opener (late Apr) - mid June; September (to Sep 30 close); July-Aug: tough, water near 70F",
+   "url": "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf"
+  },
+  {
+   "label": "Paint Creek \u2014 yearling brown stocking",
+   "river": "Paint Creek",
+   "species": "Brown trout",
+   "months": [
+    4,
+    5
+   ],
+   "peak": [
+    4
+   ],
+   "note": "Apr 15 - May 5 (2022-05-05, 2023-04-24, 2024-04-15, 2025-04-22, 2026-04-30)",
+   "url": "https://www.dnr.state.mi.us/fishstock/"
+  }
+ ],
+ "seasonal": {
+  "generated": "2026-10-14",
+  "rivers": {
+   "Paint Creek": {
+    "regulations": {
+     "stream_type": "Type 1 trout stream (Lake Orion Dam->Gunn Rd, Tienken Rd->Clinton confluence); gear-restricted Gunn Rd->Tienken Rd (5.0 mi)",
+     "season": "last Saturday in April - September 30 (all trout); 2027 opener Apr 24, 2027",
+     "gear_restricted_section": "Gunn->Tienken: artificial lures only, 2 trout/day, 14 in minimum all trout",
+     "notes": "no live bait in gear-restricted section; Type 1 elsewhere allows bait",
+     "sources": [
+      "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf",
+      "https://www.eregulations.com/michigan/fishing/inland-trout-salmon-regulations",
+      "https://content.govdelivery.com/accounts/MIDNR/bulletins/1b92cdb"
+     ]
+    },
+    "stocking": {
+     "species": "Brown trout yearlings (Sturgeon River strain), ~11.6-13 cm",
+     "window": "Apr 15 - May 5 (2022-05-05, 2023-04-24, 2024-04-15, 2025-04-22, 2026-04-30)",
+     "sites": [
+      "Village Park (Lake Orion)",
+      "Clarkston/Kern Rds",
+      "Adams Rd",
+      "Tienken Rd",
+      "Rochester City Park"
+     ],
+     "annual_total": "~3,700-5,900 (target 5,600)",
+     "source": "MI DNR Fish Stocking Database (FishStockingReportGISAGO)"
+    },
+    "best_windows": [
+     {
+      "window": "opener (late Apr) - mid June",
+      "basis": "DNR Trout Trails: most fishing opening weekend-May; Reddit: good until mid-June",
+      "sources": [
+       "https://www.michigandnr.com/PUBLICATIONS/pdfs/ArcGISOnline/StoryMaps/fish_troutTrails/PDFs/TT2016009.pdf"
+      ]
+     },
+     {
+      "window": "September (to Sep 30 close)",
+      "basis": "cooling water; fly-hub spring+fall best",
+      "sources": [
+       "https://michiganflyfishinghub.com/rivers/paint-creek/"
+      ]
+     },
+     {
+      "window": "July-Aug: tough, water near 70F",
+      "sources": [
+       "https://michiganflyfishinghub.com/rivers/paint-creek/"
+      ]
+     }
+    ],
+    "hatches": {
+     "source": "https://michiganflyfishinghub.com/rivers/paint-creek/ (secondary, aggregator site)",
+     "items": [
+      "Sulphur (E. dorothea) May-June",
+      "Blue-Winged Olive spring & fall (Oct)",
+      "Tan caddis summer",
+      "Hoppers late summer",
+      "Mahogany Dun fall"
+     ],
+     "angler_reports": "Adams/Parachute Adams, caddis, PT #14, Mickey Finn, small leeches (Reddit r/michiganflyfishing)"
+    },
+    "steelhead": "Juvenile wild rainbows from steelhead passing Yates bypass (DNR 2022 survey); steelhead reported in Paint Creek by anglers; access may end if Yates bypass sealed (GLFC project, land bought Oct 2025)"
+   },
+   "Clinton River": {
+    "regulations": {
+     "stream_type": "Not a designated Type 1/2 trout stream; open to trout fishing all year",
+     "limits": "5 trout >8 in, max 3 >15 in (per DNR 2025 release)",
+     "other": "Pike & walleye closed until last Saturday in April on Clinton (forum; general SE MI inland rule)",
+     "sources": [
+      "https://www.michigan.gov/dnr/about/newsroom/releases/2025/03/31/adult-trout-stocked-in-clinton-and-huron-rivers-spring-mill-pond",
+      "https://www.lakestclair.net/threads/clinton-river-steelhead-run-upstream-from-yates.315170/"
+     ]
+    },
+    "stocking": {
+     "brown_trout_yearlings": "Squirrel Rd (Auburn Hills) + Hamlin Rd (Rochester Hills), Apr 15-May 5 annually, ~2,000-2,250 each",
+     "adult_broodstock": "Squirrel Rd/Riverside Park, late March (2022-03-28, 2024-03-25, 2025-03-24) browns 36-44 cm; adult rainbows 2023-03-27, 2023-05-08, 2025-03-24, 2026-06-12 (pre-derby)",
+     "steelhead_smolts": "Ryan Rd (Sterling Hts), Apr 9-22: 27,197 (2022), ~37,500/yr 2023-2026",
+     "source": "MI DNR Fish Stocking Database"
+    },
+    "steelhead_runs": {
+     "fall": "Fish enter from ~October (forum: 'in system since October'); 2025 catches Sep 7 (skipper) through Nov 23; best after rain + leaf drop",
+     "spring": "Feb-April upper river (Auburn Hills/Rochester) after snowmelt; dropbacks into early May",
+     "sources": [
+      "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
+      "https://www.michigan-sportsman.com/threads/clinton-river-excursion-and-new-habitats-for-steelhead.758357/",
+      "https://safeharborfishing.com/are-there-trout-in-the-clinton-river/"
+     ]
+    },
+    "salmon": {
+     "window": "late Oct - mid Nov; redds 'peak salmon run' Nov 12 2025; chinook iNat obs North Branch May & Mt Clemens June (likely post-spawn/odd)",
+     "sources": [
+      "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+     ]
+    },
+    "events": {
+     "Auburn Hills youth derby": "Riverside Park, mid-June (2026-06-13), rainbows stocked day before"
+    },
+    "summer": "Marginal temps; 2023 DNR survey still found 30 browns at River Woods Park (Aug 8)"
+   }
+  }
+ }
+}
