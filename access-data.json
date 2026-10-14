@@ -1,0 +1,2110 @@
+{
+ "generated": "2026-10-14",
+ "source": "OpenStreetMap contributors (Overpass, Nominatim)",
+ "gages": {
+  "04161000": {
+   "lat": 42.63336646,
+   "lng": -83.2243782,
+   "address": "Auburn Road, Auburn Hills, MI"
+  },
+  "04161500": {
+   "lat": 42.7675054,
+   "lng": -83.2198663,
+   "address": "Paint Creek Trail, Orion Charter Township, MI"
+  },
+  "04161540": {
+   "lat": 42.68833917,
+   "lng": -83.1429194,
+   "address": "Ludlow Avenue, Rochester, MI"
+  },
+  "04161820": {
+   "lat": 42.6144781,
+   "lng": -83.02659329,
+   "address": "Riverland Drive, Sterling Heights, MI"
+  },
+  "04162010": {
+   "lat": 42.52945126,
+   "lng": -83.06847275,
+   "address": "Ryan Road, Warren, MI"
+  },
+  "04163400": {
+   "lat": 42.60142277,
+   "lng": -83.0713165,
+   "address": "Ryan Road, Sterling Heights, MI"
+  },
+  "04164000": {
+   "lat": 42.57781225,
+   "lng": -82.951589,
+   "address": "Garfield Road, Clinton Township, MI"
+  },
+  "04164100": {
+   "lat": 42.82252996,
+   "lng": -83.0202102,
+   "address": "Van Dyke Road, MI"
+  },
+  "04164151": {
+   "lat": 42.7171833,
+   "lng": -82.90455,
+   "address": "26 Mile Road, Macomb Township, MI"
+  },
+  "04164300": {
+   "lat": 42.84586297,
+   "lng": -82.8849278,
+   "address": "Prospect Avenue, Armada, MI"
+  },
+  "04164500": {
+   "lat": 42.62920008,
+   "lng": -82.8888104,
+   "address": "Hall Road, Macomb Township, MI"
+  },
+  "04164800": {
+   "lat": 42.7064207,
+   "lng": -82.959094,
+   "address": "Romeo Plank Road, Macomb Township, MI"
+  },
+  "04165500": {
+   "lat": 42.5958395,
+   "lng": -82.908745,
+   "address": "Belleview Street, Clinton Township, MI"
+  },
+  "04166100": {
+   "lat": 42.44750765,
+   "lng": -83.29736958,
+   "address": "Beech Road, Southfield, MI"
+  }
+ },
+ "access": [
+  {
+   "type": "bridge",
+   "name": "Market Street over Clinton River",
+   "lat": 42.5978807,
+   "lng": -82.87501,
+   "near": "04165500",
+   "mi": 1.72
+  },
+  {
+   "type": "bridge",
+   "name": "Crocker Boulevard over Clinton River",
+   "lat": 42.596429,
+   "lng": -82.8770042,
+   "near": "04165500",
+   "mi": 1.61
+  },
+  {
+   "type": "bridge",
+   "name": "Van Dyke Avenue over Clinton River",
+   "lat": 42.6205476,
+   "lng": -83.0321508,
+   "near": "04161820",
+   "mi": 0.51
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Clinton River",
+   "lat": 42.6821971,
+   "lng": -83.11358,
+   "near": "04161540",
+   "mi": 1.55
+  },
+  {
+   "type": "bridge",
+   "name": "Ryan Road over Red Run",
+   "lat": 42.5295102,
+   "lng": -83.0682928,
+   "near": "04162010",
+   "mi": 0.01
+  },
+  {
+   "type": "bridge",
+   "name": "Schoenherr Road over Plum Brook",
+   "lat": 42.5725617,
+   "lng": -82.9900793,
+   "near": "04164000",
+   "mi": 1.99
+  },
+  {
+   "type": "bridge",
+   "name": "Metropolitan Parkway over Red Run",
+   "lat": 42.5667157,
+   "lng": -82.9712679,
+   "near": "04164000",
+   "mi": 1.26
+  },
+  {
+   "type": "bridge",
+   "name": "Garfield Road over Clinton River",
+   "lat": 42.5781121,
+   "lng": -82.9520963,
+   "near": "04164000",
+   "mi": 0.03
+  },
+  {
+   "type": "bridge",
+   "name": "M 59 over Clinton River",
+   "lat": 42.6421724,
+   "lng": -83.2600606,
+   "near": "04161000",
+   "mi": 1.91
+  },
+  {
+   "type": "bridge",
+   "name": "Clinton River Spillway Bike Path over Clinton River",
+   "lat": 42.5823417,
+   "lng": -82.879169,
+   "near": "04165500",
+   "mi": 1.77
+  },
+  {
+   "type": "bridge",
+   "name": "M 53 over Clinton River",
+   "lat": 42.603889,
+   "lng": -83.0210011,
+   "near": "04161820",
+   "mi": 0.78
+  },
+  {
+   "type": "bridge",
+   "name": "Walter P. Chrysler Freeway over stream",
+   "lat": 42.613285,
+   "lng": -83.2317016,
+   "near": "04161000",
+   "mi": 1.44
+  },
+  {
+   "type": "bridge",
+   "name": "BL I 75 over stream",
+   "lat": 42.6138643,
+   "lng": -83.2323889,
+   "near": "04161000",
+   "mi": 1.41
+  },
+  {
+   "type": "bridge",
+   "name": "Mound Road over Red Run",
+   "lat": 42.5290713,
+   "lng": -83.0474955,
+   "near": "04162010",
+   "mi": 1.07
+  },
+  {
+   "type": "bridge",
+   "name": "Auburn Road over Clinton River",
+   "lat": 42.6258626,
+   "lng": -83.0375682,
+   "near": "04161820",
+   "mi": 0.96
+  },
+  {
+   "type": "bridge",
+   "name": "Denton Drive over Red Run",
+   "lat": 42.5262706,
+   "lng": -83.0363491,
+   "near": "04162010",
+   "mi": 1.65
+  },
+  {
+   "type": "bridge",
+   "name": "Moravian Drive over Clinton River",
+   "lat": 42.5961012,
+   "lng": -82.9093999,
+   "near": "04165500",
+   "mi": 0.04
+  },
+  {
+   "type": "bridge",
+   "name": "South Groesbeck Highway over Clinton River",
+   "lat": 42.5901477,
+   "lng": -82.901859,
+   "near": "04165500",
+   "mi": 0.53
+  },
+  {
+   "type": "bridge",
+   "name": "Southbound Gratiot Avenue over Clinton River",
+   "lat": 42.58481,
+   "lng": -82.8837335,
+   "near": "04165500",
+   "mi": 1.48
+  },
+  {
+   "type": "bridge",
+   "name": "Diversion Street over Clinton River",
+   "lat": 42.6757015,
+   "lng": -83.1343569,
+   "near": "04161540",
+   "mi": 0.98
+  },
+  {
+   "type": "bridge",
+   "name": "Riverland Drive over Clinton River",
+   "lat": 42.6142329,
+   "lng": -83.0261096,
+   "near": "04161820",
+   "mi": 0.03
+  },
+  {
+   "type": "bridge",
+   "name": "Highlands Trail over stream",
+   "lat": 42.6646842,
+   "lng": -83.159665,
+   "near": "04161540",
+   "mi": 1.84
+  },
+  {
+   "type": "bridge",
+   "name": "Deer Trail over stream",
+   "lat": 42.6650099,
+   "lng": -83.1567509,
+   "near": "04161540",
+   "mi": 1.76
+  },
+  {
+   "type": "bridge",
+   "name": "Utica Road over Red Run",
+   "lat": 42.5688512,
+   "lng": -82.969831,
+   "near": "04164000",
+   "mi": 1.12
+  },
+  {
+   "type": "bridge",
+   "name": "North Squirrel Road over Clinton River",
+   "lat": 42.6367204,
+   "lng": -83.2200785,
+   "near": "04161000",
+   "mi": 0.32
+  },
+  {
+   "type": "bridge",
+   "name": "The Oxbow over Clinton-Kalamazoo Canal",
+   "lat": 42.6813929,
+   "lng": -83.1053005,
+   "near": "04161540",
+   "mi": 1.97
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Clinton-Kalamazoo Canal",
+   "lat": 42.6820234,
+   "lng": -83.1117935,
+   "near": "04161540",
+   "mi": 1.64
+  },
+  {
+   "type": "bridge",
+   "name": "West Avon Road over Clinton River",
+   "lat": 42.6659283,
+   "lng": -83.1532208,
+   "near": "04161540",
+   "mi": 1.63
+  },
+  {
+   "type": "bridge",
+   "name": "South Livernois Road over Clinton River",
+   "lat": 42.6652332,
+   "lng": -83.1533848,
+   "near": "04161540",
+   "mi": 1.68
+  },
+  {
+   "type": "bridge",
+   "name": "Mound Road over Plum Brook",
+   "lat": 42.597866,
+   "lng": -83.0505829,
+   "near": "04163400",
+   "mi": 1.08
+  },
+  {
+   "type": "bridge",
+   "name": "West Hamlin Road over Clinton River",
+   "lat": 42.646765,
+   "lng": -83.2126912,
+   "near": "04161000",
+   "mi": 1.1
+  },
+  {
+   "type": "bridge",
+   "name": "Post Drive over Ferry Drain",
+   "lat": 42.5875976,
+   "lng": -83.1014588,
+   "near": "04163400",
+   "mi": 1.81
+  },
+  {
+   "type": "bridge",
+   "name": "Miller Road Connector over stream",
+   "lat": 42.7849442,
+   "lng": -83.214375,
+   "near": "04161500",
+   "mi": 1.24
+  },
+  {
+   "type": "bridge",
+   "name": "Blue over stream",
+   "lat": 42.7804328,
+   "lng": -83.2128721,
+   "near": "04161500",
+   "mi": 0.96
+  },
+  {
+   "type": "bridge",
+   "name": "Fulton Street over East Branch Coon Creek",
+   "lat": 42.8482789,
+   "lng": -82.8847938,
+   "near": "04164300",
+   "mi": 0.17
+  },
+  {
+   "type": "bridge",
+   "name": "Armada Center Road over East Branch Coon Creek",
+   "lat": 42.8503161,
+   "lng": -82.881219,
+   "near": "04164300",
+   "mi": 0.36
+  },
+  {
+   "type": "bridge",
+   "name": "Macomb Orchard Trail over East Branch Coon Creek",
+   "lat": 42.8361448,
+   "lng": -82.8875285,
+   "near": "04164300",
+   "mi": 0.68
+  },
+  {
+   "type": "bridge",
+   "name": "Prospect Avenue over East Branch Coon Creek",
+   "lat": 42.8458149,
+   "lng": -82.884933,
+   "near": "04164300",
+   "mi": 0.0
+  },
+  {
+   "type": "bridge",
+   "name": "North Avenue over East Branch Coon Creek",
+   "lat": 42.8336503,
+   "lng": -82.8846337,
+   "near": "04164300",
+   "mi": 0.84
+  },
+  {
+   "type": "bridge",
+   "name": "Burk Street over East Branch Coon Creek",
+   "lat": 42.8487609,
+   "lng": -82.8835014,
+   "near": "04164300",
+   "mi": 0.21
+  },
+  {
+   "type": "bridge",
+   "name": "Main Street over East Branch Coon Creek",
+   "lat": 42.8437941,
+   "lng": -82.8867867,
+   "near": "04164300",
+   "mi": 0.17
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Big Beaver Creek",
+   "lat": 42.5556485,
+   "lng": -83.0809208,
+   "near": "04162010",
+   "mi": 1.92
+  },
+  {
+   "type": "bridge",
+   "name": "Macomb Orchard Trail over East Pond Creek",
+   "lat": 42.8116131,
+   "lng": -82.9932389,
+   "near": "04164100",
+   "mi": 1.56
+  },
+  {
+   "type": "bridge",
+   "name": "Clinton River Trail over Clinton River",
+   "lat": 42.6687438,
+   "lng": -83.1466622,
+   "near": "04161540",
+   "mi": 1.37
+  },
+  {
+   "type": "bridge",
+   "name": "Freedom Trail over Red Run",
+   "lat": 42.5663805,
+   "lng": -82.9714079,
+   "near": "04164000",
+   "mi": 1.28
+  },
+  {
+   "type": "bridge",
+   "name": "24 Mile Road over Middle Branch Clinton River",
+   "lat": 42.68646,
+   "lng": -82.9473173,
+   "near": "04164800",
+   "mi": 1.5
+  },
+  {
+   "type": "bridge",
+   "name": "Berg Road over stream",
+   "lat": 42.4441147,
+   "lng": -83.2687861,
+   "near": "04166100",
+   "mi": 1.48
+  },
+  {
+   "type": "bridge",
+   "name": "West 9 Mile Road over stream",
+   "lat": 42.4577147,
+   "lng": -83.2676334,
+   "near": "04166100",
+   "mi": 1.67
+  },
+  {
+   "type": "bridge",
+   "name": "West 8 Mile Road over stream",
+   "lat": 42.4432877,
+   "lng": -83.2699893,
+   "near": "04166100",
+   "mi": 1.43
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Pernick Creek",
+   "lat": 42.4739559,
+   "lng": -83.3014056,
+   "near": "04166100",
+   "mi": 1.84
+  },
+  {
+   "type": "bridge",
+   "name": "West 10 Mile Road over River Rouge",
+   "lat": 42.4717355,
+   "lng": -83.2887679,
+   "near": "04166100",
+   "mi": 1.73
+  },
+  {
+   "type": "bridge",
+   "name": "Beech Road over River Rouge",
+   "lat": 42.4480498,
+   "lng": -83.2976645,
+   "near": "04166100",
+   "mi": 0.04
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over River Rouge",
+   "lat": 42.4477139,
+   "lng": -83.2975582,
+   "near": "04166100",
+   "mi": 0.02
+  },
+  {
+   "type": "bridge",
+   "name": "Inkster Road over stream",
+   "lat": 42.4572936,
+   "lng": -83.3175486,
+   "near": "04166100",
+   "mi": 1.23
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Noble Brook",
+   "lat": 42.4582166,
+   "lng": -83.3262658,
+   "near": "04166100",
+   "mi": 1.65
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over stream",
+   "lat": 42.4571428,
+   "lng": -83.3259241,
+   "near": "04166100",
+   "mi": 1.6
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Upper River Rouge",
+   "lat": 42.4328704,
+   "lng": -83.3228289,
+   "near": "04166100",
+   "mi": 1.65
+  },
+  {
+   "type": "bridge",
+   "name": "Purple Trail over stream",
+   "lat": 42.4693137,
+   "lng": -83.3136631,
+   "near": "04166100",
+   "mi": 1.72
+  },
+  {
+   "type": "bridge",
+   "name": "Red Trail over stream",
+   "lat": 42.4665073,
+   "lng": -83.3144543,
+   "near": "04166100",
+   "mi": 1.58
+  },
+  {
+   "type": "bridge",
+   "name": "West 9 Mile Road over River Rouge",
+   "lat": 42.4568547,
+   "lng": -83.3062041,
+   "near": "04166100",
+   "mi": 0.79
+  },
+  {
+   "type": "bridge",
+   "name": "South Main Street over Clinton River",
+   "lat": 42.6764546,
+   "lng": -83.1336061,
+   "near": "04161540",
+   "mi": 0.95
+  },
+  {
+   "type": "bridge",
+   "name": "Bridge Street over River Rouge",
+   "lat": 42.4434582,
+   "lng": -83.2852406,
+   "near": "04166100",
+   "mi": 0.68
+  },
+  {
+   "type": "bridge",
+   "name": "Hayes Road over Clinton River",
+   "lat": 42.5700999,
+   "lng": -82.9709982,
+   "near": "04164000",
+   "mi": 1.12
+  },
+  {
+   "type": "bridge",
+   "name": "North Gratiot Avenue over Clinton River",
+   "lat": 42.584315,
+   "lng": -82.8825318,
+   "near": "04165500",
+   "mi": 1.55
+  },
+  {
+   "type": "bridge",
+   "name": "25 Mile Road over Middle Branch Clinton River",
+   "lat": 42.7009907,
+   "lng": -82.9517056,
+   "near": "04164800",
+   "mi": 0.53
+  },
+  {
+   "type": "bridge",
+   "name": "Hall Road over North Branch Clinton River",
+   "lat": 42.6289679,
+   "lng": -82.8895993,
+   "near": "04164500",
+   "mi": 0.04
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Red Run",
+   "lat": 42.5295499,
+   "lng": -83.0681606,
+   "near": "04162010",
+   "mi": 0.02
+  },
+  {
+   "type": "bridge",
+   "name": "North Opdyke Road over Clinton River",
+   "lat": 42.6364782,
+   "lng": -83.2496018,
+   "near": "04161000",
+   "mi": 1.3
+  },
+  {
+   "type": "bridge",
+   "name": "Inkster Road over Upper River Rouge",
+   "lat": 42.424293,
+   "lng": -83.316085,
+   "near": "04166100",
+   "mi": 1.87
+  },
+  {
+   "type": "bridge",
+   "name": "West 8 Mile Road over River Rouge",
+   "lat": 42.4426933,
+   "lng": -83.2811685,
+   "near": "04166100",
+   "mi": 0.89
+  },
+  {
+   "type": "bridge",
+   "name": "Telegraph Road over River Rouge",
+   "lat": 42.4414337,
+   "lng": -83.2789022,
+   "near": "04166100",
+   "mi": 1.03
+  },
+  {
+   "type": "bridge",
+   "name": "East 14 Mile Road over Big Beaver Creek",
+   "lat": 42.5365029,
+   "lng": -83.0356337,
+   "near": "04162010",
+   "mi": 1.74
+  },
+  {
+   "type": "bridge",
+   "name": "Edward Cole Boulevard over Bear Creek",
+   "lat": 42.5169094,
+   "lng": -83.0375366,
+   "near": "04162010",
+   "mi": 1.8
+  },
+  {
+   "type": "bridge",
+   "name": "Fox Trail over stream",
+   "lat": 42.6167013,
+   "lng": -83.1978605,
+   "near": "04161000",
+   "mi": 1.77
+  },
+  {
+   "type": "bridge",
+   "name": "West 7 Mile Road over River Rouge",
+   "lat": 42.4291454,
+   "lng": -83.2694118,
+   "near": "04166100",
+   "mi": 1.91
+  },
+  {
+   "type": "bridge",
+   "name": "18 Mile Road over Plum Brook",
+   "lat": 42.5945367,
+   "lng": -83.0437492,
+   "near": "04163400",
+   "mi": 1.48
+  },
+  {
+   "type": "bridge",
+   "name": "27 Mile Road over Tupper Brook",
+   "lat": 42.7323555,
+   "lng": -82.8825289,
+   "near": "04164151",
+   "mi": 1.53
+  },
+  {
+   "type": "bridge",
+   "name": "26 Mile Road over Coon Creek",
+   "lat": 42.7176413,
+   "lng": -82.8815299,
+   "near": "04164151",
+   "mi": 1.17
+  },
+  {
+   "type": "bridge",
+   "name": "26 Mile Road over North Branch Clinton River",
+   "lat": 42.7171596,
+   "lng": -82.904402,
+   "near": "04164151",
+   "mi": 0.01
+  },
+  {
+   "type": "bridge",
+   "name": "Margay over Middle Branch Clinton River",
+   "lat": 42.609053,
+   "lng": -82.9229676,
+   "near": "04165500",
+   "mi": 1.16
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Middle Branch Clinton River",
+   "lat": 42.6182557,
+   "lng": -82.9331155,
+   "near": "04165500",
+   "mi": 1.98
+  },
+  {
+   "type": "bridge",
+   "name": "Tietz Street over stream",
+   "lat": 42.8454101,
+   "lng": -82.8884059,
+   "near": "04164300",
+   "mi": 0.18
+  },
+  {
+   "type": "bridge",
+   "name": "West 7 Mile Road over Upper River Rouge",
+   "lat": 42.4275217,
+   "lng": -83.3196055,
+   "near": "04166100",
+   "mi": 1.79
+  },
+  {
+   "type": "bridge",
+   "name": "West 8 Mile Road over Upper River Rouge",
+   "lat": 42.4417789,
+   "lng": -83.3282238,
+   "near": "04166100",
+   "mi": 1.62
+  },
+  {
+   "type": "bridge",
+   "name": "Cass Avenue over North Branch Clinton River",
+   "lat": 42.6015716,
+   "lng": -82.9096971,
+   "near": "04165500",
+   "mi": 0.4
+  },
+  {
+   "type": "bridge",
+   "name": "Auburn Court over Clinton River",
+   "lat": 42.6311847,
+   "lng": -83.2339275,
+   "near": "04161000",
+   "mi": 0.51
+  },
+  {
+   "type": "bridge",
+   "name": "Heydenreich Road over Middle Branch Clinton River",
+   "lat": 42.6062124,
+   "lng": -82.917517,
+   "near": "04165500",
+   "mi": 0.84
+  },
+  {
+   "type": "bridge",
+   "name": "Monique Bridge over Clinton River",
+   "lat": 42.6494222,
+   "lng": -83.2128288,
+   "near": "04161000",
+   "mi": 1.26
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Bear Creek",
+   "lat": 42.5162677,
+   "lng": -83.0374561,
+   "near": "04162010",
+   "mi": 1.82
+  },
+  {
+   "type": "bridge",
+   "name": "Paint Creek Trail over stream",
+   "lat": 42.7647968,
+   "lng": -83.2142774,
+   "near": "04161500",
+   "mi": 0.34
+  },
+  {
+   "type": "bridge",
+   "name": "21 Mile Road over North Branch Clinton River",
+   "lat": 42.6442305,
+   "lng": -82.8780186,
+   "near": "04164500",
+   "mi": 1.17
+  },
+  {
+   "type": "bridge",
+   "name": "I 75 BL over stream",
+   "lat": 42.6123762,
+   "lng": -83.2278627,
+   "near": "04161000",
+   "mi": 1.46
+  },
+  {
+   "type": "bridge",
+   "name": "Angling Street over Upper River Rouge",
+   "lat": 42.429184,
+   "lng": -83.321263,
+   "near": "04166100",
+   "mi": 1.76
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Plum Brook",
+   "lat": 42.5727289,
+   "lng": -82.9891984,
+   "near": "04164000",
+   "mi": 1.95
+  },
+  {
+   "type": "bridge",
+   "name": "West Gates Street over East Pond Creek",
+   "lat": 42.8092796,
+   "lng": -83.0436526,
+   "near": "04164100",
+   "mi": 1.5
+  },
+  {
+   "type": "bridge",
+   "name": "River Woods Trail over Clinton River",
+   "lat": 42.6397475,
+   "lng": -83.2180624,
+   "near": "04161000",
+   "mi": 0.55
+  },
+  {
+   "type": "bridge",
+   "name": "34 Mile Road over Cemetery Creek",
+   "lat": 42.8363872,
+   "lng": -82.8639689,
+   "near": "04164300",
+   "mi": 1.25
+  },
+  {
+   "type": "bridge",
+   "name": "M 53 over East Pond Creek",
+   "lat": 42.8162065,
+   "lng": -83.0025418,
+   "near": "04164100",
+   "mi": 1.0
+  },
+  {
+   "type": "bridge",
+   "name": "White over stream",
+   "lat": 42.7847223,
+   "lng": -83.198933,
+   "near": "04161500",
+   "mi": 1.59
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over North Branch Clinton River",
+   "lat": 42.6519422,
+   "lng": -82.8797793,
+   "near": "04164500",
+   "mi": 1.64
+  },
+  {
+   "type": "bridge",
+   "name": "Romeo Plank Road over Middle Branch Clinton River",
+   "lat": 42.706236,
+   "lng": -82.9592783,
+   "near": "04164800",
+   "mi": 0.02
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Coon Creek",
+   "lat": 42.7362553,
+   "lng": -82.876197,
+   "near": "04164151",
+   "mi": 1.95
+  },
+  {
+   "type": "bridge",
+   "name": "27 Mile Road over Coon Creek",
+   "lat": 42.7324664,
+   "lng": -82.8777132,
+   "near": "04164151",
+   "mi": 1.72
+  },
+  {
+   "type": "bridge",
+   "name": "Walter P. Chrysler Freeway over Clinton River",
+   "lat": 42.6319653,
+   "lng": -83.2388664,
+   "near": "04161000",
+   "mi": 0.74
+  },
+  {
+   "type": "bridge",
+   "name": "Forsyth Drive over Ferry Drain",
+   "lat": 42.5854003,
+   "lng": -83.0959167,
+   "near": "04163400",
+   "mi": 1.67
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Ferry Drain",
+   "lat": 42.5875066,
+   "lng": -83.1013732,
+   "near": "04163400",
+   "mi": 1.81
+  },
+  {
+   "type": "bridge",
+   "name": "South Lapeer Road over stream",
+   "lat": 42.7574879,
+   "lng": -83.2454153,
+   "near": "04161500",
+   "mi": 1.47
+  },
+  {
+   "type": "bridge",
+   "name": "Road bridge over Price Brook",
+   "lat": 42.7161697,
+   "lng": -82.9773561,
+   "near": "04164800",
+   "mi": 1.15
+  },
+  {
+   "type": "bridge",
+   "name": "Kern Road over stream",
+   "lat": 42.7656766,
+   "lng": -83.2170358,
+   "near": "04161500",
+   "mi": 0.19
+  },
+  {
+   "type": "fishing",
+   "name": "Shadyside Park CRWT access",
+   "lat": 42.5824788,
+   "lng": -82.8800913,
+   "near": "04165500",
+   "mi": 1.73
+  },
+  {
+   "type": "fishing",
+   "name": "slipway",
+   "lat": 42.7850111,
+   "lng": -83.2166457,
+   "near": "04161500",
+   "mi": 1.22
+  },
+  {
+   "type": "park",
+   "name": "Warren Community Center Pool",
+   "lat": 42.530106,
+   "lng": -83.0544064,
+   "near": "04162010",
+   "mi": 0.72
+  },
+  {
+   "type": "park",
+   "name": "Behnke Dog Park",
+   "lat": 42.6096048,
+   "lng": -82.8915748,
+   "near": "04165500",
+   "mi": 1.29
+  },
+  {
+   "type": "fishing",
+   "name": "slipway",
+   "lat": 42.786204,
+   "lng": -83.1903721,
+   "near": "04161500",
+   "mi": 1.98
+  },
+  {
+   "type": "park",
+   "name": "Arbor Oak South Park",
+   "lat": 42.4525898,
+   "lng": -83.3250583,
+   "near": "04166100",
+   "mi": 1.45
+  },
+  {
+   "type": "park",
+   "name": "Arbor Oaks Park",
+   "lat": 42.4550994,
+   "lng": -83.3250317,
+   "near": "04166100",
+   "mi": 1.5
+  },
+  {
+   "type": "park",
+   "name": "Letica Dr/E Second St Trailhead",
+   "lat": 42.6800093,
+   "lng": -83.1225125,
+   "near": "04161540",
+   "mi": 1.19
+  },
+  {
+   "type": "park",
+   "name": "Rochester Municipal Park",
+   "lat": 42.6858615,
+   "lng": -83.138718,
+   "near": "04161540",
+   "mi": 0.27
+  },
+  {
+   "type": "park",
+   "name": "Red Oaks Nature Center",
+   "lat": 42.516149,
+   "lng": -83.093584,
+   "near": "04162010",
+   "mi": 1.57
+  },
+  {
+   "type": "fishing",
+   "name": "Lake Norcenta",
+   "lat": 42.6674185,
+   "lng": -83.146848,
+   "near": "04161540",
+   "mi": 1.46
+  },
+  {
+   "type": "park",
+   "name": "Jaycee Park",
+   "lat": 42.6045524,
+   "lng": -83.0166366,
+   "near": "04161820",
+   "mi": 0.85
+  },
+  {
+   "type": "park",
+   "name": "Farmstead Park",
+   "lat": 42.5997802,
+   "lng": -83.0102118,
+   "near": "04161820",
+   "mi": 1.31
+  },
+  {
+   "type": "park",
+   "name": "Halmich Park",
+   "lat": 42.5238002,
+   "lng": -83.0752395,
+   "near": "04162010",
+   "mi": 0.52
+  },
+  {
+   "type": "park",
+   "name": "Dodge Park",
+   "lat": 42.5925533,
+   "lng": -83.010028,
+   "near": "04161820",
+   "mi": 1.73
+  },
+  {
+   "type": "park",
+   "name": "Joseph E. Delia Junior Park",
+   "lat": 42.5971555,
+   "lng": -83.0768719,
+   "near": "04163400",
+   "mi": 0.41
+  },
+  {
+   "type": "park",
+   "name": "(North) James C. Nelson Park",
+   "lat": 42.5535622,
+   "lng": -83.0788517,
+   "near": "04162010",
+   "mi": 1.75
+  },
+  {
+   "type": "park",
+   "name": "Claude Allison Park",
+   "lat": 42.422068,
+   "lng": -83.2942448,
+   "near": "04166100",
+   "mi": 1.76
+  },
+  {
+   "type": "park",
+   "name": "Fairfield Park",
+   "lat": 42.57457,
+   "lng": -83.0654351,
+   "near": "04163400",
+   "mi": 1.88
+  },
+  {
+   "type": "park",
+   "name": "Olde Town Park",
+   "lat": 42.4481976,
+   "lng": -83.3284986,
+   "near": "04166100",
+   "mi": 1.59
+  },
+  {
+   "type": "park",
+   "name": "Kraft Park",
+   "lat": 42.4308006,
+   "lng": -83.3050311,
+   "near": "04166100",
+   "mi": 1.22
+  },
+  {
+   "type": "park",
+   "name": "John Grace Park & Recreation Center",
+   "lat": 42.4451007,
+   "lng": -83.3113427,
+   "near": "04166100",
+   "mi": 0.73
+  },
+  {
+   "type": "park",
+   "name": "Seminole Street Parklet",
+   "lat": 42.4503981,
+   "lng": -83.3155962,
+   "near": "04166100",
+   "mi": 0.95
+  },
+  {
+   "type": "park",
+   "name": "Beech Woods Park",
+   "lat": 42.4542522,
+   "lng": -83.2967566,
+   "near": "04166100",
+   "mi": 0.47
+  },
+  {
+   "type": "park",
+   "name": "Scott Street Park",
+   "lat": 42.689544,
+   "lng": -83.140309,
+   "near": "04161540",
+   "mi": 0.16
+  },
+  {
+   "type": "park",
+   "name": "Halbach Field",
+   "lat": 42.68778,
+   "lng": -83.1396898,
+   "near": "04161540",
+   "mi": 0.17
+  },
+  {
+   "type": "park",
+   "name": "Howlett Park",
+   "lat": 42.6893909,
+   "lng": -83.1275308,
+   "near": "04161540",
+   "mi": 0.78
+  },
+  {
+   "type": "park",
+   "name": "Moelke Park",
+   "lat": 42.4334683,
+   "lng": -83.3237199,
+   "near": "04166100",
+   "mi": 1.66
+  },
+  {
+   "type": "park",
+   "name": "Hearthstone Park",
+   "lat": 42.4385395,
+   "lng": -83.3266699,
+   "near": "04166100",
+   "mi": 1.62
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.4544257,
+   "lng": -83.3313165,
+   "near": "04166100",
+   "mi": 1.8
+  },
+  {
+   "type": "park",
+   "name": "William Grace Dog Park",
+   "lat": 42.4541641,
+   "lng": -83.331181,
+   "near": "04166100",
+   "mi": 1.78
+  },
+  {
+   "type": "park",
+   "name": "Grayfield-Glenhurst Park",
+   "lat": 42.4281902,
+   "lng": -83.2697644,
+   "near": "04166100",
+   "mi": 1.94
+  },
+  {
+   "type": "park",
+   "name": "Markulis Playground",
+   "lat": 42.4276877,
+   "lng": -83.2739822,
+   "near": "04166100",
+   "mi": 1.82
+  },
+  {
+   "type": "park",
+   "name": "Seven Mile-Appleton Playground",
+   "lat": 42.4312738,
+   "lng": -83.2746891,
+   "near": "04166100",
+   "mi": 1.61
+  },
+  {
+   "type": "park",
+   "name": "Frisbee-Pembroke Park",
+   "lat": 42.4358207,
+   "lng": -83.2727082,
+   "near": "04166100",
+   "mi": 1.49
+  },
+  {
+   "type": "park",
+   "name": "Eckstein Park",
+   "lat": 42.5273337,
+   "lng": -83.0409665,
+   "near": "04162010",
+   "mi": 1.41
+  },
+  {
+   "type": "park",
+   "name": "Avondale Park",
+   "lat": 42.6305405,
+   "lng": -83.1887004,
+   "near": "04161000",
+   "mi": 1.82
+  },
+  {
+   "type": "park",
+   "name": "Auburn Hills Skate Park",
+   "lat": 42.6371238,
+   "lng": -83.2193666,
+   "near": "04161000",
+   "mi": 0.36
+  },
+  {
+   "type": "park",
+   "name": "Riverside Park",
+   "lat": 42.6345574,
+   "lng": -83.2232068,
+   "near": "04161000",
+   "mi": 0.1
+  },
+  {
+   "type": "park",
+   "name": "Lloyd A. Stage Nature Center & Troy Farm",
+   "lat": 42.6166438,
+   "lng": -83.1943219,
+   "near": "04161000",
+   "mi": 1.92
+  },
+  {
+   "type": "park",
+   "name": "River Woods Park",
+   "lat": 42.6406387,
+   "lng": -83.2164577,
+   "near": "04161000",
+   "mi": 0.64
+  },
+  {
+   "type": "park",
+   "name": "Veterans Memorial Pointe",
+   "lat": 42.6648217,
+   "lng": -83.1519418,
+   "near": "04161540",
+   "mi": 1.69
+  },
+  {
+   "type": "park",
+   "name": "Ambassador Park",
+   "lat": 42.5185066,
+   "lng": -83.0987473,
+   "near": "04162010",
+   "mi": 1.72
+  },
+  {
+   "type": "park",
+   "name": "Memorial Park",
+   "lat": 42.6255247,
+   "lng": -83.0373307,
+   "near": "04161820",
+   "mi": 0.94
+  },
+  {
+   "type": "park",
+   "name": "Grant Park",
+   "lat": 42.6322863,
+   "lng": -83.0298344,
+   "near": "04161820",
+   "mi": 1.24
+  },
+  {
+   "type": "park",
+   "name": "Milverton Park",
+   "lat": 42.5453887,
+   "lng": -83.0999794,
+   "near": "04162010",
+   "mi": 1.95
+  },
+  {
+   "type": "park",
+   "name": "Small Dog Area",
+   "lat": 42.4542612,
+   "lng": -83.3303599,
+   "near": "04166100",
+   "mi": 1.75
+  },
+  {
+   "type": "park",
+   "name": "Atwater Park",
+   "lat": 42.7815064,
+   "lng": -83.2342324,
+   "near": "04161500",
+   "mi": 1.21
+  },
+  {
+   "type": "park",
+   "name": "Red Oaks Dog Park",
+   "lat": 42.5235103,
+   "lng": -83.088668,
+   "near": "04162010",
+   "mi": 1.11
+  },
+  {
+   "type": "park",
+   "name": "Beaver Creek Park",
+   "lat": 42.5446209,
+   "lng": -83.0621675,
+   "near": "04162010",
+   "mi": 1.1
+  },
+  {
+   "type": "park",
+   "name": "Puffin Park",
+   "lat": 42.5469603,
+   "lng": -83.0785232,
+   "near": "04162010",
+   "mi": 1.31
+  },
+  {
+   "type": "park",
+   "name": "Benjamin Hadley Park",
+   "lat": 42.6214125,
+   "lng": -83.0228158,
+   "near": "04161820",
+   "mi": 0.52
+  },
+  {
+   "type": "park",
+   "name": "Clinton River Heritage Park",
+   "lat": 42.621688,
+   "lng": -83.0331199,
+   "near": "04161820",
+   "mi": 0.6
+  },
+  {
+   "type": "park",
+   "name": "Whispering Woods Park",
+   "lat": 42.6388693,
+   "lng": -83.0214635,
+   "near": "04161820",
+   "mi": 1.71
+  },
+  {
+   "type": "park",
+   "name": "Charlemagne Park",
+   "lat": 42.6105466,
+   "lng": -83.0379332,
+   "near": "04161820",
+   "mi": 0.64
+  },
+  {
+   "type": "park",
+   "name": "Notre Dame Park",
+   "lat": 42.6136082,
+   "lng": -83.0391689,
+   "near": "04161820",
+   "mi": 0.64
+  },
+  {
+   "type": "park",
+   "name": "Riverland Amusement Park",
+   "lat": 42.6190763,
+   "lng": -83.0306659,
+   "near": "04161820",
+   "mi": 0.38
+  },
+  {
+   "type": "park",
+   "name": "Greeley Park",
+   "lat": 42.6214449,
+   "lng": -83.0410576,
+   "near": "04161820",
+   "mi": 0.88
+  },
+  {
+   "type": "park",
+   "name": "Children's Park",
+   "lat": 42.782891,
+   "lng": -83.2390986,
+   "near": "04161500",
+   "mi": 1.44
+  },
+  {
+   "type": "park",
+   "name": "Franklin Park",
+   "lat": 42.584603,
+   "lng": -83.079644,
+   "near": "04163400",
+   "mi": 1.24
+  },
+  {
+   "type": "park",
+   "name": "Hampiton Park",
+   "lat": 42.5838172,
+   "lng": -83.0625108,
+   "near": "04163400",
+   "mi": 1.3
+  },
+  {
+   "type": "park",
+   "name": "George George Memorial Park",
+   "lat": 42.5946885,
+   "lng": -82.9061659,
+   "near": "04165500",
+   "mi": 0.15
+  },
+  {
+   "type": "park",
+   "name": "MacArthur Park",
+   "lat": 42.5978285,
+   "lng": -82.871707,
+   "near": "04165500",
+   "mi": 1.89
+  },
+  {
+   "type": "park",
+   "name": "Gazebo Park",
+   "lat": 42.597072,
+   "lng": -82.8753454,
+   "near": "04165500",
+   "mi": 1.7
+  },
+  {
+   "type": "park",
+   "name": "Clemens Park",
+   "lat": 42.6013008,
+   "lng": -82.8750362,
+   "near": "04165500",
+   "mi": 1.76
+  },
+  {
+   "type": "park",
+   "name": "Olsen Park",
+   "lat": 42.5864571,
+   "lng": -82.8926212,
+   "near": "04165500",
+   "mi": 1.05
+  },
+  {
+   "type": "park",
+   "name": "Stone Ridge North Park",
+   "lat": 42.6050507,
+   "lng": -83.0984712,
+   "near": "04163400",
+   "mi": 1.4
+  },
+  {
+   "type": "park",
+   "name": "Green's Park",
+   "lat": 42.7837154,
+   "lng": -83.2419341,
+   "near": "04161500",
+   "mi": 1.58
+  },
+  {
+   "type": "park",
+   "name": "Meek's Park",
+   "lat": 42.7825017,
+   "lng": -83.2380991,
+   "near": "04161500",
+   "mi": 1.39
+  },
+  {
+   "type": "park",
+   "name": "Unger Park",
+   "lat": 42.7759173,
+   "lng": -83.2525365,
+   "near": "04161500",
+   "mi": 1.76
+  },
+  {
+   "type": "park",
+   "name": "Armada Memorial Park",
+   "lat": 42.8462369,
+   "lng": -82.8842461,
+   "near": "04164300",
+   "mi": 0.04
+  },
+  {
+   "type": "park",
+   "name": "Mark Sawyers Family Park",
+   "lat": 42.5597927,
+   "lng": -82.9777318,
+   "near": "04164000",
+   "mi": 1.82
+  },
+  {
+   "type": "park",
+   "name": "Armada Township Park",
+   "lat": 42.8523445,
+   "lng": -82.8831247,
+   "near": "04164300",
+   "mi": 0.46
+  },
+  {
+   "type": "park",
+   "name": "Fairview Park",
+   "lat": 42.6973258,
+   "lng": -83.1671644,
+   "near": "04161540",
+   "mi": 1.38
+  },
+  {
+   "type": "park",
+   "name": "Barneswood Park",
+   "lat": 42.7003102,
+   "lng": -83.1658583,
+   "near": "04161540",
+   "mi": 1.43
+  },
+  {
+   "type": "park",
+   "name": "Rochester Park",
+   "lat": 42.7012199,
+   "lng": -83.1602668,
+   "near": "04161540",
+   "mi": 1.25
+  },
+  {
+   "type": "park",
+   "name": "Romeo Village Park",
+   "lat": 42.8033713,
+   "lng": -83.0144069,
+   "near": "04164100",
+   "mi": 1.36
+  },
+  {
+   "type": "park",
+   "name": "Orchards Park",
+   "lat": 42.8161122,
+   "lng": -83.0219708,
+   "near": "04164100",
+   "mi": 0.45
+  },
+  {
+   "type": "park",
+   "name": "Bruce Township Park",
+   "lat": 42.8115425,
+   "lng": -83.0121335,
+   "near": "04164100",
+   "mi": 0.86
+  },
+  {
+   "type": "park",
+   "name": "Simpson Park",
+   "lat": 42.8127158,
+   "lng": -83.0411931,
+   "near": "04164100",
+   "mi": 1.26
+  },
+  {
+   "type": "park",
+   "name": "Warren Community Park",
+   "lat": 42.5297887,
+   "lng": -83.0536203,
+   "near": "04162010",
+   "mi": 0.76
+  },
+  {
+   "type": "park",
+   "name": "Romeo Lions Field",
+   "lat": 42.8008144,
+   "lng": -83.0102968,
+   "near": "04164100",
+   "mi": 1.58
+  },
+  {
+   "type": "park",
+   "name": "Toddler's Park",
+   "lat": 42.7507491,
+   "lng": -83.2445321,
+   "near": "04161500",
+   "mi": 1.7
+  },
+  {
+   "type": "park",
+   "name": "Elizabeth Park",
+   "lat": 42.6808236,
+   "lng": -83.1271364,
+   "near": "04161540",
+   "mi": 0.96
+  },
+  {
+   "type": "park",
+   "name": "God's Graceland Park",
+   "lat": 42.430581,
+   "lng": -83.2703643,
+   "near": "04166100",
+   "mi": 1.81
+  },
+  {
+   "type": "park",
+   "name": "Ridge Park",
+   "lat": 42.6216828,
+   "lng": -83.2100532,
+   "near": "04161000",
+   "mi": 1.09
+  },
+  {
+   "type": "park",
+   "name": "Clinton River Park",
+   "lat": 42.5953317,
+   "lng": -83.0078622,
+   "near": "04161820",
+   "mi": 1.63
+  },
+  {
+   "type": "park",
+   "name": "Rotary Gateway Park",
+   "lat": 42.6839405,
+   "lng": -83.1327092,
+   "near": "04161540",
+   "mi": 0.6
+  },
+  {
+   "type": "park",
+   "name": "Macomb Corners Park",
+   "lat": 42.7048872,
+   "lng": -82.9311455,
+   "near": "04164800",
+   "mi": 1.42
+  },
+  {
+   "type": "park",
+   "name": "CTC Park",
+   "lat": 42.6552559,
+   "lng": -83.2344571,
+   "near": "04161000",
+   "mi": 1.6
+  },
+  {
+   "type": "park",
+   "name": "CTC Park",
+   "lat": 42.6533436,
+   "lng": -83.2281624,
+   "near": "04161000",
+   "mi": 1.39
+  },
+  {
+   "type": "park",
+   "name": "Freedom Hill County Park",
+   "lat": 42.5639476,
+   "lng": -82.9764776,
+   "near": "04164000",
+   "mi": 1.59
+  },
+  {
+   "type": "park",
+   "name": "Lions Park",
+   "lat": 42.6810083,
+   "lng": -83.1297163,
+   "near": "04161540",
+   "mi": 0.84
+  },
+  {
+   "type": "park",
+   "name": "Deer Park",
+   "lat": 42.669015,
+   "lng": -83.1607779,
+   "near": "04161540",
+   "mi": 1.61
+  },
+  {
+   "type": "park",
+   "name": "University Hills",
+   "lat": 42.668813,
+   "lng": -83.1679515,
+   "near": "04161540",
+   "mi": 1.85
+  },
+  {
+   "type": "park",
+   "name": "University Hills",
+   "lat": 42.6711438,
+   "lng": -83.1702428,
+   "near": "04161540",
+   "mi": 1.83
+  },
+  {
+   "type": "park",
+   "name": "Meadows Avon Park",
+   "lat": 42.6918884,
+   "lng": -83.1795092,
+   "near": "04161540",
+   "mi": 1.87
+  },
+  {
+   "type": "park",
+   "name": "Charnwood Park",
+   "lat": 42.6156138,
+   "lng": -83.2032462,
+   "near": "04161000",
+   "mi": 1.63
+  },
+  {
+   "type": "park",
+   "name": "Avis Park",
+   "lat": 42.53778,
+   "lng": -83.0833229,
+   "near": "04162010",
+   "mi": 0.95
+  },
+  {
+   "type": "park",
+   "name": "Marsh View Park",
+   "lat": 42.7721305,
+   "lng": -83.2017361,
+   "near": "04161500",
+   "mi": 0.97
+  },
+  {
+   "type": "park",
+   "name": "Paint Creek Junction Park",
+   "lat": 42.7638242,
+   "lng": -83.2110056,
+   "near": "04161500",
+   "mi": 0.52
+  },
+  {
+   "type": "park",
+   "name": "Fargo-Fenton Park",
+   "lat": 42.4382854,
+   "lng": -83.2817024,
+   "near": "04166100",
+   "mi": 1.02
+  },
+  {
+   "type": "park",
+   "name": "Pioneer Park Dog Park",
+   "lat": 42.6308257,
+   "lng": -83.0384526,
+   "near": "04161820",
+   "mi": 1.28
+  },
+  {
+   "type": "park",
+   "name": "Cairns Field",
+   "lat": 42.6031028,
+   "lng": -82.8716781,
+   "near": "04165500",
+   "mi": 1.95
+  },
+  {
+   "type": "park",
+   "name": "Small Dog Run",
+   "lat": 42.5230343,
+   "lng": -83.0893782,
+   "near": "04162010",
+   "mi": 1.15
+  },
+  {
+   "type": "park",
+   "name": "Dog Run A",
+   "lat": 42.5241042,
+   "lng": -83.0879397,
+   "near": "04162010",
+   "mi": 1.06
+  },
+  {
+   "type": "park",
+   "name": "Dog Run C",
+   "lat": 42.5227883,
+   "lng": -83.0893834,
+   "near": "04162010",
+   "mi": 1.16
+  },
+  {
+   "type": "park",
+   "name": "Dog Run B",
+   "lat": 42.5231453,
+   "lng": -83.0896871,
+   "near": "04162010",
+   "mi": 1.16
+  },
+  {
+   "type": "park",
+   "name": "Rochester Community Garden",
+   "lat": 42.6907593,
+   "lng": -83.1399964,
+   "near": "04161540",
+   "mi": 0.22
+  },
+  {
+   "type": "park",
+   "name": "Watertown Park",
+   "lat": 42.6760268,
+   "lng": -83.1336322,
+   "near": "04161540",
+   "mi": 0.97
+  },
+  {
+   "type": "park",
+   "name": "Kayak Point Park",
+   "lat": 42.6367613,
+   "lng": -83.2480524,
+   "near": "04161000",
+   "mi": 1.23
+  },
+  {
+   "type": "park",
+   "name": "Dorothea Lenore Park",
+   "lat": 42.6103071,
+   "lng": -82.8813062,
+   "near": "04164500",
+   "mi": 1.36
+  },
+  {
+   "type": "park",
+   "name": "Troy Farm",
+   "lat": 42.6199706,
+   "lng": -83.1968146,
+   "near": "04161000",
+   "mi": 1.68
+  },
+  {
+   "type": "park",
+   "name": "Highbury Park",
+   "lat": 42.6016644,
+   "lng": -83.1015436,
+   "near": "04163400",
+   "mi": 1.54
+  },
+  {
+   "type": "park",
+   "name": "Manchester Knolls Park",
+   "lat": 42.6904904,
+   "lng": -83.1791813,
+   "near": "04161540",
+   "mi": 1.85
+  },
+  {
+   "type": "park",
+   "name": "Red Oaks Waterpark",
+   "lat": 42.521681,
+   "lng": -83.092379,
+   "near": "04162010",
+   "mi": 1.33
+  },
+  {
+   "type": "park",
+   "name": "Forester Square Park",
+   "lat": 42.639515,
+   "lng": -83.2123691,
+   "near": "04161000",
+   "mi": 0.74
+  },
+  {
+   "type": "park",
+   "name": "Stoneridge Park East",
+   "lat": 42.6007038,
+   "lng": -83.0947113,
+   "near": "04163400",
+   "mi": 1.19
+  },
+  {
+   "type": "park",
+   "name": "Fairview Park",
+   "lat": 42.6037666,
+   "lng": -82.9971961,
+   "near": "04161820",
+   "mi": 1.67
+  },
+  {
+   "type": "park",
+   "name": "Meadowview Park",
+   "lat": 42.5700309,
+   "lng": -82.9808297,
+   "near": "04164000",
+   "mi": 1.58
+  },
+  {
+   "type": "park",
+   "name": "Wanda Park",
+   "lat": 42.587948,
+   "lng": -82.9847381,
+   "near": "04164000",
+   "mi": 1.83
+  },
+  {
+   "type": "park",
+   "name": "Joy Boulevard Park",
+   "lat": 42.6109287,
+   "lng": -82.8645754,
+   "near": "04164500",
+   "mi": 1.76
+  },
+  {
+   "type": "park",
+   "name": "Shadyside Park",
+   "lat": 42.5833764,
+   "lng": -82.8785037,
+   "near": "04165500",
+   "mi": 1.76
+  },
+  {
+   "type": "park",
+   "name": "Rotary Park",
+   "lat": 42.5986616,
+   "lng": -82.8771906,
+   "near": "04165500",
+   "mi": 1.62
+  },
+  {
+   "type": "park",
+   "name": "Clinton River Park",
+   "lat": 42.5972184,
+   "lng": -82.8761722,
+   "near": "04165500",
+   "mi": 1.66
+  },
+  {
+   "type": "park",
+   "name": "Wilson Park",
+   "lat": 42.5956018,
+   "lng": -82.8912313,
+   "near": "04165500",
+   "mi": 0.89
+  },
+  {
+   "type": "park",
+   "name": "Crystal Diamonds Park",
+   "lat": 42.8219755,
+   "lng": -82.9867775,
+   "near": "04164100",
+   "mi": 1.69
+  },
+  {
+   "type": "park",
+   "name": "Romeo Trailside Park",
+   "lat": 42.8038235,
+   "lng": -83.0053103,
+   "near": "04164100",
+   "mi": 1.5
+  },
+  {
+   "type": "park",
+   "name": "Beebe's Corner Park",
+   "lat": 42.5282674,
+   "lng": -83.0481669,
+   "near": "04162010",
+   "mi": 1.04
+  },
+  {
+   "type": "park",
+   "name": "Clinton Township Dog Park",
+   "lat": 42.5935908,
+   "lng": -82.9285364,
+   "near": "04165500",
+   "mi": 1.02
+  },
+  {
+   "type": "park",
+   "name": "Ray Hernandez Pickleball Courts",
+   "lat": 42.5948042,
+   "lng": -82.9309237,
+   "near": "04165500",
+   "mi": 1.13
+  },
+  {
+   "type": "park",
+   "name": "Rotary Park",
+   "lat": 42.57155,
+   "lng": -82.9719682,
+   "near": "04164000",
+   "mi": 1.12
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.6847555,
+   "lng": -83.1222225,
+   "near": "04161540",
+   "mi": 1.08
+  },
+  {
+   "type": "park",
+   "name": "Pioneer Park",
+   "lat": 42.6309646,
+   "lng": -83.0391669,
+   "near": "04161820",
+   "mi": 1.31
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.5999421,
+   "lng": -83.0271841,
+   "near": "04161820",
+   "mi": 1.0
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.6001128,
+   "lng": -83.0728238,
+   "near": "04163400",
+   "mi": 0.12
+  },
+  {
+   "type": "fishing",
+   "name": "Eagle's Landing CRWT access",
+   "lat": 42.6645352,
+   "lng": -83.1539231,
+   "near": "04161540",
+   "mi": 1.74
+  },
+  {
+   "type": "park",
+   "name": "(South) James C. Nelson Park",
+   "lat": 42.5489193,
+   "lng": -83.0796569,
+   "near": "04162010",
+   "mi": 1.46
+  },
+  {
+   "type": "park",
+   "name": "(South) James C. Nelson Park",
+   "lat": 42.5490589,
+   "lng": -83.0757314,
+   "near": "04162010",
+   "mi": 1.4
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.5470856,
+   "lng": -83.0655923,
+   "near": "04162010",
+   "mi": 1.23
+  },
+  {
+   "type": "park",
+   "name": "dog_park",
+   "lat": 42.5487782,
+   "lng": -83.0681535,
+   "near": "04162010",
+   "mi": 1.34
+  },
+  {
+   "type": "park",
+   "name": "Washington Square Park",
+   "lat": 42.5906518,
+   "lng": -82.9773446,
+   "near": "04164000",
+   "mi": 1.58
+  },
+  {
+   "type": "park",
+   "name": "Bald Mountain State Recreation Area",
+   "lat": 42.7653734,
+   "lng": -83.2306932,
+   "near": "04161500",
+   "mi": 0.57
+  },
+  {
+   "type": "park",
+   "name": "Clinton River Trail",
+   "lat": 42.6450838,
+   "lng": -83.2160106,
+   "near": "04161000",
+   "mi": 0.91
+  },
+  {
+   "type": "park",
+   "name": "Clinton River Park North",
+   "lat": 42.6133034,
+   "lng": -83.0253911,
+   "near": "04161820",
+   "mi": 0.1
+  }
+ ]
+}

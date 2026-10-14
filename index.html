@@ -1,5 +1,6 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Clinton River & Paint Creek Trout Conditions</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 body{font-family:system-ui,sans-serif;margin:0;background:#0f1d2b;color:#e8eef4}header{padding:16px;background:#14324a}h1{margin:0;font-size:1.3em}
@@ -20,11 +21,33 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 .top5{list-style:none;margin:8px 0 0;padding:0}.top5 li{display:grid;grid-template-columns:28px 1fr auto;gap:2px 8px;align-items:center;padding:7px 6px;border-radius:8px;cursor:pointer}
 .top5 li:hover{background:#25603f}.top5 .rk{grid-row:span 2;font-weight:700;font-size:1.2em;text-align:center}.top5 .tn{font-weight:600}.top5 .tm{grid-column:2/4;font-size:.8em;color:#cfe0ee}
 .card.flash{border-color:#ffd27f;box-shadow:0 0 0 3px #ffd27f88}
+#mapsec{padding:0 16px}#map{height:420px;border-radius:10px;margin:8px 0}.sec2{color:#7fd1ff;margin:16px 0 6px}
+.tagbar{display:flex;gap:10px}.big{flex:1;font-size:1.1em;padding:14px;border:0;border-radius:10px;background:#2e6a96;color:#fff;font-weight:700;cursor:pointer}.big.fish{background:#2f8a57}
+.maplegend{font-size:.75em;color:#9fb3c8;display:flex;gap:10px;flex-wrap:wrap}.logbox{background:#1b2d40;border-radius:10px;padding:10px;margin:10px 0}.logbox summary{cursor:pointer;font-weight:600}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}.row input{flex:1;min-width:200px;padding:8px;border-radius:6px;border:1px solid #355a7a;background:#0f1d2b;color:#e8eef4}
+.row button,#tagform button[type=button]{padding:8px 12px;border-radius:6px;border:1px solid #355a7a;background:#243c55;color:#e8eef4;cursor:pointer}
+#tagList .t{font-size:.82em;border-top:1px solid #2a4560;padding:6px 0}.addr{font-size:.8em;margin:4px 0;color:#cfe0ee}.addr a{margin-left:6px}
+#tagdlg{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-start;justify-content:center;z-index:10000;overflow:auto}#tagdlg .box{background:#1b2d40;margin:20px 10px;padding:16px;border-radius:12px;width:min(480px,100%);box-sizing:border-box}
+#tagform label{display:block;margin:8px 0;font-size:.85em}#tagform input,#tagform textarea{display:block;width:100%;box-sizing:border-box;padding:8px;border-radius:6px;border:1px solid #355a7a;background:#0f1d2b;color:#e8eef4;font-size:1em}
+.leaflet-popup-content{color:#111}.pin{font-size:20px;text-align:center;line-height:24px}
 </style></head><body>
 <header><h1>🎣 Clinton River & Paint Creek — Trout Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
 <div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
+<section id="mapsec"><h2 class="sec2">🗺️ Map, access & fishing log</h2>
+<div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
+<div id="map"></div>
+<div class="maplegend"><span>🔵 gage</span><span>🟤 bridge</span><span>🟢 park</span><span>🎣 fishing access</span><span>📍 your tag</span><span>🐟 your catch</span></div>
+<details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
+<div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
+<div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
+<div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
+<div id="tagList"></div></details></section>
 <div id="app"></div>
+<div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
+<div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Smallmouth bass<option>Steelhead<option>Salmon</datalist>
+<label>Length (in)<input name="length_in" type="number" step="0.25" inputmode="decimal"></label><label>Fly / lure<input name="fly_lure"></label></div>
+<label>Notes<textarea name="note" rows="2"></textarea></label><div class="row"><button type="submit" class="big">Save</button><button type="button" id="tagCancel">Cancel</button></div></form></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
 const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
@@ -86,14 +109,14 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="grid";app.appendChild(grid);
   const setOpen=o=>{grid.style.display=o?"":"none";h2.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(key,o?"0":"1")};
   h2.innerHTML=`<span class="arr">▼</span> ${g} <span class="cnt"></span>`;h2.onclick=()=>setOpen(grid.style.display==="none");const secRank=[];SECS.push([h2,secRank]);
-  for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";grid.appendChild(c);
+  for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";c.id="site-"+id;grid.appendChild(c);
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
    if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name}</h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
     <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
-   INFO[id]={t,updated:(ql||hl).x,tempMsg};c.id="site-"+id;ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>setOpen(true)});secRank.push({id,t,tempF});
+   INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>setOpen(true)});secRank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
    c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
@@ -108,5 +131,59 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  ranked.sort((a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100)));const top=ranked.slice(0,5);
  const bn=document.getElementById("banner");bn.innerHTML=top.length?`<b>🏆 Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span></li>`).join("")}</ol>`:"No live data.";
  bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)});
- document.body.dataset.ready=1})();
+ document.body.dataset.ready=1;window.dispatchEvent(new Event("dataready"))})();
+</script><script>
+(()=>{const DIR=(la,ln)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${ln}`,GM=(la,ln)=>`https://www.google.com/maps/search/?api=1&query=${la},${ln}`;
+const esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mi=(a,b,c,d)=>{const r=Math.PI/180,x=Math.sin((c-a)*r/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin((d-b)*r/2)**2;return 7917.6*Math.asin(Math.sqrt(x))};
+let AD={gages:{},access:[]},map,tagLayer;const KEY="fishTags",URLK="sheetUrl";
+const tags=()=>JSON.parse(localStorage.getItem(KEY)||"[]"),saveTags=t=>{localStorage.setItem(KEY,JSON.stringify(t));renderTags()};
+const icon=(e)=>L.divIcon({className:"pin",html:e,iconSize:[24,24],iconAnchor:[12,12]});
+const dataReady=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
+async function init(){
+ try{AD=await (await fetch("access-data.json")).json()}catch(e){console.warn("access data",e)}
+ map=L.map("map",{scrollWheelZoom:false}).setView([42.62,-83.05],10);
+ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
+ const accL=L.layerGroup().addTo(map),gL=L.layerGroup().addTo(map);tagLayer=L.layerGroup().addTo(map);
+ for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#e0a800":"#2f8a57";
+  L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(accL)}
+ L.control.layers(null,{"Access points":accL,"Gages":gL,"My tags":tagLayer},{collapsed:true}).addTo(map);
+ await dataReady;
+ for(const [id,g] of Object.entries(AD.gages)){const i=INFO[id];
+  L.circleMarker([g.lat,g.lng],{radius:9,color:"#fff",weight:2,fillColor:i?"#1e88e5":"#777",fillOpacity:1}).bindPopup(`<b>${esc(NAME[id])}</b><br>USGS ${id}<br>${i?`${i.flow??"—"} cfs${i.tempF!=null?" · "+i.tempF.toFixed(0)+"°F":""}<br>🐟 ${esc(i.t.label)}`:"offline"}<br>${esc(g.address)}<br><a href="${DIR(g.lat,g.lng)}" target="_blank">Directions</a> · <a href="#site-${id}">Card</a>`).addTo(gL);
+  const card=document.getElementById("site-"+id);if(card){const a=document.createElement("div");a.className="addr";a.innerHTML=`📍 Near ${esc(g.address)} <a href="${DIR(g.lat,g.lng)}" target="_blank">Directions ↗</a>`;
+   a.querySelector("a").onclick=e=>e.stopPropagation();card.querySelector(".sub").after(a)}}
+ renderTags();document.getElementById("sheetUrl").value=localStorage.getItem(URLK)||"";document.body.dataset.mapready=1}
+function nearestGage(la,ln){let best=null;for(const [id,g] of Object.entries(AD.gages)){if(!INFO[id])continue;const d=mi(la,ln,g.lat,g.lng);if(!best||d<best.d)best={id,d}}return best}
+let pending=null;
+function startTag(type){const go=pos=>{const la=+pos.coords.latitude.toFixed(6),ln=+pos.coords.longitude.toFixed(6),n=nearestGage(la,ln),i=n&&INFO[n.id];
+  pending={id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),type,timestamp:new Date().toISOString(),lat:la,lng:ln,nearest_gage:n?.id||"",gage_name:n?NAME[n.id]:"",gage_dist_mi:n?+n.d.toFixed(2):"",
+   flow_cfs:i?.flow??"",pct_median:i?.pct??"",temp_f:i?.tempF!=null?+i.tempF.toFixed(1):"",rating:i?.t.label||"",species:"",length_in:"",fly_lure:"",note:"",synced:false};
+  const f=document.getElementById("tagform");f.reset();document.getElementById("fishFields").style.display=type==="fish"?"":"none";
+  document.getElementById("tagTitle").textContent=type==="fish"?"🐟 Log a fish":"📍 Tag this spot";
+  document.getElementById("tagCtx").textContent=`${la}, ${ln} · nearest gage ${pending.gage_name} (${pending.gage_dist_mi} mi): ${pending.flow_cfs} cfs${pending.temp_f!==""?", "+pending.temp_f+"°F":""}, ${pending.rating}`;
+  document.getElementById("tagdlg").style.display="flex"};
+ if(!navigator.geolocation)return alert("Geolocation not available");
+ navigator.geolocation.getCurrentPosition(go,e=>alert("Couldn't get location: "+e.message),{enableHighAccuracy:true,timeout:15000})}
+document.getElementById("btnTag").onclick=()=>startTag("spot");document.getElementById("btnFish").onclick=()=>startTag("fish");
+document.getElementById("tagCancel").onclick=()=>{document.getElementById("tagdlg").style.display="none";pending=null};
+document.getElementById("tagform").onsubmit=e=>{e.preventDefault();if(!pending)return;const fd=new FormData(e.target);for(const [k,v] of fd)pending[k]=v;
+ const t=tags();t.push(pending);saveTags(t);document.getElementById("tagdlg").style.display="none";map.setView([pending.lat,pending.lng],14);pending=null;if(localStorage.getItem(URLK))sync()};
+function renderTags(){const t=tags();document.getElementById("tagCount").textContent=t.length+(t.some(x=>!x.synced)?` · ${t.filter(x=>!x.synced).length} unsynced`:"");if(!tagLayer)return;tagLayer.clearLayers();
+ for(const x of t){L.marker([x.lat,x.lng],{icon:icon(x.type==="fish"?"🐟":"📍")}).bindPopup(`<b>${x.type==="fish"?esc(x.species||"Fish"):"Tagged spot"}</b>${x.length_in?" · "+esc(x.length_in)+" in":""}<br>${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York"})} ET<br>${x.fly_lure?"Fly/lure: "+esc(x.fly_lure)+"<br>":""}${x.note?esc(x.note)+"<br>":""}${esc(x.gage_name)}: ${esc(x.flow_cfs)} cfs ${x.temp_f!==""?esc(x.temp_f)+"°F":""} ${esc(x.rating)}<br><a href="${GM(x.lat,x.lng)}" target="_blank">Open in Google Maps</a> · <a href="${DIR(x.lat,x.lng)}" target="_blank">Directions</a>`).addTo(tagLayer)}
+ document.getElementById("tagList").innerHTML=t.slice().reverse().map(x=>`<div class="t">${x.type==="fish"?"🐟":"📍"} ${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})} ET · ${esc(x.species||"")} ${x.length_in?esc(x.length_in)+'"':""} · ${esc(x.gage_name)} ${x.synced?"✅":"⏳"} · <a href="${GM(x.lat,x.lng)}" target="_blank">Map</a></div>`).join("")}
+const COLS=["id","type","timestamp","lat","lng","nearest_gage","gage_name","gage_dist_mi","flow_cfs","pct_median","temp_f","rating","species","length_in","fly_lure","note"];
+function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+document.getElementById("expCsv").onclick=()=>{const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;dl("fishing-log.csv",[COLS.join(","),...tags().map(x=>COLS.map(c=>q(x[c])).join(","))].join("\n"),"text/csv")};
+document.getElementById("expKml").onclick=()=>{const x=s=>esc(s);dl("fishing-log.kml",`<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Fishing Log</name>${tags().map(t=>`<Placemark><name>${x(t.type==="fish"?(t.species||"Fish")+(t.length_in?" "+t.length_in+" in":""):"Spot")}</name><description>${x(`${t.timestamp} | ${t.gage_name}: ${t.flow_cfs} cfs ${t.temp_f}F ${t.rating} | ${t.fly_lure} ${t.note}`)}</description><ExtendedData>${COLS.map(c=>`<Data name="${c}"><value>${x(t[c])}</value></Data>`).join("")}</ExtendedData><Point><coordinates>${t.lng},${t.lat}</coordinates></Point></Placemark>`).join("")}</Document></kml>`,"application/vnd.google-earth.kml+xml")};
+const msg=m=>document.getElementById("syncMsg").textContent=m;
+document.getElementById("saveUrl").onclick=()=>{const u=document.getElementById("sheetUrl").value.trim();if(u&&!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return msg("That doesn't look like an Apps Script URL");localStorage.setItem(URLK,u);msg(u?"Saved":"Cleared")};
+async function sync(){const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");const q=tags().filter(x=>!x.synced);if(!q.length)return msg("Nothing to sync");
+ msg("Syncing…");try{const r=await (await fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(q.map(({synced,...x})=>x))})).json();
+  if(!r.ok)throw new Error(r.error);const ids=new Set(q.map(x=>x.id));saveTags(tags().map(x=>ids.has(x.id)?{...x,synced:true}:x));msg(`Synced ${q.length} (${r.added.length} new)`)}catch(e){msg("Sync failed: "+e.message+" — kept in queue")}}
+document.getElementById("syncBtn").onclick=sync;
+document.getElementById("loadBtn").onclick=async()=>{const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");msg("Loading…");
+ try{const r=await (await fetch(u)).json();const t=tags(),have=new Set(t.map(x=>x.id));let n=0;for(const row of r.rows||[]){if(!row.id||have.has(String(row.id)))continue;t.push({...row,id:String(row.id),lat:+row.lat,lng:+row.lng,synced:true});n++}saveTags(t);msg(`Loaded ${n} new from Sheet`)}catch(e){msg("Load failed: "+e.message)}};
+addEventListener("online",()=>localStorage.getItem(URLK)&&tags().some(x=>!x.synced)&&sync());
+init()})();
 </script></body></html>
