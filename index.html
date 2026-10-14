@@ -1,39 +1,101 @@
 <!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Clinton River & Paint Creek Conditions</title>
+<title>Clinton River & Paint Creek Trout Conditions</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
-<style>body{font-family:system-ui,sans-serif;margin:0;background:#0f1d2b;color:#e8eef4}header{padding:16px;background:#14324a}h1{margin:0;font-size:1.3em}h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:0 16px}.card{background:#1b2d40;border-radius:10px;padding:12px}
-.card h3{margin:0 0 4px;font-size:1em}.sub{font-size:.8em;color:#9fb3c8}.vals{display:flex;gap:14px;flex-wrap:wrap;margin:8px 0}.v b{font-size:1.4em;display:block}.v span{font-size:.75em;color:#9fb3c8}
-.up{color:#ffb347}.down{color:#7fd1ff}.steady{color:#9be89b}.off{opacity:.6}canvas{max-height:150px}</style></head><body>
-<header><h1>🎣 Clinton River & Paint Creek — Live Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
+<style>
+body{font-family:system-ui,sans-serif;margin:0;background:#0f1d2b;color:#e8eef4}header{padding:16px;background:#14324a}h1{margin:0;font-size:1.3em}
+h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:12px;padding:0 16px 16px}
+.card{background:#1b2d40;border-radius:10px;padding:12px;cursor:pointer;border:1px solid transparent}.card:hover{border-color:#355a7a}
+.card h3{margin:0 0 4px;font-size:1em}.sub{font-size:.8em;color:#9fb3c8}a{color:#7fd1ff}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.tab{background:#243c55;border:1px solid #355a7a;border-radius:8px;padding:6px 10px;color:#e8eef4;cursor:pointer;text-align:left;min-width:64px}
+.tab b{font-size:1.25em;display:block}.tab span{font-size:.72em;color:#9fb3c8}.tab.on{background:#2e6a96;border-color:#7fd1ff}
+.trend{padding:6px 4px}.trend b{display:block}.up{color:#ffb347}.down{color:#7fd1ff}.steady{color:#9be89b}
+.badge{display:inline-block;padding:3px 9px;border-radius:12px;font-weight:600;font-size:.82em}.g{background:#1f6b3a}.y{background:#8a6d12}.o{background:#a3501a}.r{background:#8b1f1f}.n{background:#44556a}
+.note{font-size:.83em;margin:6px 0;color:#cfe0ee}.off{opacity:.75;cursor:default}.chartbox{position:relative;height:160px}
+#banner{margin:12px 16px;padding:12px;border-radius:10px;background:#1d4a33;border:1px solid #2f8a57}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:9}
+#modal .box{background:#1b2d40;margin:20px 10px;padding:16px;border-radius:12px;width:min(900px,100%);box-sizing:border-box}
+#modal .bigchart{position:relative;height:260px;margin-bottom:18px}#close{float:right;font-size:1.4em;background:none;border:0;color:#fff;cursor:pointer}
+.legend{font-size:.75em;color:#9fb3c8;padding:0 16px}.legend i{display:inline-block;width:10px;height:10px;margin:0 3px 0 8px;vertical-align:middle}
+</style></head><body>
+<header><h1>🎣 Clinton River & Paint Creek — Trout Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
+<div id="banner">Loading…</div>
+<div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
 <div id="app"></div>
+<div id="modal"><div class="box" id="mbox"></div></div>
 <script>
 const GROUPS={"Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
 "Clinton River (main stem)":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"]],
 "Clinton River branches":[["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]]};
-const ALL=Object.values(GROUPS).flat().map(s=>s[0]);
+const ALL=Object.values(GROUPS).flat().map(s=>s[0]),NAME=Object.fromEntries(Object.values(GROUPS).flat());
+// nearest site that reports water temp
+const TEMP_PROXY={"04161000":"04161820","04164000":"04161820","04164151":"04165500","04164500":"04165500","04164800":"04165500","04161540":"04161820","04161500":"04161820"};
+const PARAMS={"00060":["cfs","Discharge (cfs)"],"00065":["gage ft","Gage height (ft)"],"00010":["water °F","Water temp (°F)"]};
 const fmt=d=>new Date(d).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})+" ET";
 document.getElementById("now").textContent="Loaded "+fmt(Date.now());
+const C2F=c=>c*9/5+32;
+const bandPlugin={id:"bands",beforeDraw(ch,a,o){if(!o.on)return;const {ctx,chartArea:ca,scales:{y}}=ch;
+ [[-99,40,"#4a6fa5"],[40,50,"#6b7f99"],[50,65,"#2f8a57"],[65,68,"#b8860b"],[68,200,"#b22222"]].forEach(([lo,hi,c])=>{
+  const t=Math.max(ca.top,y.getPixelForValue(hi)),b=Math.min(ca.bottom,y.getPixelForValue(lo));if(b>t){ctx.save();ctx.globalAlpha=.25;ctx.fillStyle=c;ctx.fillRect(ca.left,t,ca.right-ca.left,b-t);ctx.restore()}})}};
+Chart.register(bandPlugin);
 async function medians(){const t=new Date(),m=t.getMonth()+1,d=t.getDate(),out={};
  try{const r=await (await fetch(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${ALL.join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`)).text();
  let h=null;for(const l of r.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(!h){h=c;continue}if(c[0]!=="USGS")continue;
- const o=Object.fromEntries(h.map((k,i)=>[k,c[i]]));if(+o.month_nu===m&&+o.day_nu===d)out[o.site_no]=+o.p50_va;}}catch(e){}return out}
-function trend(v){if(v.length<5)return["—",""];const last=v[v.length-1].y,ago=v.find(p=>p.x>=v[v.length-1].x-6*3600e3)?.y;if(!ago)return["—",""];const p=(last-ago)/ago*100;
- return p>5?["▲ Rising","up"]:p<-5?["▼ Falling","down"]:["● Steady","steady"]}
-(async()=>{const [iv,med]=await Promise.all([fetch(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ALL.join(",")}&parameterCd=00060,00065,00010&period=P7D&siteStatus=all`).then(r=>r.json()),medians()]);
- const data={};for(const ts of iv.value.timeSeries){const s=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;
-  const vals=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));(data[s]??={})[p]=vals}
- const app=document.getElementById("app");
+ const o=Object.fromEntries(h.map((k,i)=>[k,c[i]]));if(+o.month_nu===m&&+o.day_nu===d)out[o.site_no]=+o.p50_va;}}catch(e){console.warn(e)}return out}
+function trend(v){if(v.length<5)return["—","",0];const L=v[v.length-1],ago=v.find(p=>p.x>=L.x-6*3600e3)?.y;if(!ago)return["—","",0];const p=(L.y-ago)/ago*100;
+ return p>5?["▲ Rising","up",1]:p<-5?["▼ Falling","down",-1]:["● Steady","steady",0]}
+function trout(tempF,pct,tr){let score=0,parts=[],cls="g";
+ if(tempF!=null){if(tempF>68){score-=5;parts.push(`water ${tempF.toFixed(0)}°F is too warm — stop fishing to protect trout`);cls="r"}
+  else if(tempF>=65){score-=2;parts.push(`${tempF.toFixed(0)}°F is stressful; fish early and land fish fast`);cls="o"}
+  else if(tempF>=50){score+=3;parts.push(`${tempF.toFixed(0)}°F is in the optimal range`)}
+  else if(tempF>=40){score+=1;parts.push(`${tempF.toFixed(0)}°F is cool; fish slower and deeper`);cls="y"}
+  else{score-=1;parts.push(`${tempF.toFixed(0)}°F — trout sluggish, slow presentations`);cls="y"}}
+ let flow="";if(pct!=null){if(pct<50){flow="Very low";score-=1;parts.push(`flow very low (${pct}% of median) — spooky fish, go light/stealthy`)}
+  else if(pct<80){flow="Low";score+=1;parts.push(`flow lowish (${pct}% of median), clear water likely`)}
+  else if(pct<=150){flow="Normal";score+=2;parts.push(`flow near normal (${pct}% of median)`)}
+  else if(pct<=200){flow="High";score-=1;parts.push(`flow high (${pct}% of median) — stained, fish edges`)}
+  else{flow="Blown out";score-=4;parts.push(`flow ${pct}% of median — likely blown out`)}}
+ if(tr===1&&pct!=null&&pct>100){score-=1;parts.push("and rising")}else if(tr===-1&&pct>150)parts.push("falling — could clear soon");
+ if(cls==="g"&&(flow==="Blown out"))cls="r";else if(cls==="g"&&(flow==="Very low"||flow==="High"))cls="y";
+ if(tempF==null&&cls==="g")cls=score>=2?"g":"y";
+ const label=cls==="r"?"Poor / don't fish":cls==="o"?"Stressed":cls==="y"?"Fair":"Good";
+ return {score,cls,label:`${label}${flow?" · "+flow:""}`,note:parts.join("; ")}}
+const charts=[];
+function mkChart(canvas,series,p,big){const s=p==="00010"?series.map(q=>({x:q.x,y:C2F(q.y)})):series;
+ return new Chart(canvas,{type:"line",data:{labels:s.map(q=>new Date(q.x).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric"})),
+ datasets:[{data:s.map(q=>q.y),borderColor:p==="00010"?"#ffd27f":p==="00065"?"#b39dff":"#7fd1ff",pointRadius:0,borderWidth:1.5}]},
+ options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},bands:{on:p==="00010"},title:{display:!!big,text:PARAMS[p][1],color:"#e8eef4"}},
+ scales:{x:{ticks:{maxTicksLimit:7,color:"#9fb3c8",callback(v){return this.getLabelForValue(v).split(",")[0]}}},y:{title:{display:true,text:PARAMS[p][1],color:"#9fb3c8"},ticks:{color:"#9fb3c8"},
+ ...(p==="00010"?{suggestedMin:40,suggestedMax:72}:{})}}}})}
+let DATA={},MED={},INFO={};
+function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("mbox");
+ box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
+ <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p>`;
+ for(const p of Object.keys(PARAMS))if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
+ document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
+function closeModal(){document.getElementById("modal").style.display="none"}
+document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+(async()=>{const [iv,med]=await Promise.all([fetch(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ALL.join(",")}&parameterCd=00060,00065,00010&period=P7D&siteStatus=all`).then(r=>r.json()),medians()]);MED=med;
+ for(const ts of iv.value.timeSeries){const s=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;
+  const vals=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(vals.length)(DATA[s]??={})[p]=vals}
+ const last=a=>a&&a.length?a[a.length-1]:null,app=document.getElementById("app"),ranked=[];
  for(const [g,sites] of Object.entries(GROUPS)){app.insertAdjacentHTML("beforeend",`<h2>${g}</h2>`);const grid=document.createElement("div");grid.className="grid";app.appendChild(grid);
-  for(const [id,name] of sites){const d=data[id]||{},q=d["00060"]||[],h=d["00065"]||[],w=d["00010"]||[],last=a=>a.length?a[a.length-1]:null;
-   const c=document.createElement("div");c.className="card";const ql=last(q),hl=last(h),wl=last(w);
-   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name}</h3><div class="sub">USGS ${id}</div><p>No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>`;grid.appendChild(c);continue}
-   const [tt,tc]=trend(q.length?q:h);const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null;
-   c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a style="color:#7fd1ff" href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
-   <div class="vals"><div class="v"><b>${ql?ql.y:"—"}</b><span>cfs</span></div><div class="v"><b>${hl?hl.y:"—"}</b><span>gage ft</span></div>
-   ${wl?`<div class="v"><b>${(wl.y*9/5+32).toFixed(1)}°F</b><span>water (${wl.y}°C)</span></div>`:""}<div class="v"><b class="${tc}">${tt}</b><span>6-hr trend</span></div></div>
-   <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"}</div><canvas></canvas>`;
-   grid.appendChild(c);const s=q.length?q:h;new Chart(c.querySelector("canvas"),{type:"line",data:{labels:s.map(p=>new Date(p.x).toLocaleDateString("en-US",{timeZone:"America/New_York",weekday:"short"})),
-   datasets:[{data:s.map(p=>p.y),borderColor:"#7fd1ff",pointRadius:0,borderWidth:1.5,fill:false}]},options:{animation:false,plugins:{legend:{display:false}},scales:{x:{ticks:{maxTicksLimit:7,color:"#9fb3c8"}},y:{title:{display:true,text:q.length?"cfs":"ft",color:"#9fb3c8"},ticks:{color:"#9fb3c8"}}}}})}}
+  for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";grid.appendChild(c);
+   const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
+   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name}</h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
+    <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
+   const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
+   const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
+   const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
+   INFO[id]={t,updated:(ql||hl).x,tempMsg};ranked.push({id,t,tempF,pct});
+   const tabs=Object.keys(PARAMS).filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
+   c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
+   <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
+   <span class="badge ${t.cls}">🐟 ${t.label}</span><p class="note">${t.note||""}${tempMsg?"<br>"+tempMsg:""}</p>
+   <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="chartbox"><canvas></canvas></div>`;
+   let ch;const show=p=>{ch&&ch.destroy();ch=mkChart(c.querySelector("canvas"),d[p],p);c.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.p===p))};
+   c.querySelectorAll(".tab").forEach(b=>b.onclick=e=>{e.stopPropagation();show(b.dataset.p)});c.querySelector("a").onclick=e=>e.stopPropagation();
+   c.onclick=()=>openModal(id);show(d["00060"]?"00060":"00065")}}
+ ranked.sort((a,b)=>(b.t.score+(b.tempF!=null?.5:0))-(a.t.score+(a.tempF!=null?.5:0)));const b=ranked[0];
+ document.getElementById("banner").innerHTML=b?`🏆 <b>Best-looking right now:</b> ${NAME[b.id]} — <span class="badge ${b.t.cls}">${b.t.label}</span><div class="note">${b.t.note}</div>`:"No live data.";
  document.body.dataset.ready=1})();
 </script></body></html>
