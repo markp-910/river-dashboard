@@ -17,6 +17,9 @@ h2{padding:0 16px;margin:20px 0 6px;color:#7fd1ff}.grid{display:grid;grid-templa
 #modal .bigchart{position:relative;height:260px;margin-bottom:18px}#close{float:right;font-size:1.4em;background:none;border:0;color:#fff;cursor:pointer}
 .legend{font-size:.75em;color:#9fb3c8;padding:0 16px}.legend i{display:inline-block;width:10px;height:10px;margin:0 3px 0 8px;vertical-align:middle}
 .sec{cursor:pointer;user-select:none;font-size:1.15em}.sec .cnt{font-size:.6em;color:#9fb3c8;font-weight:400}.sec small{color:#cfe0ee}
+.top5{list-style:none;margin:8px 0 0;padding:0}.top5 li{display:grid;grid-template-columns:28px 1fr auto;gap:2px 8px;align-items:center;padding:7px 6px;border-radius:8px;cursor:pointer}
+.top5 li:hover{background:#25603f}.top5 .rk{grid-row:span 2;font-weight:700;font-size:1.2em;text-align:center}.top5 .tn{font-weight:600}.top5 .tm{grid-column:2/4;font-size:.8em;color:#cfe0ee}
+.card.flash{border-color:#ffd27f;box-shadow:0 0 0 3px #ffd27f88}
 </style></head><body>
 <header><h1>🎣 Clinton River & Paint Creek — Trout Conditions</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
@@ -90,7 +93,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
-   INFO[id]={t,updated:(ql||hl).x,tempMsg};ranked.push({id,t,tempF,pct});secRank.push({id,t,tempF});
+   INFO[id]={t,updated:(ql||hl).x,tempMsg};c.id="site-"+id;ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>setOpen(true)});secRank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
    c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
@@ -102,7 +105,8 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
   h2.querySelector(".cnt").dataset.n=sites.length;setOpen(localStorage.getItem(key)!=="1")}
  const rk=x=>x.t.score+(x.tempF!=null?.5:0);
  for(const [h2,r] of SECS){r.sort((a,b)=>rk(b)-rk(a));const c=h2.querySelector(".cnt");c.innerHTML=`(${c.dataset.n} sites)`+(r[0]?` · best: <span class="badge ${r[0].t.cls}">${r[0].t.label.split(" · ")[0]}</span> <small>${NAME[r[0].id]}</small>`:" · no live data")}
- ranked.sort((a,b)=>(b.t.score+(b.tempF!=null?.5:0))-(a.t.score+(a.tempF!=null?.5:0)));const b=ranked[0];
- document.getElementById("banner").innerHTML=b?`🏆 <b>Best-looking right now:</b> ${NAME[b.id]} — <span class="badge ${b.t.cls}">${b.t.label}</span><div class="note">${b.t.note}</div>`:"No live data.";
+ ranked.sort((a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100)));const top=ranked.slice(0,5);
+ const bn=document.getElementById("banner");bn.innerHTML=top.length?`<b>🏆 Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span></li>`).join("")}</ol>`:"No live data.";
+ bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)});
  document.body.dataset.ready=1})();
 </script></body></html>
