@@ -27,7 +27,7 @@ header{position:relative;overflow:hidden;padding:22px 18px 18px;color:var(--crea
 header:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='60' viewBox='0 0 240 60'%3E%3Cpath d='M0 18 q15-10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0' fill='none' stroke='%23f6f0e1' stroke-opacity='.10' stroke-width='1.5'/%3E%3Cpath d='M0 42 q15-10 30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0 t30 0' fill='none' stroke='%23d4af37' stroke-opacity='.14' stroke-width='1.5'/%3E%3C/svg%3E")}
 header>*{position:relative}
 h1{margin:0;font-family:var(--serif);font-weight:700;font-size:1.65em;letter-spacing:.01em;display:flex;align-items:center;gap:10px;line-height:1.15}
-h1 svg{flex:none;width:44px;height:24px;color:var(--brass-l)}
+h1 .logo{flex:none;width:72px;height:72px;border-radius:50%;box-shadow:0 0 0 2px var(--brass),0 2px 8px rgba(0,0,0,.4)}
 header .sub{color:#cdd6b8;margin-top:4px;font-size:.85em;letter-spacing:.02em}
 h2{padding:0 16px;margin:22px 0 8px;font-family:var(--serif);font-weight:700;color:var(--g800)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px;padding:0 16px 18px}
@@ -143,9 +143,9 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 .gflag{background:var(--flagbg);border-left:4px solid var(--brass);padding:7px 10px;margin:6px 0;font-size:.84em;border-radius:4px}
 .gnow{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:9px 12px;margin:8px 0;font-size:.9em}
 .xhatch{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:9px 12px;margin:8px 0;font-size:.86em}.xhatch a{cursor:pointer}
-@media (max-width:700px){h1{font-size:1.4em}.hhead,.hrow{grid-template-columns:140px 1fr}.hlab i{max-width:120px}.hgrid{min-width:700px}.grid{grid-template-columns:1fr}}
+@media (max-width:700px){h1{font-size:1.4em}h1 .logo{width:56px;height:56px}.hhead,.hrow{grid-template-columns:140px 1fr}.hlab i{max-width:120px}.hgrid{min-width:700px}.grid{grid-template-columns:1fr}}
 </style></head><body>
-<header><h1><svg viewBox="0 0 44 24" aria-hidden="true"><path fill="currentColor" d="M2 12c6-8 16-9 25-5l8-5-2 8 2 8-8-5C18 21 8 20 2 12zm8-2.2a1.3 1.3 0 1 0 0 2.6 1.3 1.3 0 0 0 0-2.6z" fill-rule="evenodd"/><path d="M42 3l-5 4M42 21l-5-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".0"/></svg>Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
+<header><h1><img class="logo" src="logo.png" width="72" height="72" alt="Mark's Fishing Report logo">Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
 <div id="homeView">
 <div id="banner">Loading…</div>
