@@ -66,6 +66,40 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 #xmodal details{border-top:1px solid #2a4560;padding:6px 0}#xmodal summary{cursor:pointer;font-weight:700;color:#7fd1ff;padding:6px 0}#xmodal .kv{font-size:.88em;margin:4px 0}#xmodal ul{margin:4px 0;padding-left:18px;font-size:.85em}
 .flag{background:#4a3a10;border-left:4px solid #e0a800;padding:6px 8px;margin:4px 0;font-size:.82em;border-radius:4px}.wantb{min-height:44px;padding:8px 14px;border-radius:8px;border:0;background:#2f8a57;color:#fff;font-weight:700;cursor:pointer}.wantb.on{background:#6b3d8a}
 .gl{background:#14324a;border-radius:8px;padding:8px;margin:6px 0;font-size:.88em}.xdot{border-radius:50%;border:2px solid #fff;width:22px;height:22px;line-height:18px;text-align:center;font-weight:800;font-size:12px;color:#fff;box-sizing:border-box}
+/* ---- hatch calendar & gear guide ---- */
+#hatchsec{padding:0 16px}#hatchsec summary{cursor:pointer}
+.hfilt{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}.hfilt button{min-height:40px;padding:6px 12px;border-radius:20px;border:1px solid #355a7a;background:#243c55;color:#e8eef4;font-size:.85em;cursor:pointer}.hfilt button.on{background:#2e6a96;border-color:#7fd1ff;font-weight:700}
+#hNow{background:#1d4a33;border:1px solid #2f8a57;border-radius:10px;padding:10px;margin:8px 0}#hNow h4{margin:0 0 6px}
+.hchip{display:grid;grid-template-columns:auto 1fr;gap:2px 8px;padding:6px 4px;border-top:1px solid #2f8a5788;font-size:.88em;cursor:pointer}.hchip:first-of-type{border-top:0}
+.hchip .tg{grid-row:span 2;align-self:start;margin-top:2px}.hchip .pt{color:#e8eef4}.hchip .tm{color:#b9d6c4;font-size:.9em}
+.ptag{display:inline-block;border-radius:10px;padding:1px 8px;font-size:.75em;font-weight:700;color:#10241a}.ptag.pk{background:#9be89b}.ptag.tl{background:#cfe0ee}
+.hscroll{overflow-x:auto;border-radius:10px;background:#16273a;border:1px solid #2a4560}
+.hgrid{min-width:760px}
+.hhead,.hrow{display:grid;grid-template-columns:190px 1fr}
+.hhead{background:#14324a;font-size:.72em;letter-spacing:.08em;font-weight:700;color:#9fb3c8;position:sticky;top:0}
+.hhead .hl,.hlab{position:sticky;left:0;z-index:3;background:inherit;padding:8px 10px;box-sizing:border-box}
+.hhead .hl{background:#14324a}.hlab{background:#16273a;border-right:1px solid #2a4560}
+.hmon{display:grid;grid-template-columns:repeat(12,1fr);text-align:center}.hmon span{padding:8px 0;position:relative}.hmon span.now{color:#fff;background:#2c4a2f;outline:2px solid #9be89b;outline-offset:-2px;border-radius:6px}
+.hrow{border-top:1px solid #243a52;cursor:pointer}.hrow:hover .hlab{background:#1d3248}.hrow.open .hlab{background:#1d3248}
+.hlab b{display:block;font-size:.88em;font-weight:600;line-height:1.2}.hlab i{display:block;font-size:.72em;color:#8da3b8;font-style:italic;line-height:1.2;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+.hlab .gdot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.htrack{position:relative;display:grid;grid-template-columns:repeat(24,1fr);align-items:center;min-height:50px;padding:0;background:repeating-linear-gradient(90deg,transparent 0,transparent calc(100%/12 - 1px),#22374d calc(100%/12 - 1px),#22374d calc(100%/12))}
+.hb{height:22px;border-radius:7px;margin:0 1px;grid-row:1;z-index:1}
+.hnow{position:absolute;top:0;bottom:0;width:calc(100%/12);outline:2px solid #9be89b66;outline-offset:-2px;background:#9be89b12;pointer-events:none;z-index:0}
+.htoday{position:absolute;top:0;bottom:0;width:2px;background:#ffd27f;pointer-events:none;z-index:2;opacity:.9}
+.hclosed{position:absolute;top:0;bottom:0;background:repeating-linear-gradient(135deg,#8b1f1f55 0 5px,#8b1f1f22 5px 10px);pointer-events:none;z-index:0}
+.hdet{grid-column:1/-1;padding:10px 14px 14px;background:#122233;border-top:1px dashed #2a4560;font-size:.86em;cursor:default}
+.hdet h5{margin:8px 0 3px;color:#7fd1ff;font-size:.95em}.hdet ul{margin:2px 0;padding-left:18px}.hdet .sub{display:block}
+.cf{display:inline-block;border-radius:10px;padding:1px 8px;font-size:.78em;font-weight:700}.cf.local{background:#1f6b3a}.cf.regional{background:#2e6a96}.cf.rule{background:#8a6d12}
+.hleg{display:flex;gap:10px;flex-wrap:wrap;font-size:.75em;color:#9fb3c8;margin:6px 0}.hleg i{display:inline-block;width:18px;height:10px;border-radius:4px;margin-right:4px;vertical-align:middle}
+.gearb{font-size:.62em;margin-left:6px;padding:4px 9px;border-radius:14px;border:1px solid #5a8f6a;background:#1d4a33;color:#e8f6ec;cursor:pointer;min-height:32px;vertical-align:middle;font-weight:600;white-space:nowrap}
+#gmodal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:9800}#gmodal .box{background:#1b2d40;margin:14px 8px;padding:14px;border-radius:12px;width:min(820px,100%);box-sizing:border-box}
+#gmodal details{border-top:1px solid #2a4560;padding:6px 0}#gmodal summary{cursor:pointer;font-weight:700;color:#7fd1ff;padding:8px 0;min-height:28px}#gmodal ul{margin:4px 0;padding-left:18px;font-size:.88em}#gmodal .kv{font-size:.88em;margin:4px 0}
+.gwrap{overflow-x:auto}.gtab{border-collapse:collapse;font-size:.8em;min-width:560px;width:100%}.gtab th,.gtab td{border:1px solid #2a4560;padding:5px 7px;text-align:left;vertical-align:top}.gtab th{background:#14324a;color:#cfe0ee}.gtab td:first-child{background:#16273a;font-weight:700;color:#9fb3c8;white-space:nowrap}
+.gflag{background:#4a3a10;border-left:4px solid #e0a800;padding:6px 8px;margin:6px 0;font-size:.82em;border-radius:4px}
+.gnow{background:#1d4a33;border:1px solid #2f8a57;border-radius:10px;padding:8px 10px;margin:8px 0;font-size:.88em}
+.xhatch{background:#1d4a33;border:1px solid #2f8a57;border-radius:10px;padding:8px 10px;margin:8px 0;font-size:.85em}.xhatch a{cursor:pointer}
+@media (max-width:700px){.hhead,.hrow{grid-template-columns:140px 1fr}.hlab i{max-width:120px}.hgrid{min-width:700px}}
 </style></head><body>
 <header><h1>🎣 Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
@@ -83,6 +117,9 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 <div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></div></section>
 <section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
+<section id="hatchsec"><details id="hatchDet" open><summary class="sec2">🪰 Hatch Calendar</summary>
+<div class="sub">Tap a row for patterns, sizes, time of day, waters &amp; sources. Bright bar = peak, light bar = early/late (tail). SE Michigan usually runs ~1–2 weeks earlier than northern-Michigan dates.</div>
+<div class="hfilt" id="hFilt"></div><div id="hNow"></div><div class="hscroll"><div class="hgrid" id="hGrid"></div></div><div class="hleg" id="hLeg"></div><div class="sub" id="hSrc"></div></details></section>
 <div id="app"></div>
 </div>
 <div id="exploreView" hidden></div>
@@ -90,7 +127,7 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 <div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Largemouth bass<option>Smallmouth bass<option>Northern pike<option>Creek chub<option>Steelhead<option>Salmon</datalist>
 <label>Length (in)<input name="length_in" type="number" step="0.25" inputmode="decimal"></label><label>Fly / lure<input name="fly_lure"></label><label>Photo (optional)<input type="file" id="photoIn" accept="image/*"></label><img id="photoPrev" class="thumb" alt="" hidden></div>
 <label>Notes<textarea name="note" rows="2"></textarea></label><div class="row"><button type="submit" class="big">Save</button><button type="button" id="tagCancel">Cancel</button></div></form></div>
-<div id="xmodal"><div class="box" id="xbox"></div></div>
+<div id="xmodal"><div class="box" id="xbox"></div></div><div id="gmodal"><div class="box" id="gbox"></div></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
 const EXTRA_SP=["Largemouth bass","Smallmouth bass","Northern pike","Creek chub"];
@@ -141,7 +178,7 @@ function mkChart(canvas,series,p,big){const s=p==="00010"?series.map(q=>({x:q.x,
  ...(p==="00010"?{suggestedMin:40,suggestedMax:72}:{})}}}})}
 const SECS=[];let DATA={},MED={},INFO={};
 function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("mbox");
- box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
+ box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]} <button class="gearb" data-gear="g:${id}">🎒 Gear &amp; flies</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
  <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p>`;
  for(const p of PORDER)if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
  document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
@@ -156,14 +193,14 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
   h2.innerHTML=`<span class="arr">▼</span> ${g} <span class="cnt"></span>`;h2.onclick=()=>setOpen(grid.style.display==="none");const secRank=[];SECS.push([h2,secRank]);
   for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";c.id="site-"+id;grid.appendChild(c);
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
-   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name}</h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
+   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
     <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
    INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>setOpen(true)});secRank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
-   c.innerHTML=`<h3>${name}</h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
+   c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
    <span class="badge ${t.cls}">🐟 ${t.label}</span><p class="note">${t.note||""}${tempMsg?"<br>"+tempMsg:""}</p>
    <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="chartbox"><canvas></canvas></div>`;
@@ -425,7 +462,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <div style="margin:6px 0"><span class="stt ${st.cls}">${esc(st.txt)}</span> ${clsB(s.tr)} <span class="cls cU">${s.wild==="wild"?"Wild":s.wild==="both"?"Wild + stocked":"Stocked"}</span> <span class="cls cU">Confidence: ${esc(s.confidence)}</span></div>
  <div class="kv">🚗 <b>${s.drive_min} min</b> (${s.drive_miles} mi) free-flow — plan on <b>${Math.round(s.drive_min*1.1)}–${Math.round(s.drive_min*1.25)} min</b> with traffic. <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions ↗</a></div>
  ${runs.length?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
- <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button></div>
+ <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb" style="background:#1d6b4a" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xHatch"></div>
  <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div><div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
  <details open><summary>📡 Nearest USGS gage (live)</summary>${gl}<div class="sub">${esc(s.gage_note)}</div></details>
  <details open><summary>📜 Regulations & season</summary><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div><div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
@@ -434,10 +471,99 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
  ${s.flags.length?`<details><summary>⚠️ Unverified / flags (${s.flags.length})</summary>${s.flags.map(f=>`<div class="flag">${esc(f)}</div>`).join("")}</details>`:""}
  <details><summary>🔗 Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
- $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup()}
+ $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.HATCH)HATCH.strip(s.id,$("xHatch"))}
 function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
 $("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
-window._openStream=openStream;
+window._openStream=openStream;window._closeX=closeX;window._setTab=setTab;window._xd=()=>({XD,LIVE});
 setTab(localStorage.getItem(TK)==="explore"?"explore":"home");
+})();
+</script><script>
+(()=>{
+const $=id=>document.getElementById(id);
+const hesc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const GC={mayfly:["#2f9e6b","#86c7a6","Mayfly"],caddis:["#8e5bd1","#c3aae6","Caddis"],stonefly:["#4a82c4","#9cbfe6","Stonefly"],midge:["#7b8da3","#b9c6d3","Midge"],terrestrial:["#d98a2b","#ecc08a","Terrestrial"],baitfish:["#c9514f","#e4a09e","Baitfish / crayfish"],eggs:["#e0709a","#efb3c9","Steelhead eggs / run"]};
+const GO=["mayfly","caddis","stonefly","eggs","terrestrial","baitfish","midge"];
+const MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const idx=s=>{const m=+s.slice(0,2),d=+s.slice(3);return (m-1)*2+(d<=15?1:2)};
+const fmtMD=s=>MN[+s.slice(0,2)-1]+" "+(+s.slice(3));
+const rng=(a,b)=>a<=b?[[a,b]]:[[a,24],[1,b]];
+function states(h){const st=Array(25).fill(0);for(const w of h.windows){for(const [a,b] of rng(idx(w.from),idx(w.to)))for(let i=a;i<=b;i++)st[i]=Math.max(st[i],1);
+  for(const p of w.peak)for(const [a,b] of rng(idx(p[0]),idx(p[1])))for(let i=a;i<=b;i++)st[i]=2}return st}
+const now=()=>{const t=new Date();return {m:t.getMonth(),d:t.getDate(),i:t.getMonth()*2+(t.getDate()<=15?1:2),dim:new Date(t.getFullYear(),t.getMonth()+1,0).getDate()}};
+let HD=null,GD=null,flt=localStorage.getItem("hatchWater")||"all",openRow=null;
+const load=async()=>{if(!HD)HD=await (await fetch("hatch-calendar.json?v=1")).json();return HD};
+const loadG=async()=>{if(!GD)GD=await (await fetch("gear-guide.json?v=1")).json();return GD};
+const forWater=w=>HD.hatches.filter(h=>w==="all"||h.waters.includes(w));
+const yearRound=st=>st.slice(1).filter(x=>x>0).length>=22;
+function nowList(w){const n=now();return forWater(w).map(h=>({h,s:states(h)[n.i]})).filter(x=>x.s>0&&(!yearRound(states(x.h))||x.s===2)).sort((a,b)=>b.s-a.s||GO.indexOf(a.h.group)-GO.indexOf(b.h.group))}
+function soonList(w){const n=now();return forWater(w).map(h=>{const st=states(h);let k=0;for(let j=1;j<=3;j++){const i=((n.i-1+j)%24)+1;if(st[i]>0&&!st[n.i]){k=j;break}}return {h,k}}).filter(x=>x.k).sort((a,b)=>a.k-b.k)}
+const pats=(h,n=2)=>h.patterns.slice(0,n).map(p=>hesc(p[0])+" #"+p[1].join("/#")).join(" · ");
+function chips(list,max,w){return list.slice(0,max).map(({h,s})=>`<div class="hchip" data-hid="${h.id}"><span class="tg ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span><span class="pt"><b>${hesc(h.name)}</b> — ${pats(h)}</span><span class="tm">🕐 ${hesc(h.time)}${h.confidence==="rule"?" · rule of thumb":""}</span></div>`).join("")}
+function renderNow(){const n=now(),L=nowList(flt),S=soonList(flt),wl=HD.waters.find(x=>x.id===flt).label,mx=6;
+ $("hNow").innerHTML=`<h4>📌 Hatching now — ${MN[n.m]} ${n.d}${flt!=="all"?" · "+hesc(wl):""}</h4>${L.length?chips(L,mx):'<div class="sub">Nothing major listed for this water right now.</div>'}${L.length>mx?`<details style="margin-top:4px"><summary class="sub" style="cursor:pointer">+${L.length-mx} more</summary>${chips(L.slice(mx),99)}</details>`:""}
+ ${S.length?`<div class="sub" style="margin-top:6px;color:#cfe0ee">Coming up: ${S.slice(0,5).map(x=>hesc(x.h.name)).join(", ")}.</div>`:""}
+ ${flt==="paint"?'<div class="sub" style="margin-top:6px;color:#ffb3b3">Paint Creek is closed to trout Oct 1 → last Saturday in April — the hatches below only matter in-season (red-striped months are closed).</div>':""}`;
+ $("hNow").querySelectorAll(".hchip").forEach(c=>c.onclick=()=>{openRowFn(c.dataset.hid,true)})}
+function detail(h){const wl=h.waters.length?h.waters.map(w=>HD.waters.find(x=>x.id===w)?.label).filter(Boolean).join(", "):"Northern Michigan only (not confirmed on SE streams)";
+ const wtxt=h.windows.map(w=>`${fmtMD(w.from)} – ${fmtMD(w.to)}${w.peak.length?` <b>(peak ${w.peak.map(p=>fmtMD(p[0])+" – "+fmtMD(p[1])).join("; ")})</b>`:" (peak not specified by sources)"}`).join("<br>");
+ const cl={local:"Sourced for this water",regional:"Sourced regionally (Michigan / S. Lower MI)",rule:"Rule of thumb"}[h.confidence];
+ return `<div class="hdet"><span class="cf ${h.confidence}">${cl}</span>${h.applicability?` <span class="cf rule">${hesc(h.applicability)}</span>`:""}
+  <h5>When</h5>${wtxt}<span class="sub">Time of day: ${hesc(h.time)}${h.water_temp_f?` · water ${h.water_temp_f[0]}–${h.water_temp_f[1]}°F`:""}</span>
+  <h5>Flies &amp; sizes</h5><ul>${h.patterns.map(p=>`<li>${hesc(p[0])} — <b>#${p[1].join(", #")}</b></li>`).join("")}</ul>
+  <h5>Applies to</h5>${hesc(wl)}<h5>Notes</h5>${hesc(h.note)}<h5>Sources</h5><ul>${h.sources.map(k=>HD.sources[k]).filter(Boolean).map(s=>`<li><a href="${hesc(s.url)}" target="_blank" rel="noopener">${hesc(s.label)}</a></li>`).join("")}</ul></div>`}
+function openRowFn(id,scroll){if(openRow===id&&!scroll)openRow=null;else openRow=id;renderGrid();if(openRow){const el=document.querySelector(`.hrow[data-id="${openRow}"]`);if(el&&scroll)el.scrollIntoView({behavior:"smooth",block:"center"})}}
+function renderGrid(){const n=now(),list=forWater(flt).slice().sort((a,b)=>{const f=h=>{const st=states(h);let k=st.findIndex((x,i)=>i>0&&x===2);if(k<0)k=st.findIndex((x,i)=>i>0&&x>0);return k};return f(a)-f(b)});
+ const frac=(n.m+(n.d-1)/n.dim)/12*100,closed=flt==="paint";
+ $("hGrid").innerHTML=`<div class="hhead"><div class="hl">HATCH</div><div class="hmon">${MN.map((m,i)=>`<span class="${i===n.m?"now":""}">${m.toUpperCase()}</span>`).join("")}</div></div>`+
+ list.map(h=>{const st=states(h),c=GC[h.group]||GC.midge,segs=[];let i=1;while(i<=24){if(!st[i]){i++;continue}let j=i;while(j+1<=24&&st[j+1]===st[i])j++;segs.push(`<span class="hb" style="grid-column:${i}/${j+2};background:${st[i]===2?c[0]:c[1]}" title="${hesc(h.name)}: ${st[i]===2?"peak":"early/late"}"></span>`);i=j+1}
+  return `<div class="hrow ${openRow===h.id?"open":""}" data-id="${h.id}" role="button" tabindex="0" aria-expanded="${openRow===h.id}"><div class="hlab"><b><span class="gdot" style="background:${c[0]}"></span>${hesc(h.name)}</b><i>${hesc(h.latin)}</i></div>
+  <div class="htrack">${closed?`<span class="hclosed" title="Paint Creek closed to trout (Oct 1 – last Sat in April)" style="left:0;width:${(3.8/12*100).toFixed(2)}%"></span><span class="hclosed" style="left:75%;width:25%"></span>`:""}<span class="hnow" style="left:${(n.m/12*100).toFixed(3)}%"></span>${segs.join("")}<span class="htoday" style="left:${frac.toFixed(2)}%"></span></div>${openRow===h.id?detail(h):""}</div>`}).join("");
+ $("hGrid").querySelectorAll(".hrow").forEach(r=>{r.onclick=e=>{if(e.target.closest(".hdet"))return;openRowFn(r.dataset.id)};r.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openRowFn(r.dataset.id)}}})}
+function renderFilt(){$("hFilt").innerHTML=HD.waters.map(w=>`<button data-w="${w.id}" class="${w.id===flt?"on":""}">${hesc(w.label)}</button>`).join("");
+ $("hFilt").querySelectorAll("button").forEach(b=>b.onclick=()=>setFlt(b.dataset.w))}
+function setFlt(w){flt=w;localStorage.setItem("hatchWater",w);openRow=null;renderFilt();renderNow();renderGrid()}
+async function init(){try{await load()}catch(e){$("hGrid").innerHTML='<div class="sub" style="padding:10px">Could not load hatch-calendar.json</div>';return}
+ if(!HD.waters.some(w=>w.id===flt))flt="all";renderFilt();renderNow();renderGrid();
+ $("hLeg").innerHTML=Object.values(GC).map(c=>`<span><i style="background:${c[0]}"></i><i style="background:${c[1]};width:10px"></i>${c[2]}</span>`).join("")+'<span>bright = peak · light = early/late · green outline = this month · gold line = today</span>';
+ {const sc=document.querySelector(".hscroll");if(sc&&sc.scrollWidth>sc.clientWidth){const n=now();sc.scrollLeft=Math.max(0,(n.m+.5)/12*sc.scrollWidth-sc.clientWidth/2+80)}}
+ $("hSrc").innerHTML=`${hesc(HD.note)} Sources: ${Object.values(HD.sources).map(s=>`<a href="${hesc(s.url)}" target="_blank" rel="noopener">${hesc(s.label.split(" (")[0])}</a>`).join(" · ")}.`}
+// ---------- Explore strip ----------
+window.HATCH={async strip(streamId,el){try{await load();await loadG()}catch(e){return}
+  const pk=GD.explore_profile[streamId]||"general",w=GD.profiles[pk].hatch_water||"all",L=nowList(w),m=now();
+  el.innerHTML=`<div class="xhatch"><b>🪰 Hatching now (${MN[m.m]} ${m.d})</b>${L.length?L.slice(0,4).map(({h,s})=>`<div style="margin-top:4px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,2)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">Nothing major listed this month.</div>'}
+  <div class="sub" style="margin-top:6px"><a data-hopen="${w}">Open full hatch calendar ↗</a> · <a data-gear="x:${hesc(streamId)}">🎒 Gear &amp; flies</a></div></div>`;
+  const a=el.querySelector("[data-hopen]");if(a)a.onclick=()=>{window._closeX&&_closeX();_setTab("home");setFlt(["paint","clinton","huron","small","big"].includes(w)?w:"all");setTimeout(()=>{$("hatchDet").open=true;$("hatchsec").scrollIntoView({behavior:"smooth"})},80)}}};
+// ---------- Gear modal ----------
+const sizes=a=>a.map(x=>"#"+x).join(" ");
+const rigCols=[["dry","Dry fly"],["nymph","Nymphing"],["euro","Euro nymph"],["streamer","Streamer"]];
+function condLine(kind,id){try{if(kind==="g"){const i=INFO[id];if(i)return `Live (${hesc(NAME[id])}): <span class="badge ${i.t.cls}">🐟 ${hesc(i.t.label)}</span>${i.tempF!=null?` · ${i.tempF.toFixed(0)}°F`:""}${i.pct!=null?` · ${i.pct}% of median flow`:""}<br><span class="sub">${hesc(i.t.note||"")}</span>`}
+  else if(window._xd){const {XD,LIVE}=_xd(),s=XD.streams.find(x=>x.id===id),gs=(s?.gages||[]).map(g=>LIVE[g.id]?.view).filter(Boolean);if(gs[0]){const v=gs[0];return `Nearest live gage: <span class="badge ${v.t.cls}">🐟 ${hesc(v.t.label)}</span> · ${Math.round(v.flow)} cfs${v.tempF!=null?` · ${v.tempF.toFixed(0)}°F`:""}`}}}catch(e){}return ""}
+async function openGear(key){try{await load();await loadG()}catch(e){alert("Couldn't load gear data");return}
+ const [kind,id]=key.split(":"),pk=(kind==="g"?GD.gage_profile[id]:GD.explore_profile[id])||"general",p=GD.profiles[pk],gen=p.confidence.startsWith("General");
+ let nm="";try{nm=kind==="g"?NAME[id]:_xd().XD.streams.find(x=>x.id===id).name}catch(e){}
+ const L=nowList(p.hatch_water||"all"),n=now(),cond=condLine(kind,id);
+ const rigRows=[["Rod","rod"],["Line","line"],["Leader","leader"],["Tippet","tippet"],["Waders","waders"],["Boots","boots"]];
+ const src=p.sources.map(k=>GD.sources[k]).filter(Boolean);
+ $("gbox").innerHTML=`<button id="gclose" style="float:right;font-size:1.5em;background:none;border:0;color:#fff;cursor:pointer;min-width:44px;min-height:44px" aria-label="Close">✕</button>
+ <h3 style="margin:0 0 4px">🎒 Gear &amp; flies — ${hesc(p.title)}</h3>${nm&&nm!==p.title?`<div class="sub">for ${hesc(nm)}</div>`:""}
+ <div style="margin:6px 0"><span class="cf ${gen?"rule":"local"}">${gen?"General guidance":"Sourced"}</span> <span class="sub">${hesc(p.confidence)}</span></div>
+ ${gen?'<div class="gflag">No river-specific source for this water — this is general trout guidance. Adjust to the stream and check regulations.</div>':""}
+ <div class="kv">${hesc(p.summary)}</div>
+ <div class="gnow"><b>🌤️ Right now (${MN[n.m]} ${n.d})</b>${pk==="paint-creek"&&(n.m>=9||n.m<3||(n.m===3&&n.d<24))?'<div class="sub" style="color:#ffb3b3">Paint Creek is closed to trout Oct 1 → last Saturday in April — these are for the open season or other waters.</div>':""}${cond?`<div style="margin:4px 0">${cond}</div>`:""}${L.length?L.slice(0,5).map(({h,s})=>`<div style="margin-top:3px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,3)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">No major hatches listed for this water this month — try streamers or small nymphs.</div>'}</div>
+ <details open><summary>🎣 Rods, lines, leaders &amp; wading</summary><div class="gwrap"><table class="gtab"><tr><th></th>${rigCols.map(c=>`<th>${c[1]}${p.rigs[c[0]].general?" *":""}</th>`).join("")}</tr>${rigRows.map(r=>`<tr><td>${r[0]}</td>${rigCols.map(c=>`<td>${hesc(p.rigs[c[0]][r[1]])}</td>`).join("")}</tr>`).join("")}</table></div>${Object.values(p.rigs).some(r=>r.general)?'<div class="sub">* general guidance, not from a river-specific source</div>':""}</details>
+ <details open><summary>🪰 Flies &amp; sizes by technique</summary>${p.flies.map(f=>`<div class="kv"><b>${hesc(f[0])}</b>${f[2]&&GD.sources[f[2]]?` <a class="sub" href="${hesc(GD.sources[f[2]].url)}" target="_blank" rel="noopener">source ↗</a>`:""}<ul>${f[1].map(x=>`<li>${hesc(x[0])} — <b>${sizes(x[1])}</b></li>`).join("")}</ul></div>`).join("")}<div class="sub">Seasonal patterns by hatch are in the Hatch Calendar (🪰) — tap a row for sizes and times.</div></details>
+ ${p.steelhead?`<details><summary>🐟 Steelhead / egg-run gear</summary><div class="kv">${hesc(p.steelhead)}</div></details>`:""}
+ ${p.lures?`<details><summary>🎯 Spin / lure / bait options</summary><div class="kv">${hesc(p.lures)}</div></details>`:""}
+ ${p.tips.length?`<details><summary>💡 Tips</summary><ul>${p.tips.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
+ <details><summary>⚠️ Safety &amp; wading notes</summary><ul>${p.safety.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>
+ ${p.shops.length?`<details><summary>🏪 Local fly shops / guides</summary><ul>${p.shops.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
+ <details><summary>🔗 Sources</summary><ul>${src.length?src.map(s=>`<li><a href="${hesc(s.url)}" target="_blank" rel="noopener">${hesc(s.label)}</a></li>`).join(""):"<li>General guidance — no specific source.</li>"}</ul><div class="sub">${hesc(GD.note)}</div></details>`;
+ $("gmodal").style.display="flex";$("gclose").onclick=closeGear;$("gmodal").scrollTop=0}
+function closeGear(){$("gmodal").style.display="none"}
+window.openGear=openGear;
+$("gmodal").onclick=e=>{if(e.target.id==="gmodal")closeGear()};
+addEventListener("keydown",e=>{if(e.key==="Escape"&&$("gmodal").style.display==="flex"){e.stopImmediatePropagation();closeGear()}},true);
+document.addEventListener("click",e=>{const b=e.target.closest("[data-gear]");if(b){e.preventDefault();e.stopPropagation();openGear(b.dataset.gear)}},true);
+init();
 })();
 </script></body></html>

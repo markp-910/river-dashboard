@@ -1,0 +1,823 @@
+{
+ "generated": "2026-10-15",
+ "note": "Sourced rigs/flies for Paint Creek and Clinton River come from Michigan Fly Fishing Hub river pages. Entries with general=true are general guidance, not river-specific. Verify regulations in the current Michigan Fishing Guide.",
+ "sources": {
+  "hub_paint": {
+   "label": "Michigan Fly Fishing Hub - Paint Creek (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/paint-creek/"
+  },
+  "hub_clinton": {
+   "label": "Michigan Fly Fishing Hub - Clinton River (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/clinton-river/"
+  },
+  "hub_best": {
+   "label": "Michigan Fly Fishing Hub - Best fly fishing rivers in Michigan",
+   "url": "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
+  },
+  "hub_home": {
+   "label": "Michigan Fly Fishing Hub - Oct 8, 2026 report (what's working, egg rig)",
+   "url": "https://michiganflyfishinghub.com/"
+  },
+  "hub_hatch": {
+   "label": "Michigan Fly Fishing Hub - Michigan Hatch Calendar",
+   "url": "https://michiganflyfishinghub.com/hatch-calendar/"
+  },
+  "dnr_clinton": {
+   "label": "Michigan DNR Trout Trails - Lower Clinton River, River Bend Park",
+   "url": "https://michigandnr.com/publications/PDFS/ArcGISOnline/StoryMaps/fish_troutTrails/PDFs/TT2016005.pdf"
+  },
+  "orvis_huron": {
+   "label": "Orvis Fishing Reports - Huron River",
+   "url": "https://fishingreports.orvis.com/midwest/michigan/huron-river"
+  },
+  "birdtrout": {
+   "label": "Birdtrout - Huron watershed hatches & flies",
+   "url": "https://www.birdtrout.com/trips/mi/huron"
+  },
+  "morningsun": {
+   "label": "Morning Sun 2014 - guide Kip Lowrie on Paint Creek",
+   "url": "https://www.themorningsun.com/2014/05/16/its-been-a-rough-start-to-the-year-for-the-fishing-crowd-says-roger-beukema/"
+  },
+  "mca_shop": {
+   "label": "Motor City Anglers - Michigan hatch chart / Rochester Hills fly shop",
+   "url": "https://mca.fish/pages/michigan-hatch-chart"
+  }
+ },
+ "profiles": {
+  "paint-creek": {
+   "title": "Paint Creek",
+   "confidence": "High for rigs/flies (Michigan Fly Fishing Hub); regs from MDNR",
+   "summary": "Small, heavily canopied, clear Type 1 trout stream with spooky browns. Roll casts, long light leaders and stealth beat long drifts. Best April-June and September-October; shuts down near 70°F water. Remember: closed Oct 1 to the last Saturday in April; Gunn Rd-Tienken Rd is artificial lures only, 2 trout, 14-in minimum.",
+   "rigs": {
+    "dry": {
+     "rod": "7.5-8 ft 3- or 4-weight",
+     "line": "DT3F or WF4F",
+     "leader": "9 ft to 5X",
+     "tippet": "5X-6X",
+     "waders": "Hip waders or wet wading",
+     "boots": "Wading sandals or lightweight rubber shoes",
+     "general": false
+    },
+    "nymph": {
+     "rod": "8 ft 4-weight",
+     "line": "WF floating",
+     "leader": "7.5 ft to 5X",
+     "tippet": "5X-6X",
+     "waders": "Hip waders",
+     "boots": "Wading sandals",
+     "general": false
+    },
+    "euro": {
+     "rod": "10 ft 2- or 3-weight",
+     "line": "Level mono rig",
+     "leader": "Short mono rig",
+     "tippet": "6X-7X",
+     "waders": "Hip waders",
+     "boots": "Wading sandals",
+     "general": false
+    },
+    "streamer": {
+     "rod": "8 ft 5-weight",
+     "line": "WF floating",
+     "leader": "6 ft to 1X",
+     "tippet": "1X-2X",
+     "waders": "Hip waders",
+     "boots": "Wading sandals",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Sulphur Parachute",
+       [
+        16,
+        18
+       ]
+      ],
+      [
+       "BWO Parachute",
+       [
+        18,
+        20
+       ]
+      ],
+      [
+       "Elk Hair Caddis / X-Caddis",
+       [
+        14,
+        16
+       ]
+      ],
+      [
+       "Mahogany Dun",
+       [
+        14,
+        16
+       ]
+      ],
+      [
+       "Dave's Hopper (summer)",
+       [
+        8,
+        10
+       ]
+      ]
+     ],
+     "hub_paint"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Small nymphs, minimal shot or none",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Soft hackle wets swung on a tight line",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Euro: very small bead nymphs",
+       [
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     "hub_paint"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Muddlers / small Sculpins",
+       [
+        8,
+        10
+       ]
+      ]
+     ],
+     "hub_paint"
+    ]
+   ],
+   "lures": "Gunn Rd-Tienken Rd: artificial lures only (no bait), 2 trout/day, 14-in minimum. Elsewhere on Paint Creek (Type 1) bait is allowed - verify in the current Michigan Fishing Guide.",
+   "steelhead": null,
+   "tips": [
+    "Dry-fly tip from the hub: 'Approach carefully - the fish are spooky in the clear water.' Small dries #14-20 (Sulphurs, BWOs, caddis); floatant.",
+    "Nymphing: light nymphing; soft-hackle wets swung on a tight line are often more effective than a full indicator rig.",
+    "Guide Kip Lowrie (Morning Sun): fish the sulphur spinner fall or dun hatch; midges, BWO and caddis are the early staples."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Paint Creek Trail parallels much of the creek - park at trail lots and respect private property along the banks."
+   ],
+   "shops": [
+    "Motor City Anglers (Rochester Hills) - guide service and fly shop; hub lists them as home-water specialists on Paint Creek."
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_best",
+    "morningsun",
+    "mca_shop"
+   ],
+   "hatch_water": "paint"
+  },
+  "clinton-river": {
+   "title": "Clinton River (and branches)",
+   "confidence": "High for rigs/flies (Michigan Fly Fishing Hub); steelhead/regs per DNR",
+   "summary": "Metro Detroit's home water: resident browns in the cold upper reaches above Pontiac, a big spring (Mar-May) and fall steelhead run in the lower river (Yates/Rochester to River Bend). Nymphing is the primary technique year-round; dries (BWO, Sulphur, caddis #14-18) when bugs come off.",
+   "rigs": {
+    "dry": {
+     "rod": "8-9 ft 4-weight",
+     "line": "WF4F floating",
+     "leader": "9 ft to 4X",
+     "tippet": "4X-5X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots (felt banned on some sections)",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9 ft 5-weight",
+     "line": "WF floating",
+     "leader": "9 ft to 4X",
+     "tippet": "4X-5X fluorocarbon",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": false
+    },
+    "euro": {
+     "rod": "10 ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Mono rig",
+     "tippet": "5X-6X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9 ft 6-weight",
+     "line": "WF floating or intermediate",
+     "leader": "6 ft to 1X",
+     "tippet": "1X-2X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "BWO / Sulphur / caddis patterns",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_clinton"
+    ],
+    [
+     "Nymphs",
+     [
+      [
+       "Bead-head nymphs",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Small jig nymphs (euro)",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Small caddis larvae (summer, residents)",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Steelhead egg patterns (Mar-Apr spring; fall too)",
+       [
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "hub_clinton"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Dark Wooly Buggers / leech (spring steelhead)",
+       [
+        4,
+        6,
+        8
+       ]
+      ],
+      [
+       "Small Clouser Minnows",
+       [
+        4,
+        6,
+        8
+       ]
+      ],
+      [
+       "Crayfish patterns (smallmouth bonus in summer)",
+       [
+        4,
+        6,
+        8
+       ]
+      ]
+     ],
+     "hub_clinton"
+    ]
+   ],
+   "lures": "Spin/bait: DNR notes the lower Clinton (River Bend Park, Type 4) works with spinners, spawn bags or wax worms under a bobber; mainly a spring fishery with some fall steelhead. Verify regs.",
+   "steelhead": "Hub: spring runs Mar-May are best, fish stack in the deeper pools and runs around Rochester and Yates. Egg patterns are 'extremely effective' Mar-Apr; use dark Wooly Buggers and leeches on a 9 ft 6-weight with a 6 ft leader to 1X. Yates Cider Mill sits on prime steelhead water.",
+   "tips": [
+    "Small indicators, steelhead egg patterns in fall/spring; bead-head nymphs 14-18.",
+    "Upper river above Pontiac: small streamers and nymphs for resident browns (hub).",
+    "Crowded at Yates on steelhead weekends - River Bend Park lets you spread out (DNR)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Hub: felt soles are banned on some Clinton sections - use rubber soles.",
+    "Urban river: watch for strainers/log jams, slick concrete and sudden rises after rain."
+   ],
+   "shops": [
+    "Motor City Anglers (Rochester Hills) guides Clinton steelhead; hub also lists two other SE Michigan outfitters."
+   ],
+   "sources": [
+    "hub_clinton",
+    "hub_best",
+    "dnr_clinton",
+    "mca_shop"
+   ],
+   "hatch_water": "clinton"
+  },
+  "huron": {
+   "title": "Huron River (Proud Lake / lower river)",
+   "confidence": "Medium - no hub page for the Huron; Orvis/Birdtrout + general trout gear",
+   "summary": "Above Belleville: a stocked-trout fishery in spring (DNR stocks in April) and a Blue Ribbon smallmouth river from the last Saturday in April to late October. Below Belleville Dam to Flat Rock/Rockwood: steelhead, walleye, muskie. Streamers are the preferred tactic.",
+   "rigs": {
+    "dry": {
+     "rod": "8.5-9 ft 4- or 5-weight",
+     "line": "WF floating",
+     "leader": "9 ft to 4X",
+     "tippet": "4X-5X",
+     "waders": "Chest or hip waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "nymph": {
+     "rod": "9 ft 5-weight",
+     "line": "WF floating",
+     "leader": "9 ft to 4X",
+     "tippet": "4X-5X",
+     "waders": "Chest or hip waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "euro": {
+     "rod": "10 ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Mono rig",
+     "tippet": "5X-6X",
+     "waders": "Chest or hip waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "streamer": {
+     "rod": "9 ft 6-weight",
+     "line": "WF floating (add intermediate/sink-tip in cold high water)",
+     "leader": "6 ft to 1X-2X",
+     "tippet": "1X-2X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    }
+   },
+   "flies": [
+    [
+     "Streamers",
+     [
+      [
+       "Weighted streamers, low-and-slow retrieve (Orvis winter note)",
+       [
+        4,
+        6,
+        8
+       ]
+      ],
+      [
+       "Crayfish patterns (May-Oct)",
+       [
+        4,
+        6,
+        8
+       ]
+      ]
+     ],
+     "orvis_huron"
+    ],
+    [
+     "Spring dries/nymphs (stocked trout)",
+     [
+      [
+       "Hendrickson",
+       [
+        12,
+        14
+       ]
+      ],
+      [
+       "Black caddis",
+       [
+        16,
+        18,
+        20
+       ]
+      ],
+      [
+       "Little black / brown stoneflies (winter-Apr)",
+       [
+        12,
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "birdtrout"
+    ],
+    [
+     "Summer/fall bass flies",
+     [
+      [
+       "Hex, White Fly, Isonychia, caddis, hopper and ant dries - bring bass to the surface",
+       [
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "orvis_huron"
+    ]
+   ],
+   "lures": "Bass: typical smallmouth spin gear and soft plastics work (general). Catch-and-release rules for bass between Mast Rd (Dexter) and Delhi Rd (Orvis) - check current regs.",
+   "steelhead": "Lower Huron (Belleville Dam to Lake Erie) has steelhead, walleye and muskie (Orvis). Use the steelhead/streamer rig and egg/bead patterns Oct-Jan and Mar-Apr (general; Birdtrout lists fish eggs Oct-Jan and April).",
+   "tips": [
+    "Birdtrout lists winter stones (Jan-Apr), Hendrickson and black caddis (Apr-May) for the Huron watershed.",
+    "Spring-stocked trout take eggs, small streamers and nymphs soon after stocking."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Dam tailraces (Proud Lake, Belleville) can change flow quickly - check releases before wading."
+   ],
+   "shops": [
+    "Orvis lists nearby SE Michigan shops; Motor City Anglers (Rochester Hills) serves the metro area."
+   ],
+   "sources": [
+    "orvis_huron",
+    "birdtrout",
+    "hub_best"
+   ],
+   "hatch_water": "huron"
+  },
+  "small-stream": {
+   "title": "Small creek (general guidance)",
+   "confidence": "General guidance - derived from the hub's Paint Creek small-stream gear; not river-specific",
+   "summary": "Small, brushy, cold streams (brook/brown trout): short rods, short leaders, stealth and hip waders. Flagged as general trout guidance for creeks with no sourced gear data.",
+   "rigs": {
+    "dry": {
+     "rod": "7-8 ft 2- or 3-weight",
+     "line": "DT2F-DT3F",
+     "leader": "7.5-9 ft to 5X",
+     "tippet": "5X-6X",
+     "waders": "Hip waders or wet wading",
+     "boots": "Wading sandals or light rubber",
+     "general": true
+    },
+    "nymph": {
+     "rod": "8 ft 3- or 4-weight",
+     "line": "WF floating",
+     "leader": "7.5 ft to 5X",
+     "tippet": "5X-6X",
+     "waders": "Hip waders",
+     "boots": "Light rubber boots",
+     "general": true
+    },
+    "euro": {
+     "rod": "10 ft 2- or 3-weight",
+     "line": "Level mono rig",
+     "leader": "Short mono rig",
+     "tippet": "6X-7X",
+     "waders": "Hip waders",
+     "boots": "Light rubber boots",
+     "general": true
+    },
+    "streamer": {
+     "rod": "8 ft 4- or 5-weight",
+     "line": "WF floating",
+     "leader": "6 ft to 2X",
+     "tippet": "2X-3X",
+     "waders": "Hip waders",
+     "boots": "Light rubber boots",
+     "general": true
+    }
+   },
+   "flies": [
+    [
+     "Dries (general)",
+     [
+      [
+       "Elk Hair Caddis / Adams / Parachute BWO",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_paint"
+    ],
+    [
+     "Nymphs (general)",
+     [
+      [
+       "Pheasant Tail / Hare's Ear",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_paint"
+    ],
+    [
+     "Streamers (general)",
+     [
+      [
+       "Small Muddler / Sculpin",
+       [
+        8,
+        10
+       ]
+      ]
+     ],
+     "hub_paint"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "Roll-cast, stay low, approach from downstream, and keep leaders long and light (adapted from hub Paint Creek advice).",
+    "Check access and Type 1/2/3 trout-stream seasons - many close Oct 1."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance)."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_paint"
+   ],
+   "hatch_water": "small"
+  },
+  "big-water": {
+   "title": "Big water / steelhead (general guidance)",
+   "confidence": "General guidance + hub Clinton steelhead notes",
+   "summary": "Larger rivers (Belle, Black/Mill Creek at Yale, St. Clair, lower Huron): steelhead/brown/salmon, mostly streamers, eggs and nymphs. Rigs adapted from the hub's Clinton River steelhead recommendations; no river-specific source.",
+   "rigs": {
+    "dry": {
+     "rod": "9 ft 4- or 5-weight",
+     "line": "WF floating",
+     "leader": "9 ft to 4X",
+     "tippet": "4X-5X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "nymph": {
+     "rod": "9-10 ft 5- or 6-weight",
+     "line": "WF floating + indicator",
+     "leader": "9-12 ft to 3X-4X",
+     "tippet": "4X-5X fluorocarbon",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots (studs if allowed)",
+     "general": true
+    },
+    "euro": {
+     "rod": "10-11 ft 3- or 4-weight",
+     "line": "Euro mono rig",
+     "leader": "Mono rig",
+     "tippet": "5X-6X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "streamer": {
+     "rod": "9 ft 6-weight (7-8 weight on the largest water)",
+     "line": "WF floating or intermediate/sink-tip",
+     "leader": "6 ft to 1X",
+     "tippet": "1X-2X",
+     "waders": "Chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    }
+   },
+   "flies": [
+    [
+     "Egg / bead (run fish)",
+     [
+      [
+       "Natural orange / peach egg or bead",
+       [
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "hub_home"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Dark Wooly Bugger / leech, Clouser",
+       [
+        4,
+        6,
+        8
+       ]
+      ]
+     ],
+     "hub_clinton"
+    ],
+    [
+     "Nymphs",
+     [
+      [
+       "Black stonefly, caddis larva, small jig nymph",
+       [
+        8,
+        10,
+        12,
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_clinton"
+    ]
+   ],
+   "lures": null,
+   "steelhead": "Hub Oct 8 egg-rig example (Manistee): floating line, 12-ft leader, indicator and a 10 mm natural orange/peach bead fished below the redds. Applied here as a general starting point - not specific to SE Michigan water. Hub also: spring steelhead on dark Wooly Buggers/leeches with a 9 ft 6-weight.",
+   "tips": [
+    "Best on a rise or after a cool rain; the run tracker/gage on this dashboard shows flow trend.",
+    "Check regs for hook rules and open seasons on the specific stretch (Type 4 or statewide rules)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_clinton",
+    "hub_home",
+    "hub_best"
+   ],
+   "hatch_water": "big"
+  },
+  "general": {
+   "title": "Trout gear (general guidance)",
+   "confidence": "General guidance - no river-specific source",
+   "summary": "Sensible all-round Michigan trout setup, flagged as general. Adjust to stream size.",
+   "rigs": {
+    "dry": {
+     "rod": "8-9 ft 4-weight",
+     "line": "WF4F floating",
+     "leader": "9 ft to 5X",
+     "tippet": "5X",
+     "waders": "Hip or chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "nymph": {
+     "rod": "9 ft 5-weight",
+     "line": "WF floating + small indicator",
+     "leader": "9 ft to 4X-5X",
+     "tippet": "5X",
+     "waders": "Hip or chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "euro": {
+     "rod": "10 ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Mono rig",
+     "tippet": "5X-6X",
+     "waders": "Hip or chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    },
+    "streamer": {
+     "rod": "9 ft 5- or 6-weight",
+     "line": "WF floating",
+     "leader": "6 ft to 2X",
+     "tippet": "2X",
+     "waders": "Hip or chest waders",
+     "boots": "Rubber-soled boots",
+     "general": true
+    }
+   },
+   "flies": [
+    [
+     "Dries",
+     [
+      [
+       "Parachute Adams, Elk Hair Caddis, BWO",
+       [
+        14,
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     null
+    ],
+    [
+     "Nymphs",
+     [
+      [
+       "Pheasant Tail, Hare's Ear, Zebra Midge",
+       [
+        14,
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     null
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Wooly Bugger, small Sculpin",
+       [
+        6,
+        8,
+        10
+       ]
+      ]
+     ],
+     null
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance)."
+   ],
+   "shops": [],
+   "sources": [],
+   "hatch_water": "all"
+  }
+ },
+ "gage_profile": {
+  "04161540": "paint-creek",
+  "04161500": "paint-creek",
+  "04161000": "clinton-river",
+  "04161820": "clinton-river",
+  "04164000": "clinton-river",
+  "04165500": "clinton-river",
+  "04164151": "clinton-river",
+  "04164500": "clinton-river",
+  "04164800": "clinton-river",
+  "04162010": "general",
+  "04163400": "clinton-river",
+  "04164100": "small-stream",
+  "04164300": "clinton-river",
+  "04166100": "general"
+ },
+ "explore_profile": {
+  "paint-creek": "paint-creek",
+  "clinton-river": "clinton-river",
+  "huron-proud-lake": "huron",
+  "huron-lower": "huron",
+  "mill-creek-dexter": "small-stream",
+  "belle-river": "big-water",
+  "mill-creek-yale": "big-water",
+  "north-branch-headwaters": "small-stream",
+  "kearsley-creek": "small-stream",
+  "st-clair-river": "big-water",
+  "johnson-creek": "small-stream",
+  "pine-bottom-creek": "small-stream",
+  "east-pond-creek": "small-stream",
+  "red-cedar-grand": "general"
+ }
+}

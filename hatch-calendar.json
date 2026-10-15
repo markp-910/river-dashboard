@@ -1,0 +1,1554 @@
+{
+ "generated": "2026-10-15",
+ "note": "Half-month windows. 'confidence': local = a source lists this hatch for that water; regional = Michigan/southern-lower-MI chart, not water-specific; rule = our rule of thumb. SE Michigan typically runs ~1-2 weeks earlier than northern-MI dates (Trails To Trout, Norrik). Always verify locally.",
+ "waters": [
+  {
+   "id": "all",
+   "label": "All"
+  },
+  {
+   "id": "paint",
+   "label": "Paint Creek"
+  },
+  {
+   "id": "clinton",
+   "label": "Clinton River"
+  },
+  {
+   "id": "huron",
+   "label": "Huron River"
+  },
+  {
+   "id": "small",
+   "label": "Other small streams"
+  },
+  {
+   "id": "big",
+   "label": "Big water / steelhead"
+  }
+ ],
+ "sources": {
+  "hub_hatch": {
+   "label": "Michigan Fly Fishing Hub - Michigan Hatch Calendar",
+   "url": "https://michiganflyfishinghub.com/hatch-calendar/"
+  },
+  "hub_paint": {
+   "label": "Michigan Fly Fishing Hub - Paint Creek",
+   "url": "https://michiganflyfishinghub.com/rivers/paint-creek/"
+  },
+  "hub_clinton": {
+   "label": "Michigan Fly Fishing Hub - Clinton River",
+   "url": "https://michiganflyfishinghub.com/rivers/clinton-river/"
+  },
+  "hub_best": {
+   "label": "Michigan Fly Fishing Hub - Best fly fishing rivers in Michigan",
+   "url": "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
+  },
+  "hub_home": {
+   "label": "Michigan Fly Fishing Hub - home (Oct 8, 2026 report)",
+   "url": "https://michiganflyfishinghub.com/"
+  },
+  "t2t": {
+   "label": "Trails To Trout - Michigan Hatch Chart (northern dates; subtract 1-2 wks mid-state)",
+   "url": "https://www.trailstotrout.com/resources/michigan-hatch-chart/"
+  },
+  "mca": {
+   "label": "Motor City Anglers (Rochester Hills) - Michigan Hatch Chart",
+   "url": "https://mca.fish/pages/michigan-hatch-chart"
+  },
+  "otf": {
+   "label": "On The Fly Guide Service - Michigan hatch chart",
+   "url": "https://westmichiganfishingguide.com/michigan-river-fishing-hatch-chart/"
+  },
+  "norrik": {
+   "label": "Norrik - Michigan fly hatch chart (Huron = mid-state, 1-2 wks earlier)",
+   "url": "https://norrik.com/fly-hatches/michigan-fly-hatch-chart/"
+  },
+  "birdtrout": {
+   "label": "Birdtrout - Huron watershed hatches (southern lower MI)",
+   "url": "https://www.birdtrout.com/trips/mi/huron"
+  },
+  "orvis_huron": {
+   "label": "Orvis Fishing Reports - Huron River",
+   "url": "https://fishingreports.orvis.com/midwest/michigan/huron-river"
+  },
+  "morningsun": {
+   "label": "Morning Sun 2014 - guide Kip Lowrie on Paint Creek & Clinton hatches",
+   "url": "https://www.themorningsun.com/2014/05/16/its-been-a-rough-start-to-the-year-for-the-fishing-crowd-says-roger-beukema/"
+  },
+  "dnr_clinton": {
+   "label": "Michigan DNR Trout Trails - Lower Clinton River, River Bend Park",
+   "url": "https://michigandnr.com/publications/PDFS/ArcGISOnline/StoryMaps/fish_troutTrails/PDFs/TT2016005.pdf"
+  },
+  "flyfishfinder": {
+   "label": "FlyFishFinder - Michigan hatch chart 2026",
+   "url": "https://flyfishfinder.com/pages/fly-hatches-michigan/"
+  }
+ },
+ "hatches": [
+  {
+   "id": "lbs",
+   "name": "Little Black Stonefly (winter stone)",
+   "latin": "Allocapnia / Capnia spp.",
+   "group": "stonefly",
+   "windows": [
+    {
+     "from": "01-01",
+     "to": "04-30",
+     "peak": [
+      [
+       "02-15",
+       "03-31"
+      ]
+     ]
+    }
+   ],
+   "time": "Noon-4 pm on mild days",
+   "patterns": [
+    [
+     "Black stonefly nymph / Pheasant Tail",
+     [
+      16,
+      18,
+      20
+     ]
+    ],
+    [
+     "Little black stonefly adult (dry)",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "otf",
+    "birdtrout"
+   ],
+   "confidence": "regional",
+   "note": "Dates Jan-Apr from Michigan charts; the Feb 15-Mar 31 peak is our rule-of-thumb (charts give no peak). Paint Creek and other Type 1 streams are CLOSED to trout until the last Saturday in April, so this is mainly a Clinton/Huron opportunity.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "ebs",
+   "name": "Early Black Stonefly",
+   "latin": "Taeniopteryx nivalis",
+   "group": "stonefly",
+   "windows": [
+    {
+     "from": "02-21",
+     "to": "04-30",
+     "peak": []
+    }
+   ],
+   "time": "Noon-4 pm",
+   "patterns": [
+    [
+     "Black stonefly nymph",
+     [
+      10,
+      12,
+      14
+     ]
+    ],
+    [
+     "Early black stone adult",
+     [
+      10,
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "otf",
+    "mca"
+   ],
+   "confidence": "regional",
+   "note": "Window from Michigan charts (Feb 21-Apr 30). Peak not specified by sources.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "ebrs",
+   "name": "Early Brown / Little Brown Stonefly",
+   "latin": "Brachyptera fasciata (+ Strophopteryx)",
+   "group": "stonefly",
+   "windows": [
+    {
+     "from": "03-15",
+     "to": "05-10",
+     "peak": []
+    }
+   ],
+   "time": "1-7 pm",
+   "patterns": [
+    [
+     "Brown stonefly nymph / soft hackle",
+     [
+      12,
+      14,
+      16
+     ]
+    ],
+    [
+     "Early brown stone dry",
+     [
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "small",
+    "paint"
+   ],
+   "sources": [
+    "t2t",
+    "otf",
+    "birdtrout"
+   ],
+   "confidence": "regional",
+   "note": "Birdtrout lists Little Brown Stonefly Feb-Apr (#12-16) for southern lower MI; northern charts give Mar 15-May 10. Peak not specified.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "bwo_s",
+   "name": "Blue-Winged Olive (spring)",
+   "latin": "Baetis spp.",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "03-01",
+     "to": "05-31",
+     "peak": [
+      [
+       "04-01",
+       "05-15"
+      ]
+     ]
+    }
+   ],
+   "time": "Late morning-early afternoon; best on overcast, drizzly days",
+   "patterns": [
+    [
+     "BWO Parachute",
+     [
+      18,
+      20
+     ]
+    ],
+    [
+     "RS2 / sparkle emerger (general)",
+     [
+      18,
+      20
+     ]
+    ],
+    [
+     "Pheasant Tail / Hare's Ear nymph (general)",
+     [
+      16,
+      18,
+      20
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_hatch",
+    "t2t",
+    "birdtrout"
+   ],
+   "confidence": "local",
+   "note": "Michigan Fly Fishing Hub lists BWO on BOTH Paint Creek and Clinton River (Mar-May and Sep-Nov) with BWO Parachute #18-20. Peak Apr 1-May 15 is our synthesis: hub Paint Creek calendar graphic shows April darkest; Trails To Trout northern peak May 1-7. Local guide Kip Lowrie (Morning Sun) calls BWO and caddis the staple early hatches on Paint Creek.",
+   "water_temp_f": [
+    40,
+    58
+   ],
+   "applicability": null
+  },
+  {
+   "id": "hend",
+   "name": "Hendrickson / Red Quill",
+   "latin": "Ephemerella subvaria",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "04-15",
+     "to": "05-31",
+     "peak": [
+      [
+       "04-25",
+       "05-15"
+      ]
+     ]
+    }
+   ],
+   "time": "Early to mid afternoon (~10 am-4 pm); best overcast, stable barometer",
+   "patterns": [
+    [
+     "Hendrickson dry",
+     [
+      12,
+      14
+     ]
+    ],
+    [
+     "Red Quill spinner",
+     [
+      12,
+      14
+     ]
+    ],
+    [
+     "Pheasant Tail nymph just before the hatch",
+     [
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "huron",
+    "small",
+    "clinton",
+    "paint"
+   ],
+   "sources": [
+    "hub_hatch",
+    "t2t",
+    "otf",
+    "birdtrout",
+    "flyfishfinder"
+   ],
+   "confidence": "regional",
+   "note": "Hub: mid-Apr to late May; Trails To Trout northern: Apr 20-May 20, peak May 1-14; Birdtrout lists it for the Huron watershed (April-May). SE Michigan usually runs 1-2 weeks earlier than northern dates. Hub does not list Hendrickson for Paint Creek or Clinton specifically - plausible but not confirmed locally.",
+   "water_temp_f": [
+    50,
+    62
+   ],
+   "applicability": null
+  },
+  {
+   "id": "bq",
+   "name": "Blue Quill / Little Mahogany (spring)",
+   "latin": "Paraleptophlebia adoptiva",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "04-15",
+     "to": "07-08",
+     "peak": [
+      [
+       "05-01",
+       "05-14"
+      ]
+     ]
+    }
+   ],
+   "time": "10 am-4 pm",
+   "patterns": [
+    [
+     "Blue Quill / Little Mahogany dun",
+     [
+      16,
+      18
+     ]
+    ],
+    [
+     "Pheasant Tail nymph",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "huron",
+    "small",
+    "clinton"
+   ],
+   "sources": [
+    "t2t",
+    "mca",
+    "birdtrout"
+   ],
+   "confidence": "regional",
+   "note": "Birdtrout: Blue Quill April-May (#16-18); Trails To Trout window Apr 15-Jul 8, peak May 1-14.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "lbc",
+   "name": "Little Black Caddis (Black Caddis)",
+   "latin": "Chimarra aterrima",
+   "group": "caddis",
+   "windows": [
+    {
+     "from": "04-20",
+     "to": "06-30",
+     "peak": [
+      [
+       "05-01",
+       "05-14"
+      ]
+     ]
+    }
+   ],
+   "time": "Noon to 10 pm",
+   "patterns": [
+    [
+     "Black caddis dry / Elk Hair Caddis (black)",
+     [
+      16,
+      18,
+      20
+     ]
+    ],
+    [
+     "Black caddis pupa / soft hackle",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "otf",
+    "mca",
+    "birdtrout",
+    "morningsun"
+   ],
+   "confidence": "regional",
+   "note": "Michigan charts: Apr 20-Jun 30 (peak May 1-14). Birdtrout lists Little Black Caddis and Grannom for southern lower MI (Apr-May).",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "gran",
+   "name": "Grannom (Mother's Day Caddis)",
+   "latin": "Brachycentrus americanus",
+   "group": "caddis",
+   "windows": [
+    {
+     "from": "04-20",
+     "to": "07-31",
+     "peak": [
+      [
+       "04-20",
+       "05-31"
+      ]
+     ]
+    }
+   ],
+   "time": "2 pm to dark",
+   "patterns": [
+    [
+     "Grannom / Elk Hair Caddis",
+     [
+      12,
+      14,
+      16
+     ]
+    ],
+    [
+     "Caddis emerger / pupa",
+     [
+      14,
+      16
+     ]
+    ]
+   ],
+   "waters": [
+    "huron",
+    "clinton",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "otf",
+    "birdtrout"
+   ],
+   "confidence": "regional",
+   "note": "Birdtrout (southern MI): Apr-May; northern charts run to Jul 31 (shown as tail). Peak window Apr 20-May 31 is our reading of the Birdtrout/regional data.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "ybs",
+   "name": "Yellow Sally (small yellow stonefly)",
+   "latin": "Isoperla spp.",
+   "group": "stonefly",
+   "windows": [
+    {
+     "from": "05-01",
+     "to": "06-30",
+     "peak": []
+    }
+   ],
+   "time": "Afternoons",
+   "patterns": [
+    [
+     "Yellow Sally dry / Stimulator",
+     [
+      10,
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "mca"
+   ],
+   "confidence": "regional",
+   "note": "Michigan charts: May-June. Peak not specified.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "tcad",
+   "name": "Tan / Spotted Caddis",
+   "latin": "Hydropsychidae spp. (Tan / Spotted Sedge)",
+   "group": "caddis",
+   "windows": [
+    {
+     "from": "05-01",
+     "to": "10-15",
+     "peak": [
+      [
+       "05-01",
+       "05-31"
+      ]
+     ]
+    }
+   ],
+   "time": "Evening (egg-laying flights); spotted sedge noon-dark",
+   "patterns": [
+    [
+     "Elk Hair Caddis",
+     [
+      14,
+      16
+     ]
+    ],
+    [
+     "X-Caddis",
+     [
+      14,
+      16
+     ]
+    ],
+    [
+     "Caddis larva / pupa (bead-head)",
+     [
+      14,
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "small"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_hatch",
+    "mca",
+    "t2t"
+   ],
+   "confidence": "local",
+   "note": "Hub lists Caddis (Tan) on Paint Creek and Clinton; hub hatch page season May-Jul, peak shown in May on the Paint Creek graphic. Motor City Anglers extends Tan Caddis May-Oct (tail shown through mid-Oct).",
+   "water_temp_f": [
+    52,
+    68
+   ],
+   "applicability": null
+  },
+  {
+   "id": "sulph",
+   "name": "Sulphur",
+   "latin": "Ephemerella dorothea / invaria",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "05-15",
+     "to": "07-08",
+     "peak": [
+      [
+       "06-01",
+       "06-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Evening - dusk into dark; spinner falls continue after dark",
+   "patterns": [
+    [
+     "Sulphur Parachute",
+     [
+      16,
+      18
+     ]
+    ],
+    [
+     "Sulphur spinner",
+     [
+      16,
+      18
+     ]
+    ],
+    [
+     "Pheasant Tail / Sulphur nymph",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_hatch",
+    "t2t",
+    "mca",
+    "morningsun"
+   ],
+   "confidence": "local",
+   "note": "Paint Creek's marquee dry-fly hatch. Hub: 'Small Sulphurs and BWOs in May-June are the key hatches' (Paint Creek page); hub season late May-late June, ideal 58-68F. Guide Kip Lowrie (Morning Sun): Paint gets a good sulphur hatch; many anglers target the spinner fall or dun hatch exclusively.",
+   "water_temp_f": [
+    58,
+    68
+   ],
+   "applicability": null
+  },
+  {
+   "id": "marchbrown",
+   "name": "March Brown / Gray Fox",
+   "latin": "Maccaffertium vicarium",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "05-15",
+     "to": "07-20",
+     "peak": []
+    }
+   ],
+   "time": "Noon-4 pm",
+   "patterns": [
+    [
+     "March Brown dry",
+     [
+      8,
+      10,
+      12
+     ]
+    ],
+    [
+     "March Brown / Hare's Ear nymph",
+     [
+      10,
+      12
+     ]
+    ]
+   ],
+   "waters": [
+    "small",
+    "huron"
+   ],
+   "sources": [
+    "t2t"
+   ],
+   "confidence": "regional",
+   "note": "Single northern chart source; peak not specified; not confirmed for SE Michigan streams.",
+   "water_temp_f": null,
+   "applicability": "Northern/regional chart only"
+  },
+  {
+   "id": "lcahill",
+   "name": "Light Cahill",
+   "latin": "Stenacron interpunctatum",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "05-15",
+     "to": "08-14",
+     "peak": [
+      [
+       "06-01",
+       "06-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Evening (2-10 pm per Trails To Trout)",
+   "patterns": [
+    [
+     "Light Cahill dry",
+     [
+      12,
+      14,
+      16
+     ]
+    ],
+    [
+     "Light Cahill emerger / soft hackle",
+     [
+      14,
+      16
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "hub_clinton",
+    "hub_hatch",
+    "t2t",
+    "birdtrout"
+   ],
+   "confidence": "local",
+   "note": "Hub lists Light Cahill on the Clinton (Jun-Jul, #14-16, ideal 58-70F); Trails To Trout window to Aug 14; Birdtrout May-Jul (#12-16).",
+   "water_temp_f": [
+    58,
+    70
+   ],
+   "applicability": null
+  },
+  {
+   "id": "brown_drake",
+   "name": "Brown Drake",
+   "latin": "Ephemera simulans",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "05-15",
+     "to": "07-04",
+     "peak": [
+      [
+       "06-01",
+       "06-14"
+      ]
+     ]
+    }
+   ],
+   "time": "Dusk to dark",
+   "patterns": [
+    [
+     "Brown Drake dry",
+     [
+      10,
+      12
+     ]
+    ]
+   ],
+   "waters": [],
+   "sources": [
+    "hub_hatch",
+    "t2t",
+    "mca"
+   ],
+   "confidence": "regional",
+   "note": "A northern-Michigan hatch (hub lists Au Sable, Manistee, Pine, Bear Creek). Not confirmed on any SE Michigan water - shown under 'All' only.",
+   "water_temp_f": [
+    58,
+    68
+   ],
+   "applicability": "Northern Michigan only"
+  },
+  {
+   "id": "iso",
+   "name": "Isonychia / Slate Drake",
+   "latin": "Isonychia bicolor",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "05-15",
+     "to": "09-30",
+     "peak": [
+      [
+       "06-01",
+       "06-30"
+      ],
+      [
+       "08-01",
+       "09-15"
+      ]
+     ]
+    }
+   ],
+   "time": "Evenings; fish crawl out to hatch on rocks",
+   "patterns": [
+    [
+     "Isonychia dry / Whitlock's Slate Drake",
+     [
+      10,
+      12,
+      14
+     ]
+    ],
+    [
+     "Isonychia nymph (swung or dead-drift)",
+     [
+      10,
+      12
+     ]
+    ]
+   ],
+   "waters": [
+    "huron",
+    "clinton",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "mca",
+    "orvis_huron"
+   ],
+   "confidence": "regional",
+   "note": "Orvis lists Isonychia among the Huron River's exceptional hatches (for bass); Motor City Anglers: June #10-12 and Aug-mid Sep #12-14.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "hex",
+   "name": "Hex (Giant Michigan Mayfly)",
+   "latin": "Hexagenia limbata",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "06-10",
+     "to": "07-10",
+     "peak": [
+      [
+       "06-21",
+       "07-07"
+      ]
+     ]
+    }
+   ],
+   "time": "After dark - ~9-10 pm to midnight (up to 4 am)",
+   "patterns": [
+    [
+     "Hex spinner / Hex dun",
+     [
+      4,
+      6,
+      8
+     ]
+    ],
+    [
+     "Large black/brown streamer after dark",
+     [
+      2,
+      4
+     ]
+    ]
+   ],
+   "waters": [
+    "huron"
+   ],
+   "sources": [
+    "hub_hatch",
+    "t2t",
+    "mca",
+    "orvis_huron"
+   ],
+   "confidence": "regional",
+   "note": "Michigan's most famous hatch, but it needs silty, slow, big water: NOT a Paint Creek or Clinton trout hatch (hub lists none of them). Orvis notes Hex hatches on the Huron River that bring bass to the surface. Hub: needs calm nights above ~65F.",
+   "water_temp_f": [
+    62,
+    72
+   ],
+   "applicability": "Mostly the Huron (bass); not Paint/Clinton"
+  },
+  {
+   "id": "hebe",
+   "name": "Hebe / Little Yellow Quill",
+   "latin": "Heptagenia / Stenacron",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "06-15",
+     "to": "09-30",
+     "peak": [
+      [
+       "07-01",
+       "07-31"
+      ]
+     ]
+    }
+   ],
+   "time": "Noon to evening",
+   "patterns": [
+    [
+     "Little Yellow Quill / pale yellow dry",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "small",
+    "clinton"
+   ],
+   "sources": [
+    "t2t"
+   ],
+   "confidence": "regional",
+   "note": "Single northern chart source; nominal.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "ants",
+   "name": "Ants & Beetles (terrestrials)",
+   "latin": "Formicidae / Coleoptera",
+   "group": "terrestrial",
+   "windows": [
+    {
+     "from": "06-01",
+     "to": "10-15",
+     "peak": [
+      [
+       "07-01",
+       "09-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Daytime and evening",
+   "patterns": [
+    [
+     "Black / cinnamon flying ant",
+     [
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24
+     ]
+    ],
+    [
+     "Foam beetle / Crowe beetle",
+     [
+      12,
+      14,
+      16
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small",
+    "big"
+   ],
+   "sources": [
+    "t2t",
+    "mca"
+   ],
+   "confidence": "regional",
+   "note": "Trails To Trout: ants Jun 15-Sep 30 (#12-24), beetles Jun 1-Sep 30; Motor City Anglers: ants Jul-Sep #12-18. Peak Jul-Sep is our simplification. Good when Paint Creek warms and bugs are scarce.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "hoppers",
+   "name": "Hoppers & Crickets (terrestrials)",
+   "latin": "Melanoplus / Gryllidae",
+   "group": "terrestrial",
+   "windows": [
+    {
+     "from": "07-01",
+     "to": "10-15",
+     "peak": [
+      [
+       "07-15",
+       "09-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Midday",
+   "patterns": [
+    [
+     "Dave's Hopper (hopper/dropper)",
+     [
+      8,
+      10
+     ]
+    ],
+    [
+     "Cricket pattern",
+     [
+      10,
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_hatch",
+    "t2t",
+    "mca"
+   ],
+   "confidence": "local",
+   "note": "Hub lists Hopper/Dropper on Paint Creek (Jul-Aug, Dave's Hopper #8-10, midday, ideal ~72F water - but see Paint Creek's ~70F stress limit). Trails To Trout: hoppers Jul 15-Sep 30, crickets Jul 1-Oct 15.",
+   "water_temp_f": [
+    65,
+    80
+   ],
+   "applicability": null
+  },
+  {
+   "id": "trico",
+   "name": "Trico",
+   "latin": "Tricorythodes spp.",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "07-15",
+     "to": "10-20",
+     "peak": [
+      [
+       "07-20",
+       "09-15"
+      ]
+     ]
+    }
+   ],
+   "time": "Early morning - dawn to mid-morning (spinner falls)",
+   "patterns": [
+    [
+     "Trico Spinner",
+     [
+      22,
+      24,
+      26
+     ]
+    ],
+    [
+     "Trico dun / cluster",
+     [
+      22,
+      24
+     ]
+    ]
+   ],
+   "waters": [
+    "small",
+    "clinton",
+    "huron"
+   ],
+   "sources": [
+    "hub_hatch",
+    "t2t",
+    "mca"
+   ],
+   "confidence": "regional",
+   "note": "Hub: Jul-Sep (listed for northern rivers, not Paint/Clinton); Trails To Trout Jul 20-Oct 20 (#22-26). Needs 6X tippet.",
+   "water_temp_f": [
+    62,
+    75
+   ],
+   "applicability": null
+  },
+  {
+   "id": "whitefly",
+   "name": "White Fly / White Miller",
+   "latin": "Ephoron leukon",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "08-10",
+     "to": "09-30",
+     "peak": [
+      [
+       "08-15",
+       "09-10"
+      ]
+     ]
+    }
+   ],
+   "time": "Dusk to dark",
+   "patterns": [
+    [
+     "White Wulff / white spinner",
+     [
+      10,
+      12,
+      14
+     ]
+    ]
+   ],
+   "waters": [
+    "huron",
+    "clinton"
+   ],
+   "sources": [
+    "hub_hatch",
+    "t2t",
+    "mca",
+    "orvis_huron"
+   ],
+   "confidence": "regional",
+   "note": "Hub: August; Trails To Trout Aug 14-Sep 30 (#10-14); Orvis lists White Flies among the Huron River's exceptional hatches (bass and trout rise to them).",
+   "water_temp_f": [
+    65,
+    78
+   ],
+   "applicability": null
+  },
+  {
+   "id": "mahog",
+   "name": "Mahogany Dun (fall)",
+   "latin": "Paraleptophlebia spp.",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "09-01",
+     "to": "10-31",
+     "peak": [
+      [
+       "09-01",
+       "09-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Early to mid afternoon",
+   "patterns": [
+    [
+     "Mahogany Dun",
+     [
+      14,
+      16
+     ]
+    ],
+    [
+     "Pheasant Tail / Hare's Ear nymph",
+     [
+      16,
+      18
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_hatch",
+    "hub_home"
+   ],
+   "confidence": "local",
+   "note": "Hub lists Mahogany Dun on Paint Creek and Clinton (Sep-Oct, #14-16, ideal 50-62F, 'often coincides with BWO'). Hub Oct 8 report: 'Mahogany #14-16 after lunch'. Peak = Sep is from the hub Paint Creek graphic (Oct shown as tail).",
+   "water_temp_f": [
+    50,
+    62
+   ],
+   "applicability": null
+  },
+  {
+   "id": "bwo_f",
+   "name": "Blue-Winged Olive (fall)",
+   "latin": "Baetis spp.",
+   "group": "mayfly",
+   "windows": [
+    {
+     "from": "09-01",
+     "to": "11-30",
+     "peak": [
+      [
+       "10-01",
+       "10-31"
+      ]
+     ]
+    }
+   ],
+   "time": "Late morning-early afternoon; best overcast/drizzly",
+   "patterns": [
+    [
+     "BWO Parachute",
+     [
+      18,
+      20
+     ]
+    ],
+    [
+     "RS2 / sparkle emerger (general)",
+     [
+      18,
+      20,
+      22
+     ]
+    ],
+    [
+     "Pheasant Tail nymph (general)",
+     [
+      18,
+      20
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_hatch",
+    "hub_home"
+   ],
+   "confidence": "local",
+   "note": "Hub: fall BWO emergences can be heavier than spring; hub Oct 8 report says 'BWO #18-20 late morning ... BWO is at peak statewide'. Paint Creek is closed to trout from Oct 1 - use on the Clinton and other open waters.",
+   "water_temp_f": [
+    40,
+    58
+   ],
+   "applicability": null
+  },
+  {
+   "id": "octcad",
+   "name": "October Caddis",
+   "latin": "Pycnopsyche / Dicosmoecus (autumn sedge)",
+   "group": "caddis",
+   "windows": [
+    {
+     "from": "09-20",
+     "to": "10-31",
+     "peak": []
+    }
+   ],
+   "time": "Evening and morning",
+   "patterns": [
+    [
+     "October Caddis / orange Elk Hair",
+     [
+      8,
+      10,
+      12,
+      14
+     ]
+    ],
+    [
+     "Orange caddis pupa",
+     [
+      10,
+      12
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "small"
+   ],
+   "sources": [
+    "mca",
+    "t2t"
+   ],
+   "confidence": "regional",
+   "note": "Motor City Anglers: end of Sep-Oct (#10-14). Trails To Trout lists a much longer 'Oct Caddis' window (Jul 20-Jan 30). Peak not specified.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "midge",
+   "name": "Midges",
+   "latin": "Chironomidae",
+   "group": "midge",
+   "windows": [
+    {
+     "from": "01-01",
+     "to": "12-31",
+     "peak": [
+      [
+       "01-01",
+       "03-31"
+      ],
+      [
+       "11-01",
+       "12-31"
+      ]
+     ]
+    }
+   ],
+   "time": "Midday on cold days; any time in winter",
+   "patterns": [
+    [
+     "Zebra Midge / Griffith's Gnat",
+     [
+      18,
+      20,
+      22,
+      24,
+      26,
+      28
+     ]
+    ],
+    [
+     "Midge pupa / emerger",
+     [
+      20,
+      22
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small"
+   ],
+   "sources": [
+    "t2t",
+    "morningsun",
+    "flyfishfinder"
+   ],
+   "confidence": "rule",
+   "note": "Midges are present year-round; the winter/late-fall peak is a rule of thumb (when little else is hatching). Trails To Trout gives Griffith's Gnat #20-28; guide Kip Lowrie names midges, BWO and caddis as the early-season staples on Paint Creek.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "crayfish",
+   "name": "Crayfish",
+   "latin": "Cambarus / Orconectes spp.",
+   "group": "baitfish",
+   "windows": [
+    {
+     "from": "05-01",
+     "to": "10-31",
+     "peak": [
+      [
+       "06-01",
+       "09-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Low light & after rain; fish crawl-bounce",
+   "patterns": [
+    [
+     "Crayfish streamer / Clouser (smallmouth)",
+     [
+      4,
+      6,
+      8
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "big"
+   ],
+   "sources": [
+    "hub_clinton",
+    "birdtrout",
+    "orvis_huron"
+   ],
+   "confidence": "regional",
+   "note": "Birdtrout: crayfish May-Oct #4-8; hub Clinton page recommends crayfish patterns for smallmouth. Mostly a bass/steelhead food - trout take them too. Peak Jun-Sep is our simplification.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "sculpin",
+   "name": "Sculpin / minnow streamers",
+   "latin": "Cottus / baitfish",
+   "group": "baitfish",
+   "windows": [
+    {
+     "from": "01-01",
+     "to": "12-31",
+     "peak": [
+      [
+       "03-01",
+       "04-30"
+      ],
+      [
+       "10-01",
+       "11-30"
+      ]
+     ]
+    }
+   ],
+   "time": "Low light, overcast, off-colour water",
+   "patterns": [
+    [
+     "Muddler / small Sculpin (Paint Creek)",
+     [
+      8,
+      10
+     ]
+    ],
+    [
+     "Wooly Bugger / leech",
+     [
+      4,
+      6,
+      8
+     ]
+    ],
+    [
+     "Clouser Minnow",
+     [
+      4,
+      6,
+      8
+     ]
+    ]
+   ],
+   "waters": [
+    "paint",
+    "clinton",
+    "huron",
+    "small",
+    "big"
+   ],
+   "sources": [
+    "hub_paint",
+    "hub_clinton",
+    "hub_home",
+    "orvis_huron"
+   ],
+   "confidence": "local",
+   "note": "Hub Paint Creek: small streamers #8-10 (Muddlers, small Sculpins); hub Clinton: dark Wooly Buggers and leeches (spring steelhead), small Clousers #4-8. Hub Oct 8 report: 'Big articulated streamers. Low light. Hunt the banks.' Peak spring/fall is a rule of thumb.",
+   "water_temp_f": null,
+   "applicability": null
+  },
+  {
+   "id": "eggs",
+   "name": "Steelhead eggs / run flies",
+   "latin": "Egg, bead, stonefly & leech patterns",
+   "group": "eggs",
+   "windows": [
+    {
+     "from": "03-01",
+     "to": "05-15",
+     "peak": [
+      [
+       "03-01",
+       "04-30"
+      ]
+     ]
+    },
+    {
+     "from": "10-01",
+     "to": "01-31",
+     "peak": []
+    }
+   ],
+   "time": "All day; best on a rise or just after a cool rain",
+   "patterns": [
+    [
+     "Egg / bead (natural orange, peach) 6-10 mm",
+     [
+      10,
+      12,
+      14,
+      16
+     ]
+    ],
+    [
+     "Dark Wooly Bugger / leech",
+     [
+      4,
+      6,
+      8
+     ]
+    ],
+    [
+     "Black stonefly nymph",
+     [
+      8,
+      10,
+      12
+     ]
+    ]
+   ],
+   "waters": [
+    "clinton",
+    "huron",
+    "big"
+   ],
+   "sources": [
+    "hub_clinton",
+    "hub_best",
+    "hub_home",
+    "birdtrout",
+    "dnr_clinton"
+   ],
+   "confidence": "local",
+   "note": "Hub Clinton page: steelhead spring runs Mar-May are best; egg patterns in spring (Mar-Apr) 'extremely effective'. DNR: some steelhead enter the lower Clinton in the fall, giving winter opportunities (shown as tail). Birdtrout: fish eggs Oct-Jan and April #10-16. Season/regs: the lower Clinton is Type 4 - check the Michigan Fishing Guide.",
+   "water_temp_f": null,
+   "applicability": null
+  }
+ ]
+}
