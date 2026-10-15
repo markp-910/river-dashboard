@@ -41,13 +41,41 @@
   "mca_shop": {
    "label": "Motor City Anglers - Michigan hatch chart / Rochester Hills fly shop",
    "url": "https://mca.fish/pages/michigan-hatch-chart"
+  },
+  "hub_au-sable-holy-water": {
+   "label": "Michigan Fly Fishing Hub - Au Sable - Holy Water (Grayling) (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/au-sable-river-holy-water/"
+  },
+  "hub_au-sable-north-branch": {
+   "label": "Michigan Fly Fishing Hub - Au Sable - North Branch (Lovells) (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/au-sable-river-north-branch/"
+  },
+  "hub_au-sable-south-branch": {
+   "label": "Michigan Fly Fishing Hub - Au Sable - South Branch / Mason Tract (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/au-sable-river-south-branch/"
+  },
+  "hub_pere-marquette": {
+   "label": "Michigan Fly Fishing Hub - Pere Marquette River (Baldwin) (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/pere-marquette-river/"
+  },
+  "hub_manistee-upper": {
+   "label": "Michigan Fly Fishing Hub - Upper Manistee River (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/upper-manistee-river/"
+  },
+  "hub_muskegon-croton": {
+   "label": "Michigan Fly Fishing Hub - Muskegon River below Croton Dam (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/muskegon-river/"
+  },
+  "hub_rifle-river": {
+   "label": "Michigan Fly Fishing Hub - Rifle River (Ogemaw Co.) (gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/rifle-river/"
   }
  },
  "profiles": {
   "paint-creek": {
    "title": "Paint Creek",
    "confidence": "High for rigs/flies (Michigan Fly Fishing Hub); regs from MDNR",
-   "summary": "Small, heavily canopied, clear Type 1 trout stream with spooky browns. Roll casts, long light leaders and stealth beat long drifts. Best April-June and September-October; shuts down near 70°F water. Remember: closed Oct 1 to the last Saturday in April; Gunn Rd-Tienken Rd is artificial lures only, 2 trout, 14-in minimum.",
+   "summary": "Small, heavily canopied, clear Type 1 trout stream with spooky browns. Roll casts, long light leaders and stealth beat long drifts. Best April-June and September-October; shuts down near 70\u00b0F water. Remember: closed Oct 1 to the last Saturday in April; Gunn Rd-Tienken Rd is artificial lures only, 2 trout, 14-in minimum.",
    "rigs": {
     "dry": {
      "rod": "7.5-8 ft 3- or 4-weight",
@@ -180,7 +208,7 @@
     "Guide Kip Lowrie (Morning Sun): fish the sulphur spinner fall or dun hatch; midges, BWO and caddis are the early staples."
    ],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
     "Paint Creek Trail parallels much of the creek - park at trail lots and respect private property along the banks."
    ],
@@ -329,7 +357,7 @@
     "Crowded at Yates on steelhead weekends - River Bend Park lets you spread out (DNR)."
    ],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
     "Hub: felt soles are banned on some Clinton sections - use rubber soles.",
     "Urban river: watch for strainers/log jams, slick concrete and sudden rises after rain."
@@ -465,7 +493,7 @@
     "Spring-stocked trout take eggs, small streamers and nymphs soon after stocking."
    ],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
     "Dam tailraces (Proud Lake, Belleville) can change flow quickly - check releases before wading."
    ],
@@ -571,7 +599,7 @@
     "Check access and Type 1/2/3 trout-stream seasons - many close Oct 1."
    ],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance)."
    ],
    "shops": [],
@@ -676,7 +704,7 @@
     "Check regs for hook rules and open seasons on the specific stretch (Type 4 or statewide rules)."
    ],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
     "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
    ],
@@ -780,11 +808,998 @@
    "steelhead": null,
    "tips": [],
    "safety": [
-    "Stop fishing for trout when water temperature is above ~68°F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
     "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance)."
    ],
    "shops": [],
    "sources": [],
+   "hatch_water": "all"
+  },
+  "au-sable-holy-water": {
+   "title": "Au Sable - Holy Water (Grayling)",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The Holy Water is one of America's premier dry fly rivers. Technical, clear water demands precise presentation and fine tippets. Burton's Landing to Wakeley Bridge is flies-only, no-kill (FO-200); Wakeley to McMasters is artificial lures only; James St to Burton's Landing is Type 2.",
+   "rigs": {
+    "dry": {
+     "rod": "9ft 4-weight or 5-weight",
+     "line": "Double-taper floating (DT4F or DT5F) \u2014 less splash on presentation than weight-forward",
+     "leader": "12\u201315ft tapered leader",
+     "tippet": "5X\u20137X fluorocarbon",
+     "waders": "Chest waders or hip waders in summer",
+     "boots": "Felt-soled wading boots (rubber with studs acceptable)",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 5-weight",
+     "line": "Weight-forward floating with a strike indicator setup",
+     "leader": "9ft tapered to 4X, add 18\u201324in tippet",
+     "tippet": "5X\u20136X fluorocarbon",
+     "waders": "Chest waders",
+     "boots": "Felt-soled wading boots",
+     "general": false
+    },
+    "euro": {
+     "rod": "10.5\u201311ft 2-weight or 3-weight",
+     "line": "Level 20lb Maxima or dedicated euro nymph line",
+     "leader": "Long mono rig (20ft+) with sighter section",
+     "tippet": "6X\u20137X fluorocarbon",
+     "waders": "Chest waders",
+     "boots": "Felt-soled wading boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9ft 6-weight or 7-weight",
+     "line": "WF floating or intermediate sink tip",
+     "leader": "6\u20139ft tapered to 1X\u20132X",
+     "tippet": "1X\u20132X fluorocarbon or 15\u201320lb mono",
+     "waders": "Chest waders",
+     "boots": "Felt-soled wading boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Euro nymphs",
+     [
+      [
+       "Small bead-head nymphs size 14\u201320",
+       [
+        14,
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     "hub_au-sable-holy-water"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Large articulated streamers (sizes 2\u20136)",
+       [
+        2,
+        4,
+        6
+       ]
+      ]
+     ],
+     "hub_au-sable-holy-water"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Sulphur / PMD (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Brown Drake (Ephemera simulans)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Trico (Tricorythodes spp.)",
+       []
+      ],
+      [
+       "Mahogany Dun (Paraleptophlebia spp.)",
+       []
+      ]
+     ],
+     "hub_au-sable-holy-water"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "The Au Sable's flat pools and educated trout demand the finest tippets. Drop to 7X in low clear conditions. The Hex hatch demands a size 4\u20136 fly so step up to 3X\u20134X leader for those nights. (hub)",
+    "High-stick nymphing in the braided sections between Stephan and Wakeley bridges. Small bead-head nymphs in size 14\u201318 match the Au Sable's invertebrate profile. (hub)",
+    "Czech and French nymphing techniques work well in the Au Sable's riffles and pocket water. The long rod keeps line off the water in the technical dry fly sections. (hub)",
+    "Night streamer fishing during the Hex hatch produces the largest browns of the season. Mouse patterns on a floating line after midnight are a Holy Water tradition. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_au-sable-holy-water",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "au-sable-north-branch": {
+   "title": "Au Sable - North Branch (Lovells)",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The North Branch is intimate fly-only water with wild brook trout. Small stream technique and stealth are more important than gear. North Branch from Sheep Ranch to the confluence is flies-only (FO-200): 2 trout, browns 18-in minimum.",
+   "rigs": {
+    "dry": {
+     "rod": "7.5\u20138ft 3-weight or 4-weight",
+     "line": "DT3F or WF4F floating",
+     "leader": "9\u201312ft tapered leader",
+     "tippet": "5X\u20136X",
+     "waders": "Hip waders or wet wading in summer",
+     "boots": "Lightweight wading shoes or wading sandals",
+     "general": false
+    },
+    "nymph": {
+     "rod": "8ft 4-weight",
+     "line": "WF floating",
+     "leader": "7.5ft tapered to 5X",
+     "tippet": "5X\u20136X",
+     "waders": "Hip waders",
+     "boots": "Wading sandals or lightweight wading shoes",
+     "general": false
+    },
+    "euro": {
+     "rod": "10ft 2-weight or 3-weight",
+     "line": "Level mono rig",
+     "leader": "Short mono rig (12\u201315ft) adapted for tight brush",
+     "tippet": "6X\u20137X",
+     "waders": "Hip waders",
+     "boots": "Lightweight wading shoes",
+     "general": false
+    },
+    "streamer": {
+     "rod": "8ft 5-weight",
+     "line": "WF floating",
+     "leader": "6ft tapered to 1X",
+     "tippet": "1X\u20132X",
+     "waders": "Hip waders",
+     "boots": "Wading sandals",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Small dry fly box (caddis, BWOs, Hendricksons)",
+       []
+      ]
+     ],
+     "hub_au-sable-north-branch"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Soft hackle wets and small nymphs size 14\u201318",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_au-sable-north-branch"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Small bead nymphs size 14\u201320",
+       [
+        14,
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     "hub_au-sable-north-branch"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Small streamers size 6\u201310 (Sculpins, Muddlers)",
+       [
+        6,
+        8,
+        10
+       ]
+      ]
+     ],
+     "hub_au-sable-north-branch"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Sulphur / PMD (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Brown Drake (Ephemera simulans)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Trico (Tricorythodes spp.)",
+       []
+      ],
+      [
+       "Mahogany Dun (Paraleptophlebia spp.)",
+       []
+      ]
+     ],
+     "hub_au-sable-north-branch"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "Short-line dapping and roll casts dominate on the brushy North Branch. A shorter rod is essential \u2014 backcast room is minimal. Wild brookies are opportunistic so pattern matters less than stealth. (hub)",
+    "High-stick nymphing in small pools and runs. Keep the rig simple \u2014 one nymph on a short dropper is often more manageable than a full indicator rig in tight quarters. (hub)",
+    "Euro nymphing is effective but the long rod can be challenging in brushy sections. Opt for a shorter 10ft rod over an 11-footer on the North Branch. (hub)",
+    "Smaller streamers than the main branch. A 2-inch Muddler or small Sculpin swung on a tight line through deep pools can produce surprising brook trout. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_au-sable-north-branch",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "au-sable-south-branch": {
+   "title": "Au Sable - South Branch / Mason Tract",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The South Branch and Mason Tract offer remote, lightly pressured dry fly fishing for wild brown trout. Wading the sandy bottom is easy but the fish are educated. Chase Bridge to Lower High Banks (4.3 mi) is flies-only, no-kill; below that to the confluence is artificial lures only (FO-200).",
+   "rigs": {
+    "dry": {
+     "rod": "9ft 4-weight or 5-weight",
+     "line": "DT4F or WF5F floating",
+     "leader": "12ft tapered leader",
+     "tippet": "5X\u20136X fluorocarbon",
+     "waders": "Chest waders (hip waders workable in summer)",
+     "boots": "Felt-soled or rubber wading boots",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 5-weight",
+     "line": "WF floating",
+     "leader": "9ft to 4X",
+     "tippet": "5X\u20136X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "euro": {
+     "rod": "10.5ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Long mono rig",
+     "tippet": "6X fluorocarbon",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9ft 6-weight",
+     "line": "WF floating or intermediate",
+     "leader": "6ft to 1X",
+     "tippet": "1X\u20132X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Bead-head nymphs size 14\u201318",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_au-sable-south-branch"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Small bead nymphs",
+       []
+      ]
+     ],
+     "hub_au-sable-south-branch"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Articulated streamers size 2\u20136",
+       [
+        2,
+        4,
+        6
+       ]
+      ]
+     ],
+     "hub_au-sable-south-branch"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Brown Drake (Ephemera simulans)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Sulphur (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Caddis (Hydropsychidae spp.)",
+       []
+      ],
+      [
+       "Trico (Tricorythodes spp.)",
+       []
+      ]
+     ],
+     "hub_au-sable-south-branch"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "The South Branch is a walk-in wilderness fishery. Pack light but bring a map \u2014 the Mason Tract has multiple miles of remote water. Afternoon BWO and evening Sulphur hatches are the main events. (hub)",
+    "Nymphing the South Branch's deep pools and undercut banks produces well between hatches. Pheasant Tails and Hare's Ears in size 14\u201316 are reliable. (hub)",
+    "Euro nymphing the South Branch's sandy-bottom runs. The lack of current structure makes reading the water critical \u2014 focus on seams near logs and undercuts. (hub)",
+    "Nighttime streamer fishing in the South Branch's deep pools produces trophy brown trout. Mouse patterns during the Hex hatch window (late June) are highly effective. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_au-sable-south-branch",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "pere-marquette": {
+   "title": "Pere Marquette River (Baldwin)",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The PM is a world-class tailwater \u2014 powerful, wide, and demanding. Steelhead and big browns are the primary targets. Drift boat access is the standard approach. M-37 to Gleason's Landing is flies-only with zero trout/salmon kept all year; rules change by reach and date (FO-200).",
+   "rigs": {
+    "dry": {
+     "rod": "9ft 5-weight",
+     "line": "WF5F floating",
+     "leader": "10\u201312ft tapered to 4X",
+     "tippet": "4X\u20135X fluorocarbon",
+     "waders": "Chest waders with wading belt (mandatory \u2014 powerful current)",
+     "boots": "Felt-soled boots with studs, or rubber with aggressive studs",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 6-weight",
+     "line": "WF floating",
+     "leader": "9ft to 3X",
+     "tippet": "4X\u20135X fluorocarbon",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt-soled with studs (mandatory)",
+     "general": false
+    },
+    "euro": {
+     "rod": "11ft 3-weight or 4-weight",
+     "line": "Euro mono rig",
+     "leader": "Long mono rig 20ft+",
+     "tippet": "5X\u20136X fluorocarbon",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt with studs",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9ft 7-weight or 8-weight",
+     "line": "WF floating, intermediate, or Type 3 sink tip",
+     "leader": "6ft tapered to 0X\u20131X",
+     "tippet": "0X\u20132X fluorocarbon or 15\u201320lb mono",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt with studs",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Dry fly selection (Hendricksons, Sulphurs, Brown Drakes)",
+       []
+      ]
+     ],
+     "hub_pere-marquette"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Stonefly nymphs, egg patterns, Copper Johns size 8\u201314",
+       [
+        8,
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "hub_pere-marquette"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Heavy bead-head nymphs size 10\u201314",
+       [
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "hub_pere-marquette"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Large articulated streamers size 2/0\u20134 (Zoo Cougars, Drunk and Disorderly)",
+       []
+      ]
+     ],
+     "hub_pere-marquette"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "BWO (Baetis spp.)",
+       []
+      ],
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Sulphur (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Light Cahill (Stenacron interpunctatum)",
+       []
+      ]
+     ],
+     "hub_pere-marquette"
+    ]
+   ],
+   "lures": null,
+   "steelhead": "Steelhead/egg-run notes: swing articulated streamers on a sink tip, nymph stoneflies, eggs and Copper Johns size 8-14 (hub).",
+   "tips": [
+    "Dry fly fishing on the PM peaks in May (Hendrickson) and June (Sulphur, Brown Drake). The river is big \u2014 fish the softer edges near the banks and slow inside seams. (hub)",
+    "Deep nymphing with heavier rigs than most Michigan rivers. The PM's powerful current requires more weight to get flies down. Swinging soft hackles through runs is highly effective for steelhead. (hub)",
+    "Euro nymphing works well on the PM's classic pool-riffle-run structure. Focus on the inside seams of runs and the tail-outs of pools. Heavier tungsten beads needed to reach the bottom in the PM's flows. (hub)",
+    "Streamer fishing is the PM's signature \u2014 particularly for steelhead on the swing. A sink-tip line and a large intruder-style or Wooly Bugger fished on a downstream swing is the classic PM steelhead approach. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_pere-marquette",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "manistee-upper": {
+   "title": "Upper Manistee River",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The Upper Manistee is classic northern Michigan trout water \u2014 intimate, clear, and lightly pressured. Wild browns and brookies on dry flies in wild country. CR 612 to M-72 is artificial lures only; M-72 to the CCC Bridge is flies-only (FO-200). Wild browns/brookies, lightly pressured.",
+   "rigs": {
+    "dry": {
+     "rod": "8\u20139ft 4-weight",
+     "line": "DT4F or WF4F floating",
+     "leader": "10\u201312ft tapered to 5X",
+     "tippet": "5X\u20136X fluorocarbon",
+     "waders": "Chest waders or hip waders",
+     "boots": "Felt-soled wading boots",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 4-weight",
+     "line": "WF floating",
+     "leader": "9ft to 4X",
+     "tippet": "5X\u20136X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "euro": {
+     "rod": "10.5ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Long mono rig",
+     "tippet": "6X\u20137X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9ft 5-weight or 6-weight",
+     "line": "WF floating or intermediate",
+     "leader": "6ft to 1X",
+     "tippet": "1X\u20132X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Dry fly selection: Hendricksons, BWOs, Caddis, Hex",
+       []
+      ]
+     ],
+     "hub_manistee-upper"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Bead-head nymphs size 14\u201318",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_manistee-upper"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Small bead nymphs size 14\u201320",
+       [
+        14,
+        16,
+        18,
+        20
+       ]
+      ]
+     ],
+     "hub_manistee-upper"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Medium streamers size 4\u20138 (Sculpins, Zonkers, Muddlers)",
+       [
+        4,
+        6,
+        8
+       ]
+      ]
+     ],
+     "hub_manistee-upper"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Blue-Winged Olive (Baetis spp.)",
+       []
+      ],
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Sulphur / PMD (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Brown Drake (Ephemera simulans)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Caddis (Brachycentrus spp.)",
+       []
+      ],
+      [
+       "Trico (Tricorythodes spp.)",
+       []
+      ],
+      [
+       "Mahogany Dun (Paraleptophlebia spp.)",
+       []
+      ]
+     ],
+     "hub_manistee-upper"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "The Upper Manistee fishes like a smaller Au Sable \u2014 clear, technical, and rewarding for patient dry fly anglers. Evening hatches from May through July are the prime window. (hub)",
+    "High-stick nymphing between pools and in riffles. The upper river has a natural gravel and sand substrate \u2014 small naturalistic patterns outperform attractors. (hub)",
+    "Euro nymphing is well-suited to the upper Manistee's riffles and runs. Fine tippets and small flies match the river's invertebrate profile. (hub)",
+    "Streamers on the upper Manistee are most productive in early spring before the hatches begin, and in fall when brown trout are aggressive pre-spawn. Swing medium-sized Sculpins through deep pools at dusk. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_manistee-upper",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "muskegon-croton": {
+   "title": "Muskegon River below Croton Dam",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The Muskegon is a big tailwater below Croton Dam \u2014 wide, cold, and powerful. Drift boat fishing is standard. World-class steelhead, brown trout, and Chinook salmon. Tailwater steelhead/brown river, Type 3 from Croton Dam to M-120 (15-in brook/brown minimum; up to 5 rainbows, 1 over 20 in).",
+   "rigs": {
+    "dry": {
+     "rod": "9ft 5-weight",
+     "line": "WF5F floating",
+     "leader": "9\u201312ft tapered to 4X",
+     "tippet": "4X\u20135X",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt-soled with studs or aggressive rubber studs",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 6-weight",
+     "line": "WF floating",
+     "leader": "9ft to 3X",
+     "tippet": "4X fluorocarbon",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt with studs",
+     "general": false
+    },
+    "euro": {
+     "rod": "11ft 4-weight",
+     "line": "Euro mono rig",
+     "leader": "Long heavy mono rig",
+     "tippet": "4X\u20135X fluorocarbon",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt with studs",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9\u201310ft 8-weight",
+     "line": "WF floating, intermediate sink, or full sink (Type 3\u20136)",
+     "leader": "6\u20139ft to 0X",
+     "tippet": "0X\u20131X fluorocarbon or 20lb mono",
+     "waders": "Chest waders with wading belt",
+     "boots": "Felt with studs",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Dry fly selection focused on Sulphurs, Hex, Brown Drake",
+       []
+      ]
+     ],
+     "hub_muskegon-croton"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Egg patterns, Stoneflies, Woolly Buggers size 8\u201312",
+       [
+        8,
+        10,
+        12
+       ]
+      ]
+     ],
+     "hub_muskegon-croton"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Heavy tungsten bead nymphs size 8\u201314",
+       [
+        8,
+        10,
+        12,
+        14
+       ]
+      ]
+     ],
+     "hub_muskegon-croton"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Large articulated streamers (Zoo Cougar, Circus Peanut, Drunk & Disorderly)",
+       []
+      ]
+     ],
+     "hub_muskegon-croton"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Blue-Winged Olive (Baetis spp.)",
+       []
+      ],
+      [
+       "Sulphur (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Caddis (Tan) (Hydropsychidae spp.)",
+       []
+      ],
+      [
+       "Hex (Hexagenia limbata)",
+       []
+      ],
+      [
+       "Mahogany Dun (Paraleptophlebia spp.)",
+       []
+      ]
+     ],
+     "hub_muskegon-croton"
+    ]
+   ],
+   "lures": null,
+   "steelhead": "Steelhead tailwater - see hub Muskegon page for eggs/streamer/nymph approaches; Aug 1-Nov 15 terminal tackle is restricted (single-point hooks / small trebles on body baits).",
+   "tips": [
+    "Dry fly fishing on the Muskegon is spectacular during the summer hatch season (June\u2013July). The river is wide \u2014 look for rising fish in the softer water along grassy banks and shallow inside bends. (hub)",
+    "The Muskegon's powerful flow requires heavy nymph rigs. Steelhead nymphing with egg patterns and rubber-leg stoneflies in spring and fall is the primary approach from the bank. (hub)",
+    "Euro nymphing on the Muskegon requires heavier flies than most Michigan rivers. Focus on the seams below Croton Dam and the runs between Newaygo and Bridgeton. A 4-weight handles the heavier rigs better than a 3-weight on this water. (hub)",
+    "The Muskegon is Michigan's premier streamer fishery. An 8-weight handles the big flies and fall salmon. From a drift boat, cast to the bank and strip through \u2014 brown trout stack in the grassy edges. Steelhead respond to a swung streamer on a sink tip in cold water. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_muskegon-croton",
+    "hub_best"
+   ],
+   "hatch_water": "all"
+  },
+  "rifle-river": {
+   "title": "Rifle River (Ogemaw Co.)",
+   "confidence": "High for rigs/tips (Michigan Fly Fishing Hub river page); regs from FO-200.25 (Michigan DNR)",
+   "summary": "The Rifle River flows through the Rifle River Recreation Area in Ogemaw County \u2014 excellent wild trout habitat, relatively uncrowded, and beautiful spring-fed water. Wild brown trout water in the Rifle River Recreation Area; check FO-200 for the Type that applies at your reach (Type 3 listed from Sage Lake Rd to Saginaw Bay).",
+   "rigs": {
+    "dry": {
+     "rod": "8\u20139ft 4-weight",
+     "line": "WF4F floating",
+     "leader": "9\u201310ft to 5X",
+     "tippet": "5X\u20136X",
+     "waders": "Chest waders or hip waders",
+     "boots": "Felt-soled wading boots",
+     "general": false
+    },
+    "nymph": {
+     "rod": "9ft 5-weight",
+     "line": "WF floating",
+     "leader": "9ft to 4X",
+     "tippet": "5X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "euro": {
+     "rod": "10.5ft 3-weight",
+     "line": "Euro mono rig",
+     "leader": "Long mono rig",
+     "tippet": "6X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "9ft 5-weight or 6-weight",
+     "line": "WF floating or intermediate",
+     "leader": "6ft to 1X",
+     "tippet": "1X\u20132X",
+     "waders": "Chest waders",
+     "boots": "Felt-soled boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Hendricksons, Caddis, PMDs, Hex",
+       []
+      ]
+     ],
+     "hub_rifle-river"
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Bead-head nymphs size 14\u201316",
+       [
+        14,
+        16
+       ]
+      ]
+     ],
+     "hub_rifle-river"
+    ],
+    [
+     "Euro nymphs",
+     [
+      [
+       "Small bead nymphs size 14\u201318",
+       [
+        14,
+        16,
+        18
+       ]
+      ]
+     ],
+     "hub_rifle-river"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Medium streamers size 4\u20138 (Wooly Buggers, small Sculpins)",
+       [
+        4,
+        6,
+        8
+       ]
+      ]
+     ],
+     "hub_rifle-river"
+    ],
+    [
+     "Hatches the hub lists for this river",
+     [
+      [
+       "Blue-Winged Olive (Baetis spp.)",
+       []
+      ],
+      [
+       "Hendrickson (Ephemerella subvaria)",
+       []
+      ],
+      [
+       "Sulphur (Ephemerella dorothea)",
+       []
+      ],
+      [
+       "Light Cahill (Stenacron interpunctatum)",
+       []
+      ],
+      [
+       "White Miller (Ephoron leukon)",
+       []
+      ],
+      [
+       "Mahogany Dun (Paraleptophlebia spp.)",
+       []
+      ]
+     ],
+     "hub_rifle-river"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "The Rifle is an underrated dry fly river. Hex hatches in late June are excellent and uncrowded compared to more famous rivers. Evening Caddis hatches are reliable all summer. (hub)",
+    "Nymphing the Rifle's riffles and runs. Smaller, more natural patterns match the river's invertebrate profile \u2014 Pheasant Tails and Hare's Ears are reliable. (hub)",
+    "Euro nymphing the Rifle's pool-riffle sequences. The river's moderate size and clarity make it ideal for tight-line techniques. (hub)",
+    "Fall streamer fishing on the Rifle produces aggressive pre-spawn brown trout. Fish deep pools and undercut banks with a slow, jigging retrieve. (hub)",
+    "Regulations change by reach - check FO-200 / the current Michigan Fishing Guide before you rig up (flies-only reaches ban bait, scent and beads)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Big, cold, fast water: wear a belt, use a staff, and be especially careful around dams and tailraces."
+   ],
+   "shops": [],
+   "sources": [
+    "hub_rifle-river",
+    "hub_best"
+   ],
    "hatch_water": "all"
   }
  },
@@ -818,6 +1833,24 @@
   "johnson-creek": "small-stream",
   "pine-bottom-creek": "small-stream",
   "east-pond-creek": "small-stream",
-  "red-cedar-grand": "general"
+  "red-cedar-grand": "general",
+  "au-sable-holy-water": "au-sable-holy-water",
+  "au-sable-north-branch": "au-sable-north-branch",
+  "au-sable-south-branch": "au-sable-south-branch",
+  "pere-marquette": "pere-marquette",
+  "manistee-upper": "manistee-upper",
+  "muskegon-croton": "muskegon-croton",
+  "rifle-river": "rifle-river",
+  "au-gres-east-branch": "big-water",
+  "au-sable-foote-dam": "big-water",
+  "kalamazoo-allegan": "big-water",
+  "grand-river-gr": "big-water",
+  "rogue-river": "big-water",
+  "coldwater-barry": "small-stream",
+  "augusta-creek": "small-stream",
+  "rice-nottawa": "small-stream",
+  "st-joseph-maumee": "small-stream",
+  "vermilion-oh": "big-water",
+  "rocky-river-oh": "big-water"
  }
 }
