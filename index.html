@@ -53,6 +53,7 @@ body.mapfs{overflow:hidden;touch-action:none}
 #mapsec.full #map{flex:1 0 auto;height:auto;min-height:55vh;margin:4px 0}#mapsec.full .tagbar .big{padding:10px}
 #mapsec.full #fsClose{display:block;position:absolute;top:10px;right:10px;z-index:6000;width:48px;height:48px;border-radius:24px;border:0;background:#c62828;color:#fff;font-size:22px;cursor:pointer}
 #mapsec.full .tagbar{padding-right:56px}
+.rvlab{background:rgba(255,255,255,.75);border:0;box-shadow:none;color:#0b3d6b;font-weight:700;font-size:11px;padding:0 4px;text-shadow:0 0 2px #fff}.rvlab:before{display:none}.rvtip{font-weight:700}
 </style></head><body>
 <header><h1>🎣 Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <div id="banner">Loading…</div>
@@ -60,7 +61,7 @@ body.mapfs{overflow:hidden;touch-action:none}
 <section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
 <div id="map"></div>
-<div class="maplegend"><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="reports">🔶 reported catches</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="reports">🔶 reported catches</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
 <div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
@@ -182,13 +183,15 @@ async function init(){
   document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&sec.classList.contains("full"))fs(false)});
   addEventListener("resize",()=>map.invalidateSize());window._mapFs=fs}
  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
- const LY={stock:L.layerGroup(),reports:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
- const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));
+ map.createPane("rivers");map.getPane("rivers").style.zIndex=350;const RR=L.svg({pane:"rivers"});
+ const SAT=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,maxNativeZoom:18,attribution:"Imagery © Esri, Maxar, Earthstar Geographics"});
+ const LY={rivers:L.layerGroup(),satellite:SAT,stock:L.layerGroup(),reports:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
+ const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));if(!localStorage.getItem("satInit")){hid.add("satellite");localStorage.setItem("satInit","1");localStorage.setItem("hiddenLayers",JSON.stringify([...hid]))}
  document.querySelectorAll(".maplegend button").forEach(b=>{const k=b.dataset.l,ap=()=>{const off=hid.has(k);b.classList.toggle("off",off);b.setAttribute("aria-pressed",String(!off));off?map.removeLayer(LY[k]):LY[k].addTo(map)};ap();
   b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);localStorage.setItem("hiddenLayers",JSON.stringify([...hid]));ap()}});
  for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#e0a800":"#2f8a57";
   L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(LY[p.type]||LY.park)}
- addLocate();loadExternal();await dataReady;
+ window._map=map;addLocate();loadExternal();loadRivers(LY.rivers,RR);await dataReady;colorRivers();
  for(const [id,g] of Object.entries(AD.gages)){const i=INFO[id];
   L.circleMarker([g.lat,g.lng],{radius:9,color:"#fff",weight:2,fillColor:i?"#1e88e5":"#777",fillOpacity:1}).bindPopup(`<b>${esc(NAME[id])}</b><br>USGS ${id}<br>${i?`${i.flow??"—"} cfs${i.tempF!=null?" · "+i.tempF.toFixed(0)+"°F":""}<br>🐟 ${esc(i.t.label)}`:"offline"}<br>${esc(g.address)}<br><a href="${DIR(g.lat,g.lng)}" target="_blank">Directions</a> · <a href="#site-${id}">Card</a>`).addTo(gL);
   const card=document.getElementById("site-"+id);if(card){const a=document.createElement("div");a.className="addr";a.innerHTML=`📍 Near ${esc(g.address)} <a href="${DIR(g.lat,g.lng)}" target="_blank">Directions ↗</a>`;
@@ -239,6 +242,21 @@ function renderCal(X){renderRegs(X);const now=new Date().getMonth()+1,t=document
  document.getElementById("calNow").innerHTML=`<b>📌 Happening now (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no major runs in the data for this month"}.
   ${stk.length?`<br>Past ${MON[now-1]} stockings: ${[...new Set(stk.map(x=>x.s.name))].map(esc).join(", ")}.`:`<br>No DNR stockings recorded in ${MON[now-1]} (2021–2026).`}${nx.length?`<br>Coming next month: ${nx.map(r=>esc(r.label)).join(", ")}.`:""}`;
  document.getElementById("calSrc").textContent=`Data generated ${X.generated}; timing ${X.timing_source}; ${X.dropped_captive} likely-captive records excluded. Stocking coordinates are approximate.`}
+let RIV=null,RLAB=null;const RSTY={1:{w:5,c:9,col:"#1e90ff"},2:{w:3.5,c:6,col:"#2a9df4"},3:{w:2,c:4,col:"#5bb5f7"}};
+async function loadRivers(grp,renderer){let G;try{G=await (await fetch("rivers.geojson?v=1")).json()}catch(e){console.warn("rivers",e);return}RIV=G;
+ const cas=L.geoJSON(G,{pane:"rivers",renderer,interactive:false,style:f=>({color:"#fff",weight:RSTY[f.properties.c].c,opacity:.9,lineCap:"round",lineJoin:"round"})});
+ const top=L.geoJSON(G,{pane:"rivers",renderer,style:f=>({color:RSTY[f.properties.c].col,weight:RSTY[f.properties.c].w,opacity:1,lineCap:"round",lineJoin:"round"}),
+  onEachFeature:(f,l)=>{l.bindTooltip(f.properties.n,{sticky:true,className:"rvtip"});l.on("click",e=>{L.DomEvent.stopPropagation(e);l.openTooltip(e.latlng)})}});
+ RLAB=L.layerGroup();grp.addLayer(cas).addLayer(top).addLayer(RLAB);window._rivTop=top;
+ const lab=()=>{RLAB.clearLayers();if(!map.hasLayer(grp))return;const z=map.getZoom(),mx=z>=14?3:z>=12?2:z>=10?1:0;if(!mx)return;const b=map.getBounds().pad(.1),used=[];
+  const cand=G.features.filter(f=>f.properties.c<=mx).map(f=>{const c=f.geometry.coordinates.flat(),m=c[c.length>>1];return {n:f.properties.n,ll:L.latLng(m[1],m[0]),len:c.length}}).filter(x=>b.contains(x.ll)).sort((a,b)=>b.len-a.len);
+  for(const x of cand){const p=map.latLngToContainerPoint(x.ll);if(used.some(u=>u.n===x.n&&Math.hypot(u.p.x-p.x,u.p.y-p.y)<260||Math.hypot(u.p.x-p.x,u.p.y-p.y)<60))continue;used.push({p,n:x.n});
+   L.tooltip({permanent:true,direction:"center",className:"rvlab",interactive:false}).setContent(x.n).setLatLng(x.ll).addTo(RLAB)}};
+ map.on("zoomend moveend layeradd",e=>{if(e.type==="layeradd"&&e.layer!==grp)return;lab()});lab()}
+function colorRivers(){if(!RIV)return;const cc={g:"#2ecc71",y:"#f1c40f",o:"#e67e22",r:"#e74c3c",n:"#1e90ff"},grp=_LY.rivers;
+ for(const [id,g] of Object.entries(AD.gages)){const i=INFO[id];if(!i)continue;const col=cc[i.t.cls]||cc.n,segs=[];
+  for(const f of RIV.features)for(const ln of f.geometry.coordinates){let cur=[];for(const [x,y] of ln){if(mi(g.lat,g.lng,y,x)<0.7)cur.push([y,x]);else{if(cur.length>1)segs.push(cur);cur=[]}}if(cur.length>1)segs.push(cur)}
+  segs.forEach(sg=>L.polyline(sg,{pane:"rivers",renderer:L.svg({pane:"rivers"}),color:col,weight:6,opacity:.95,lineCap:"round",interactive:false}).addTo(grp))}}
 function nearestGage(la,ln){let best=null;for(const [id,g] of Object.entries(AD.gages)){if(!INFO[id])continue;const d=mi(la,ln,g.lat,g.lng);if(!best||d<best.d)best={id,d}}return best}
 let pending=null;
 function startTag(type){const go=pos=>{const la=+pos.coords.latitude.toFixed(6),ln=+pos.coords.longitude.toFixed(6),n=nearestGage(la,ln),i=n&&INFO[n.id];
