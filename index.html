@@ -54,8 +54,22 @@ body.mapfs{overflow:hidden;touch-action:none}
 #mapsec.full #fsClose{display:block;position:absolute;top:10px;right:10px;z-index:6000;width:48px;height:48px;border-radius:24px;border:0;background:#c62828;color:#fff;font-size:22px;cursor:pointer}
 #mapsec.full .tagbar{padding-right:56px}
 .rvlab{background:rgba(255,255,255,.75);border:0;box-shadow:none;color:#0b3d6b;font-weight:700;font-size:11px;padding:0 4px;text-shadow:0 0 2px #fff}.rvlab:before{display:none}.rvtip{font-weight:700}
+#tabs{display:flex;gap:6px;padding:8px 16px;background:#0f1d2b;position:sticky;top:0;z-index:4000;border-bottom:1px solid #223}#tabs button{flex:1;min-height:46px;border-radius:10px;border:1px solid #355a7a;background:#1b2d40;color:#e8eef4;font-size:1em;font-weight:700;cursor:pointer}#tabs button.on{background:#2e6a96;border-color:#7fd1ff}
+body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;min-height:360px;border-radius:10px;margin:8px 0;touch-action:none}
+.xbar{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;background:#1b2d40;border-radius:10px;padding:10px;margin:8px 0;font-size:.85em}.xbar label{display:block}.xbar select,.xbar input[type=range]{width:100%;min-height:40px;box-sizing:border-box;border-radius:6px;background:#0f1d2b;color:#e8eef4;border:1px solid #355a7a;padding:6px}
+.xbar .tiers label{display:inline-block;margin-right:10px}.xsec{background:#1b2d40;border-radius:10px;margin:10px 0;padding:6px 12px}.xsec>summary{cursor:pointer;font-weight:700;padding:8px 0;color:#7fd1ff}
+.xcard{border-top:1px solid #2a4560;padding:10px 4px;cursor:pointer;display:grid;grid-template-columns:34px 1fr auto;gap:2px 10px;align-items:center}.xcard:hover{background:#223a52}.xcard .nm{font-weight:700}.xcard .sub2{grid-column:2/4;font-size:.8em;color:#b9cde0}
+.tierb{display:inline-block;min-width:26px;text-align:center;border-radius:50%;padding:4px 0;font-weight:800;color:#fff}.tA{background:#1f8a4c}.tB{background:#c58a10}.tC{background:#56708a}
+.cls{display:inline-block;border-radius:6px;padding:2px 7px;font-size:.78em;font-weight:700}.cG{background:#d4af37;color:#222}.c1{background:#1f6b3a}.c2{background:#2e6a96}.c3{background:#6b5aa8}.cU{background:#44556a}
+.stt{border-radius:10px;padding:2px 8px;font-size:.78em;font-weight:700}.stt.open{background:#1f6b3a}.stt.closed{background:#8b1f1f}.stt.unk{background:#8a6d12}
+#xmodal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:9500}#xmodal .box{background:#1b2d40;margin:14px 8px;padding:14px;border-radius:12px;width:min(780px,100%);box-sizing:border-box}
+#xmodal details{border-top:1px solid #2a4560;padding:6px 0}#xmodal summary{cursor:pointer;font-weight:700;color:#7fd1ff;padding:6px 0}#xmodal .kv{font-size:.88em;margin:4px 0}#xmodal ul{margin:4px 0;padding-left:18px;font-size:.85em}
+.flag{background:#4a3a10;border-left:4px solid #e0a800;padding:6px 8px;margin:4px 0;font-size:.82em;border-radius:4px}.wantb{min-height:44px;padding:8px 14px;border-radius:8px;border:0;background:#2f8a57;color:#fff;font-weight:700;cursor:pointer}.wantb.on{background:#6b3d8a}
+.gl{background:#14324a;border-radius:8px;padding:8px;margin:6px 0;font-size:.88em}.xdot{border-radius:50%;border:2px solid #fff;width:22px;height:22px;line-height:18px;text-align:center;font-weight:800;font-size:12px;color:#fff;box-sizing:border-box}
 </style></head><body>
 <header><h1>🎣 Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
+<nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
+<div id="homeView">
 <div id="banner">Loading…</div>
 <div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
 <section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
@@ -70,10 +84,13 @@ body.mapfs{overflow:hidden;touch-action:none}
 <div id="tagList"></div></details></div></section>
 <section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
 <div id="app"></div>
+</div>
+<div id="exploreView" hidden></div>
 <div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
 <div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Smallmouth bass<option>Steelhead<option>Salmon</datalist>
 <label>Length (in)<input name="length_in" type="number" step="0.25" inputmode="decimal"></label><label>Fly / lure<input name="fly_lure"></label><label>Photo (optional)<input type="file" id="photoIn" accept="image/*"></label><img id="photoPrev" class="thumb" alt="" hidden></div>
 <label>Notes<textarea name="note" rows="2"></textarea></label><div class="row"><button type="submit" class="big">Save</button><button type="button" id="tagCancel">Cancel</button></div></form></div>
+<div id="xmodal"><div class="box" id="xbox"></div></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
 const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
@@ -313,7 +330,113 @@ async function sync(){const u=localStorage.getItem(URLK);if(!u)return msg("Paste
  n=Object.keys(done).length;saveTags(tags().map(x=>done[x.id]?{...x,...done[x.id],synced:true}:x));msg(`Synced ${n}/${q.length}`+warn)}
 document.getElementById("syncBtn").onclick=sync;
 document.getElementById("loadBtn").onclick=async()=>{const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");msg("Loading…");
- try{const r=await (await fetch(u)).json();const t=tags(),have=new Set(t.map(x=>x.id));let n=0;for(const row of r.rows||[]){if(!row.id||have.has(String(row.id)))continue;t.push({...row,id:String(row.id),lat:+row.lat,lng:+row.lng,synced:true,photo_thumb:row.photo_file_id?`https://drive.google.com/thumbnail?id=${row.photo_file_id}&sz=w400`:""});n++}saveTags(t);msg(`Loaded ${n} new from Sheet`)}catch(e){msg("Load failed: "+e.message)}};
+ try{const r=await (await fetch(u)).json();const t=tags(),have=new Set(t.map(x=>x.id));let n=0;const wr=(r.rows||[]).filter(x=>x.type==="wishlist");if(wr.length)dispatchEvent(new CustomEvent("wishlist-merge",{detail:wr}));for(const row of r.rows||[]){if(!row.id||row.type==="wishlist"||have.has(String(row.id)))continue;t.push({...row,id:String(row.id),lat:+row.lat,lng:+row.lng,synced:true,photo_thumb:row.photo_file_id?`https://drive.google.com/thumbnail?id=${row.photo_file_id}&sz=w400`:""});n++}saveTags(t);msg(`Loaded ${n} new from Sheet`)}catch(e){msg("Load failed: "+e.message)}};
 addEventListener("online",()=>localStorage.getItem(URLK)&&tags().some(x=>!x.synced)&&sync());
 init()})();
+</script><script>
+(()=>{
+const $=id=>document.getElementById(id),esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const DIR=(la,ln)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${ln}`,MONS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+// ---- tabs ----
+const toast=m=>{let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t)}t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),4500)};
+const TK="activeTab";let XD=null,xmap=null,inited=false;
+function setTab(t){$("homeView").hidden=t!=="home";$("exploreView").hidden=t!=="explore";document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));localStorage.setItem(TK,t);
+ if(t==="explore"){if(!inited){inited=true;initExplore()}else setTimeout(()=>xmap&&xmap.invalidateSize(),50)}else setTimeout(()=>dispatchEvent(new Event("resize")),50);window.scrollTo(0,0)}
+document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+// ---- season logic ----
+const lastSat=y=>{const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d};
+const fmtD=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
+function status(s,now=new Date()){const y=now.getFullYear(),r=s.season.rule,inf=s.season.inferred?" (inferred)":"";
+ if(r==="year_round")return{st:"open",txt:"OPEN year-round",cls:"open",score:100};
+ if(r==="last_sat_apr_sep30"){const op=lastSat(y),cl=new Date(y,8,30,23,59);if(now>=op&&now<=cl)return{st:"open",txt:"OPEN"+inf+" · closes Sep 30",cls:"open",score:100};const nx=now<op?op:lastSat(y+1);return{st:"closed",txt:"CLOSED"+inf+" · opens "+fmtD(nx),cls:"closed",score:-100}}
+ if(r==="closed_oct1_mar31"){const m=now.getMonth()+1;if(m>=4&&m<=9)return{st:"open",txt:"OPEN · closes Sep 30",cls:"open",score:100};const nx=new Date(m>=10?y+1:y,3,1);return{st:"closed",txt:"CLOSED · opens "+fmtD(nx)+" (flies-only C&R to ~Apr 25)",cls:"closed",score:-100}}
+ return{st:"unk",txt:"Season unverified",cls:"unk",score:30}}
+const inRun=(s,m)=>s.runs.filter(r=>r.months.includes(m));
+const clsB=t=>{const c=t.cls;return `<span class="cls ${c==="gold"?"cG":c==="unknown"?"cU":"c"+c}">${c==="gold"?"Gold":c==="unknown"?"Class ?":"Class "+c}</span>`};
+const COL={A:"#1f8a4c",B:"#c58a10",C:"#56708a"};
+// ---- live gage data ----
+let LIVE={};
+async function loadLive(){const ids=[...new Set(XD.streams.flatMap(s=>s.gages.map(g=>g.id)))];
+ try{const r=await (await fetchRetry(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ids.join(",")}&parameterCd=00060,00065,00010&period=P1D&siteStatus=all`)).json();
+  for(const ts of r.value.timeSeries){const id=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;const v=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(v.length)((LIVE[id]??={name:ts.sourceInfo.siteName})[p]=v)}}catch(e){console.warn("live",e)}
+ const med={};for(let i=0;i<ids.length;i+=6){try{const t=await (await fetchRetry(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${ids.slice(i,i+6).join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`)).text();let h=null;const n=new Date();
+  for(const l of t.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(c[0]==="agency_cd"){h=c;continue}if(!h)continue;const o=Object.fromEntries(h.map((k,j)=>[k,c[j]]));if(+o.month_nu===n.getMonth()+1&&+o.day_nu===n.getDate())med[o.site_no]=+o.p50_va}}catch(e){console.warn("stat",e)}}
+ for(const [id,L] of Object.entries(LIVE)){const q=L["00060"],w=L["00010"],ql=q&&q[q.length-1],wl=w&&w[w.length-1];if(!ql)continue;const pct=med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(q),tf=wl?C2F(wl.y):null;L.view={flow:ql.y,pct,tempF:tf,tt,tc,t:trout(tf,pct,tn),when:ql.x,gh:(L["00065"]||[]).slice(-1)[0]?.y}}}
+// ---- scoring ----
+function plan(s){const now=new Date(),m=now.getMonth()+1,st=status(s,now),runs=inRun(s,m),why=[];let sc=st.score;
+ if(runs.length){sc+=35;why.push("in season: "+runs.map(r=>r.label).join(", "))}if(s.best_months.includes(m)){sc+=20;why.push("a best month")}
+ const g=s.gages.map(g=>LIVE[g.id]?.view).find(Boolean);if(g&&st.st!=="closed"){sc+=g.t.score*4;why.push("gage: "+g.t.label)}
+ sc-=s.drive_min/5;if(s.tier==="A")sc+=8;if(s.tier==="C")sc-=8;if(st.st==="open")why.unshift("open now");if(st.st==="closed")why.unshift("closed");return{sc,why,st,g}}
+// ---- wishlist ----
+const WK="wishlist",wl=()=>JSON.parse(localStorage.getItem(WK)||"[]"),setWl=a=>{localStorage.setItem(WK,JSON.stringify(a));renderWish();refreshWantBtns()};
+const SU=()=>localStorage.getItem("sheetUrl");
+const wrow=s=>({id:"wish-"+s.id,type:"wishlist",timestamp:new Date().toISOString(),lat:s.lat,lng:s.lng,nearest_gage:s.gages[0]?.id||"",gage_name:s.name,gage_dist_mi:"",flow_cfs:"",pct_median:"",temp_f:"",rating:"Tier "+s.tier+" · "+s.drive_min+" min",species:s.species_groups.join("/"),length_in:"",fly_lure:"",note:"Want to fish"});
+async function postSheet(body){const u=SU();if(!u)return null;const r=await (await fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)})).json();if(!r.ok)throw new Error(r.error||"script error");return r}
+async function toggleWant(s){const a=wl(),i=a.findIndex(w=>w.id===s.id);let note;
+ if(i<0){const row=wrow(s);a.push({id:s.id,name:s.name,ts:row.timestamp,synced:false});setWl(a);if(SU()){try{await postSheet([row]);const b=wl();b.find(w=>w.id===s.id).synced=true;setWl(b);note="Saved & synced to Sheet"}catch(e){note="Saved locally — sync failed ("+e.message+")"}}else note="Saved locally (set the Sheet URL under My log to sync)"}
+ else{const was=a[i].synced;a.splice(i,1);setWl(a);note="Removed";if(was&&SU()){try{const r=await postSheet({action:"delete",id:"wish-"+s.id});note=r.action==="delete"?"Removed (and from Sheet)":"Removed locally — update the Apps Script to delete from the Sheet"}catch(e){note="Removed locally — Sheet delete failed"}}}
+ toast(note)}
+function refreshWantBtns(){document.querySelectorAll("[data-want]").forEach(b=>{const on=wl().some(w=>w.id===b.dataset.want);b.classList.toggle("on",on);b.textContent=on?"⭐ On my list (tap to remove)":"☆ Want to fish"})}
+addEventListener("wishlist-merge",e=>{const a=wl();let n=0;for(const r of e.detail){const id=String(r.id).replace(/^wish-/,"");if(!a.some(w=>w.id===id)){a.push({id,name:r.gage_name,ts:r.timestamp,synced:true});n++}}if(n)setWl(a)});
+function renderWish(){const el=$("xWish");if(!el||!XD)return;const a=wl();el.innerHTML=a.length?a.map(w=>{const s=XD.streams.find(x=>x.id===w.id);return `<div class="xcard" data-open="${esc(w.id)}"><span class="tierb t${s?.tier||"C"}">${s?.tier||"?"}</span><span class="nm">${esc(w.name)}</span><span>${s?s.drive_min+" min":""}</span><span class="sub2">${w.synced?"✅ in Sheet":"⏳ local only"}</span></div>`}).join(""):'<div class="sub">Nothing yet — open a stream and tap “Want to fish”.</div>';$("xWishN").textContent=a.length}
+// ---- UI ----
+const FK="exploreFilter";let F={max:180,sp:"",cls:"",tiers:["A","B","C"],open:""},mk={};
+function passes(s){if(s.drive_min>F.max)return false;if(F.sp&&!s.species_groups.includes(F.sp))return false;if(F.cls&&s.tr.cls!==F.cls)return false;if(!F.tiers.includes(s.tier))return false;const st=status(s).st;if(F.open==="open"&&st!=="open")return false;if(F.open==="closed"&&st!=="closed")return false;return true}
+async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="sub" style="padding:14px">Loading streams…</div>';
+ try{XD=await (await fetch("explore-streams.json?v=1")).json()}catch(e){v.textContent="Couldn't load explore-streams.json";return}
+ try{F={...F,...JSON.parse(localStorage.getItem(FK)||"{}")}}catch(e){}
+ const sp=[...new Set(XD.streams.flatMap(s=>s.species_groups))].sort();
+ v.innerHTML=`<h2 style="margin:14px 0 4px;color:#7fd1ff">🧭 Explore nearby trout & steelhead water</h2>
+ <div class="sub">Drive times from home (${esc(XD.home.address)}) are free-flow estimates — add ~10–25% for traffic. ${esc(XD.no_gold_note)}</div>
+ <div class="xbar"><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="180" step="5"></label>
+ <label>Species<select id="fSpx"><option value="">All</option>${sp.map(x=>`<option>${x}</option>`).join("")}</select></label>
+ <label>TroutRoutes class<select id="fCls"><option value="">All</option><option value="gold">Gold</option><option value="1">Class 1</option><option value="2">Class 2</option><option value="3">Class 3</option><option value="unknown">Unknown</option></select></label>
+ <label>Season now<select id="fOpen"><option value="">Any</option><option value="open">Open now</option><option value="closed">Closed now</option></select></label>
+ <div class="tiers"><span>Tier</span><br>${["A","B","C"].map(t=>`<label><input type="checkbox" data-tier="${t}"> ${t}</label>`).join("")}</div></div>
+ <div id="xmap"></div><div class="sub" id="xCount"></div>
+ <details class="xsec" open><summary>🎯 Trip planner — best bets right now (<span id="xPlanN"></span>)</summary><div id="xPlan"></div></details>
+ <details class="xsec"><summary>⭐ Want to fish (<span id="xWishN">0</span>)</summary><div id="xWish"></div></details>
+ <details class="xsec"><summary>ℹ️ Notes & what was left out</summary><div class="sub" style="padding:6px 0">${XD.notes.map(n=>`<p>${esc(n)}</p>`).join("")}<p><b>Beyond 2 hours:</b> ${XD.outside_2h.map(o=>esc(o.name.split(" - ")[0])+" ("+o.min+" min)").join("; ")}.</p><p><b>Checked, no trout evidence:</b> ${XD.no_evidence.map(o=>esc(o.name)).join("; ")}.</p><p>${esc(XD.troutroutes_note)}</p><p>Drive method: ${esc(XD.drive_method)}. Data generated ${esc(XD.generated)}.</p></div></details>`;
+ $("fMax").value=F.max;$("fSpx").value=F.sp;$("fCls").value=F.cls;$("fOpen").value=F.open;document.querySelectorAll("[data-tier]").forEach(c=>c.checked=F.tiers.includes(c.dataset.tier));
+ const chg=()=>{F={max:+$("fMax").value,sp:$("fSpx").value,cls:$("fCls").value,open:$("fOpen").value,tiers:[...document.querySelectorAll("[data-tier]")].filter(c=>c.checked).map(c=>c.dataset.tier)};localStorage.setItem(FK,JSON.stringify(F));draw()};
+ ["fMax","fSpx","fCls","fOpen"].forEach(i=>$(i).oninput=chg);document.querySelectorAll("[data-tier]").forEach(c=>c.onchange=chg);
+ xmap=L.map("xmap",{scrollWheelZoom:false}).setView([42.75,-83.3],8);window._xmap=xmap;L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(xmap);
+ L.marker([XD.home.lat,XD.home.lng],{icon:L.divIcon({className:"",html:'<div class="xdot" style="background:#1e88e5;font-size:14px">🏠</div>',iconSize:[22,22],iconAnchor:[11,11]})}).bindPopup("<b>Home</b><br>"+esc(XD.home.address)).addTo(xmap);
+ L.circle([XD.home.lat,XD.home.lng],{radius:60*1000,color:"#7fd1ff",weight:1,dashArray:"4 6",fill:false,interactive:false}).addTo(xmap);
+ fetch("rivers.geojson?v=1").then(r=>r.json()).then(G=>L.geoJSON(G,{interactive:false,style:f=>({color:"#4aa8ff",weight:f.properties.c===1?2.5:1.2,opacity:.6})}).addTo(xmap)).catch(()=>{});
+ v.onclick=e=>{const c=e.target.closest("[data-open]");if(c)openStream(c.dataset.open)};
+ draw();await loadLive();draw();renderWish();
+ for(const sel of ["#xPlan"])0;}
+function draw(){if(!XD)return;const list=XD.streams.filter(passes);$("fMaxV").textContent=F.max;
+ Object.values(mk).forEach(m=>xmap.removeLayer(m));mk={};
+ for(const s of list){const st=status(s),m=L.marker([s.lat,s.lng],{icon:L.divIcon({className:"",html:`<div class="xdot" style="background:${COL[s.tier]};${st.st==="closed"?"opacity:.55;border-style:dashed":""}">${s.tier}</div>`,iconSize:[22,22],iconAnchor:[11,11]})})
+  .bindPopup(`<b>${esc(s.name)}</b><br>Tier ${s.tier} · ${s.drive_min} min (${s.drive_miles} mi)<br>${esc(s.tr.cls==="unknown"?"TroutRoutes: unknown":"TroutRoutes Class "+s.tr.cls)}<br>${esc(status(s).txt)}<br><a href="#" data-popen="${s.id}">Details</a> · <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions</a>`,{maxWidth:240}).addTo(xmap);mk[s.id]=m}
+ xmap.off("popupopen");xmap.on("popupopen",e=>{const a=e.popup.getElement().querySelector("[data-popen]");if(a)a.onclick=ev=>{ev.preventDefault();openStream(a.dataset.popen)}});
+ const P=list.map(s=>({s,...plan(s)})).sort((a,b)=>b.sc-a.sc);$("xPlanN").textContent=P.length;$("xCount").textContent=`${list.length} of ${XD.streams.length} streams shown`;
+ $("xPlan").innerHTML=P.length?P.map((p,i)=>`<div class="xcard" data-open="${p.s.id}"><span class="tierb t${p.s.tier}">${i+1}</span><span class="nm">${esc(p.s.name)}</span><span><b>${p.s.drive_min}</b> min</span>
+  <span class="sub2"><span class="stt ${p.st.cls}">${esc(p.st.txt)}</span> ${clsB(p.s.tr)} Tier ${p.s.tier} · ${esc(p.why.join(" · "))}${p.g?` · ${Math.round(p.g.flow)} cfs${p.g.tempF!=null?" "+p.g.tempF.toFixed(0)+"°F":""}`:""}</span></div>`).join(""):'<div class="sub">No streams match the filters.</div>'}
+function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const st=status(s),m=new Date().getMonth()+1,runs=inRun(s,m);
+ const gl=s.gages.length?s.gages.map(g=>{const L=LIVE[g.id],v=L?.view;return `<div class="gl"><b>${esc(g.label)}</b> <span class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${g.id}/" target="_blank">${g.id}</a>${g.proxy?" · proxy/context only":""}</span><br>${v?`<span class="badge ${v.t.cls}">🐟 ${esc(v.t.label)}</span> <b>${Math.round(v.flow*10)/10}</b> cfs${v.gh!=null?` · ${v.gh} ft`:""}${v.tempF!=null?` · <b>${v.tempF.toFixed(1)}°F</b>`:" · temp n/a"}${v.pct!=null?` · ${v.pct}% of median`:""} · <span class="${v.tc}">${v.tt}</span> <span class="sub">(${new Date(v.when).toLocaleString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})} ET)</span><div class="note">${esc(v.t.note)}</div>`:'<span class="sub">No live data right now (offline or loading).</span>'}</div>`}).join(""):'<div class="sub">No USGS gage found nearby. '+esc(s.gage_note)+'</div>';
+ const byY={};s.stocking_events.forEach(e=>{(byY[e.date.slice(0,4)]??=[]).push(e)});
+ const stk=s.stocking_events.length?Object.entries(byY).sort().reverse().map(([y,es])=>`<li><b>${y}</b>: ${es.reduce((a,e)=>a+(e.count||0),0).toLocaleString()} fish — ${es.slice(0,6).map(e=>`${e.date.slice(5)} ${esc(e.species.replace(" trout",""))} ${e.count?.toLocaleString()} @ ${esc(e.site)}`).join("; ")}${es.length>6?` … +${es.length-6} more`:""}</li>`).join(""):"<li>No stocking records found in the DNR database (Oct 2021–now).</li>";
+ $("xbox").innerHTML=`<button id="xclose" style="float:right;font-size:1.5em;background:none;border:0;color:#fff;cursor:pointer;min-width:44px;min-height:44px" aria-label="Close">✕</button>
+ <h3 style="margin:0 0 6px"><span class="tierb t${s.tier}">${s.tier}</span> ${esc(s.name)}</h3>
+ <div style="margin:6px 0"><span class="stt ${st.cls}">${esc(st.txt)}</span> ${clsB(s.tr)} <span class="cls cU">${s.wild==="wild"?"Wild":s.wild==="both"?"Wild + stocked":"Stocked"}</span> <span class="cls cU">Confidence: ${esc(s.confidence)}</span></div>
+ <div class="kv">🚗 <b>${s.drive_min} min</b> (${s.drive_miles} mi) free-flow — plan on <b>${Math.round(s.drive_min*1.1)}–${Math.round(s.drive_min*1.25)} min</b> with traffic. <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions ↗</a></div>
+ ${runs.length?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
+ <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button></div>
+ <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div><div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
+ <details open><summary>📡 Nearest USGS gage (live)</summary>${gl}<div class="sub">${esc(s.gage_note)}</div></details>
+ <details open><summary>📜 Regulations & season</summary><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div><div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
+ <details><summary>🐟 Stocking history (last 5 yrs, DNR)</summary><div class="kv sub">${esc(s.stocking_summary)}</div><ul>${stk}</ul></details>
+ <details><summary>📸 Recent confirmed catches / reports (${s.catches.length})</summary><ul>${s.catches.length?s.catches.map(c=>`<li>${esc(c.date)} — ${esc(c.text)} <a href="${esc(c.url)}" target="_blank">source ↗</a></li>`).join(""):"<li>None found with date + place.</li>"}</ul></details>
+ <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
+ ${s.flags.length?`<details><summary>⚠️ Unverified / flags (${s.flags.length})</summary>${s.flags.map(f=>`<div class="flag">${esc(f)}</div>`).join("")}</details>`:""}
+ <details><summary>🔗 Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
+ $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup()}
+function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
+$("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
+window._openStream=openStream;
+setTab(localStorage.getItem(TK)==="explore"?"explore":"home");
+})();
 </script></body></html>
