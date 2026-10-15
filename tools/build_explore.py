@@ -70,7 +70,7 @@ META = {
     season=dict(rule="unknown", label="Season unverified"), gages=[("04112500", "Red Cedar R at East Lansing", False), ("04113000", "Grand R at Lansing", False)],
     wild="stocked", best=[4,5], run=[], stock=dict(waters=["Red Cedar River", "Grand River"])),
 }
-SPG = [("steelhead", "Steelhead"), ("brown", "Brown trout"), ("rainbow", "Rainbow trout"), ("brook", "Brook trout"), ("chinook", "Salmon"), ("salmon", "Salmon"), ("coho", "Salmon"), ("smallmouth", "Smallmouth bass")]
+SPG = [("steelhead", "Steelhead"), ("brown", "Brown trout"), ("rainbow", "Rainbow trout"), ("brook", "Brook trout"), ("chinook", "Salmon"), ("salmon", "Salmon"), ("coho", "Salmon"), ("smallmouth", "Smallmouth bass"), ("largemouth", "Largemouth bass"), ("pike", "Northern pike"), ("creek chub", "Creek chub")]
 def groups(sp):
     g = []
     for s in sp:

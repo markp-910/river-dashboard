@@ -16,6 +16,8 @@ def group(sp):
     if "rainbow" in s: return "Rainbow trout"
     if "trout" in s: return "Trout (mixed)"
     if "smallmouth" in s: return "Smallmouth bass"
+    if "largemouth" in s: return "Largemouth bass"
+    if "creek chub" in s or s.strip()=="chub": return "Creek chub"
     if "pike" in s: return "Northern pike"
     if "walleye" in s: return "Walleye"
     return "Other"

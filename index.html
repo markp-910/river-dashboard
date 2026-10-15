@@ -87,12 +87,13 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 </div>
 <div id="exploreView" hidden></div>
 <div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
-<div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Smallmouth bass<option>Steelhead<option>Salmon</datalist>
+<div id="fishFields"><label>Species<input name="species" list="spp"></label><datalist id="spp"><option>Brown trout<option>Rainbow trout<option>Brook trout<option>Largemouth bass<option>Smallmouth bass<option>Northern pike<option>Creek chub<option>Steelhead<option>Salmon</datalist>
 <label>Length (in)<input name="length_in" type="number" step="0.25" inputmode="decimal"></label><label>Fly / lure<input name="fly_lure"></label><label>Photo (optional)<input type="file" id="photoIn" accept="image/*"></label><img id="photoPrev" class="thumb" alt="" hidden></div>
 <label>Notes<textarea name="note" rows="2"></textarea></label><div class="row"><button type="submit" class="big">Save</button><button type="button" id="tagCancel">Cancel</button></div></form></div>
 <div id="xmodal"><div class="box" id="xbox"></div></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
+const EXTRA_SP=["Largemouth bass","Smallmouth bass","Northern pike","Creek chub"];
 const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
 "Tier 2 · Clinton River & branches":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"],["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]],
 "Tier 3 · Other nearby streams":[["04162010","Red Run at Ryan Rd near Warren"],["04163400","Plum Brook at Utica"],["04164100","East Pond Creek at Romeo"],["04164300","East Branch Coon Creek at Armada"],["04166100","River Rouge at Southfield"]]};
@@ -232,7 +233,7 @@ function addLocate(){let state=0,watch=null,dot=null,circ=null,btn;
 const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 async function loadExternal(){let X;try{X=await (await fetch("external-catches.json?v="+Date.now().toString().slice(0,-5))).json()}catch(e){console.warn("external",e);return}
  const y1=document.getElementById("fY1"),y2=document.getElementById("fY2"),sp=document.getElementById("fSp"),fk="extFilter",st=JSON.parse(localStorage.getItem(fk)||"{}");
- for(let y=2021;y<=2026;y++){y1.add(new Option(y,y));y2.add(new Option(y,y))}X.species.forEach(g=>sp.add(new Option(g,g)));
+ for(let y=2021;y<=2026;y++){y1.add(new Option(y,y));y2.add(new Option(y,y))}[...new Set([...X.species,...EXTRA_SP])].sort().forEach(g=>sp.add(new Option(g,g)));
  y1.value=st.y1||2021;y2.value=st.y2||2026;sp.value=st.sp||"";
  const pass=e=>{const y=+e.date.slice(0,4);return y>=+y1.value&&y<=+y2.value&&(!sp.value||e.group===sp.value)};
  const draw=()=>{localStorage.setItem(fk,JSON.stringify({y1:y1.value,y2:y2.value,sp:sp.value}));_LY.stock.clearLayers();_LY.reports.clearLayers();let ns=0,nc=0;
@@ -385,7 +386,7 @@ function passes(s){if(s.drive_min>F.max)return false;if(F.sp&&!s.species_groups.
 async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="sub" style="padding:14px">Loading streams…</div>';
  try{XD=await (await fetch("explore-streams.json?v=1")).json()}catch(e){v.textContent="Couldn't load explore-streams.json";return}
  try{F={...F,...JSON.parse(localStorage.getItem(FK)||"{}")}}catch(e){}
- const sp=[...new Set(XD.streams.flatMap(s=>s.species_groups))].sort();
+ const sp=[...new Set([...XD.streams.flatMap(s=>s.species_groups),...EXTRA_SP])].sort();
  v.innerHTML=`<h2 style="margin:14px 0 4px;color:#7fd1ff">🧭 Explore nearby trout & steelhead water</h2>
  <div class="sub">Drive times from home (${esc(XD.home.address)}) are free-flow estimates — add ~10–25% for traffic. ${esc(XD.no_gold_note)}</div>
  <div class="xbar"><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="180" step="5"></label>
