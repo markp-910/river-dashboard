@@ -22,8 +22,28 @@ def group(sp):
     if "walleye" in s: return "Walleye"
     return "Other"
 
+# --- Source grouping: record "source" free text -> clean "source_group" shown as a per-source map layer.
+# A record may carry its own "source_group" in research/external-catches.json (e.g. "Fishbrain"); otherwise it is derived here.
+# New groups appear on the map automatically; give them a color in SOURCE_COLORS (else the page assigns one from a fallback palette).
+SOURCE_COLORS = {  # chosen to read on cream UI, OSM and satellite (all markers get a white outline)
+    "iNaturalist": "#8fb800", "Michigan DNR": "#00838f", "Michigan Sportsman": "#d9480f", "Reddit": "#d6336c",
+    "X / Social": "#343a40", "News & press": "#d4a017", "Fishbrain": "#1c7ed6"}
+RESERVED = ["Fishbrain"]  # always listed on the map (count 0 until data arrives)
+
+def source_group(x):
+    if x.get("source_group"): return x["source_group"]
+    s = (x.get("source") or "").lower()
+    if "inaturalist" in s: return "iNaturalist"
+    if "fishbrain" in s: return "Fishbrain"
+    if "dnr" in s or "department of natural resources" in s: return "Michigan DNR"
+    if "michigan sportsman" in s or "michigan-sportsman" in s or "forum" in s: return "Michigan Sportsman" if "sportsman" in s else "Forums"
+    if "reddit" in s: return "Reddit"
+    if re.search(r"\bon x\b|\bx post\b|twitter|facebook|instagram", s): return "X / Social"
+    if any(k in s for k in ("press release", "times", "media", "news", "gazette", "herald", "tribune", "free press")): return "News & press"
+    return (x.get("source") or "Other").strip() or "Other"
+
 def clean(x):
-    return {k: x.get(k) for k in ("date","species","size","location","lat","lng","precision","source","url","note","type")} | {"group": group(x.get("species"))}
+    return {k: x.get(k) for k in ("date","species","size","location","lat","lng","precision","source","url","note","type")} | {"group": group(x.get("species")), "source_group": source_group(x)}
 
 keep = [clean(x) for x in recs if "captive" not in (x.get("flag") or "") and x.get("lat") is not None]
 dropped = len(recs) - len(keep)
@@ -67,7 +87,10 @@ else:
         {"label": "Adult brown trout stocking (Squirrel Rd)", "species": "Brown trout", "months": [3], "peak": [3], "note": "DNR broodstock browns 13–18 in, late March most years", "source": "MI DNR Fish Stocking Database", "url": "https://www.dnr.state.mi.us/fishstock/"},
         {"label": "Yearling brown trout stocking", "species": "Brown trout", "months": [4,5], "peak": [4], "note": "Paint Creek & upper Clinton yearlings every spring (Apr 15 – May 5)", "source": "MI DNR Fish Stocking Database", "url": "https://www.dnr.state.mi.us/fishstock/"},
     ]
-out = {"generated": datetime.date.today().isoformat(), "dropped_captive": dropped, "timing_source": timing_src,
+_cnt = collections.Counter(c["source_group"] for c in catches)
+for r in RESERVED: _cnt.setdefault(r, 0)
+source_groups = [{"name": n, "color": SOURCE_COLORS.get(n), "count": c} for n, c in sorted(_cnt.items(), key=lambda kv: (-kv[1], kv[0]))]
+out = {"source_groups": source_groups, "generated": datetime.date.today().isoformat(), "dropped_captive": dropped, "timing_source": timing_src,
        "species": sorted({x["group"] for x in keep}), "sites": site_list, "catches": catches, "timing": timing, "seasonal": seasonal}
 json.dump(out, open(R("external-catches.json"), "w"), indent=1)
 print(f"wrote external-catches.json: {len(site_list)} stocking sites / {len(stock)} events, {len(catches)} catches/reports, dropped {dropped} captive, timing from {timing_src}")

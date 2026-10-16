@@ -60,6 +60,11 @@ summary.sec2:after,h2.sec2:after{content:"";flex:1;height:1px;background:var(--l
 summary.sec2::-webkit-details-marker{display:none}summary.sec2:before{content:"▸";color:var(--brass-d);transition:transform .15s;font-size:1.2em;letter-spacing:0}details[open]>summary.sec2:before{transform:rotate(90deg)}
 .tagbar{display:flex;gap:10px}.big{flex:1;font-size:1.05em;padding:14px;border:0;border-radius:var(--r);background:var(--g800);color:var(--cream);font-weight:700;cursor:pointer;min-height:48px;box-shadow:var(--shadow-sm)}.big:hover{background:var(--g700)}.big.fish{background:var(--brass);color:#1d2214}.big.fish:hover{background:var(--brass-l)}
 .maplegend{display:flex;gap:6px;flex-wrap:wrap}.maplegend button{min-height:44px;padding:8px 14px;border-radius:22px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);font-size:.86em;cursor:pointer;font-weight:600}.maplegend button:hover{background:var(--cream2)}.maplegend button.off{opacity:.55;text-decoration:line-through;background:transparent;font-weight:400}
+.srcbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}.srcbar[hidden]{display:none}.srcttl{font-family:var(--serif,inherit);font-weight:700;color:var(--g800);font-size:.9em;flex:0 0 100%}#srcBtns{display:contents}
+.srcbar button{min-height:44px;padding:6px 12px;border-radius:22px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);font-size:.84em;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:7px;line-height:1.15;text-align:left}.srcbar button:hover{background:var(--cream2)}
+.srcbar button .sw{width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(31,58,43,.55);flex:0 0 auto}.srcbar button .cnt{font-weight:400;opacity:.75}
+.srcbar button.off{opacity:.55;background:transparent;font-weight:400}.srcbar button.off .nm{text-decoration:line-through}.srcbar button.empty{opacity:.7;border-style:dashed;font-weight:400}.srcbar button.srcall{font-weight:600;color:var(--g800)}
+@media(max-width:480px){.srcbar button{font-size:.8em;padding:6px 10px}}
 .logbox{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;margin:10px 0}.logbox summary{cursor:pointer;font-weight:700;color:var(--g800);min-height:32px}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}.row input{flex:1;min-width:200px;padding:10px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--field);color:var(--ink)}
 .row button,#tagform button[type=button]{padding:10px 14px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--cream2);color:var(--ink);cursor:pointer;min-height:44px;font-weight:600}.row button:hover,#tagform button[type=button]:hover{background:var(--cream3)}
@@ -211,7 +216,8 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 <section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
 <div id="map"></div>
-<div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="reports">🔶 reported catches</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button></div>
 <div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
@@ -354,10 +360,12 @@ async function init(){
  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(map);
  map.createPane("rivers");map.getPane("rivers").style.zIndex=350;const RR=L.svg({pane:"rivers"});
  const SAT=L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",{maxZoom:19,maxNativeZoom:18,attribution:"Imagery © Esri, Maxar, Earthstar Geographics"});
- const LY={rivers:L.layerGroup(),satellite:SAT,stock:L.layerGroup(),reports:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
+ const LY={rivers:L.layerGroup(),satellite:SAT,stock:L.layerGroup(),gage:L.layerGroup(),bridge:L.layerGroup(),park:L.layerGroup(),fishing:L.layerGroup(),spot:L.layerGroup(),fish:L.layerGroup()},gL=LY.gage;window._LY=LY;tagLayer={clearLayers(){LY.spot.clearLayers();LY.fish.clearLayers()}};
  const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));if(!localStorage.getItem("satInit")){hid.add("satellite");localStorage.setItem("satInit","1");localStorage.setItem("hiddenLayers",JSON.stringify([...hid]))}
- document.querySelectorAll(".maplegend button").forEach(b=>{const k=b.dataset.l,ap=()=>{const off=hid.has(k);b.classList.toggle("off",off);b.setAttribute("aria-pressed",String(!off));off?map.removeLayer(LY[k]):LY[k].addTo(map)};ap();
-  b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);localStorage.setItem("hiddenLayers",JSON.stringify([...hid]));ap()}});
+ const saveHid=()=>localStorage.setItem("hiddenLayers",JSON.stringify([...hid]));
+ const bindLayer=(b,k)=>{const ap=()=>{const off=hid.has(k);b.classList.toggle("off",off);b.setAttribute("aria-pressed",String(!off));off?map.removeLayer(LY[k]):LY[k].addTo(map)};ap();
+  b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);saveHid();ap();window._srcSync&&window._srcSync()};b._ap=ap};window._bindLayer=bindLayer;window._hid=hid;window._saveHid=saveHid;
+ document.querySelectorAll(".maplegend button").forEach(b=>bindLayer(b,b.dataset.l));
  for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#c9971c":"#3f7a4a";
   L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(LY[p.type]||LY.park)}
  window._map=map;addLocate();loadExternal();loadRivers(LY.rivers,RR);await dataReady;colorRivers();
@@ -386,13 +394,25 @@ async function loadExternal(){let X;try{X=await (await fetch("external-catches.j
  const y1=document.getElementById("fY1"),y2=document.getElementById("fY2"),sp=document.getElementById("fSp"),fk="extFilter",st=JSON.parse(localStorage.getItem(fk)||"{}");
  for(let y=2021;y<=2026;y++){y1.add(new Option(y,y));y2.add(new Option(y,y))}[...new Set([...X.species,...EXTRA_SP])].sort().forEach(g=>sp.add(new Option(g,g)));
  y1.value=st.y1||2021;y2.value=st.y2||2026;sp.value=st.sp||"";
+ const FALLBACK=["#8e5a2b","#5f3dc4","#0b7285","#a61e4d","#5c940d","#e8590c"],SGN=c=>c.source_group||c.source||"Other",sgName=SGN,SG={};window._SG=SG;
+ {const list=[...(X.source_groups||[])];for(const c of X.catches){const n=SGN(c);if(!list.some(g=>g.name===n))list.push({name:n,color:null,count:0})}
+  const used=new Set(list.map(g=>g.color).filter(Boolean));let fi=0;
+  for(const g of list){let col=g.color;if(!col){do{col=FALLBACK[fi++%FALLBACK.length]}while(used.has(col)&&fi<20);used.add(col)}
+   const key="src:"+g.name;SG[g.name]={name:g.name,color:col,key,n:0,lg:L.layerGroup()};_LY[key]=SG[g.name].lg}}
+ const bar=document.getElementById("srcBar"),box=document.getElementById("srcBtns"),allB=document.getElementById("srcAll");bar.hidden=false;
+ for(const g of Object.values(SG)){const b=document.createElement("button");b.type="button";b.className="srcbtn";b.dataset.l=g.key;b.title=g.name+" — reported catches (marker color)";
+  b.innerHTML=`<i class="sw" style="background:${g.color}"></i><span class="nm">${esc(g.name)}</span> <span class="cnt">(0)</span>`;box.appendChild(b);_bindLayer(b,g.key);
+  g.upd=()=>{b.querySelector(".cnt").textContent=`(${g.n})`;b.classList.toggle("empty",!g.n);b.title=g.name+(g.n?` — ${g.n} reported catch${g.n>1?"es":""} (marker color)`:" — no records yet")}}
+ window._srcSync=()=>{const ks=Object.values(SG).map(g=>g.key),anyOn=ks.some(k=>!_hid.has(k));allB.textContent=anyOn?"All off":"All on";allB.hidden=ks.length<3};
+ allB.onclick=()=>{const ks=Object.values(SG).map(g=>g.key),anyOn=ks.some(k=>!_hid.has(k));ks.forEach(k=>anyOn?_hid.add(k):_hid.delete(k));_saveHid();box.querySelectorAll("button").forEach(b=>b._ap());_srcSync()};
  const pass=e=>{const y=+e.date.slice(0,4);return y>=+y1.value&&y<=+y2.value&&(!sp.value||e.group===sp.value)};
- const draw=()=>{localStorage.setItem(fk,JSON.stringify({y1:y1.value,y2:y2.value,sp:sp.value}));_LY.stock.clearLayers();_LY.reports.clearLayers();let ns=0,nc=0;
+ const draw=()=>{localStorage.setItem(fk,JSON.stringify({y1:y1.value,y2:y2.value,sp:sp.value}));_LY.stock.clearLayers();Object.values(SG).forEach(g=>g.lg.clearLayers());Object.values(SG).forEach(g=>g.n=0);let ns=0,nc=0;
   for(const s of X.sites){const ev=s.events.filter(pass);if(!ev.length)continue;ns+=ev.length;
    L.circleMarker([s.lat,s.lng],{radius:9,color:"#fff",weight:2,fillColor:"#7d5a8a",fillOpacity:.9}).bindPopup(`<b>🟣 ${esc(s.name)}</b><br><span style="font-size:.85em">Approximate location (road crossing) · last stocked ${esc(s.last)}</span><div style="max-height:220px;overflow:auto;font-size:.85em">${ev.map(e=>`<div style="border-top:1px solid #dccfae;padding:3px 0"><b>${esc(e.date)}</b> ${esc(e.species)}<br>${esc(e.size||"")}${e.note?`<br><i>${esc(e.note)}</i>`:""}<br><a href="${esc(e.url)}" target="_blank">${esc(e.source)}</a></div>`).join("")}</div><a href="${DIR(s.lat,s.lng)}" target="_blank">Directions</a>`,{maxWidth:280}).addTo(_LY.stock)}
-  for(const c of X.catches){if(!pass(c))continue;nc++;const ex=c.precision==="exact",lbl={exact:"Exact GPS",approximate:"Approximate",area:"General area only"}[c.precision]||c.precision;
-   const pop=`<b>🔶 ${esc(c.species)}</b>${c.size?" · "+esc(c.size):""}<br>${esc(c.date)} · ${esc(c.location)}<br><span style="font-size:.85em">Precision: ${esc(lbl)}</span>${c.note?`<br><i style="font-size:.85em">${esc(c.note)}</i>`:""}<br><a href="${esc(c.url)}" target="_blank">${esc(c.source)}</a>`;
-   (ex?L.circleMarker([c.lat,c.lng],{radius:6,color:"#7a3d00",weight:1,fillColor:"#ff9800",fillOpacity:.95}):c.precision==="area"?L.circle([c.lat,c.lng],{radius:1200,color:"#ff9800",weight:1,dashArray:"4 4",fillOpacity:.06}):L.circleMarker([c.lat,c.lng],{radius:7,color:"#ff9800",weight:2,fillOpacity:0,dashArray:"3 3"})).bindPopup(pop,{maxWidth:260}).addTo(_LY.reports)}
+  for(const c of X.catches){if(!pass(c))continue;nc++;const g=SG[sgName(c)],col=g.color;g.n++;const ex=c.precision==="exact",lbl={exact:"Exact GPS",approximate:"Approximate",area:"General area only"}[c.precision]||c.precision;
+   const pop=`<b style="display:flex;align-items:center;gap:6px"><span style="width:12px;height:12px;border-radius:50%;background:${col};border:2px solid #fff;box-shadow:0 0 0 1.5px #1f3a2b;flex:none"></span>${esc(c.species)}${c.size?" · "+esc(c.size):""}</b><span style="font-size:.8em;font-weight:700;color:${col}">${esc(g.name)}</span><br>${esc(c.date)} · ${esc(c.location)}<br><span style="font-size:.85em">Precision: ${esc(lbl)}</span>${c.note?`<br><i style="font-size:.85em">${esc(c.note)}</i>`:""}<br><a href="${esc(c.url)}" target="_blank">${esc(c.source)}</a>`;
+   (ex?L.circleMarker([c.lat,c.lng],{radius:7,color:"#fff",weight:2,fillColor:col,fillOpacity:.95}):c.precision==="area"?L.circle([c.lat,c.lng],{radius:1200,color:col,weight:2,dashArray:"4 4",fillColor:col,fillOpacity:.08}):L.circleMarker([c.lat,c.lng],{radius:8,color:col,weight:3,fillOpacity:.12,fillColor:col,dashArray:"3 3"})).bindPopup(pop,{maxWidth:260}).addTo(g.lg)}
+  Object.values(SG).forEach(g=>g.upd&&g.upd());window._srcSync&&window._srcSync();
   document.getElementById("fCount").textContent=`${ns} stocking events · ${nc} reports`};
  [y1,y2,sp].forEach(el=>el.onchange=draw);draw();renderCal(X)}
 function lastSatApr(y){const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d}

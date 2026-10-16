@@ -1,5 +1,42 @@
 {
- "generated": "2026-10-15",
+ "source_groups": [
+  {
+   "name": "iNaturalist",
+   "color": "#8fb800",
+   "count": 38
+  },
+  {
+   "name": "Michigan Sportsman",
+   "color": "#d9480f",
+   "count": 7
+  },
+  {
+   "name": "X / Social",
+   "color": "#343a40",
+   "count": 4
+  },
+  {
+   "name": "News & press",
+   "color": "#d4a017",
+   "count": 3
+  },
+  {
+   "name": "Reddit",
+   "color": "#d6336c",
+   "count": 3
+  },
+  {
+   "name": "Michigan DNR",
+   "color": "#00838f",
+   "count": 1
+  },
+  {
+   "name": "Fishbrain",
+   "color": "#1c7ed6",
+   "count": 0
+  }
+ ],
+ "generated": "2026-10-16",
  "dropped_captive": 5,
  "timing_source": "research/seasonal-timing.json (2026-10-14)",
  "species": [
@@ -660,7 +697,8 @@
    "url": "https://www.inaturalist.org/observations/402876945",
    "note": "quality=research; acc_m=47; photos=3",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-31",
@@ -674,7 +712,8 @@
    "url": "https://www.reddit.com/r/michiganflyfishing/comments/1w3na7h/got_my_first_trout_fly_fishing/",
    "note": "first trout on fly; content via search index (reddit blocks direct fetch)",
    "type": "catch",
-   "group": "Trout (mixed)"
+   "group": "Trout (mixed)",
+   "source_group": "Reddit"
   },
   {
    "date": "2026-08-15",
@@ -688,7 +727,8 @@
    "url": "https://www.inaturalist.org/observations/391499811",
    "note": "quality=research; acc_m=32; photos=1",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-09",
@@ -702,7 +742,8 @@
    "url": "https://www.inaturalist.org/observations/407872261",
    "note": "quality=research; acc_m=16; photos=1",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-09",
@@ -716,7 +757,8 @@
    "url": "https://www.inaturalist.org/observations/407872064",
    "note": "quality=research; acc_m=9; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-09",
@@ -730,7 +772,8 @@
    "url": "https://www.inaturalist.org/observations/407871889",
    "note": "quality=research; acc_m=11; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-09",
@@ -744,7 +787,8 @@
    "url": "https://www.inaturalist.org/observations/407855375",
    "note": "quality=research; acc_m=20; photos=1",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-05",
@@ -758,7 +802,8 @@
    "url": "https://www.inaturalist.org/observations/388506359",
    "note": "quality=research; acc_m=45; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-08-02",
@@ -772,7 +817,8 @@
    "url": "https://www.inaturalist.org/observations/387731439",
    "note": "quality=research; acc_m=89; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-07-27",
@@ -786,7 +832,8 @@
    "url": "https://www.inaturalist.org/observations/385829781",
    "note": "quality=research; acc_m=27; photos=2",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-07-27",
@@ -800,7 +847,8 @@
    "url": "https://www.inaturalist.org/observations/385823228",
    "note": "quality=research; acc_m=25; photos=2",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-07-26",
@@ -814,7 +862,8 @@
    "url": "https://www.inaturalist.org/observations/385293951",
    "note": "quality=research; acc_m=8; photos=1",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-06-13",
@@ -828,7 +877,8 @@
    "url": "https://x.com/AuburnHillsMI/status/2049594326552911946",
    "note": "23rd annual derby 8-10 AM; likely explains DNR 675 adult rainbows stocked at Squirrel Rd 2026-06-12",
    "type": "report",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "X / Social"
   },
   {
    "date": "2026-05-12",
@@ -842,7 +892,8 @@
    "url": "https://www.inaturalist.org/observations/383492809",
    "note": "quality=research; acc_m=11; photos=1",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2026-04-14",
@@ -856,7 +907,8 @@
    "url": "https://www.inaturalist.org/observations/355351857",
    "note": "quality=research; acc_m=781; photos=1",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-11-23",
@@ -870,7 +922,8 @@
    "url": "https://www.inaturalist.org/observations/331324712",
    "note": "quality=research; acc_m=19; photos=2",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-11-23",
@@ -884,7 +937,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "\"cherry jack\"",
    "type": "catch",
-   "group": "Salmon"
+   "group": "Salmon",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-11-20",
@@ -898,7 +952,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "",
    "type": "catch",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-11-15",
@@ -912,7 +967,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "first cast, head of pool, very low water",
    "type": "catch",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-11-12",
@@ -926,7 +982,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "redds old and new, \"peak salmon run\", no fish seen",
    "type": "report",
-   "group": "Salmon"
+   "group": "Salmon",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-11-06",
@@ -940,7 +997,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "buck on tarnished brass/black body spinner, clear-ish water",
    "type": "catch",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-11-02",
@@ -954,7 +1012,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "low clear water ~4 ft vis; no salmon yet",
    "type": "catch",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-10-27",
@@ -968,7 +1027,8 @@
    "url": "https://www.oakgov.com/home/showpublisheddocument/29011/638972601623900000",
    "note": "Clinton River Oaks Park (235 ac); land buy supports $1.4M GLFC project to seal Yates bypass/restore lamprey barrier -> would again block steelhead from Paint Creek",
    "type": "report",
-   "group": "Other"
+   "group": "Other",
+   "source_group": "News & press"
   },
   {
    "date": "2025-09-07",
@@ -982,7 +1042,8 @@
    "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/",
    "note": "bright unclipped skipper; also walleye, 2 pike, many bass over 2 days; water 57-58F low drought",
    "type": "catch",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan Sportsman"
   },
   {
    "date": "2025-06-04",
@@ -996,7 +1057,8 @@
    "url": "https://www.inaturalist.org/observations/286876965",
    "note": "quality=research; acc_m=1178; photos=2",
    "type": "catch/observation",
-   "group": "Salmon"
+   "group": "Salmon",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-05-11",
@@ -1010,7 +1072,8 @@
    "url": "https://www.inaturalist.org/observations/281015938",
    "note": "quality=research; acc_m=24; photos=1",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-05-09",
@@ -1024,7 +1087,8 @@
    "url": "https://x.com/AuburnHillsMI/status/1920102091453878710",
    "note": "annual River Day derby, ages 16 and under (post dated 2025-05-07)",
    "type": "report",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "X / Social"
   },
   {
    "date": "2025-04-25",
@@ -1038,7 +1102,8 @@
    "url": "https://www.inaturalist.org/observations/273346338",
    "note": "quality=casual; acc_m=161; photos=1",
    "type": "catch/observation",
-   "group": "Salmon"
+   "group": "Salmon",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-04-22",
@@ -1052,7 +1117,8 @@
    "url": "https://www.inaturalist.org/observations/273079898",
    "note": "quality=research; acc_m=11; photos=1",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-04-20",
@@ -1066,7 +1132,8 @@
    "url": "https://www.inaturalist.org/observations/271830626",
    "note": "quality=research; acc_m=31; photos=3",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-04-09",
@@ -1080,7 +1147,8 @@
    "url": "https://www.inaturalist.org/observations/269548737",
    "note": "quality=research; acc_m=9; photos=5",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-04-05",
@@ -1094,7 +1162,8 @@
    "url": "https://www.reddit.com/r/MichiganFishing/comments/1js17sz/are_there_steelhead_in_the_clinton_river_by_yates/",
    "note": "\"absolutely still there\" but river flooded after massive rain; no dam effect at Yates (bypass)",
    "type": "report",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Reddit"
   },
   {
    "date": "2025-03-23",
@@ -1108,7 +1177,8 @@
    "url": "https://www.inaturalist.org/observations/269726846",
    "note": "quality=research; acc_m=2200; photos=3",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-02-22",
@@ -1122,7 +1192,8 @@
    "url": "https://www.inaturalist.org/observations/262758361",
    "note": "quality=research; acc_m=36; photos=1",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025-02-22",
@@ -1136,7 +1207,8 @@
    "url": "https://www.inaturalist.org/observations/262758319",
    "note": "quality=research; acc_m=47; photos=1",
    "type": "catch/observation",
-   "group": "Other"
+   "group": "Other",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2025",
@@ -1150,7 +1222,8 @@
    "url": "https://www.reddit.com/r/MichiganFishing/comments/1ko0782/paint_creek_rochester/",
    "note": "date only year-level (search snippet); advice: fish north of Tienken, Rapala CD1/CD3/CD5, small spinners; good until mid-June; historic 19in brown near Silverbell/Dutton",
    "type": "report",
-   "group": "Trout (mixed)"
+   "group": "Trout (mixed)",
+   "source_group": "Reddit"
   },
   {
    "date": "2024-12-28",
@@ -1164,7 +1237,8 @@
    "url": "https://www.inaturalist.org/observations/256547294",
    "note": "quality=research; acc_m=15; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-12-28",
@@ -1178,7 +1252,8 @@
    "url": "https://www.inaturalist.org/observations/256546668",
    "note": "quality=research; acc_m=14; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-12-28",
@@ -1192,7 +1267,8 @@
    "url": "https://www.inaturalist.org/observations/256543893",
    "note": "quality=research; acc_m=144; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-11-24",
@@ -1206,7 +1282,8 @@
    "url": "https://www.inaturalist.org/observations/252914740",
    "note": "quality=research; acc_m=31; photos=3",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-10-31",
@@ -1220,7 +1297,8 @@
    "url": "https://www.inaturalist.org/observations/269128929",
    "note": "quality=research; acc_m=213; photos=2",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-08-29",
@@ -1234,7 +1312,8 @@
    "url": "https://www.inaturalist.org/observations/244073892",
    "note": "quality=research; acc_m=250; photos=1",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-08-29",
@@ -1248,7 +1327,8 @@
    "url": "https://www.inaturalist.org/observations/244073884",
    "note": "quality=research; acc_m=250; photos=1",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-08-20",
@@ -1262,7 +1342,8 @@
    "url": "https://www.inaturalist.org/observations/242000987",
    "note": "quality=casual; acc_m=86; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-05-06",
@@ -1276,7 +1357,8 @@
    "url": "https://www.inaturalist.org/observations/214110856",
    "note": "quality=research; acc_m=49; photos=1",
    "type": "catch/observation",
-   "group": "Salmon"
+   "group": "Salmon",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2024-04-10",
@@ -1290,7 +1372,8 @@
    "url": "https://www.inaturalist.org/observations/207860483",
    "note": "quality=research; acc_m=17; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2023-09-04",
@@ -1304,7 +1387,8 @@
    "url": "https://www.inaturalist.org/observations/192678016",
    "note": "quality=research; acc_m=75; photos=1",
    "type": "catch/observation",
-   "group": "Rainbow trout"
+   "group": "Rainbow trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2023-08-08",
@@ -1318,7 +1402,8 @@
    "url": "https://oaklandcounty115.com/2023/08/15/survey-of-fish-in-clinton-river-boasts-21-species/",
    "note": "DNR Fisheries electrofishing \"this past Tuesday\" before Aug 15 2023 = Aug 8; trout larger than prior years; also smallmouth, rock bass, darters",
    "type": "survey",
-   "group": "Trout (mixed)"
+   "group": "Trout (mixed)",
+   "source_group": "News & press"
   },
   {
    "date": "2023-08-01",
@@ -1332,7 +1417,8 @@
    "url": "https://rochestermedia.com/paint-creek-restoration-project-two-thumbs-up-from-fishermen-2/",
    "note": "restoration (step pools, woody debris); article says DNR stocks >6,500 browns/yr; publish date not confirmed (placeholder 2023)",
    "type": "report",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "News & press"
   },
   {
    "date": "2023-06-21",
@@ -1346,7 +1432,8 @@
    "url": "https://www.inaturalist.org/observations/209199880",
    "note": "quality=research; acc_m=211; photos=1",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2023-04-08",
@@ -1360,7 +1447,8 @@
    "url": "https://www.inaturalist.org/observations/154036771",
    "note": "quality=research; acc_m=104; photos=1",
    "type": "catch/observation",
-   "group": "Northern pike"
+   "group": "Northern pike",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2022-10-29",
@@ -1374,7 +1462,8 @@
    "url": "https://www.inaturalist.org/observations/140395554",
    "note": "quality=casual; acc_m=20; photos=1",
    "type": "catch/observation",
-   "group": "Smallmouth bass"
+   "group": "Smallmouth bass",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2022-10-20",
@@ -1388,7 +1477,8 @@
    "url": "https://www.inaturalist.org/observations/235605837",
    "note": "quality=research; acc_m=None; photos=1",
    "type": "catch/observation",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "iNaturalist"
   },
   {
    "date": "2022-08-01",
@@ -1402,7 +1492,8 @@
    "url": "https://www.vanguardtu.org/images/pdffiles/Paint_Creek_DNR_2022_Shocking_Powerpoint_.pdf",
    "note": "2022 survey (month not stated; date placeholder = 2022): brown trout down at index sites, steady/up at habitat sites; lots of juvenile rainbows via Yates bypass, none legal; target 5,600 yearling browns/yr",
    "type": "survey",
-   "group": "Steelhead"
+   "group": "Steelhead",
+   "source_group": "Michigan DNR"
   },
   {
    "date": "2022-05-30",
@@ -1416,7 +1507,8 @@
    "url": "https://x.com/JoeHypnotic/status/1531370489616154624",
    "note": "wading, casting",
    "type": "catch",
-   "group": "Other"
+   "group": "Other",
+   "source_group": "X / Social"
   },
   {
    "date": "2022-04-03",
@@ -1430,7 +1522,8 @@
    "url": "https://x.com/rbfritz4/status/1510757450533806092",
    "note": "brown trout fishing, Auburn Hills",
    "type": "catch",
-   "group": "Brown trout"
+   "group": "Brown trout",
+   "source_group": "X / Social"
   }
  ],
  "timing": [
