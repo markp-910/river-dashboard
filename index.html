@@ -43,7 +43,7 @@ h2{padding:0 16px;margin:22px 0 8px;font-family:var(--serif);font-weight:700;col
 #banner>b{font-family:var(--serif);font-size:1.15em;letter-spacing:.01em}
 #banner .badge.g{background:#bfe0a4;color:#14301c}#banner .badge.y{background:#ecd176;color:#3a2b05}#banner .badge.o{background:#efaa6f;color:#3a1c05}#banner .badge.r{background:#ee9b8c;color:#3d0d06}#banner .badge.n{background:#d6d4bf;color:#2c2e24}
 #banner .up{color:#f2b36f}#banner .down{color:#9fd0e6}#banner .steady{color:#bfe0a4}
-#modal{position:fixed;inset:0;background:rgba(20,42,29,.62);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:9}
+#modal{position:fixed;inset:0;background:rgba(20,42,29,.62);display:none;align-items:flex-start;justify-content:center;overflow:auto;z-index:9400}
 #modal .box{background:var(--paper);margin:20px 10px;padding:18px;border-radius:14px;width:min(900px,100%);box-sizing:border-box;border:1px solid var(--line2);box-shadow:0 20px 50px rgba(0,0,0,.35)}
 #modal .box h3{font-family:var(--serif);color:var(--g800);margin-top:4px}
 #modal .bigchart{position:relative;height:260px;margin-bottom:18px}#close{float:right;font-size:1.4em;background:none;border:0;color:var(--ink);cursor:pointer;min-width:44px;min-height:44px}
@@ -144,11 +144,47 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 .gnow{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:9px 12px;margin:8px 0;font-size:.9em}
 .xhatch{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:9px 12px;margin:8px 0;font-size:.86em}.xhatch a{cursor:pointer}
 @media (max-width:700px){h1{font-size:1.4em}h1 .logo{width:56px;height:56px}.hhead,.hrow{grid-template-columns:140px 1fr}.hlab i{max-width:120px}.hgrid{min-width:700px}.grid{grid-template-columns:1fr}}
+/* ---- weather, alerts, river sub-groups ---- */
+#wxAlerts{margin:0 16px 14px}
+.wxal{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm);overflow:hidden}
+.wxal>summary{cursor:pointer;list-style:none;padding:11px 14px;font-family:var(--serif);font-weight:700;color:var(--g800);display:flex;gap:8px;align-items:center;flex-wrap:wrap;min-height:28px}
+.wxal>summary::-webkit-details-marker{display:none}.wxal>summary:before{content:"▸";color:var(--brass-d);transition:transform .15s}.wxal[open]>summary:before{transform:rotate(90deg)}
+.wxal .chip{font-family:var(--sans);font-size:.74em;font-weight:700;border-radius:10px;padding:2px 9px;color:#fff}.chip.high{background:var(--bad)}.chip.med{background:var(--warn)}.chip.info{background:var(--olive)}.chip.good{background:var(--good)}
+.al{border-top:1px solid var(--line);border-left:6px solid var(--moss);padding:9px 14px 9px 12px;font-size:.9em;background:var(--paper)}
+.al.high{border-left-color:var(--bad);background:#fbece6}.al.med{border-left-color:var(--brass);background:var(--flagbg)}.al.info{border-left-color:var(--moss)}.al.good{border-left-color:var(--good);background:#e4efd6}
+.al h4{margin:0 0 3px;font-family:var(--serif);font-size:1em;color:var(--g800)}.al ul{margin:3px 0;padding-left:18px}.al .sub{display:block;margin-top:3px}
+.al details>summary{cursor:pointer;color:var(--link);font-size:.9em;min-height:28px;display:flex;align-items:center}
+.wxok{padding:10px 14px;border-top:1px solid var(--line);font-size:.9em;color:var(--ink2);background:#eef2de}
+#wxsec{padding:0 16px}#wxsec summary{cursor:pointer}
+.wxhd{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:8px 0}.wxhd select{padding:8px;border-radius:var(--r-sm);background:var(--field);color:var(--ink);border:1px solid var(--line2);min-height:44px;font-weight:600}
+.wxnow{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;align-items:center;background:linear-gradient(160deg,var(--g800),var(--g900));color:var(--cream);border-radius:var(--r);padding:14px 16px;border-top:3px solid var(--brass);box-shadow:var(--shadow)}
+.wxnow .big{font-size:3.2em;line-height:1;text-align:center}.wxnow .tmp{font-family:var(--serif);font-size:2.1em;font-weight:700;line-height:1}.wxnow .cond{font-size:1em;color:#e4ead2}
+.wxnow .kvs{grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:4px 14px;font-size:.86em;color:#d5dcc2;border-top:1px solid rgba(246,240,225,.18);padding-top:8px}.wxnow .kvs b{color:var(--cream)}
+.wxdays{display:grid;grid-template-columns:repeat(7,minmax(104px,1fr));gap:8px;overflow-x:auto;margin:10px 0;padding-bottom:4px}
+.wxd{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:8px 6px;text-align:center;cursor:pointer;font-size:.84em;min-height:44px;box-shadow:var(--shadow-sm)}.wxd:hover{border-color:var(--brass)}.wxd.on{border-color:var(--g800);box-shadow:0 0 0 2px var(--g800) inset}
+.wxd .dn{font-weight:700;color:var(--g800);font-family:var(--serif)}.wxd .em{font-size:1.7em;line-height:1.2}.wxd .hl b{font-size:1.1em}.wxd .hl span{color:var(--mute)}.wxd .pr{color:var(--water);font-weight:600}
+.bite{display:inline-block;border-radius:10px;padding:2px 8px;font-weight:700;font-size:.82em;color:#fff;white-space:nowrap}.bite.b1{background:var(--bad)}.bite.b2{background:var(--warn)}.bite.b3{background:var(--fair)}.bite.b4{background:var(--good)}.bite.b5{background:#1f5a2c;box-shadow:0 0 0 2px var(--brass-l)}.bite.bx{background:var(--none)}
+#banner .bite.b3{background:#ecd176;color:#3a2b05}#banner .bite.b4{background:#bfe0a4;color:#14301c}#banner .bite.b5{background:#d9f0b8;color:#14301c}#banner .bite.b2{background:#efaa6f;color:#3a1c05}#banner .bite.b1{background:#ee9b8c;color:#3d0d06}
+.wxdet{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:8px 0;font-size:.9em}.wxdet h4{margin:0 0 4px;font-family:var(--serif);color:var(--g800)}
+.why{margin:4px 0;padding-left:0;list-style:none}.why li{padding:2px 0;border-bottom:1px dotted var(--line)}.why .dl{display:inline-block;min-width:34px;font-weight:700;text-align:right;margin-right:8px}.why .pos{color:var(--good)}.why .neg{color:var(--bad)}.why .zer{color:var(--mute)}
+.hscr{overflow-x:auto;margin:6px 0;border:1px solid var(--line);border-radius:var(--r-sm);background:var(--field)}.hrs{display:grid;grid-auto-flow:column;grid-auto-columns:56px}
+.hr{text-align:center;font-size:.74em;padding:5px 2px;border-right:1px solid var(--line);line-height:1.35}.hr .em{font-size:1.5em;line-height:1.2}.hr b{font-size:1.1em;display:block}.hr.win{background:#dcebc3}.hr.nowh{outline:2px solid var(--brass);outline-offset:-2px}.hr .pp{color:var(--water);font-weight:700}.hr .z{color:var(--mute)}
+.wxline{font-size:.84em;margin:6px 0 2px;color:var(--ink2);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.wxbox{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:9px 12px;margin:8px 0;font-size:.9em}.wxbox h4{margin:0 0 4px;font-family:var(--serif);color:var(--g800)}
+.wxmini{display:grid;grid-template-columns:repeat(auto-fit,minmax(88px,1fr));gap:6px;margin:6px 0}.wxmini div{background:var(--paper);border:1px solid var(--line);border-radius:var(--r-sm);padding:5px;text-align:center;font-size:.8em}
+.rvh{margin:8px 16px 6px;padding:7px 4px 5px;border-bottom:1px solid var(--line2);cursor:pointer;user-select:none;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-family:var(--serif);font-weight:700;color:var(--g800);font-size:1.02em;min-height:36px}
+.rvh .arr{color:var(--brass-d);font-size:.7em}.rvh .rcnt{font-family:var(--sans);font-weight:400;font-size:.78em;color:var(--mute)}.rvh .badge{font-family:var(--sans)}
+.rvbody{padding-top:6px}
+.wxsrc{font-size:.76em;color:var(--mute);margin:6px 0}
+.wxfail{background:var(--flagbg);border-left:4px solid var(--brass);padding:9px 12px;border-radius:4px;font-size:.9em}.wxfail button{margin-left:8px;min-height:36px;padding:4px 12px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--cream2);cursor:pointer;font-weight:600}
+@media (max-width:700px){.wxdays{grid-template-columns:repeat(7,112px)}.wxnow .big{font-size:2.6em}.wxnow .tmp{font-size:1.8em}#wxAlerts{margin:0 12px 12px}}
 </style></head><body>
 <header><h1><img class="logo" src="logo.png" width="72" height="72" alt="Mark's Fishing Report logo">Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
 <div id="homeView">
 <div id="banner">Loading…</div>
+<div id="wxAlerts"></div>
+<section id="wxsec"><details id="wxDet" open><summary class="sec2">🌦️ Weather &amp; bite forecast</summary><div id="wxBody"></div></details></section>
 <div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
 <section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
@@ -178,6 +214,7 @@ const EXTRA_SP=["Largemouth bass","Smallmouth bass","Northern pike","Creek chub"
 const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
 "Tier 2 · Clinton River & branches":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"],["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]],
 "Tier 3 · Other nearby streams":[["04162010","Red Run at Ryan Rd near Warren"],["04163400","Plum Brook at Utica"],["04164100","East Pond Creek at Romeo"],["04164300","East Branch Coon Creek at Armada"],["04166100","River Rouge at Southfield"]]};
+const RIVER_OF={"04161540":"Paint Creek","04161500":"Paint Creek","04161000":"Clinton River (main stem)","04161820":"Clinton River (main stem)","04164000":"Clinton River (main stem)","04165500":"Clinton River (main stem)","04164151":"Clinton River — North & Middle Branches","04164500":"Clinton River — North & Middle Branches","04164800":"Clinton River — North & Middle Branches","04162010":"Red Run","04163400":"Plum Brook","04164100":"East Pond Creek","04164300":"East Branch Coon Creek","04166100":"River Rouge"};
 const ALL=Object.values(GROUPS).flat().map(s=>s[0]),NAME=Object.fromEntries(Object.values(GROUPS).flat());
 // nearest site that reports water temp
 const TEMP_PROXY={"04161000":"04161820","04164000":"04161820","04164151":"04165500","04164500":"04165500","04164800":"04165500","04161540":"04161820","04161500":"04161820","04163400":"04162010","04164100":"04165500","04164300":"04165500"};
@@ -220,10 +257,10 @@ function mkChart(canvas,series,p,big){const s=p==="00010"?series.map(q=>({x:q.x,
  options:{responsive:true,maintainAspectRatio:false,animation:false,plugins:{legend:{display:false},bands:{on:p==="00010"},title:{display:!!big,text:PARAMS[p][1],color:"#26291f",font:{family:"Fraunces,Georgia,serif",size:14}}},
  scales:{x:{ticks:{maxTicksLimit:7,color:"#5e5c49",callback(v){return this.getLabelForValue(v).split(",")[0]}}},y:{title:{display:true,text:PARAMS[p][1],color:"#5e5c49"},ticks:{color:"#5e5c49"},
  ...(p==="00010"?{suggestedMin:40,suggestedMax:72}:{})}}}})}
-const SECS=[];let DATA={},MED={},INFO={};
+const SECS=[],RVS=[];let DATA={},MED={},INFO={};
 function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("mbox");
  box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]} <button class="gearb" data-gear="g:${id}">🎒 Gear &amp; flies</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
- <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p>`;
+ <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p><div id="mwx"></div>`;if(window.WX)WX.fillModal(id,document.getElementById("mwx"));
  for(const p of PORDER)if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
  document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
 function closeModal(){document.getElementById("modal").style.display="none"}
@@ -232,31 +269,39 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  for(const ts of iv.value.timeSeries){const s=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;
   const vals=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(vals.length)(DATA[s]??={})[p]=vals}
  const last=a=>a&&a.length?a[a.length-1]:null,app=document.getElementById("app"),ranked=[];
- for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="grid";app.appendChild(grid);
+ for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="tierbody";app.appendChild(grid);
+  const rvs={},getRv=id=>{const rv=RIVER_OF[id]||id;if(rvs[rv])return rvs[rv];const hd=document.createElement("div");hd.className="rvh";hd.setAttribute("role","button");hd.tabIndex=0;const body=document.createElement("div");body.className="grid rvbody";grid.appendChild(hd);grid.appendChild(body);
+   const ids=sites.filter(s=>(RIVER_OF[s[0]]||s[0])===rv).map(s=>s[0]),rk="rcollapsed:"+g+"|"+rv;hd.dataset.ids=ids.join(",");hd.innerHTML=`<span class="arr">▼</span> ${rv} <span class="rcnt">(${ids.length} gage${ids.length>1?"s":""})</span><span class="rvwx"></span>`;
+   const so=o=>{body.style.display=o?"":"none";hd.querySelector(".arr").textContent=o?"▼":"▶";hd.setAttribute("aria-expanded",String(o));localStorage.setItem(rk,o?"0":"1")};hd.onclick=()=>so(body.style.display==="none");hd.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();so(body.style.display==="none")}};
+   const o={hd,body,so,rank:[],n:ids.length};so(localStorage.getItem(rk)!=="1");RVS.push(o);return rvs[rv]=o};
   const setOpen=o=>{grid.style.display=o?"":"none";h2.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(key,o?"0":"1")};
   h2.innerHTML=`<span class="arr">▼</span> ${g} <span class="cnt"></span>`;h2.onclick=()=>setOpen(grid.style.display==="none");const secRank=[];SECS.push([h2,secRank]);
-  for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";c.id="site-"+id;grid.appendChild(c);
+  for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";c.id="site-"+id;getRv(id).body.appendChild(c);
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
    if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
     <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
-   INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>setOpen(true)});secRank.push({id,t,tempF});
+   INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null,tt,tn};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>{setOpen(true);getRv(id).so(true)}});secRank.push({id,t,tempF});getRv(id).rank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
    c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
    <span class="badge ${t.cls}">🐟 ${t.label}</span><p class="note">${t.note||""}${tempMsg?"<br>"+tempMsg:""}</p>
-   <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="chartbox"><canvas></canvas></div>`;
+   <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="wxline" data-wxid="${id}"></div><div class="chartbox"><canvas></canvas></div>`;
    let ch;const show=p=>{ch&&ch.destroy();ch=mkChart(c.querySelector("canvas"),d[p],p);c.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b.dataset.p===p))};
    c.querySelectorAll(".tab").forEach(b=>b.onclick=e=>{e.stopPropagation();show(b.dataset.p)});c.querySelector("a").onclick=e=>e.stopPropagation();
    c.onclick=()=>openModal(id);show(d["00060"]?"00060":"00065")}
   h2.querySelector(".cnt").dataset.n=sites.length;setOpen(localStorage.getItem(key)!=="1")}
  const rk=x=>x.t.score+(x.tempF!=null?.5:0);
  for(const [h2,r] of SECS){r.sort((a,b)=>rk(b)-rk(a));const c=h2.querySelector(".cnt");c.innerHTML=`(${c.dataset.n} sites)`+(r[0]?` · best: <span class="badge ${r[0].t.cls}">${r[0].t.label.split(" · ")[0]}</span> <small>${NAME[r[0].id]}</small>`:" · no live data")}
- ranked.sort((a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100)));const top=ranked.slice(0,5);
- const bn=document.getElementById("banner");bn.innerHTML=top.length?`<b>🏆 Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span></li>`).join("")}</ol>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
- bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)});
+ for(const v of RVS){v.rank.sort((a,b)=>rk(b)-rk(a));const c=v.hd.querySelector(".rcnt"),b=v.rank[0];c.innerHTML=`(${v.n} gage${v.n>1?"s":""})`+(b?` · best: <span class="badge ${b.t.cls}">${b.t.label.split(" · ")[0]}</span>`+(v.n>1?` <small>${NAME[b.id]}</small>`:""):" · no live data")}
+ const base=(a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100));ranked.sort(base);
+ const bn=document.getElementById("banner");
+ function renderBanner(){const wx=!!(window.WX&&WX.ready()),key=x=>x.t.score+(wx?WX.adj(x.id):0),top=[...ranked].sort((a,b)=>(key(b)-key(a))||base(a,b)).slice(0,5);
+ bn.innerHTML=top.length?`<b>🏆 Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span>${wx?`<span class="tm">🌦️ Weather${WX.top5(r.id)}</span>`:""}</li>`).join("")}</ol><div class="sub" style="color:#cdd6b8;margin-top:6px">${wx?"Ranked by gage rating, nudged up or down (max ±1.2) by today's rule-of-thumb weather bite rating. 🎣 ratings are not scientific — tap a spot for the why.":"Weather unavailable or still loading — ranked by gage rating only."}</div>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
+ bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)})}
+ window.renderBanner=renderBanner;renderBanner();
  document.body.dataset.ready=1;window.dispatchEvent(new Event("dataready"))})();
 </script><script>
 (()=>{const DIR=(la,ln)=>`https://www.google.com/maps/dir/?api=1&destination=${la},${ln}`,GM=(la,ln)=>`https://www.google.com/maps/search/?api=1&query=${la},${ln}`;
@@ -517,7 +562,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <div style="margin:6px 0"><span class="stt ${st.cls}">${esc(st.txt)}</span> ${badgeH(s)} ${clsB(s.tr)} <span class="cls cU">${s.wild==="wild"?"Wild":s.wild==="both"?"Wild + stocked":"Stocked"}</span> <span class="cls cU">Confidence: ${esc(s.confidence)}</span></div>
  <div class="kv">🚗 <b>${s.drive_min} min</b> (${s.drive_miles} mi) free-flow${s.drive_min_alt?` (a second router says ~${s.drive_min_alt} min)`:""} — plan on <b>${Math.round(s.drive_min*1.1)}–${Math.round(s.drive_min*1.25)} min</b> with traffic. <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions ↗</a></div>
  ${runs.length?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
- <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xHatch"></div>
+ <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xHatch"></div><div id="xWx"></div>
  <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div><div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
  <details open><summary>📡 Nearest USGS gage (live)</summary>${gl}<div class="sub">${esc(s.gage_note)}</div></details>
  <details open><summary>📜 Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div><div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
@@ -526,7 +571,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
  ${s.flags.length?`<details><summary>⚠️ Unverified / flags (${s.flags.length})</summary>${s.flags.map(f=>`<div class="flag">${esc(f)}</div>`).join("")}</details>`:""}
  <details><summary>🔗 Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
- $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.HATCH)HATCH.strip(s.id,$("xHatch"))}
+ $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.HATCH)HATCH.strip(s.id,$("xHatch"));if(window.WX)WX.fillExplore(s,$("xWx"))}
 function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
 $("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
 window._openStream=openStream;window._closeX=closeX;window._setTab=setTab;window._xd=()=>({XD,LIVE});
@@ -620,5 +665,182 @@ $("gmodal").onclick=e=>{if(e.target.id==="gmodal")closeGear()};
 addEventListener("keydown",e=>{if(e.key==="Escape"&&$("gmodal").style.display==="flex"){e.stopImmediatePropagation();closeGear()}},true);
 document.addEventListener("click",e=>{const b=e.target.closest("[data-gear]");if(b){e.preventDefault();e.stopPropagation();openGear(b.dataset.gear)}},true);
 init();
+})();
+</script><script>
+(()=>{
+const $=id=>document.getElementById(id),esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const HOME={key:"home",name:"Sterling Heights (home)",lat:42.5744,lng:-83.0019};
+const GLL={"04161000":[42.6334,-83.2244],"04161500":[42.7675,-83.2199],"04161540":[42.6883,-83.1429],"04161820":[42.6145,-83.0266],"04162010":[42.5295,-83.0685],"04163400":[42.6014,-83.0713],"04164000":[42.5778,-82.9516],"04164100":[42.8225,-83.0202],"04164151":[42.7172,-82.9046],"04164300":[42.8459,-82.8849],"04164500":[42.6292,-82.8888],"04164800":[42.7064,-82.9591],"04165500":[42.5958,-82.9087],"04166100":[42.4475,-83.2974]};
+const LOCS=[HOME,...Object.entries(GLL).map(([id,[la,ln]])=>({key:id,name:NAME[id]||id,lat:la,lng:ln}))];
+const PSEL=[["home","Home — Sterling Heights"],["04161540","Paint Creek — Rochester"],["04161000","Clinton River — Auburn Hills"],["04165500","Clinton River — Mt. Clemens (Moravian Dr)"],["04164151","North Branch — Meade (26 Mile)"]];
+const PAINT=new Set(["04161540","04161500"]);
+const DAYS=["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const LBL=["","Poor","Slow","Fair","Good","Great"];
+const ST={W:{},nws:[],ready:false,err:null,at:0,k:0,loc:"home"};
+const TTL=20*60e3,OM="https://api.open-meteo.com/v1/forecast";
+const OMP="&current=temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,cloud_cover,pressure_msl,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,precipitation,pressure_msl,wind_speed_10m,wind_gusts_10m,cloud_cover,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,sunrise,sunset&past_days=3&forecast_days=8&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch&timezone=America%2FNew_York";
+const hs=s=>{let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))|0;return h};
+async function omGet(locs){const u=`${OM}?latitude=${locs.map(l=>l.lat.toFixed(4)).join(",")}&longitude=${locs.map(l=>l.lng.toFixed(4)).join(",")}${OMP}`,ck="wx1:"+hs(u);
+ try{const c=JSON.parse(sessionStorage.getItem(ck)||"null");if(c&&Date.now()-c.t<TTL)return c}catch(e){}
+ const j=await (await fetchRetry(u)).json(),arr=Array.isArray(j)?j:[j];if(arr.some(x=>!x||x.error||!x.hourly))throw new Error("bad weather response");
+ const c={t:Date.now(),j:arr};try{sessionStorage.setItem(ck,JSON.stringify(c))}catch(e){}return c}
+function prep(d){const H=d.hourly,D=d.daily,i0=H.time.findIndex(t=>t.slice(0,13)===d.current.time.slice(0,13)),di=D.time.indexOf(d.current.time.slice(0,10));if(i0<0||di<0)throw new Error("unexpected weather data");return{H,D,i0,di,cur:d.current}}
+const S=(a,i,j)=>{let s=0;for(let k=Math.max(0,i);k<Math.min(a.length,j);k++)s+=a[k]||0;return s};
+const past=(W,h)=>S(W.H.precipitation,W.i0-h+1,W.i0+1),next=(W,h)=>S(W.H.precipitation,W.i0+1,W.i0+1+h);
+const WC=c=>c===0?["☀️","Clear"]:c===1?["🌤️","Mostly clear"]:c===2?["⛅","Partly cloudy"]:c===3?["☁️","Overcast"]:c<=48?["🌫️","Fog"]:c<=57?["🌦️","Drizzle"]:c<=67?["🌧️","Rain"]:c<=77?["🌨️","Snow"]:c<=82?["🌦️","Showers"]:c<=86?["🌨️","Snow showers"]:["⛈️","Thunderstorms"];
+const cmp=d=>["N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"][Math.round(d/22.5)%16];
+const hr12=h=>{h=((h%24)+24)%24;const m=Math.round((h%1)*60),hh=Math.floor(h);return (hh%12||12)+(m?":"+String(m).padStart(2,"0"):"")+(hh<12?" AM":" PM")};
+const hrt=s=>+s.slice(11,13)+(+s.slice(14,16))/60;
+const moon=(y,m,d)=>{const ph=(((Date.UTC(y,m-1,d,12)-Date.UTC(2000,0,6,18,14))/864e5)%29.530588+29.530588)%29.530588;return ["🌑 New moon","🌒 Waxing crescent","🌓 First quarter","🌔 Waxing gibbous","🌕 Full moon","🌖 Waning gibbous","🌗 Last quarter","🌘 Waning crescent"][Math.floor(ph/29.530588*8+.5)%8]};
+const dName=(date,long)=>{const[y,m,d]=date.split("-").map(Number);const n=new Date(y,m-1,d).getDay();return long?DAYS[n]:DAYS[n].slice(0,3)};
+const lastSat=y=>{const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d};
+const paintClosed=(n=new Date())=>{const y=n.getFullYear();return !(n>=lastSat(y)&&n<=new Date(y,8,30,23,59))};
+const paintOpens=()=>{const n=new Date(),y=n.getFullYear(),o=lastSat(y);return (n<o?o:lastSat(y+1)).toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"})};
+// ---------- per-day metrics ----------
+function dayM(W,k){const i=W.di+k,date=W.D.time[i];if(!date)return null;const H=W.H,st=H.time.indexOf(date+"T00:00");if(st<0)return null;
+ const sl=(a,f,t)=>a.slice(st+f,st+t).filter(v=>v!=null),avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0,p=H.pressure_msl;
+ return{k,date,st,code:W.D.weather_code[i],tmax:W.D.temperature_2m_max[i],tmin:W.D.temperature_2m_min[i],prevMax:W.D.temperature_2m_max[i-1],precip:W.D.precipitation_sum[i]||0,pop:W.D.precipitation_probability_max[i],
+  prior48:S(H.precipitation,st-48,st),cloud:avg(sl(H.cloud_cover,7,20)),wind:avg(sl(H.wind_speed_10m,7,20)),gust:Math.max(0,...sl(H.wind_gusts_10m,7,20)),
+  dP:(p[st+18]!=null&&p[st+6]!=null)?p[st+18]-p[st+6]:0,thunder:sl(H.weather_code,6,24).some(c=>c>=95),sr:hrt(W.D.sunrise[i]),ss:hrt(W.D.sunset[i]),mon:+date.slice(5,7),y:+date.slice(0,4),d:+date.slice(8,10)}}
+function wins(m){const w=[];if(m.tmax>=80)w.push({n:"Dawn",a:m.sr-.5,b:m.sr+2.5},{n:"Dusk",a:m.ss-2.5,b:m.ss+.5});else if(m.tmax<=50)w.push({n:"Midday (warmest water)",a:11,b:15});
+ else{w.push({n:"Morning",a:m.sr,b:m.sr+3.5},{n:"Evening",a:m.ss-2.5,b:m.ss+.5});if(m.tmax<62&&[3,4,10,11].includes(m.mon))w.push({n:"Midday",a:11,b:15})}return w}
+// ---------- rule-of-thumb bite rating ----------
+function rateDay(W,k){const m=dayM(W,k);if(!m)return null;const R=[],add=(t,d)=>R.push([t,d]),P=m.precip;
+ if(P>=1)add(`Heavy rain forecast (${P.toFixed(2)}″) — rivers likely to rise and muddy`,-3);else if(P>=.5)add(`Steady rain (${P.toFixed(2)}″) — possible rise and staining`,-2);else if(P>=.25)add(`Showery (${P.toFixed(2)}″) — wet but fishable`,-1);
+ else if(P>=.03&&m.wind<12)add(`Light rain/drizzle (${P.toFixed(2)}″) — low light, fish less wary`,.5);else add(`Dry day (${P.toFixed(2)}″)`,0);
+ if(m.prior48>=1.5)add(`Heavy rain in the prior 48 h (${m.prior48.toFixed(2)}″) — river likely still high/stained`,-2);else if(m.prior48>=.75)add(`Rain in the prior 48 h (${m.prior48.toFixed(2)}″) — water may be off-color`,-1);
+ if(m.cloud>=60)add(`Overcast (cloud ${Math.round(m.cloud)}%) — low light, trout less spooky`,1);else if(m.cloud<=25&&m.tmax>=70)add(`Bright sun (cloud ${Math.round(m.cloud)}%) — fish hug cover at midday`,-.5);else add(`Partly cloudy (${Math.round(m.cloud)}%)`,0);
+ const w=Math.round(m.wind),g=Math.round(m.gust);
+ if(m.gust>=35||m.wind>=20)add(`Strong wind (avg ${w}, gusts ${g} mph) — tough casting`,-3);else if(m.wind>=15)add(`Windy (avg ${w}, gusts ${g} mph)`,-2);else if(m.wind>=10)add(`Breezy (avg ${w}, gusts ${g} mph)`,-1);else if(m.wind<=8)add(`Light wind (avg ${w} mph)`,.5);else add(`Moderate wind (avg ${w} mph)`,0);
+ const dp=(m.dP*.02953).toFixed(2);
+ if(m.dP<=-6)add(`Pressure dropping fast (${dp} inHg over the day) — a front is arriving; bite can flare just before it, then shut off`,0);
+ else if(m.dP<-1)add(`Slowly falling pressure (${dp} inHg) — classic good-feed setup`,1);else if(m.dP<=1)add(`Steady pressure (${dp} inHg)`,1);else if(m.dP<=5)add(`Pressure rising slowly (+${dp} inHg)`,0);else add(`Pressure climbing fast (+${dp} inHg) — post-front, fish often sluggish`,-1);
+ const tx=Math.round(m.tmax),tn=Math.round(m.tmin);
+ if(m.tmax>=85)add(`Hot (high ${tx}°F) — water warms, fish dawn/dusk only`,-2);else if(m.tmax>=78)add(`Warm (high ${tx}°F) — fish early/late`,-1);else if(m.tmax>=50)add(`Mild air temps (${tn}–${tx}°F)`,.5);else if(m.tmax>=35)add(`Cool air (${tn}–${tx}°F) — fish slower, midday best`,0);else add(`Freezing air (high ${tx}°F) — sluggish fish, iced guides`,-1);
+ if(m.tmax-m.tmin>=30)add(`Big daily temperature swing (${tn}→${tx}°F)`,-.5);
+ if(m.prevMax!=null&&m.prevMax-m.tmax>=15)add(`Sharp cool-down (high dropped ${Math.round(m.prevMax-m.tmax)}°F from yesterday) — cold-front bite is often off`,-1);
+ if(m.thunder)add(`Thunderstorms in the forecast — unsafe on the water`,-2);
+ const sum=R.reduce((a,x)=>a+x[1],0);let n=sum>=3?5:sum>=1.5?4:sum>=-.5?3:sum>=-2.5?2:1;if(m.thunder&&n>2){n=2;R.push(["Capped at 2 because of thunderstorms",0])}
+ return{n,sum,R,m,wins:wins(m),W}}
+const GCAP={g:5,y:4,o:2,r:1};
+function rateSite(id,k){const W=ST.W[id]||ST.W.home;if(!W)return null;const r=rateDay(W,k);if(!r)return null;const i=INFO[id];
+ if(k===0&&i&&i.t){const cap=GCAP[i.t.cls]??5,R=[...r.R];let n=r.n;if(cap<n){n=cap;R.push([`Gage rating “${i.t.label}” caps today at ${cap}/5`,0])}else R.push([`Gage rating “${i.t.label}” — no cap`,0]);return{...r,n,R,gage:true}}return r}
+const bite=(n,x)=>`<span class="bite b${n}" title="Rule-of-thumb score from weather${x?" and the gage":""} — not scientific">🎣 ${n}/5 ${LBL[n]}</span>`;
+const whyH=R=>`<ul class="why">${R.map(([t,d])=>`<li><span class="dl ${d>0?"pos":d<0?"neg":"zer"}">${d>0?"+":""}${d||"·"}</span>${esc(t)}</li>`).join("")}</ul>`;
+const winTxt=r=>r.wins.map(w=>`<b>${esc(w.n)}</b> ${hr12(w.a)}–${hr12(w.b)}`).join(" · ");
+// ---------- data load ----------
+async function loadAll(){try{const c=await omGet(LOCS),W={};LOCS.forEach((l,i)=>{W[l.key]=prep(c.j[i])});ST.W=W;ST.at=c.t;ST.ready=true;ST.err=null}catch(e){ST.err=e.message||String(e);if(!ST.at)ST.ready=false;console.warn("weather",e)}
+ try{await loadNws()}catch(e){console.warn("nws",e)}
+ dispatchEvent(new Event("wxready"))}
+async function loadNws(){const seen=new Map();await Promise.all([[42.5744,-83.0019],[42.688,-83.143]].map(async([la,ln])=>{try{const j=await (await fetchRetry(`https://api.weather.gov/alerts/active?point=${la},${ln}`,2)).json();for(const f of j.features||[])seen.set(f.properties.id||f.id,f.properties)}catch(e){console.warn("nws",e)}}));ST.nws=[...seen.values()]}
+// ---------- flags (shared by Home alerts and Explore) ----------
+function flagsFor(W,label){const F=[],days=[0,1,2,3].map(k=>dayM(W,k)).filter(Boolean);
+ const p24=next(W,24),p48=next(W,48);
+ const th=[];for(let h=1;h<=48;h++){const c=W.H.weather_code[W.i0+h];if(c>=95)th.push(h)}
+ if(th.length){const t=W.H.time[W.i0+th[0]];F.push({id:"thunder",sev:th[0]<=24?"high":"med",icon:"⛈️",title:"Thunderstorms in the forecast",text:`Thunderstorm risk starting around ${dName(t.slice(0,10))} ${hr12(hrt(t))}. Lightning and a graphite fly rod don't mix — get off the water.`})}
+ const wd=days.slice(0,2).filter(m=>m.wind>=15||m.gust>=30);if(wd.length){const g=Math.max(...wd.map(m=>m.gust));F.push({id:"wind",sev:g>=40?"high":"med",icon:"💨",title:"High wind",text:`${wd.map(m=>dName(m.date)+" avg "+Math.round(m.wind)+" / gusts "+Math.round(m.gust)+" mph").join("; ")}. Hard casting and spooked, stained edges — try sheltered runs or nymph close in.`})}
+ const hot=days.filter(m=>m.tmax>=85);if(hot.length)F.push({id:"heat",sev:Math.max(...hot.map(m=>m.tmax))>=90?"high":"med",icon:"🔥",title:"Heat — water temp risk",text:`Highs of ${hot.map(m=>dName(m.date)+" "+Math.round(m.tmax)+"°F").join(", ")}. Slow, shallow, open reaches can climb past 68°F (stress/kill range for trout). Fish dawn only, check the water temp, and stop above 68°F.`});
+ const cold=days.filter(m=>m.tmin<=25||m.tmax<=35),cd=days.filter(m=>m.prevMax!=null&&m.prevMax-m.tmax>=18);
+ if(cold.length)F.push({id:"cold",sev:"med",icon:"🥶",title:"Cold snap",text:`${cold.map(m=>dName(m.date)+" "+Math.round(m.tmin)+"/"+Math.round(m.tmax)+"°F").join(", ")} (low/high). Water will chill toward the 30s–40s: sluggish trout, slow deep nymphs/streamers at midday, ice in the guides.`});
+ else if(cd.length)F.push({id:"cold",sev:"info",icon:"🌡️",title:"Sharp cool-down",text:`${cd.map(m=>dName(m.date)+" high drops "+Math.round(m.prevMax-m.tmax)+"°F to "+Math.round(m.tmax)+"°F").join(", ")}. Post-cold-front bite is often off for a day or two.`});
+ return{F,p24,p48}}
+const rg=()=>{const o={};for(const id of ALL){(o[RIVER_OF[id]||id]??=[]).push(id)}return o};
+const tw=id=>INFO[id]?.tempF??INFO[TEMP_PROXY[id]]?.tempF??null;
+function rainRiver(label,ids){let b=null;for(const id of ids){const W=ST.W[id];if(!W)continue;const p24=next(W,24),p48=next(W,48),q24=past(W,24),q48=past(W,48);if(!b||p48>b.p48||(p48===b.p48&&p24>b.p24))b={id,p24,p48,q24,q48}}
+ if(!b)return null;const pcts=ids.map(i=>INFO[i]?.pct).filter(v=>v!=null);b.pct=pcts.length?Math.max(...pcts):null;b.label=label;return b}
+function buildAlerts(){const A=[],R=rg(),home=ST.W.home;
+ // NWS
+ for(const a of ST.nws){const ev=a.event||"Alert",sev=/Warning/.test(ev)||a.severity==="Extreme"||a.severity==="Severe"?"high":/Watch/.test(ev)||a.severity==="Moderate"?"med":"info";const exp=a.ends||a.expires;
+  A.push({id:"nws",sev,icon:/flood/i.test(ev)?"🌊":"🏛️",title:ev+" (National Weather Service)",text:(a.headline||"")+(exp?` Until ${new Date(exp).toLocaleString("en-US",{timeZone:"America/New_York",weekday:"short",hour:"numeric",minute:"2-digit"})} ET.`:""),src:"NWS"})}
+ if(ST.ready&&home){const{F}=flagsFor(home);F.forEach(f=>A.push(f))}
+ // forecast rain / rise
+ const fr=[],rec=[];
+ for(const[label,ids]of Object.entries(R)){const b=ST.ready?rainRiver(label,ids):null;
+  const gi=ids.map(i=>INFO[i]).filter(Boolean);const pct=gi.length?Math.max(...gi.map(i=>i.pct??0)):null;const rising=ids.some(i=>INFO[i]?.tn===1&&(INFO[i].pct??0)>=110);
+  if(b&&(b.p24>=.5||b.p48>=1)){fr.push({...b,high:b.p24>=1||b.p48>=2||(pct!=null&&pct>=150)})}
+  const obs=b&&(b.q24>=.75||b.q48>=1.25);
+  if(rising||(pct!=null&&pct>=150)||obs){const bad=pct!=null&&pct>=200||(rising&&pct>=150);rec.push({label,pct,rising,q24:b?.q24,q48:b?.q48,obs,bad})}}
+ if(fr.length)A.push({id:"rain",sev:fr.some(x=>x.high)?"high":"med",icon:"🌧️",title:"Rain forecast — rivers may rise and muddy",text:"Model forecast rain at or above 0.5″ in 24 h or 1″ in 48 h. Expect rises and stained water within roughly 6–24 h of the rain; small creeks (Red Run, Plum Brook, East Pond, Coon Creek) react fastest. Check the gage before you drive.",list:fr.sort((a,b)=>b.p48-a.p48).map(x=>`<b>${esc(x.label)}</b>: ${x.p24.toFixed(2)}″ next 24 h · ${x.p48.toFixed(2)}″ next 48 h${x.pct!=null?` · flow now ${x.pct}% of median`:""}`)});
+ if(rec.length)A.push({id:"rise",sev:rec.some(x=>x.bad)?"high":"med",icon:"📈",title:"River rising / recently raised",text:"From live USGS flow (rising ≥5% in 6 h while ≥110% of median, or ≥150% of median) and recent rain (≥0.75″ in 24 h or ≥1.25″ in 48 h). Expect stained water and fish tight to the edges; give it 2–4 days to clear after a big event.",list:rec.map(x=>`<b>${esc(x.label)}</b>: ${x.pct!=null?x.pct+"% of median":"flow n/a"}${x.rising?" · rising now":""}${x.q24!=null?` · rain last 24 h ${x.q24.toFixed(2)}″, 48 h ${x.q48.toFixed(2)}″`:""}`)});
+ // water temps
+ const wt=[];for(const id of ALL){const t=INFO[id]?.tempF;if(t!=null&&t>=65)wt.push({id,t})}
+ if(wt.length)A.push({id:"wtemp",sev:wt.some(x=>x.t>68)?"high":"med",icon:"🌡️",title:wt.some(x=>x.t>68)?"Water too warm — stop fishing for trout":"Water temp in the stress range",text:"Live USGS water temperature. Above 68°F trout are in danger; 65–68°F is stressful — fish early, land fish fast.",list:wt.map(x=>`<b>${esc(NAME[x.id])}</b>: ${x.t.toFixed(1)}°F`)});
+ // good window
+ const gw=goodWindow(R);if(gw)A.push(gw);
+ const o={high:0,med:1,good:2,info:3};A.sort((a,b)=>o[a.sev]-o[b.sev]);return A}
+function goodWindow(R){if(!ST.ready||!ST.W.home)return null;const open=Object.entries(R).map(([l,ids])=>[l,ids.filter(id=>!(PAINT.has(id)&&paintClosed())&&INFO[id]&&(GCAP[INFO[id].t.cls]??5)>=4)]).filter(x=>x[1].length);if(!open.length)return null;
+ const now=ST.W.home.cur.time,nowH=hrt(now);let best=null;
+ for(let k=0;k<=2;k++){const r=rateDay(ST.W.home,k);if(!r)continue;if(k===0&&nowH>r.m.ss-.5)continue;let n=r.n,rivers=open.map(x=>x[0]);
+  if(k===0){const ok=open.filter(([l,ids])=>ids.some(id=>{const s=rateSite(id,0);return s&&s.n>=4}));rivers=ok.map(x=>x[0]);n=ok.length?Math.max(...open.flatMap(([l,ids])=>ids.map(id=>rateSite(id,0)?.n||0))):Math.min(n,3)}
+  if(n>=4&&rivers.length&&(!best||n>best.n))best={k,n,r,rivers}}
+ if(!best)return null;const pos=best.r.R.filter(x=>x[1]>0).map(x=>x[0]);
+ return{id:"good",sev:"good",icon:"🟢",title:`Good window: ${best.k===0?"today":best.k===1?"tomorrow ("+dName(best.r.m.date)+")":dName(best.r.m.date,1)} — ${bite(best.n)}`,html:true,text:`${pos.map(esc).join("; ")||"Conditions line up"}.<br><b>Best bite windows:</b> ${winTxt(best.r)}.<br><b>Rivers with workable flow/temps${best.k?" right now (recheck the gage that day)":""}:</b> ${best.rivers.map(esc).join(", ")}.${open.length<Object.keys(R).length&&Object.entries(R).some(([l,ids])=>ids.every(id=>PAINT.has(id)))&&paintClosed()?` <span class="sub">Paint Creek is closed to trout until ${paintOpens()}.</span>`:""}`}}
+function renderAlerts(){const el=$("wxAlerts");if(!el)return;let A=[];try{A=buildAlerts()}catch(e){console.warn("alerts",e)}
+ const c={high:0,med:0,good:0,info:0};A.forEach(a=>c[a.sev]++);
+ const chips=["high","med","good","info"].filter(k=>c[k]).map(k=>`<span class="chip ${k}">${c[k]} ${k==="high"?"warning":k==="med"?"caution":k==="good"?"good window":"note"}${c[k]>1&&k!=="med"&&k!=="info"?"s":""}</span>`).join(" ");
+ const items=A.map(a=>`<div class="al ${a.sev}"><h4>${a.icon} ${a.html?a.title:esc(a.title)}</h4><div>${a.html?a.text:esc(a.text)}</div>${a.list?`<ul>${a.list.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}</div>`).join("");
+ const note=ST.ready?"":`<div class="wxok">⚠️ Weather forecast unavailable${ST.err?" ("+esc(ST.err)+")":""} — showing only live USGS-based alerts.</div>`;
+ el.innerHTML=`<details class="wxal" open><summary>🚨 Alerts &amp; highlights ${chips||'<span class="chip good">all clear</span>'}</summary>${items||'<div class="wxok">✅ No rain/river-rise, heat, cold, wind or storm alerts right now.</div>'}${note}<div class="wxok sub" style="background:var(--paper)">Alert rules: rain ≥0.5″/24 h or ≥1″/48 h (forecast) · river ≥150% of median or rising · water &gt;68°F (65–68 caution) · highs ≥85°F · lows ≤25°F or highs ≤35°F · wind avg ≥15 / gusts ≥30 mph · thunderstorm codes · NWS watches/warnings. Forecast from Open-Meteo model data; alerts from NWS.</div></details>`}
+// ---------- Home weather panel ----------
+function dayCard(W,k,id){const r=id!=="home"?rateSite(id,k):rateDay(W,k);if(!r)return"";const m=r.m,[em,tx]=WC(m.code);return`<div class="wxd${ST.k===k?" on":""}" data-k="${k}" role="button" tabindex="0"><div class="dn">${k===0?"Today":dName(m.date)}</div><div class="em" title="${tx}">${em}</div><div class="hl"><b>${Math.round(m.tmax)}°</b> <span>${Math.round(m.tmin)}°</span></div><div class="pr">${m.precip>=.01?m.precip.toFixed(2)+"″ 💧":"dry"}</div><div class="sub">💨 ${Math.round(m.wind)}${m.gust>=25?"/"+Math.round(m.gust):""}</div>${bite(r.n,r.gage)}</div>`}
+function hourStrip(W,m,r){let h="";for(let i=0;i<24;i++){const ix=m.st+i;if(W.H.time[ix]==null)break;const c=WC(W.H.weather_code[ix]),p=W.H.precipitation[ix]||0,win=r.wins.some(w=>i+.5>=w.a&&i+.5<=w.b),nw=ix===W.i0;
+  h+=`<div class="hr${win?" win":""}${nw?" nowh":""}"><div>${hr12(i).replace(":00","").replace(" ","")}</div><div class="em" title="${c[1]}">${c[0]}</div><b>${Math.round(W.H.temperature_2m[ix])}°</b><div class="${p>=.01?"pp":"z"}">${p>=.01?p.toFixed(2)+"″":"–"}</div><div>💨${Math.round(W.H.wind_speed_10m[ix])}</div></div>`}
+ return`<div class="hscr"><div class="hrs">${h}</div></div><div class="sub">Hourly: rain (inches), wind (mph). Green hours = suggested bite windows; outlined = now.</div>`}
+function renderPanel(){const el=$("wxBody");if(!el)return;
+ if(!ST.ready){el.innerHTML=`<div class="wxfail">⚠️ Weather unavailable right now${ST.err?" ("+esc(ST.err)+")":""}. Everything else on this page still works. <button id="wxRetry">Retry</button></div>`;const b=$("wxRetry");if(b)b.onclick=()=>{el.innerHTML='<div class="sub">Loading weather…</div>';try{Object.keys(sessionStorage).filter(k=>k.startsWith('wx1:')).forEach(k=>sessionStorage.removeItem(k))}catch(e){}loadAll()};return}
+ const id=ST.loc,W=ST.W[id]||ST.W.home,c=W.cur,[em,tx]=WC(c.weather_code),i24=past(W,24),n24=next(W,24),p3=W.H.pressure_msl[W.i0-3],pd=(c.pressure_msl-p3)*.02953;
+ const r=id!=="home"?rateSite(id,ST.k):rateDay(W,ST.k),m=r.m;
+ const dets=r?`<div class="wxdet"><h4>${ST.k===0?"Today":dName(m.date,1)} · ${MON[m.mon-1]} ${m.d} — ${bite(r.n,r.gage)}</h4>
+  <div class="sub">${WC(m.code)[0]} ${WC(m.code)[1]} · high ${Math.round(m.tmax)}° / low ${Math.round(m.tmin)}° · rain ${m.precip.toFixed(2)}″ (${m.pop??"–"}% chance) · wind avg ${Math.round(m.wind)} mph, gusts ${Math.round(m.gust)} · ☀️ ${hr12(m.sr)} → ${hr12(m.ss)} · ${moon(m.y,m.mon,m.d)} <i>(not scored)</i></div>
+  <div style="margin:6px 0"><b>🕐 Suggested windows:</b> ${winTxt(r)}</div><b>Why this rating</b>${whyH(r.R)}${hourStrip(W,m,r)}</div>`:"";
+ el.innerHTML=`<div class="wxhd"><label class="sub">Location <select id="wxLoc">${PSEL.map(([k,n])=>`<option value="${k}"${k===id?" selected":""}>${n}</option>`).join("")}</select></label><span class="sub">Updated ${new Date(ST.at).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})} ET · refreshes every 20 min</span></div>
+ <div class="wxnow"><div class="big" title="${tx}">${em}</div><div><div class="tmp">${Math.round(c.temperature_2m)}°F <span style="font-size:.45em;font-weight:400;font-family:var(--sans)">feels ${Math.round(c.apparent_temperature)}°</span></div><div class="cond">${tx} · cloud ${c.cloud_cover}%</div></div>
+  <div class="kvs"><span>💨 Wind <b>${Math.round(c.wind_speed_10m)} mph ${cmp(c.wind_direction_10m)}</b> (gusts ${Math.round(c.wind_gusts_10m)})</span><span>🧭 Pressure <b>${(c.pressure_msl*.02953).toFixed(2)} inHg</b> ${Math.abs(pd)<.03?"steady":pd>0?"▲ rising":"▼ falling"} (${pd>0?"+":""}${pd.toFixed(2)} / 3 h)</span><span>💧 Rain last 24 h <b>${i24.toFixed(2)}″</b> · next 24 h <b>${n24.toFixed(2)}″</b></span><span>💦 Humidity <b>${c.relative_humidity_2m}%</b></span></div></div>
+ <div class="wxdays">${[0,1,2,3,4,5,6].map(k=>dayCard(W,k,id)).join("")}</div>${dets}
+ <details class="wxdet"><summary style="cursor:pointer;font-weight:700;color:var(--g800)">How is the 🎣 bite rating scored? (rule of thumb — not scientific)</summary>
+  <p class="sub">Each day starts at 0 and adds or subtracts points, then maps to 1–5: ≥+3 Great, ≥+1.5 Good, ≥−0.5 Fair, ≥−2.5 Slow, below that Poor. The reasons are listed for every day.</p>
+  <ul class="why"><li><span class="dl">±</span>Rain today: heavy ≥1″ −3 · steady ≥0.5″ −2 · showers ≥0.25″ −1 · light drizzle on a calm day +0.5; rain in the prior 48 h ≥0.75″ −1, ≥1.5″ −2 (blowout/stain risk)</li>
+  <li><span class="dl">±</span>Sky: overcast (cloud ≥60%) +1 · bright sun on a warm day (≥70°F) −0.5</li>
+  <li><span class="dl">±</span>Wind (7 AM–7 PM avg): ≤8 mph +0.5 · 10–15 −1 · 15–20 −2 · ≥20 or gusts ≥35 −3</li>
+  <li><span class="dl">±</span>Pressure change 6 AM→6 PM: steady or slowly falling +1 · rising fast (&gt;5 hPa) −1 · falling fast 0 (front arriving)</li>
+  <li><span class="dl">±</span>Air temp: highs 50–78°F +0.5 · 78–85 −1 · ≥85 −2 · &lt;35 −1 · daily swing ≥30°F −0.5 · high drops ≥15°F from yesterday −1 · thunderstorms −2 and capped at 2</li>
+  <li><span class="dl">⚖</span>Where a USGS gage reports (today only), the gage rating caps the score: Good = no cap · Fair 4 · Stressed 2 · Poor/blown out/too warm 1</li></ul>
+  <p class="sub">Time windows: hot days (≥80°F) dawn and dusk; cold days (≤50°F) midday 11 AM–3 PM; otherwise morning and evening (plus midday in Mar/Apr/Oct/Nov). Moon phase is shown but not scored. Season/closures are not part of the rating (Paint Creek is closed to trout until ${paintOpens()}).</p></details>
+ <div class="wxsrc">Data: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo</a> model forecast (temperature, rain, wind, pressure, cloud, past 3 days of rain) and <a href="https://www.weather.gov/" target="_blank" rel="noopener">NWS</a> active alerts. Forecasts are model output at a ~5–10 km grid and can miss local storms.</div>`;
+ $("wxLoc").onchange=e=>{ST.loc=e.target.value;renderPanel()};
+ el.querySelectorAll(".wxd").forEach(d=>{const go=()=>{ST.k=+d.dataset.k;renderPanel()};d.onclick=go;d.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}}})}
+// ---------- per-card / river / top5 ----------
+function curLine(id){const W=ST.W[id]||ST.W.home;if(!W)return"";const c=W.cur,[em,tx]=WC(c.weather_code);return`${em} <b>${Math.round(c.temperature_2m)}°F</b> ${tx.toLowerCase()} · 💨 ${Math.round(c.wind_speed_10m)} mph · 💧 ${past(W,24).toFixed(2)}″ /24 h`}
+function fillCards(){document.querySelectorAll(".wxline[data-wxid]").forEach(el=>{const id=el.dataset.wxid;if(!ST.ready){el.innerHTML="";return}const r=rateSite(id,0);el.innerHTML=r?`${curLine(id)} ${bite(r.n,r.gage)}`:""});
+ document.querySelectorAll(".rvh[data-ids]").forEach(h=>{const sp=h.querySelector(".rvwx");if(!sp)return;if(!ST.ready){sp.innerHTML="";return}const ids=h.dataset.ids.split(",").filter(id=>INFO[id]);const ns=ids.map(id=>rateSite(id,0)?.n).filter(Boolean);sp.innerHTML=ns.length?`${bite(Math.max(...ns),true)} <span class="sub">today</span>`:""})}
+const WX={ready:()=>ST.ready,st:ST,
+ adj(id){if(!ST.ready)return 0;const r=rateSite(id,0);return r?(r.n-3)*.6:0},
+ top5(id){if(!ST.ready)return"";const r=rateSite(id,0);if(!r)return"";return` · ${curLine(id)} · ${bite(r.n,r.gage)}${PAINT.has(id)&&paintClosed()?' · <b title="Type 1 stream: fishing/possession last Sat in April–Sep 30">🚫 closed to trout till '+paintOpens()+"</b>":""}`},
+ fillModal(id,el){const draw=()=>{if(!el.isConnected)return;if(!ST.ready){el.innerHTML=`<div class="wxbox"><h4>🌦️ Weather &amp; bite rating</h4><div class="sub">${ST.err?"Weather unavailable right now.":"Loading weather…"}</div></div>`;return}
+   const r=rateSite(id,0),W=ST.W[id]||ST.W.home;const rr=rg()[RIVER_OF[id]]||[id];const b=rainRiver(RIVER_OF[id]||id,rr);
+   const days=[1,2,3].map(k=>{const q=rateDay(W,k);if(!q)return"";return`<div><b>${dName(q.m.date)}</b><br>${WC(q.m.code)[0]} ${Math.round(q.m.tmax)}°/${Math.round(q.m.tmin)}°<br>${q.m.precip>=.01?q.m.precip.toFixed(2)+"″":"dry"}<br>${bite(q.n)}</div>`}).join("");
+   el.innerHTML=`<div class="wxbox"><h4>🌦️ Weather &amp; bite rating here</h4><div style="margin-bottom:4px">${curLine(id)} · <b>Today:</b> ${bite(r.n,r.gage)}${PAINT.has(id)&&paintClosed()?` <span class="cls cU">closed to trout until ${paintOpens()}</span>`:""}</div>
+   <div class="sub">🕐 ${winTxt(r)}</div>${b?`<div class="sub">Rain next 24 h ${b.p24.toFixed(2)}″ · next 48 h ${b.p48.toFixed(2)}″ · last 24 h ${b.q24.toFixed(2)}″${b.p24>=.5||b.p48>=1?' · <b style="color:var(--bad)">⚠️ rise/stain risk</b>':""}</div>`:""}
+   <details><summary style="cursor:pointer;color:var(--link);min-height:28px">Why ${r.n}/5 today (rule of thumb)</summary>${whyH(r.R)}</details>
+   <div class="wxmini">${days}</div><div class="sub">Rule-of-thumb score from weather${r.gage?" + the gage rating":""} — not scientific. Gage rating applies to now only; later days use weather alone. Open-Meteo model data.</div></div>`};
+  draw();if(!ST.ready){const f=()=>{removeEventListener("wxready",f);draw()};addEventListener("wxready",f)}},
+ async fillExplore(s,el){el.innerHTML='<div class="sub">Loading weather…</div>';
+  try{const c=await omGet([{lat:s.lat,lng:s.lng}]),W=prep(c.j[0]),r=rateDay(W,0),{F,p24,p48}=flagsFor(W);let gv=null;try{const L=window._xd().LIVE;for(const g of s.gages){const v=L[g.id]?.view;if(v){gv=v;break}}}catch(e){}
+   let n=r.n,R=[...r.R];if(gv){const cap=GCAP[gv.t.cls]??5;if(cap<n){n=cap;R.push([`Nearest gage “${gv.t.label}” caps today at ${cap}/5`,0])}else R.push([`Nearest gage “${gv.t.label}” — no cap`,0])}
+   const days=[1,2,3].map(k=>{const q=rateDay(W,k);return q?`<div><b>${dName(q.m.date)}</b><br>${WC(q.m.code)[0]} ${Math.round(q.m.tmax)}°/${Math.round(q.m.tmin)}°<br>${q.m.precip>=.01?q.m.precip.toFixed(2)+"″":"dry"}<br>${bite(q.n)}</div>`:""}).join("");
+   const cu=W.cur,[em,tx]=WC(cu.weather_code),rain=p24>=.5||p48>=1;
+   el.innerHTML=`<div class="wxbox"><div>${em} <b>${Math.round(cu.temperature_2m)}°F</b> ${tx.toLowerCase()} · 💨 ${Math.round(cu.wind_speed_10m)} mph ${cmp(cu.wind_direction_10m)} · 💧 ${past(W,24).toFixed(2)}″ /24 h · <b>Today:</b> ${bite(n,!!gv)}</div>
+   <div class="sub">🕐 ${winTxt(r)} · rain next 24 h ${p24.toFixed(2)}″, 48 h ${p48.toFixed(2)}″${rain?' · <b style="color:var(--bad)">⚠️ rise/stain risk</b>':""}</div>
+   ${F.map(f=>`<div class="flag"><b>${f.icon} ${esc(f.title)}:</b> ${esc(f.text)}</div>`).join("")}
+   <details><summary style="cursor:pointer;color:var(--link);min-height:28px">Why ${n}/5 today (rule of thumb)</summary>${whyH(R)}</details><div class="wxmini">${days}</div>
+   <div class="sub">Rule-of-thumb score from weather${gv?" + nearest gage":""} — not scientific; it ignores whether the season is open (see status above). Open-Meteo model data at this stream's location.</div></div>`}
+  catch(e){el.innerHTML=`<div class="sub">Weather unavailable for this stream right now.</div>`}}};
+window.WX=WX;
+// ---------- boot ----------
+function refresh(){renderAlerts();renderPanel();fillCards();try{if(window.renderBanner)window.renderBanner()}catch(e){console.warn(e)}}
+$("wxBody").innerHTML='<div class="sub">Loading weather…</div>';
+const dr=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
+let wxDone=false;addEventListener("wxready",()=>{wxDone=true;dr.then(refresh)});dr.then(()=>{if(wxDone)return;renderAlerts();fillCards()});
+loadAll();setInterval(()=>{if(!document.hidden)loadAll()},TTL);
 })();
 </script></body></html>
