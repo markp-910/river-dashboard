@@ -1,11 +1,56 @@
 #!/usr/bin/env python3
 """Regenerate ../external-catches.json (served by the dashboard) from research/ files.
 Usage: python3 tools/build_external.py   (run from repo root or anywhere)
-Inputs: research/external-catches.json (required), research/seasonal-timing.json (optional)."""
-import json, os, re, collections, datetime
+Inputs: research/external-catches.json (required), research/seasonal-timing.json (optional),
+research/fishbrain-raw.csv (optional; columns water,date,species,size,gear,cr,pv_id,note; 'MINE ' water prefix = Mark's own catches)."""
+import json, os, re, collections, datetime, csv, hashlib
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 R = lambda *p: os.path.join(ROOT, *p)
 recs = json.load(open(R("research", "external-catches.json")))
+
+# --- Fishbrain import (research/fishbrain-raw.csv). Fishbrain gives only the water name (exact spots hidden), so every record is placed
+# on that water's line from rivers.geojson with deterministic jitter (hash of pv_id) and precision "area". No angler usernames are stored.
+FB_STATUS = {"updated": "2026-10-16",
+  "text": "Fishbrain sweep (updated Oct 16, 2026): Paint Creek covered Oct 2025\u2013Oct 2026 (a few cards skipped); Clinton River covered back to about mid-Aug 2026 only (newest ~100 of ~200 cards, partly skimmed); East Pond Creek covered for the last year. North Branch Clinton, Belle, Kearsley, Huron, Johnson, Mill Creek and St. Clair River not yet read."}
+FB_WATERS = {  # water -> (rivers.geojson name, bbox lat0,lat1,lng0,lng1, Fishbrain Explore page, fixed point)
+  "Paint Creek": ("Paint Creek", (42.66, 42.78, -83.30, -83.10), "https://fishbrain.com/fishing-waters/L1Y7Xvbt", None),
+  "Clinton River": ("Clinton River", (42.55, 42.72, -83.26, -82.85), "https://fishbrain.com/fishing-waters/FWP_xjdL", None),
+  "East Pond Creek": ("East Pond Creek", (42.75, 42.90, -83.05, -82.95), "https://fishbrain.com/fishing-waters/xojKgtBJ", None),
+  "Lake Saint Clair": (None, None, "https://fishbrain.com/anglers/Markp910", (42.60, -82.785)),
+}
+def _line_pts(name, box):
+    g = json.load(open(R("rivers.geojson"))); pts = []
+    for f in g["features"]:
+        if f["properties"].get("n") != name: continue
+        for line in f["geometry"]["coordinates"]:
+            for lng, lat in line:
+                if box[0] <= lat <= box[1] and box[2] <= lng <= box[3]: pts.append((lat, lng))
+    return sorted(set(pts))
+def fishbrain_records():
+    path = R("research", "fishbrain-raw.csv")
+    if not os.path.exists(path): return []
+    out, cache = [], {}
+    for row in csv.DictReader(open(path, encoding="utf-8")):
+        mine = row["water"].startswith("MINE "); w = row["water"][5:] if mine else row["water"]
+        if w not in FB_WATERS: print("skip unknown water", w); continue
+        gname, box, page, fixed = FB_WATERS[w]
+        h = int(hashlib.md5(row["pv_id"].encode()).hexdigest(), 16)
+        if fixed: lat, lng = fixed[0] + ((h % 1000) / 1000 - .5) * 0.02, fixed[1] + (((h >> 10) % 1000) / 1000 - .5) * 0.03
+        else:
+            if w not in cache: cache[w] = _line_pts(gname, box)
+            pts = cache[w]; lat, lng = pts[h % len(pts)]
+            lat += (((h >> 12) % 1000) / 1000 - .5) * 0.002; lng += (((h >> 22) % 1000) / 1000 - .5) * 0.002
+        label = {"Lake Saint Clair": "Lake St. Clair"}.get(w, w)
+        bits = ["Your Fishbrain catch" if mine else "Public Fishbrain catch"]
+        if row["gear"]: bits.append("Gear/bait: " + row["gear"])
+        if row["cr"].lower() == "yes": bits.append("Catch & release")
+        bits.append("Approximate \u2014 Fishbrain only gives the water name")
+        out.append({"date": row["date"], "species": row["species"], "size": row["size"] or None,
+            "location": label + (" (Mark\u2019s spot, hidden on Fishbrain)" if mine and "secret" in row["note"] else ""),
+            "lat": round(lat, 5), "lng": round(lng, 5), "precision": "area", "source": "Fishbrain \u2014 " + label + " Explore page",
+            "url": page, "note": " \u00b7 ".join(bits), "type": "catch/observation", "source_group": "Fishbrain"})
+    return out
+recs = recs + fishbrain_records()
 
 def group(sp):
     s = (sp or "").lower()
@@ -19,6 +64,7 @@ def group(sp):
     if "largemouth" in s: return "Largemouth bass"
     if "creek chub" in s or s.strip()=="chub": return "Creek chub"
     if "pike" in s: return "Northern pike"
+    if "rock bass" in s: return "Rock bass"
     if "walleye" in s: return "Walleye"
     return "Other"
 
@@ -90,7 +136,7 @@ else:
 _cnt = collections.Counter(c["source_group"] for c in catches)
 for r in RESERVED: _cnt.setdefault(r, 0)
 source_groups = [{"name": n, "color": SOURCE_COLORS.get(n), "count": c} for n, c in sorted(_cnt.items(), key=lambda kv: (-kv[1], kv[0]))]
-out = {"source_groups": source_groups, "generated": datetime.date.today().isoformat(), "dropped_captive": dropped, "timing_source": timing_src,
+out = {"source_groups": source_groups, "fishbrain_status": FB_STATUS, "generated": datetime.date.today().isoformat(), "dropped_captive": dropped, "timing_source": timing_src,
        "species": sorted({x["group"] for x in keep}), "sites": site_list, "catches": catches, "timing": timing, "seasonal": seasonal}
 json.dump(out, open(R("external-catches.json"), "w"), indent=1)
 print(f"wrote external-catches.json: {len(site_list)} stocking sites / {len(stock)} events, {len(catches)} catches/reports, dropped {dropped} captive, timing from {timing_src}")

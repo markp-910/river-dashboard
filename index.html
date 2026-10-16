@@ -63,6 +63,7 @@ summary.sec2::-webkit-details-marker{display:none}summary.sec2:before{content:"�
 .srcbar{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:8px 0 4px}.srcbar[hidden]{display:none}.srcttl{font-family:var(--serif,inherit);font-weight:700;color:var(--g800);font-size:.9em;flex:0 0 100%}#srcBtns{display:contents}
 .srcbar button{min-height:44px;padding:6px 12px;border-radius:22px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);font-size:.84em;cursor:pointer;font-weight:600;display:inline-flex;align-items:center;gap:7px;line-height:1.15;text-align:left}.srcbar button:hover{background:var(--cream2)}
 .srcbar button .sw{width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 1.5px rgba(31,58,43,.55);flex:0 0 auto}.srcbar button .cnt{font-weight:400;opacity:.75}
+.srcnote{flex:0 0 100%;font-size:.82em;color:var(--ink);margin-top:2px}.srcnote summary{cursor:pointer;font-weight:600;color:var(--g800);min-height:28px}.srcnote p{margin:4px 0 0;line-height:1.35}
 .srcbar button.off{opacity:.55;background:transparent;font-weight:400}.srcbar button.off .nm{text-decoration:line-through}.srcbar button.empty{opacity:.7;border-style:dashed;font-weight:400}.srcbar button.srcall{font-weight:600;color:var(--g800)}
 @media(max-width:480px){.srcbar button{font-size:.8em;padding:6px 10px}}
 .logbox{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 12px;margin:10px 0}.logbox summary{cursor:pointer;font-weight:700;color:var(--g800);min-height:32px}
@@ -217,7 +218,7 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 <div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
 <div id="map"></div>
 <div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
-<div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button></div>
+<div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button><details class="srcnote" id="srcNote" hidden><summary>ℹ️ Fishbrain sweep status</summary><p id="srcNoteTxt"></p></details></div>
 <div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
@@ -403,6 +404,7 @@ async function loadExternal(){let X;try{X=await (await fetch("external-catches.j
  for(const g of Object.values(SG)){const b=document.createElement("button");b.type="button";b.className="srcbtn";b.dataset.l=g.key;b.title=g.name+" — reported catches (marker color)";
   b.innerHTML=`<i class="sw" style="background:${g.color}"></i><span class="nm">${esc(g.name)}</span> <span class="cnt">(0)</span>`;box.appendChild(b);_bindLayer(b,g.key);
   g.upd=()=>{b.querySelector(".cnt").textContent=`(${g.n})`;b.classList.toggle("empty",!g.n);b.title=g.name+(g.n?` — ${g.n} reported catch${g.n>1?"es":""} (marker color)`:" — no records yet")}}
+ if(X.fishbrain_status&&SG.Fishbrain){document.getElementById("srcNoteTxt").textContent=X.fishbrain_status.text+" Fishbrain only gives the water name, so these markers are approximate (dashed circles placed along the river). Anglers' names are not shown.";document.getElementById("srcNote").hidden=false;{const fb=SG.Fishbrain,u=fb.upd;fb.upd=()=>{u();const bb=box.querySelector('[data-l="'+fb.key+'"]');if(bb)bb.title+=" · "+X.fishbrain_status.text}}}
  window._srcSync=()=>{const ks=Object.values(SG).map(g=>g.key),anyOn=ks.some(k=>!_hid.has(k));allB.textContent=anyOn?"All off":"All on";allB.hidden=ks.length<3};
  allB.onclick=()=>{const ks=Object.values(SG).map(g=>g.key),anyOn=ks.some(k=>!_hid.has(k));ks.forEach(k=>anyOn?_hid.add(k):_hid.delete(k));_saveHid();box.querySelectorAll("button").forEach(b=>b._ap());_srcSync()};
  const pass=e=>{const y=+e.date.slice(0,4);return y>=+y1.value&&y<=+y2.value&&(!sp.value||e.group===sp.value)};
