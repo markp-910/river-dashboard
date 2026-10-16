@@ -1,0 +1,1946 @@
+{
+ "generated": "2026-10-16",
+ "hub_asof": "October 16, 2026, 10:15 AM",
+ "hub_asof_iso": "2026-10-16T10:15:00-04:00",
+ "sources": {
+  "tracker": "https://michiganflyfishinghub.com/michigan-salmon-run/",
+  "steelhead": "https://michiganflyfishinghub.com/michigan-steelhead-run/",
+  "clinton": "https://michiganflyfishinghub.com/rivers/clinton-river/"
+ },
+ "method": "Hub-tracker windows are the Michigan Fly Fishing Hub's 'typical' start/end and peak dates per river and species (it says they are anchored to DNR weir operating dates - Little Manistee chinook weir ~Aug 15-Nov 15, Platte coho mid-Sep to late Oct - and shifted by latitude); they are a model, not a forecast. The Hub's own steelhead page says DNR publishes no per-river steelhead timing. Regional entries are month-level (first to last day of the month) from forum, angler-article or agency text.",
+ "species": {
+  "chinook": "Chinook",
+  "coho": "Coho",
+  "pink": "Pink",
+  "steelhead": "Steelhead",
+  "atlantic": "Atlantic",
+  "brown": "Lake-run brown",
+  "salmon": "Salmon (unspecified)",
+  "mixed": "Mixed fall run"
+ },
+ "rivers": [
+  {
+   "id": "manistee-lower",
+   "name": "Manistee River (lower, below Tippy Dam)",
+   "hub_name": "Big Manistee River",
+   "lake": "Michigan",
+   "counties": "Manistee County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/lower-manistee-river/",
+   "explore": [],
+   "home": [],
+   "match_note": "Hub's run water is the LOWER Manistee below Tippy Dam. Explore's 'Upper Manistee' (flies-only M-72 to CCC Bridge) is a different, inland reach above the run - not matched.",
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-25",
+     "end": "10-25",
+     "peak": [
+      "09-15",
+      "10-05"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-13",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-28"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-20",
+     "end": "04-10",
+     "peak": [
+      "10-20",
+      "12-15"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "note": "The Manistee holds steelhead in every month of the year. Fall fish arrive behind the salmon and stay all winter.",
+     "grain": "day"
+    },
+    {
+     "sp": "brown",
+     "start": "09-15",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-31"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Tippy Dam Tippy Dam stops the run about 27 river miles up from Lake Michigan. Everything that enters the river ends up below it.",
+   "access": "Tippy Dam pedestrian access, High Bridge, Bear Creek, Rainbow Bend, Blacksmith Bayou, Sixth Street in Manistee. Both. The dam pool and High Bridge wade; the water between the ramps is float country.",
+   "crowding": "The heaviest salmon crowd in Michigan. Tippy in late September is shoulder-to-shoulder from before first light, and it stays that way. If crowds bother you, fish the lower river from a boat or come in late October for steelhead instead.",
+   "regs": "Below Tippy is open all year with gear restrictions that change by section. Snagging is illegal statewide and it is enforced hard here.",
+   "throw": "Kings: heavy tube flies, egg-sucking leeches, big articulated streamers on sink tips. Steelhead behind them: single eggs, nuke eggs, small stones, swung buggers.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "Water temp": "58°F",
+    "Flow": "2,110 cfs · high↑",
+    "Gauge": "near Wellston",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "little-manistee",
+   "name": "Little Manistee River",
+   "hub_name": "Little Manistee River",
+   "lake": "Michigan",
+   "counties": "Manistee & Lake Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/little-manistee-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-21",
+     "end": "10-21",
+     "peak": [
+      "09-11",
+      "10-01"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "Runs early — it is a small, cold river and fish push on the first real bump.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-22",
+     "end": "04-12",
+     "peak": [
+      "10-22",
+      "12-17"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "note": "Source of Michigan’s wild steelhead brood stock. Every steelhead stocked in the state traces back to this river.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "DNR weir at Six Mile Bridge The weir is the hard stop from mid-August to mid-November, and again for steelhead in March and April.",
+   "access": "Nine Mile Bridge, Six Mile Bridge, Indian Bridge, Johnson Bridge, Old Stronach. Wade only in most of it. Small water, tight cover.",
+   "crowding": "Busy but not Tippy-busy. The weir stretch draws a crowd; walk twenty minutes and it thins out fast.",
+   "regs": "Gear-restricted water in sections — check the current DNR guide before you go. The weir stretch has its own closures.",
+   "throw": "Small and sparse. Single eggs, nymphs, small buggers. This is not a river for the big articulated stuff.",
+   "weir": "Little Manistee River Weir — DNR runs the chinook weir from about 15 August to about 15 November, and the steelhead weir from the first two weeks of March into mid-April. The hotline is updated daily when the weir is busy — it is the closest thing Michigan has to a live fish count. Hotline: 231-775-9727 ext. 6072",
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "Water temp": "52°F",
+    "Flow": "143 cfs↑",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "pere-marquette",
+   "name": "Pere Marquette River",
+   "hub_name": "Pere Marquette River",
+   "lake": "Michigan",
+   "counties": "Lake & Mason Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/pere-marquette-river/",
+   "explore": [
+    "pere-marquette"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-27",
+     "end": "10-27",
+     "peak": [
+      "09-17",
+      "10-07"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-12",
+     "end": "11-14",
+     "peak": [
+      "09-30",
+      "10-27"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "The flies-only water above Gleason’s Landing is the most famous steelhead fly water in the Midwest.",
+     "grain": "day"
+    },
+    {
+     "sp": "brown",
+     "start": "09-15",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-31"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None — undammed to Lake Michigan One of the few large Michigan rivers with no dam between the lake and the headwaters. Fish spread through the whole system instead of stacking below a wall.",
+   "access": "Gleason’s Landing, Green Cottage, Rainbow Rapids, Bowman Bridge, Sulak, Upper Branch Bridge, Custer. Both. The flies-only stretch wades well; below Bowman it is float water.",
+   "crowding": "Heavy in the flies-only water during the salmon push, and the etiquette is taken seriously — step in above someone here and you will hear about it.",
+   "regs": "Flies-only, no-kill water from M-37 down to Gleason’s Landing. Know exactly where that boundary is before you rig up.",
+   "throw": "Kings: chartreuse and black tubes, big rubber-legged nymphs. Steelhead: eggs, stones, small streamers on the swing.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "no sensor",
+    "Flow": "542 cfs · high↑",
+    "Gauge": "at Scottville",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "muskegon",
+   "name": "Muskegon River",
+   "hub_name": "Muskegon River",
+   "lake": "Michigan",
+   "counties": "Newaygo & Muskegon Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/muskegon-river/",
+   "explore": [
+    "muskegon-croton"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-30",
+     "end": "10-30",
+     "peak": [
+      "09-20",
+      "10-10"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "Later than the northern rivers — fish have 45 miles to cover and the river is big enough to hold its heat.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-15",
+     "end": "11-17",
+     "peak": [
+      "10-03",
+      "10-30"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "note": "A genuine year-round steelhead river. The tailwater keeps flowing and fishing when everything else is locked up.",
+     "grain": "day"
+    },
+    {
+     "sp": "brown",
+     "start": "09-18",
+     "end": "11-18",
+     "peak": [
+      "10-04",
+      "11-03"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Croton Dam Croton is the upper stop, about 45 river miles from Muskegon Lake. That is a long way for a fish to travel, which is part of why the Muskegon runs later than the rivers to its north.",
+   "access": "Croton Dam, Pine Street, Thornapple, Henning Park, Bridgeton, Newaygo. Mostly float. There is wadeable water below Croton and at Newaygo, but the Muskegon is a boat river.",
+   "crowding": "Busy below Croton, spread out everywhere else. The size of the river absorbs people better than the Manistee does.",
+   "regs": "Open year-round below Croton. Gear restrictions vary by reach.",
+   "throw": "Big water, big flies for kings. For steelhead the Muskegon is classic indicator-nymphing and swung-fly water in equal measure.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "63°F",
+    "Flow": "1,420 cfs · low↑",
+    "Gauge": "near Croton",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "betsie",
+   "name": "Betsie River",
+   "hub_name": "Betsie River",
+   "lake": "Michigan",
+   "counties": "Benzie County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/betsie-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-19",
+     "end": "10-19",
+     "peak": [
+      "09-09",
+      "09-29"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "One of the earliest king runs in the state. Frankfort harbour fish are in the river while the southern rivers are still waiting.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-06",
+     "end": "11-08",
+     "peak": [
+      "09-24",
+      "10-21"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-23",
+     "end": "04-13",
+     "peak": [
+      "10-23",
+      "12-18"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Homestead Dam Homestead is the stop, and it concentrates fish the way Tippy does on a smaller scale.",
+   "access": "Homestead Dam, River Road, Grace Road, Psutka Road, Kurick Road. Wade above; float the lower river.",
+   "crowding": "Homestead Dam in late September is one of the more chaotic scenes in Michigan. The lower river is calmer.",
+   "regs": "Section-specific gear restrictions. Check the current guide.",
+   "throw": "Small-river tactics. Eggs, nymphs, sparse streamers.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 14 named Chinook salmon here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "platte",
+   "name": "Platte River",
+   "hub_name": "Platte River",
+   "lake": "Michigan",
+   "counties": "Benzie County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/platte-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-20",
+     "end": "10-20",
+     "peak": [
+      "09-10",
+      "09-30"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-04",
+     "end": "11-06",
+     "peak": [
+      "09-22",
+      "10-19"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "DNR describes returning adults as arriving mid-September through late October. If you want coho, this is the river.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "DNR weir below the hatchery The Platte is Michigan’s coho river — the state’s main coho egg-collection site is here.",
+   "access": "Platte River Campground, the US-31 bridge, Deadstream Road, the lower river and Platte Bay. Wade. Small, clear, and easy to spook.",
+   "crowding": "Genuinely heavy during the coho run, and the lower river is a snagging-enforcement hotspot every year. Fish it clean and expect to be watched.",
+   "regs": "Special regulations apply around the weir and on the lower river. Read the current guide carefully — this stretch has more rule changes than most.",
+   "throw": "Coho take a fly better than kings do. Small bright streamers, comets, egg patterns.",
+   "weir": "Platte River State Fish Hatchery & Weir — The main coho egg-collection site for the upper Great Lakes. DNR puts adult returns at mid-September to late October, which is the most authoritative coho window published anywhere.",
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "Water temp": "no sensor",
+    "Flow": "159 cfs↑",
+    "Gauge": "at Honor",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "white",
+   "name": "White River",
+   "hub_name": "White River",
+   "lake": "Michigan",
+   "counties": "Muskegon & Oceana Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/white-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-26",
+     "end": "10-26",
+     "peak": [
+      "09-16",
+      "10-06"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-11",
+     "end": "11-13",
+     "peak": [
+      "09-29",
+      "10-26"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Hesperia Dam Hesperia has a fish ladder, so some fish continue above it, but the dam pool is where the fishing is.",
+   "access": "Hesperia Dam, Pines Point, Diamond Point, Sischo Bayou. Both. Wade at Hesperia and Pines Point; float the middle river.",
+   "crowding": "Moderate. The White is the quiet alternative to the Muskegon and it stays that way most years.",
+   "regs": "Standard Lake Michigan tributary regulations; check for gear-restricted sections.",
+   "throw": "Same as the Muskegon, scaled down.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "dnr_weekly": "DNR weekly report Oct 14 named lake-run brown trout and steelhead here",
+    "Water temp": "no sensor",
+    "Flow": "353 cfs · high↑",
+    "Gauge": "near Whitehall",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "grand",
+   "name": "Grand River",
+   "hub_name": "Grand River",
+   "lake": "Michigan",
+   "counties": "Kent & Ottawa Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/grand-river/",
+   "explore": [
+    "grand-river-gr"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "09-01",
+     "end": "11-01",
+     "peak": [
+      "09-22",
+      "10-12"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "The Grand runs late. Big, warm, slow water and a long way to travel.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-15",
+     "end": "11-17",
+     "peak": [
+      "10-03",
+      "10-30"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "note": "The Grand’s coho run is the best known in southern Michigan.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-28",
+     "end": "04-18",
+     "peak": [
+      "10-28",
+      "12-23"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Sixth Street Dam, Grand Rapids Forty miles of river from Lake Michigan to the dam, and the fish ladder at Sixth Street is the most-watched salmon spectacle in the state.",
+   "access": "Sixth Street Dam and Fish Ladder Park, Ann Street, Fulton Street, Jenison, Grand Haven. Wade at the dam; the rest is a boat river.",
+   "crowding": "Sixth Street is urban fishing with an audience — spectators on the walkway, anglers shoulder to shoulder. It is a spectacle as much as a fishery.",
+   "regs": "Snagging enforcement at Sixth Street is heavy and public. Know the rules before you cast.",
+   "throw": "Big water. Sink tips and weight, or fish the dam pool with the crowd.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "60°F",
+    "Flow": "1,780 cfs · low→",
+    "Gauge": "near Eastmanville",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "st-joseph-mi",
+   "name": "St. Joseph River",
+   "hub_name": "St. Joseph River",
+   "lake": "Michigan",
+   "counties": "Berrien County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/st-joseph-river/",
+   "explore": [],
+   "home": [],
+   "match_note": "Hub's St. Joseph is the Berrien County river (Lake Michigan, Niles / Berrien Springs). Explore's 'St. Joseph River of the Maumee' at Pittsford is a different river - not matched.",
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "09-03",
+     "end": "11-03",
+     "peak": [
+      "09-24",
+      "10-14"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "The latest king run in Michigan. The St. Joe stays warm well into September and fish will not push until it cools.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-17",
+     "end": "11-19",
+     "peak": [
+      "10-05",
+      "11-01"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-30",
+     "end": "04-20",
+     "peak": [
+      "10-30",
+      "12-25"
+     ],
+     "hub_status": "First fish",
+     "src": "hub-tracker",
+     "note": "Skamania-strain summer steelhead give the St. Joe a run no northern river has.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Berrien Springs Dam The ladder at Berrien Springs passes fish upstream, and there is a viewing chamber — one of the few places in Michigan you can watch the run underwater.",
+   "access": "Berrien Springs Dam, Niles, Buchanan, the lower river at St. Joseph. Mostly float. Limited wading below the dams.",
+   "crowding": "Busy at the dams, quiet elsewhere. Draws a lot of Indiana and Illinois traffic.",
+   "regs": "Different from the northern rivers in several respects. Read the southwest Michigan section of the guide.",
+   "throw": "Big water, heavy sink tips, or swing gear.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "64°F",
+    "Flow": "2,760 cfs · high↓",
+    "Gauge": "at Niles",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "kalamazoo",
+   "name": "Kalamazoo River",
+   "hub_name": "Kalamazoo River",
+   "lake": "Michigan",
+   "counties": "Allegan County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/kalamazoo-river/",
+   "explore": [
+    "kalamazoo-allegan"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "09-02",
+     "end": "11-02",
+     "peak": [
+      "09-23",
+      "10-13"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-16",
+     "end": "11-18",
+     "peak": [
+      "10-04",
+      "10-31"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-29",
+     "end": "04-19",
+     "peak": [
+      "10-29",
+      "12-24"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Allegan Dam Allegan is the stop, about 35 river miles up from Saugatuck.",
+   "access": "Allegan Dam, New Richmond, Saugatuck, Douglas. Float. Very little wadeable water.",
+   "crowding": "Moderate. The Kalamazoo is under-fished relative to what it holds.",
+   "regs": "Standard southwest Michigan tributary regulations.",
+   "throw": "Sink tips and weight in the dam pool; swung flies in the runs below New Richmond.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "Water temp": "62°F",
+    "Flow": "1,400 cfs↑",
+    "Gauge": "at New Richmond",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "boardman",
+   "name": "Boardman River",
+   "hub_name": "Boardman River",
+   "lake": "Michigan",
+   "counties": "Grand Traverse County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/boardman-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-22",
+     "end": "10-22",
+     "peak": [
+      "09-12",
+      "10-02"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-08",
+     "end": "11-10",
+     "peak": [
+      "09-26",
+      "10-23"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-23",
+     "end": "04-13",
+     "peak": [
+      "10-23",
+      "12-18"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Union Street Dam, Traverse City The run stops in downtown Traverse City. Increasingly called the Boardman-Ottaway — you will see both names.",
+   "access": "Union Street Dam, the Boardman Lake outlet, Cass Street. Wade. This is a short, urban run stretch.",
+   "crowding": "Downtown fishing with all that implies. Convenient, crowded, and it fishes better at dawn than at any other time.",
+   "regs": "City ordinances apply on top of DNR regulations near the dam.",
+   "throw": "Small-water tactics in a small space.",
+   "weir": "Boardman River Weir — DNR operates a weir here for egg collection.",
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "no sensor",
+    "Flow": "124 cfs · low↑",
+    "Gauge": "above Brown Bridge Road near Mayfield",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "bear-creek",
+   "name": "Bear Creek",
+   "hub_name": "Bear Creek",
+   "lake": "Michigan",
+   "counties": "Manistee County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/bear-creek/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-28",
+     "end": "10-28",
+     "peak": [
+      "09-18",
+      "10-08"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-13",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-28"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-27",
+     "end": "04-17",
+     "peak": [
+      "10-27",
+      "12-22"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None A Big Manistee tributary. Fish that run Bear Creek come off the Manistee, so it follows the Manistee’s timing by a few days.",
+   "access": "Coates Highway, Kerry Road, the mouth at the Manistee. Wade only.",
+   "crowding": "Light compared to the main river, which is most of the appeal.",
+   "regs": "Gear restrictions apply — check the guide.",
+   "throw": "Small and subtle. Clear water, spooky fish.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "manistique",
+   "name": "Manistique River",
+   "hub_name": "Manistique River",
+   "lake": "Michigan",
+   "counties": "Schoolcraft County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/manistique-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-21",
+     "end": "10-21",
+     "peak": [
+      "09-11",
+      "10-01"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "UP rivers cool early, so the run starts early.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-07",
+     "end": "11-09",
+     "peak": [
+      "09-25",
+      "10-22"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-21",
+     "end": "04-11",
+     "peak": [
+      "10-21",
+      "12-16"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Manistique Dam The dam in town is the stop, and the run stretch below it is short.",
+   "access": "The dam in Manistique, the boardwalk, the river mouth. Wade.",
+   "crowding": "Light by Lower Peninsula standards.",
+   "regs": "Upper Peninsula regulations differ from the Lower — check the right section of the guide.",
+   "throw": "Standard run tactics.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 14 named Chinook salmon here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "au-sable-foote",
+   "name": "Au Sable River (below Foote Dam)",
+   "hub_name": "Au Sable River (Foote Dam water)",
+   "lake": "Huron",
+   "counties": "Iosco County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/au-sable-river-foote-dam/",
+   "explore": [
+    "au-sable-foote-dam"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-27",
+     "end": "10-27",
+     "peak": [
+      "09-17",
+      "10-07"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "A Lake Huron run, and Huron’s chinook fishery is a fraction of what it once was — expect fewer fish than the Lake Michigan side.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-12",
+     "end": "11-14",
+     "peak": [
+      "09-30",
+      "10-27"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "note": "The Au Sable’s fall steelhead run is the reason to fish the lower river.",
+     "grain": "day"
+    },
+    {
+     "sp": "brown",
+     "start": "09-15",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-31"
+     ],
+     "hub_status": "Peak",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Foote Dam Foote is the stop, about 8 miles up from Lake Huron. The tailwater is the whole show.",
+   "access": "Foote Dam, Whirlpool, Rea Road, Five Channels, the mouth at Oscoda. Both. The Foote tailwater wades; below it is boat water.",
+   "crowding": "Moderate. Nothing like the Lake Michigan side.",
+   "regs": "Year-round water below Foote with gear restrictions in places.",
+   "throw": "A steelhead-first river in the fall. Swung flies work well here.",
+   "weir": null,
+   "snap": {
+    "status": "Peak",
+    "conf": "high",
+    "dnr_weekly": "DNR weekly report Oct 14 named Atlantic salmon here",
+    "Water temp": "61°F",
+    "Flow": "1,690 cfs · high↑",
+    "Gauge": "near Au Sable",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "rifle",
+   "name": "Rifle River",
+   "hub_name": "Rifle River",
+   "lake": "Huron",
+   "counties": "Arenac & Ogemaw Counties",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/rifle-river/",
+   "explore": [
+    "rifle-river"
+   ],
+   "home": [],
+   "match_note": "Run windows apply to the river as a whole (undammed to Saginaw Bay); Explore's pin is the upper reach near the Rifle River Recreation Area.",
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-27",
+     "end": "10-27",
+     "peak": [
+      "09-17",
+      "10-07"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-12",
+     "end": "11-14",
+     "peak": [
+      "09-30",
+      "10-27"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None — undammed to Saginaw Bay Fish run a long way up an undammed river, so they spread out rather than stacking.",
+   "access": "Omer, Sterling, Maple Ridge, and the state recreation area upstream. Wade, mostly.",
+   "crowding": "Omer gets busy, but the middle river stays quiet.",
+   "regs": "Check gear restrictions; sections differ.",
+   "throw": "Small to medium. Eggs and nymphs do most of the work.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "Water temp": "not reporting",
+    "Flow": "379 cfs · high↑",
+    "Gauge": "near Sterling",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "two-hearted",
+   "name": "Two-Hearted River",
+   "hub_name": "Two-Hearted River",
+   "lake": "Superior",
+   "counties": "Luce County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/two-hearted-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "steelhead",
+     "start": "09-20",
+     "end": "04-10",
+     "peak": [
+      "10-20",
+      "12-15"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "Lake Superior steelhead. A different fish and a different experience from the Lake Michigan side — fewer, wilder, in country with nobody else in it.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-04",
+     "end": "11-06",
+     "peak": [
+      "09-22",
+      "10-19"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None A wilderness river with no dam and no crowd. The run here is small and wild, and worth the drive for its own sake.",
+   "access": "Reed & Green Bridge, High Bridge, the mouth at Lake Superior. Wade, and expect to walk.",
+   "crowding": "None to speak of. That is the point.",
+   "regs": "Upper Peninsula regulations. Much of the corridor is state forest land.",
+   "throw": "Classic swung-fly water if you want it to be.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "rogue",
+   "name": "Rogue River",
+   "hub_name": "Rogue River",
+   "lake": "Michigan",
+   "counties": "Kent County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/rogue-river/",
+   "explore": [
+    "rogue-river"
+   ],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "09-02",
+     "end": "11-02",
+     "peak": [
+      "09-23",
+      "10-13"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "Late. These fish come up the whole Grand before they turn into the Rogue.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-28",
+     "end": "04-18",
+     "peak": [
+      "10-28",
+      "12-23"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "The Rogue is a steelhead river before it is a salmon river, and the spring run is the bigger one — local shops put it at roughly 30% of the fish in autumn and 70% in spring. Fish hold in the dam pool through the winter.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-16",
+     "end": "11-18",
+     "peak": [
+      "10-04",
+      "10-31"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Rockford Dam There is no fish ladder at Rockford, so the run ends in the dam pool. That leaves roughly seven miles of river between the dam and the Grand, and everything that comes up is in it.",
+   "access": "Peppler Park at the Rockford Dam, Pickett Park, Rogue River Park in Belmont, and the bridges at Jericho, Childsdale and Packer Drive. Mostly wadeable below the dam — one of the easiest rivers in West Michigan to get into. Some reaches have soft bottoms and fish better from a boat.",
+   "crowding": null,
+   "regs": "Type 4 water, with a rule specific to this river: between the Rockford Dam and the Grand you may keep up to five rainbow trout a day, no more than three of 15 inches or over and no more than one of 20 inches or over, year round. Check the current DNR guide before you go.",
+   "throw": "Steelhead standards — single eggs, beads, small stoneflies, swung buggers. Heavier tubes and articulated streamers while the salmon are in.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "Water temp": "no sensor",
+    "Flow": "129 cfs↑",
+    "Gauge": "near Rockford",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "black-sh",
+   "name": "Black River (South Haven)",
+   "hub_name": "Black River (South Haven)",
+   "lake": "Michigan",
+   "counties": "Van Buren County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/black-river-south-haven/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-29",
+     "end": "10-29",
+     "peak": [
+      "09-19",
+      "10-09"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "DNR reports here say \"salmon\" without always naming the species, so treat chinook as likely rather than confirmed.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-14",
+     "end": "11-16",
+     "peak": [
+      "10-02",
+      "10-29"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "The species DNR names for this river by name — coho taken from shore below the bridge and at the mouth in early October.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-27",
+     "end": "04-17",
+     "peak": [
+      "10-27",
+      "12-22"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Not published Seventeen dams sit in this watershed and the watershed plan calls most of them impassable, but nobody publishes which one the run reaches first. What is documented is that the river is paddleable about twenty miles from Bangor down to the lake.",
+   "access": "Black River Park and marina on Dunkley Avenue, SHOUT Park beside it, the South Haven piers and the Harborwalk. Shore and boat. Nothing published describes the lower river as wading water, so do not plan on it.",
+   "crowding": null,
+   "regs": "The mainstem is not a designated trout stream, so statewide rules apply. A segment of the South Branch is separately designated.",
+   "throw": "Big-water tactics near the mouth. Spawn imitations, beads and heavy streamers rather than anything delicate.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "no sensor",
+    "Flow": "163 cfs↑",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "bear-petoskey",
+   "name": "Bear River",
+   "hub_name": "Bear River",
+   "lake": "Michigan",
+   "counties": "Emmet County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/bear-river-petoskey/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "pink",
+     "start": "08-20",
+     "end": "10-15",
+     "peak": [
+      "09-08",
+      "09-30"
+     ],
+     "hub_status": "Over",
+     "src": "hub-tracker",
+     "note": "DNR reported pink salmon here in October 2025 alongside the chinook and coho. Pinks are odd-year dominant in Michigan, so an even year is thinner — but not empty, because some fish return at two years old and some at three.",
+     "grain": "day"
+    },
+    {
+     "sp": "chinook",
+     "start": "08-25",
+     "end": "10-25",
+     "peak": [
+      "09-15",
+      "10-05"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "DNR stocks about 5,000 yearling steelhead a year into the lower river, along with a thousand brown trout.",
+     "grain": "day"
+    },
+    {
+     "sp": "brown",
+     "start": "09-15",
+     "end": "11-15",
+     "peak": [
+      "10-01",
+      "10-31"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Lake Street Dam, Petoskey Four of this river’s historic dams are gone. This one is not, and it still blocks the run close to the mouth — so the fishable water is a short stretch through downtown Petoskey. The whitewater park is above the dam and did not open passage. A study of what to do with the dam was still unresolved as of 2026.",
+   "access": "Bear River Valley Recreation Area, entered from West Lake Street or Sheridan Street; the parking beneath the US-31 bridge; and Bayfront Park at the mouth. Wade and bank, in a short reach of pools and riffles dropping through town.",
+   "crowding": "Busy, and openly so. Anglers are on the mouth in downtown Petoskey through the run in every kind of weather, and the single-hook rule above the footbridge exists because of the pressure the dam pool attracts.",
+   "regs": "Read this one twice. From the north edge of the footbridge above Lake Street up to the Lake Street Dam you are restricted to ONE single-pointed, unweighted hook no larger than half an inch from point to shank. That is an anti-snagging rule on a short, crowded dam pool and it is enforced. Above the footbridge the river is Type 4 water up to Walloon Lake.",
+   "throw": "Small and legal. Single eggs and beads on a single unweighted hook in the restricted reach — weight goes on the leader, not the fly, and know the rule before you tie anything on.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 14 named salmon here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "cheboygan",
+   "name": "Cheboygan River",
+   "hub_name": "Cheboygan River",
+   "lake": "Huron",
+   "counties": "Cheboygan County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/cheboygan-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "pink",
+     "start": "08-20",
+     "end": "10-15",
+     "peak": [
+      "09-08",
+      "09-30"
+     ],
+     "hub_status": "Over",
+     "src": "hub-tracker",
+     "note": "One of five northern Lake Huron rivers with an established pink salmon run, per DNR Research Report 1893. Odd years are the stronger ones.",
+     "grain": "day"
+    },
+    {
+     "sp": "chinook",
+     "start": "08-25",
+     "end": "10-25",
+     "peak": [
+      "09-15",
+      "10-05"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "note": "DNR has reported salmon in high numbers at the spillway in mid-October, and hard to catch even so.",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "Fish move up through the spring; DNR reports beads and spawn near the bottom at the spillway in April.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Cheboygan Lock and Dam About a mile and a half up from Lake Huron, at the head of the Inland Waterway. There is no fish ladder, so the spillway is where the fish stop and where the anglers stand. Note that the lock runs seasonally and closes for the year in late October, part-way through the run — and that it was shut by an emergency in spring 2026 before reopening that June.",
+   "access": "Major City Park, Washington Park and Water Street Park downtown; Gordon Turner Park at the mouth; and the DNR launches at Garfield Road and Lincoln Street. Shore fishing at the spillway, and boat water below it. This is a navigable channel with a drawbridge and a lock — not a river you wade.",
+   "crowding": null,
+   "regs": "Type 3 from the dam down to Lake Huron: open all year, bait legal, 15-inch minimum on brook and brown trout. County rules also apply — no spear, bow, crossbow, dip net or gaff on the Cheboygan, Indian or Black rivers from 1 April to 15 June, and walleye possession runs 15 May to 15 March on this reach.",
+   "throw": "Heavy water below a spillway. Sink tips, weighted spawn imitations and big streamers.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 7 named Chinook salmon here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "ocqueoc",
+   "name": "Ocqueoc River",
+   "hub_name": "Ocqueoc River",
+   "lake": "Huron",
+   "counties": "Presque Isle County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/ocqueoc-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "pink",
+     "start": "08-20",
+     "end": "10-15",
+     "peak": [
+      "09-08",
+      "09-30"
+     ],
+     "hub_status": "Over",
+     "src": "hub-tracker",
+     "note": "One of only five northern Lake Huron streams DNR records with an established pink salmon run. The run is odd-year dominant, so expect an even year to be thin.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "The Ocqueoc is a steelhead river first. DNR puts the spring run starting in April and lasting into May when winter hangs on.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Sea lamprey barrier at Ocqueoc Lake Road Not the falls, which almost every account names. The barrier sits about five miles downstream of them and is what fish meet first — a low weir with an electrical element, built for the lamprey programme in 2001. Fishing is prohibited within 100 feet of it. The electrical part runs only in spring, to protect steelhead smolts on their way out, so it is off during the salmon run.",
+   "access": "Ocqueoc Falls State Forest Campground and its day-use area, the Bicentennial Pathway along the river, the Ocqueoc Lake Road crossing, the US-23 bridge and the DNR launch beside it, and Highbanks on state forest land. Wadeable, with real hazards. DNR calls the cobble at the falls slippery and the currents there unsuitable for inexperienced waders, and the Ocqueoc Lake Road water dangerous in high spring flow.",
+   "crowding": "Light. DNR describes the water away from the falls as uncrowded, and the falls themselves draw summer tourists rather than autumn anglers.",
+   "regs": "Type 4 water from Barnhart Lake to Lake Huron, and no fishing within 100 feet of the lamprey barrier. Northern pike carry their own rules on this river and its tributaries.",
+   "throw": "Small river, small flies. Eggs, beads and nymphs — this is not big-streamer water.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "thunder-bay",
+   "name": "Thunder Bay River",
+   "hub_name": "Thunder Bay River",
+   "lake": "Huron",
+   "counties": "Alpena County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/thunder-bay-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "chinook",
+     "start": "08-25",
+     "end": "10-25",
+     "peak": [
+      "09-15",
+      "10-05"
+     ],
+     "hub_status": "Tailing off",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "atlantic",
+     "start": "09-25",
+     "end": "12-31",
+     "peak": [
+      "10-15",
+      "12-10"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "note": "The reason to know this river. Michigan stocks Atlantic salmon here each spring under an experimental programme — one of only a handful of places in the state — and DNR puts the fall return at October to December. Anglers report them at the dam alongside the coho, and hard to catch.",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Ninth Street Dam, Alpena The dam is about a mile up from Thunder Bay, and that mile is the only part of the whole river migrating fish can reach. Everything above it is impoundment.",
+   "access": "The Ninth Street Dam and the Ninth Street bridge in Alpena. Note the local naming: the same structure is called the 9th Avenue Dam on tourism material and the 9th St. dam in DNR reports. Shore and wade at the dam, on rocky bank, or fish from the bridge. With a mile of river below the dam this is a concentrated fishery, not a float.",
+   "crowding": null,
+   "regs": "Type 3 water from the Ninth Street Dam to Lake Huron: open all year, artificials and every kind of natural bait legal, and a 15-inch minimum on both brook and brown trout — which catches people out.",
+   "throw": "Dam-pool fishing. Weighted eggs and nymphs, streamers on a sink tip, and small spoons and spinners for the Atlantics if you are not committed to the fly.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 14 named Chinook salmon, steelhead, Atlantic salmon and coho salmon here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "au-gres",
+   "name": "Au Gres River",
+   "hub_name": "Au Gres River",
+   "lake": "Huron",
+   "counties": "Arenac County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/au-gres-river/",
+   "explore": [
+    "au-gres-east-branch"
+   ],
+   "home": [],
+   "match_note": "Hub's steelhead run window; DNR plants go mostly to the East Branch (Whitney Drain), which Explore tracks.",
+   "runs": [
+    {
+     "sp": "steelhead",
+     "start": "09-25",
+     "end": "04-15",
+     "peak": [
+      "10-25",
+      "12-20"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None published No dam is recorded on the Au Gres mainstem and no upstream limit for the run is published, so this page does not name one. One thing to know before you look at a map: the East Branch has been diverted straight to Lake Huron through the Whitney Drain since the 1920s. It is a separate system with its own mouth, and DNR reports it separately.",
+   "access": "The Au Gres city boat launch and riverfront park on Riverside Drive, the city park and campground, and — on the East Branch — the Singing Bridge on US-23 and the lower Whitney Drain. Boat and shore in the lower river, which is a deep-holed paddling and launching reach rather than wading water.",
+   "crowding": null,
+   "regs": "The mainstem is not a designated trout stream, so statewide rules apply. Dip netting is prohibited from Saginaw Bay up to M-65. The East Branch, listed under Iosco County, is Type 3 water with its own 15-inch brook and brown trout minimum.",
+   "throw": "Lower-river steelhead work — eggs, beads and small streamers fished deep.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "medium",
+    "Water temp": "no sensor",
+    "Flow": "42 cfs↑",
+    "Gauge": "at South Mackinaw Road",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "chocolay",
+   "name": "Chocolay River",
+   "hub_name": "Chocolay River",
+   "lake": "Superior",
+   "counties": "Marquette County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/chocolay-river/",
+   "explore": [],
+   "home": [],
+   "match_note": null,
+   "runs": [
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "10-02",
+     "end": "04-22",
+     "peak": [
+      "11-01",
+      "12-27"
+     ],
+     "hub_status": "First fish",
+     "src": "hub-tracker",
+     "note": "A Lake Superior river, and the timing shows it. DNR reports have steelhead still moving up through late April and into mid-May, driven by snowmelt — weeks behind the Lake Michigan pattern.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "None documented No barrier is documented on the mainstem. DNR sets its regulation boundary here at a tributary confluence rather than at a structure, which is what it does on rivers where no dam exists.",
+   "access": "River Access Park on West Main Street in Harvey, about 1,500 feet up from Lake Superior; the DNR access and accessible fishing pier on M-28; the Mangum Road, Green Bay Street and Green Garden launches; and the Beckman Road bridge upstream. Both, by section. DNR calls the Beckman Road water easily wadeable; the lower river is small-boat and kayak water off a concrete ramp.",
+   "crowding": null,
+   "regs": "Type 3 from the Big Creek confluence down to Lake Superior — open all year, bait legal, 15-inch minimum on brook and brown trout. Above Big Creek it is Type 1 and closes on 30 September.",
+   "throw": "Superior steelhead water. Eggs and nymphs under an indicator, or swung soft hackles and small buggers.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "dnr_weekly": "DNR weekly report Oct 14 named lake-run brown trout and steelhead here",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "big-huron-baraga",
+   "name": "Big Huron River (Baraga Co., L. Superior)",
+   "hub_name": "Huron River (Big Huron)",
+   "lake": "Superior",
+   "counties": "Baraga County",
+   "src": "hub-tracker",
+   "url": "https://michiganflyfishinghub.com/rivers/big-huron-river/",
+   "explore": [],
+   "home": [],
+   "match_note": "Hub's 'Huron River (Big Huron)' is the Big Huron in Baraga County (Lake Superior), NOT the Huron River of SE Michigan - not matched.",
+   "runs": [
+    {
+     "sp": "coho",
+     "start": "09-10",
+     "end": "11-12",
+     "peak": [
+      "09-28",
+      "10-25"
+     ],
+     "hub_status": "Building",
+     "src": "hub-tracker",
+     "grain": "day"
+    },
+    {
+     "sp": "steelhead",
+     "start": "10-02",
+     "end": "04-22",
+     "peak": [
+      "11-01",
+      "12-27"
+     ],
+     "hub_status": "First fish",
+     "src": "hub-tracker",
+     "note": "The species this river is known for. Lake Superior timing — the spring run is still going in late April and May.",
+     "grain": "day"
+    }
+   ],
+   "barrier": "Not published No dam, but seven named waterfalls. Nobody publishes which of them stops the run, so this page does not name one. Big Erick’s Bridge is a regulatory boundary, not a barrier.",
+   "access": "Big Eric’s Bridge State Forest Campground, 6.7 miles east of Skanee by Skanee and Erick roads — DNR spells the campground “Big Eric’s” and the fisheries order spells the bridge “Big Erick’s”, and they are the same place. The mouth is reached on Huron Road off Portice Road and is remote even by Upper Peninsula standards — no launch, no ramp, no pier. Wade and bank. There is nowhere to launch, and this is a waterfall river — whole sections are not walkable.",
+   "crowding": "Remote. Anglers camp at Big Erick’s Bridge through the run and come back year after year, but by Upper Peninsula standards this is empty water.",
+   "regs": "The one to know: the Big Huron is an Adfluvial Brook Trout Restoration Area, so the minimum size is 20 inches and the daily limit is ONE fish, brook trout, lake trout and splake combined — those rules supersede everything that conflicts with them. From Big Erick’s Bridge it is Type 4 otherwise: open all year for steelhead and salmon, bait legal. Check the current guide for the exact boundary.",
+   "throw": "Wild-river steelhead. Swung flies if you like, eggs and nymphs if you want to catch more. Whatever you hook that looks like a big brook trout goes back.",
+   "weir": null,
+   "snap": {
+    "status": "Building",
+    "conf": "low",
+    "Water temp": "no gauge",
+    "Flow": "no gauge",
+    "Gauge": "none",
+    "asof": "October 16, 2026, 10:15 AM"
+   }
+  },
+  {
+   "id": "clinton",
+   "name": "Clinton River (lower: Yates Dam to Lake St. Clair)",
+   "lake": "St. Clair",
+   "src": "regional",
+   "explore": [
+    "clinton-river"
+   ],
+   "home": [
+    "Clinton River (main stem)"
+   ],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead fall run",
+     "start": "09-01",
+     "end": "11-30",
+     "peak": [
+      "10-01",
+      "11-30"
+     ],
+     "src": "regional",
+     "grain": "month",
+     "note": "Forum reports: fish in the system 'since October'; 2025 catches Sep 7 - Nov 23; best after rain + leaf drop. Month-level, forum-based.",
+     "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+    },
+    {
+     "sp": "salmon",
+     "label": "Salmon (species not specified)",
+     "start": "10-01",
+     "end": "11-30",
+     "peak": [
+      "11-01",
+      "11-30"
+     ],
+     "src": "regional",
+     "grain": "month",
+     "note": "Late Oct - mid Nov; redds 'peak salmon run' reported Nov 12, 2025 (forum). Minor run.",
+     "url": "https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"
+    },
+    {
+     "sp": "steelhead",
+     "label": "Steelhead spring run",
+     "start": "02-01",
+     "end": "05-31",
+     "peak": [
+      "03-01",
+      "04-30"
+     ],
+     "src": "regional+hub-page",
+     "grain": "month",
+     "note": "Hub's Clinton page: 'spring runs from March through May bring the best fishing'. Forum reports add Feb-Apr upper river after snowmelt, dropbacks into early May. Neither gives exact dates.",
+     "url": "https://michiganflyfishinghub.com/rivers/clinton-river/"
+    }
+   ],
+   "note": "Not on the Hub salmon-run tracker (25 rivers, none of them SE Michigan). The Hub's Clinton page only says spring steelhead Mar-May (and a 'fall' run with no dates); fall timing here is forum-based and month-level.",
+   "url": null
+  },
+  {
+   "id": "belle",
+   "name": "Belle River (Memphis to Gratiot Rd)",
+   "lake": "St. Clair",
+   "src": "regional",
+   "explore": [
+    "belle-river"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead fall entry",
+     "start": "10-01",
+     "end": "11-30",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "Entry late Oct - early Nov with rain (angler article).",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    },
+    {
+     "sp": "steelhead",
+     "label": "Steelhead spring run",
+     "start": "03-01",
+     "end": "05-31",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "Peak late Mar - early Apr; stragglers into May (angler article).",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    }
+   ],
+   "note": null,
+   "url": null
+  },
+  {
+   "id": "st-clair",
+   "name": "St. Clair River (Port Huron)",
+   "lake": "St. Clair",
+   "src": "regional",
+   "explore": [
+    "st-clair-river"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead / brown spring",
+     "start": "03-01",
+     "end": "05-31",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "'Spring & fall' (angler article); month-level only.",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    },
+    {
+     "sp": "mixed",
+     "label": "Fall run (steelhead / brown / chinook)",
+     "start": "09-01",
+     "end": "11-30",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "'Spring & fall' (angler article); month-level only.",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    }
+   ],
+   "note": null,
+   "url": null
+  },
+  {
+   "id": "huron-lower",
+   "name": "Huron River (Flat Rock / Rockwood)",
+   "lake": "Erie",
+   "src": "regional",
+   "explore": [
+    "huron-lower"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead spring run",
+     "start": "03-01",
+     "end": "04-30",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "Spring run stronger (Mar-Apr).",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    },
+    {
+     "sp": "steelhead",
+     "label": "Steelhead fall run",
+     "start": "09-01",
+     "end": "11-30",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "Fall run from late Sep (small fish); bigger fish Nov when water ~40F.",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    }
+   ],
+   "note": null,
+   "url": null
+  },
+  {
+   "id": "mill-yale",
+   "name": "Mill Creek / Black River at Yale",
+   "lake": "Huron",
+   "src": "regional",
+   "explore": [
+    "mill-creek-yale"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead spring run",
+     "start": "03-01",
+     "end": "05-31",
+     "peak": null,
+     "src": "regional",
+     "grain": "month",
+     "note": "Late-spring steelhead; flashy creek. Unconfirmed which Mill Creek this is.",
+     "url": "https://www.glangler.com/blogs/articles/southeast-michigan-steelheading-eric-richard"
+    }
+   ],
+   "note": null,
+   "url": null
+  },
+  {
+   "id": "vermilion-oh",
+   "name": "Vermilion River, Ohio",
+   "lake": "Erie",
+   "src": "regional",
+   "explore": [
+    "vermilion-oh"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead (fall through spring)",
+     "start": "10-01",
+     "end": "05-31",
+     "peak": null,
+     "src": "agency",
+     "grain": "month",
+     "note": "Ohio DNR: Oct-May; fish in harbor / lower river early and late, whole river mid-season.",
+     "url": "https://ohiodnr.gov/buy-and-apply/hunting-fishing-boating/fishing-resources/steelhead-fishing-promo"
+    }
+   ],
+   "note": null,
+   "url": null
+  },
+  {
+   "id": "rocky-oh",
+   "name": "Rocky River, Ohio",
+   "lake": "Erie",
+   "src": "regional",
+   "explore": [
+    "rocky-river-oh"
+   ],
+   "home": [],
+   "runs": [
+    {
+     "sp": "steelhead",
+     "label": "Steelhead (fall through spring)",
+     "start": "10-01",
+     "end": "05-31",
+     "peak": null,
+     "src": "agency",
+     "grain": "month",
+     "note": "Ohio DNR: Oct-May.",
+     "url": "https://ohiodnr.gov/buy-and-apply/hunting-fishing-boating/fishing-resources/steelhead-fishing-promo"
+    }
+   ],
+   "note": null,
+   "url": null
+  }
+ ]
+}

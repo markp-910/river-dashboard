@@ -186,6 +186,20 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 .wxsrc{font-size:.76em;color:var(--mute);margin:6px 0}
 .wxfail{background:var(--flagbg);border-left:4px solid var(--brass);padding:9px 12px;border-radius:4px;font-size:.9em}.wxfail button{margin-left:8px;min-height:36px;padding:4px 12px;border-radius:var(--r-sm);border:1px solid var(--line2);background:var(--cream2);cursor:pointer;font-weight:600}
 @media (max-width:700px){.wxdays{grid-template-columns:repeat(7,112px)}.wxnow .big{font-size:2.6em}.wxnow .tmp{font-size:1.8em}#wxAlerts{margin:0 12px 12px}}
+
+/* ---- Run (calendar / status) ---- */
+.rchip{display:inline-block;border-radius:12px;padding:2px 10px;font-family:var(--sans);font-size:.74em;font-weight:700;letter-spacing:.01em;line-height:1.5;color:#fff;background:var(--none);white-space:normal}
+.rchip.pk{background:var(--good)}.rchip.bd{background:var(--olive)}.rchip.in{background:var(--moss)}.rchip.tl{background:var(--fair)}.rchip.en{background:var(--warn)}.rchip.so{background:var(--brass-d)}.rchip.of{background:var(--cream3);color:var(--ink2)}
+.rph{display:inline-block;border-radius:10px;padding:1px 8px;font-size:.75em;font-weight:700;color:#fff;background:var(--none)}.rph.pk{background:var(--good)}.rph.bd{background:var(--olive)}.rph.in{background:var(--moss)}.rph.tl{background:var(--fair)}.rph.en{background:var(--warn)}.rph.so{background:var(--brass-d)}.rph.of{background:var(--cream3);color:var(--ink2)}
+.rvh .rvrun{margin-left:2px}
+#runsec{padding:0 16px}#runsec summary{cursor:pointer}
+#rNow{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:10px 14px;margin:8px 0}#rNow h4{margin:0 0 6px;font-family:var(--serif);color:var(--g800)}#rNow .rn{padding:3px 0}
+.rrh{align-items:center}.rrh .rrc{padding:8px 10px;display:flex;align-items:center;flex-wrap:wrap;gap:4px}.rrh .hlab b{font-family:var(--serif);font-size:1em;color:var(--g800)}
+#runsec .hscroll{max-height:640px;overflow:auto}.rsp{cursor:default;--rb:var(--field)}.rsp .htrack{min-height:34px}.rsp .hlab{padding:6px 12px 6px 22px}.rsp .hb{height:16px}.hb.mg{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.55) 0 3px,transparent 3px 6px)}
+.hleg i.mg{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.7) 0 3px,transparent 3px 6px)}
+.rrh .hdet .kv{margin:4px 0}.runbox{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:8px 12px;margin:8px 0}.runbox>summary{cursor:pointer;font-family:var(--serif);font-weight:700;color:var(--g800);min-height:28px}.runbox .rrow{padding:4px 0;border-top:1px solid var(--sage2);font-size:.9em}.runbox .rdot,.rsp .gdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.runbox .kv{margin:5px 0;font-size:.9em}
+.rsm{font-size:.82em;color:var(--mute)}.chip.run{background:var(--brass-d)}.al.run{border-left-color:var(--brass-d);background:#f3ecd2}
+@media (max-width:700px){.rrh .rrc{grid-column:1/-1;padding-top:0}.rrh{grid-template-columns:1fr!important}.rrh .hlab{border-right:0}}
 </style></head><body>
 <header><h1><img class="logo" src="logo.png" width="72" height="72" alt="Mark's Fishing Report logo">Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
 <nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
@@ -205,6 +219,9 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 <div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></div></section>
 <section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
+<section id="runsec"><details id="runDet" open><summary class="sec2">🐟 Run Calendar</summary>
+<div class="sub">Salmon, steelhead and lake-run brown runs on the rivers this dashboard tracks or explores. Tap a river for dams, access, crowding and sources. Bright bar = peak, light bar = in window. These are typical dates, not a forecast.</div>
+<div id="runNow"></div><div class="hfilt" id="runFilt"></div><div class="hscroll"><div class="hgrid" id="runGrid"><div class="sub" style="padding:12px">Loading run data…</div></div></div><div class="hleg" id="runLeg"></div><div class="sub" id="runSrc"></div></details></section>
 <section id="hatchsec"><details id="hatchDet" open><summary class="sec2">🪰 Hatch Calendar</summary>
 <div class="sub">Tap a row for patterns, sizes, time of day, waters &amp; sources. Bright bar = peak, light bar = early/late (tail). SE Michigan usually runs ~1–2 weeks earlier than northern-Michigan dates.</div>
 <div class="hfilt" id="hFilt"></div><div id="hNow"></div><div class="hscroll"><div class="hgrid" id="hGrid"></div></div><div class="hleg" id="hLeg"></div><div class="sub" id="hSrc"></div></details></section>
@@ -279,7 +296,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  const last=a=>a&&a.length?a[a.length-1]:null,app=document.getElementById("app"),ranked=[];
  for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="tierbody";app.appendChild(grid);
   const rvs={},getRv=id=>{const rv=RIVER_OF[id]||id;if(rvs[rv])return rvs[rv];const hd=document.createElement("div");hd.className="rvh";hd.setAttribute("role","button");hd.tabIndex=0;const body=document.createElement("div");body.className="grid rvbody";grid.appendChild(hd);grid.appendChild(body);
-   const ids=sites.filter(s=>(RIVER_OF[s[0]]||s[0])===rv).map(s=>s[0]),rk="rcollapsed:"+g+"|"+rv;hd.dataset.ids=ids.join(",");hd.innerHTML=`<span class="arr">▼</span> ${rv} <span class="rcnt">(${ids.length} gage${ids.length>1?"s":""})</span><span class="rvwx"></span>`;
+   const ids=sites.filter(s=>(RIVER_OF[s[0]]||s[0])===rv).map(s=>s[0]),rk="rcollapsed:"+g+"|"+rv;hd.dataset.ids=ids.join(",");hd.dataset.rv=rv;hd.innerHTML=`<span class="arr">▼</span> ${rv} <span class="rcnt">(${ids.length} gage${ids.length>1?"s":""})</span><span class="rvrun"></span><span class="rvwx"></span>`;
    const so=o=>{body.style.display=o?"":"none";hd.querySelector(".arr").textContent=o?"▼":"▶";hd.setAttribute("aria-expanded",String(o));localStorage.setItem(rk,o?"0":"1")};hd.onclick=()=>so(body.style.display==="none");hd.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();so(body.style.display==="none")}};
    const o={hd,body,so,rank:[],n:ids.length};so(localStorage.getItem(rk)!=="1");RVS.push(o);return rvs[rv]=o};
   const setOpen=o=>{grid.style.display=o?"":"none";h2.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(key,o?"0":"1")};
@@ -478,6 +495,7 @@ const TK="activeTab";let XD=null,xmap=null,inited=false;
 function setTab(t){$("homeView").hidden=t!=="home";$("exploreView").hidden=t!=="explore";document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===t));localStorage.setItem(TK,t);
  if(t==="explore"){if(!inited){inited=true;initExplore()}else setTimeout(()=>xmap&&xmap.invalidateSize(),50)}else setTimeout(()=>dispatchEvent(new Event("resize")),50);window.scrollTo(0,0)}
 document.querySelectorAll("#tabs button").forEach(b=>b.onclick=()=>setTab(b.dataset.t));
+addEventListener("explore-open",e=>{const id=e.detail;setTab("explore");let n=0;const t=setInterval(()=>{if(XD&&XD.streams&&typeof openStream==="function"&&document.getElementById("xbox")){clearInterval(t);openStream(id)}else if(++n>50)clearInterval(t)},200)});
 // ---- season logic ----
 const lastSat=y=>{const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d};
 const fmtD=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
@@ -504,9 +522,9 @@ async function loadLive(){const ids=[...new Set(XD.streams.flatMap(s=>s.gages.ma
  for(const [id,L] of Object.entries(LIVE)){const q=L["00060"],w=L["00010"],ql=q&&q[q.length-1],wl=w&&w[w.length-1];if(!ql)continue;const pct=med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(q),tf=wl?C2F(wl.y):null;L.view={flow:ql.y,pct,tempF:tf,tt,tc,t:trout(tf,pct,tn),when:ql.x,gh:(L["00065"]||[]).slice(-1)[0]?.y}}}
 // ---- scoring ----
 function plan(s){const now=new Date(),m=now.getMonth()+1,st=status(s,now),runs=inRun(s,m),why=[];let sc=st.score;
- if(runs.length){sc+=35;why.push("in season: "+runs.map(r=>r.label).join(", "))}if(s.best_months.includes(m)){sc+=20;why.push("a best month")}
+ const ris=window.RUN&&RUN.has(s.id)?RUN.inSeason(s.id):null;if(ris){if(ris.length){sc+=35;why.push("Run in season: "+ris.join(", "))}}else if(runs.length){sc+=35;why.push("in season: "+runs.map(r=>r.label).join(", "))}if(s.best_months.includes(m)){sc+=20;why.push("a best month")}
  const g=s.gages.map(g=>LIVE[g.id]?.view).find(Boolean);if(g&&st.st!=="closed"){sc+=g.t.score*4;why.push("gage: "+g.t.label)}
- sc-=s.drive_min/6;sc+=(4-s.tier)*4;if(s.state&&s.state.prio&&st.st==="open"&&inPrime(now)){sc+=18;why.push("state-designated "+typeTxt(s)+" trout water, in season (+18)")}if(st.st==="open")why.unshift("open now");if(st.st==="closed")why.unshift("closed");return{sc,why,st,g}}
+ sc-=s.drive_min/6;sc+=(4-s.tier)*4;if(s.state&&s.state.prio&&st.st==="open"&&inPrime(now)){sc+=18;why.push("state-designated "+typeTxt(s)+" trout water, in season (+18)")}if(st.st!=="closed"&&window.RUN){const rb=RUN.bonus(s.id);if(rb){sc+=rb.pts;why.push(rb.why)}}if(st.st==="open")why.unshift("open now");if(st.st==="closed")why.unshift("closed");return{sc,why,st,g}}
 // ---- wishlist ----
 const WK="wishlist",wl=()=>JSON.parse(localStorage.getItem(WK)||"[]"),setWl=a=>{localStorage.setItem(WK,JSON.stringify(a));renderWish();refreshWantBtns()};
 const SU=()=>localStorage.getItem("sheetUrl");
@@ -551,6 +569,7 @@ async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="s
  fetch("rivers.geojson?v=1").then(r=>r.json()).then(G=>L.geoJSON(G,{interactive:false,style:f=>({color:"#4aa8ff",weight:f.properties.c===1?2.5:1.2,opacity:.6})}).addTo(xmap)).catch(()=>{});
  v.onclick=e=>{const c=e.target.closest("[data-open]");if(c)openStream(c.dataset.open)};
  draw();await loadLive();draw();renderWish();
+ addEventListener("run-ready",()=>{try{draw()}catch(e){}});
  for(const sel of ["#xPlan"])0;}
 function draw(){if(!XD)return;const list=XD.streams.filter(passes);$("fMaxV").textContent=F.max;
  Object.values(mk).forEach(m=>xmap.removeLayer(m));mk={};
@@ -569,8 +588,8 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <div class="sub">Drive tier ${s.tier} · ${TNAME[s.tier]} (${TRNG[s.tier]} one-way) · ${esc(s.county)}</div>
  <div style="margin:6px 0"><span class="stt ${st.cls}">${esc(st.txt)}</span> ${badgeH(s)} ${clsB(s.tr)} <span class="cls cU">${s.wild==="wild"?"Wild":s.wild==="both"?"Wild + stocked":"Stocked"}</span> <span class="cls cU">Confidence: ${esc(s.confidence)}</span></div>
  <div class="kv">🚗 <b>${s.drive_min} min</b> (${s.drive_miles} mi) free-flow${s.drive_min_alt?` (a second router says ~${s.drive_min_alt} min)`:""} — plan on <b>${Math.round(s.drive_min*1.1)}–${Math.round(s.drive_min*1.25)} min</b> with traffic. <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions ↗</a></div>
- ${runs.length?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
- <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xHatch"></div><div id="xWx"></div>
+ ${runs.length&&!(window.RUN&&RUN.has(s.id))?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
+ <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xRun"></div><div id="xHatch"></div><div id="xWx"></div>
  <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div><div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
  <details open><summary>📡 Nearest USGS gage (live)</summary>${gl}<div class="sub">${esc(s.gage_note)}</div></details>
  <details open><summary>📜 Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div><div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
@@ -579,7 +598,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
  ${s.flags.length?`<details><summary>⚠️ Unverified / flags (${s.flags.length})</summary>${s.flags.map(f=>`<div class="flag">${esc(f)}</div>`).join("")}</details>`:""}
  <details><summary>🔗 Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
- $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.HATCH)HATCH.strip(s.id,$("xHatch"));if(window.WX)WX.fillExplore(s,$("xWx"))}
+ $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.RUN)RUN.strip(s.id,$("xRun"),s);if(window.HATCH)HATCH.strip(s.id,$("xHatch"));if(window.WX)WX.fillExplore(s,$("xWx"))}
 function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
 $("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
 window._openStream=openStream;window._closeX=closeX;window._setTab=setTab;window._xd=()=>({XD,LIVE});
@@ -787,7 +806,8 @@ function buildAlerts(){const A=[],R=rg(),home=ST.W.home;
  if(wt.length)A.push({id:"wtemp",sev:wt.some(x=>x.t>68)?"high":"med",icon:"🌡️",title:wt.some(x=>x.t>68)?"Water too warm — stop fishing for trout":"Water temp in the stress range",text:"Live USGS water temperature. Above 68°F trout are in danger; 65–68°F is stressful — fish early, land fish fast.",list:wt.map(x=>`<b>${esc(NAME[x.id])}</b>: ${x.t.toFixed(1)}°F`)});
  // good window
  const gw=goodWindow(R);if(gw)A.push(gw);
- const o={high:0,med:1,good:2,info:3};A.sort((a,b)=>o[a.sev]-o[b.sev]);return A}
+ try{if(window.RUN)A.push(...RUN.alerts())}catch(e){console.warn("run alerts",e)}
+ const o={high:0,med:1,good:2,run:2.5,info:3};A.sort((a,b)=>o[a.sev]-o[b.sev]);return A}
 function goodWindow(R){if(!ST.ready||!ST.W.home)return null;const open=Object.entries(R).map(([l,ids])=>[l,ids.filter(id=>!(PAINT.has(id)&&paintClosed())&&INFO[id]&&(GCAP[INFO[id].t.cls]??5)>=4)]).filter(x=>x[1].length);if(!open.length)return null;
  const now=ST.W.home.cur.time,nowH=hrt(now);let best=null;
  for(let k=0;k<=2;k++){const r=rateDay(ST.W.home,k);if(!r)continue;if(k===0&&nowH>r.m.ss-.5)continue;let n=r.n,rivers=open.map(x=>x[0]);
@@ -796,8 +816,8 @@ function goodWindow(R){if(!ST.ready||!ST.W.home)return null;const open=Object.en
  if(!best)return null;const pos=best.r.R.filter(x=>x[1]>0).map(x=>x[0]);
  return{id:"good",sev:"good",icon:"🟢",title:`Good window: ${best.k===0?"today":best.k===1?"tomorrow ("+dName(best.r.m.date)+")":dName(best.r.m.date,1)} — ${bite(best.n)}`,html:true,text:`${pos.map(esc).join("; ")||"Conditions line up"}.<br><b>Best bite windows:</b> ${winTxt(best.r)}.<br><b>Rivers with workable flow/temps${best.k?" right now (recheck the gage that day)":""}:</b> ${best.rivers.map(esc).join(", ")}.${open.length<Object.keys(R).length&&Object.entries(R).some(([l,ids])=>ids.every(id=>PAINT.has(id)))&&paintClosed()?` <span class="sub">Paint Creek is closed to trout until ${paintOpens()}.</span>`:""}`}}
 function renderAlerts(){const el=$("wxAlerts");if(!el)return;let A=[];try{A=buildAlerts()}catch(e){console.warn("alerts",e)}
- const c={high:0,med:0,good:0,info:0};A.forEach(a=>c[a.sev]++);
- const chips=["high","med","good","info"].filter(k=>c[k]).map(k=>`<span class="chip ${k}">${c[k]} ${k==="high"?"warning":k==="med"?"caution":k==="good"?"good window":"note"}${c[k]>1&&k!=="med"&&k!=="info"?"s":""}</span>`).join(" ");
+ const c={high:0,med:0,good:0,run:0,info:0};A.forEach(a=>c[a.sev]++);
+ const chips=["high","med","good","run","info"].filter(k=>c[k]).map(k=>`<span class="chip ${k}">${k==="run"?"Run peaking now":c[k]+" "+(k==="high"?"warning":k==="med"?"caution":k==="good"?"good window":"note")+(c[k]>1&&k!=="med"&&k!=="info"&&k!=="run"?"s":"")}</span>`).join(" ");
  const items=A.map(a=>`<div class="al ${a.sev}"><h4>${a.icon} ${a.html?a.title:esc(a.title)}</h4><div>${a.html?a.text:esc(a.text)}</div>${a.list?`<ul>${a.list.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}</div>`).join("");
  const note=ST.ready?"":`<div class="wxok">⚠️ Weather forecast unavailable${ST.err?" ("+esc(ST.err)+")":""} — showing only live USGS-based alerts.</div>`;
  el.innerHTML=`<details class="wxal" open><summary>🚨 Alerts &amp; highlights ${chips||'<span class="chip good">all clear</span>'}</summary>${items||'<div class="wxok">✅ No rain/river-rise, heat, cold, wind or storm alerts right now.</div>'}${note}<div class="wxok sub" style="background:var(--paper)">Alert rules: rain ≥0.5″/24 h or ≥1″/48 h (forecast) · river ≥150% of median or rising · water &gt;68°F (65–68 caution) · highs ≥85°F · lows ≤25°F or highs ≤35°F · wind avg ≥15 / gusts ≥30 mph · thunderstorm codes · NWS watches/warnings. Forecast from Open-Meteo model data; alerts from NWS.</div></details>`}
@@ -860,7 +880,122 @@ window.WX=WX;
 function refresh(){renderAlerts();renderPanel();fillCards();try{if(window.renderBanner)window.renderBanner()}catch(e){console.warn(e)}}
 $("wxBody").innerHTML='<div class="sub">Loading weather…</div>';
 const dr=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
-let wxDone=false;addEventListener("wxready",()=>{wxDone=true;dr.then(refresh)});dr.then(()=>{if(wxDone)return;renderAlerts();fillCards()});
+addEventListener("run-ready",()=>{try{renderAlerts()}catch(e){}});let wxDone=false;addEventListener("wxready",()=>{wxDone=true;dr.then(refresh)});dr.then(()=>{if(wxDone)return;renderAlerts();fillCards()});
 loadAll();setInterval(()=>{if(!document.hidden)loadAll()},TTL);
+})();
+</script>
+<script>
+/* ===== Run module: Run calendar, Run status badges, Explore bonus, Run alerts =====
+   Data: run-calendar.json (tools/build_runs.py). Windows are typical dates (modeled by the Michigan Fly Fishing Hub, or
+   month-level regional reports) - not a forecast of today's fishing. */
+(()=>{
+const $=id=>document.getElementById(id),esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],CUM=[0,31,59,90,120,151,181,212,243,273,304,334],DIM=[31,28,31,30,31,30,31,31,30,31,30,31];
+const SPC={chinook:"#8a5a2b",coho:"#b5483a",pink:"#c9788f",steelhead:"#1f5a3a",atlantic:"#3d6a8a",brown:"#a8791c",salmon:"#8a5a2b",mixed:"#6b6b52"};
+const PILLS=[["","All"],["chinook","Chinook"],["coho","Coho"],["pink","Pink"],["steelhead","Steelhead"],["atlantic","Atlantic"],["brown","Lake-run brown"]];
+const ORDV=(m,d)=>CUM[m-1]+d,ordOf=s=>ORDV(+s.slice(0,2),+s.slice(3)),inW=(d,a,b)=>a<=b?d>=a&&d<=b:(d>=a||d<=b),off=(x,a)=>((x-a)%365+365)%365;
+const todayOrd=()=>{const n=new Date();return ORDV(n.getMonth()+1,n.getDate())};
+const fmtMD=s=>MON[+s.slice(0,2)-1]+" "+(+s.slice(3));
+let D=null,XS={},byEx={},byHome={},SP="",SC="mine",OPEN={};
+try{SP=localStorage.getItem("runSp")||"";SC=localStorage.getItem("runScope")||"mine"}catch(e){}
+const spName=(r,x)=>x.label||D.species[x.sp]||x.sp;
+// ---- status for one species window ----
+function phase(x,d=todayOrd()){const a=ordOf(x.start),b=ordOf(x.end);
+ if(inW(d,a,b)){const left=off(b,d);let ph="in",pleft=null;
+  if(x.peak){const pa=ordOf(x.peak[0]),pb=ordOf(x.peak[1]),dd=off(d,a);ph=dd<off(pa,a)?"build":dd<=off(pb,a)?"peak":"tail";if(ph==="peak")pleft=off(pb,d)}
+  const ends=left<=14&&ph!=="build";
+  const txt=ph==="peak"?"Peaking now":ph==="build"?"In season · building":ph==="tail"?(ends?"Ends soon":"In season · tailing off"):(ends?"Ends soon":"In season");
+  return{ph:ends&&ph!=="peak"?"ends":ph,raw:ph,left,pleft,ends,txt,rank:ph==="peak"?6:ph==="build"?5:ph==="in"&&!ends?4:ph==="tail"&&!ends?3:2.5}}
+ const until=off(a,d);if(until<=14)return{ph:"soon",raw:"soon",until,txt:"Starts in "+until+" d",rank:2};
+ return{ph:"off",raw:"off",until,txt:"Off-season",rank:1}}
+const mr=(a,b)=>a===b?MON[a-1]:MON[a-1]+" – "+MON[b-1];
+const winTxt=x=>x.grain==="month"?`${mr(+x.start.slice(0,2),+x.end.slice(0,2))} (month-level)`:`${fmtMD(x.start)} – ${fmtMD(x.end)}`;
+const pkTxt=x=>x.peak?(x.grain==="month"?`peak ${mr(+x.peak[0].slice(0,2),+x.peak[1].slice(0,2))}`:`peak ${fmtMD(x.peak[0])} – ${fmtMD(x.peak[1])}`):"no peak given";
+const srcTag=x=>x.src==="hub-tracker"?"Hub tracker":x.src==="agency"?"Agency":x.src==="regional+hub-page"?"Regional + Hub page":"Regional";
+function roll(r){const e=r.runs.map(x=>({x,p:phase(x)}));e.sort((a,b)=>b.p.rank-a.p.rank);const top=e[0].p,same=e.filter(q=>q.p.ph===top.ph);
+ const off=top.ph==="off";let nxt=null;if(off){nxt=e.slice().sort((a,b)=>a.p.until-b.p.until)[0]}
+ return{e,top,names:same.map(q=>spName(r,q.x)),off,nxt,hub:e.some(q=>q.x.src==="hub-tracker")}}
+const CLS={peak:"pk",build:"bd",in:"in",tail:"tl",ends:"en",soon:"so",off:"of"};
+function chip(r,mini){const R=roll(r),nm=R.off?"":" — "+R.names.map(esc).join(", ");
+ const lab=R.off?"Run: off-season":"Run: "+R.top.txt.toLowerCase().replace(/^./,c=>c.toUpperCase());
+ const other=R.e.filter(q=>q.p.ph!==R.top.ph&&q.p.ph!=="off").slice(0,3).map(q=>`${esc(spName(r,q.x))} ${esc(q.p.txt.toLowerCase())}`).join(" · ");
+ return `<span class="rchip ${CLS[R.top.ph]}" title="${esc(r.name)}: ${esc(R.e.map(q=>spName(r,q.x)+" — "+q.p.txt+" ("+winTxt(q.x)+", "+pkTxt(q.x)+"; "+srcTag(q.x)+")").join("\n"))}\nTypical dates, not a forecast.">🐟 ${lab}${nm}</span>${mini||!other?"":` <span class="sub">${other}</span>`}`}
+// ---- Hub live snapshot (only if fresh) ----
+function snap(r){const s=r.snap;if(!s||!D.hub_asof_iso)return"";const age=(Date.now()-Date.parse(D.hub_asof_iso))/864e5;
+ if(age>3)return `<div class="sub">Hub status snapshot from ${esc(D.hub_asof)} is older than 3 days and is not shown (calendar dates only). Re-run tools/build_runs.py to refresh.</div>`;
+ const bits=[s.status?`<b>${esc(s.status)}</b>${s.conf?` (${esc(s.conf)} confidence)`:""}`:"",s["Water temp"]?`water ${esc(s["Water temp"])}`:"",s.Flow?`flow ${esc(s.Flow)}`:"",s.Gauge&&s.Gauge!=="none"?`gauge ${esc(s.Gauge)}`:""].filter(Boolean);
+ return `<div class="kv">📡 <b>Hub live status:</b> ${bits.join(" · ")} <span class="rsm">(snapshot ${esc(D.hub_asof)}${age>.5?" — "+Math.round(age*24)+" h old":""})</span>${s.dnr_weekly?`<br><span class="rsm">${esc(s.dnr_weekly)}.</span>`:""}</div>`}
+function detailHTML(r,s){const x=[];
+ if(r.src==="hub-tracker"){x.push(snap(r));
+  if(r.barrier)x.push(`<div class="kv">🚧 <b>Upstream limit:</b> ${esc(r.barrier)}</div>`);
+  if(r.weir)x.push(`<div class="kv">🏭 <b>DNR weir / hatchery:</b> ${esc(r.weir)}</div>`);
+  if(r.access)x.push(`<div class="kv">🅿️ <b>Access:</b> ${esc(r.access)}</div>`);
+  if(r.crowding)x.push(`<div class="kv">👥 <b>Crowding:</b> ${esc(r.crowding)}</div>`);
+  if(r.regs)x.push(`<div class="kv">📜 <b>Hub regs note:</b> ${esc(r.regs)}</div>`);
+  if(r.throw)x.push(`<div class="kv">🎣 <b>What to throw:</b> ${esc(r.throw)}</div>`)}
+ else if(r.note)x.push(`<div class="kv">ℹ️ ${esc(r.note)}</div>`);
+ if(r.match_note)x.push(`<div class="kv sub">⚠️ ${esc(r.match_note)}</div>`);
+ if(s){x.push(`<div class="kv">🏛️ <b>State regs context (from this dashboard's Explore data):</b> ${esc(s.state?.badge||"")} — ${esc(s.season?.label||"")}</div>`);
+  if(s.season?.rule==="gr_noharvest")x.push(`<div class="kv sub">Gear-restricted water: check which reach you are in before you rig up.</div>`)}
+ if(r.hook)x.push(`<div class="kv">🪝 <b>Aug 1 – Nov 15:</b> ${esc(r.hook)}</div>`);
+ x.push(`<div class="kv">🔗 ${r.url?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.src==="hub-tracker"?"Hub river page ↗":"Source ↗")}</a> · `:""}<a href="${esc(D.sources.tracker)}" target="_blank" rel="noopener">Hub Run tracker ↗</a>${r.src==="hub-tracker"?` · <a href="${esc(D.sources.steelhead)}" target="_blank" rel="noopener">Hub steelhead page ↗</a>`:""}</div>`);
+ return x.join("")}
+// ---- Explore detail strip ----
+function strip(id,el,s){if(!D||!el)return;const r=byEx[id];if(!r){el.innerHTML="";return}const R=roll(r);
+ const rows=R.e.map(q=>{const c=SPC[q.x.sp]||"#6b6b52";return `<div class="rrow"><span class="rdot" style="background:${c}"></span><b>${esc(spName(r,q.x))}</b> <span class="rph ${CLS[q.p.ph]}">${esc(q.p.txt)}</span> <span class="sub">${esc(winTxt(q.x))} · ${esc(pkTxt(q.x))} · ${esc(srcTag(q.x))}${q.x.note?" · "+esc(q.x.note):""}</span></div>`}).join("");
+ el.innerHTML=`<details class="runbox" open><summary>🐟 Run status — ${chip(r,true)}</summary>${rows}${detailHTML(r,s)}<div class="sub" style="margin-top:6px">${r.src==="hub-tracker"?"Windows are the Michigan Fly Fishing Hub's typical dates (modeled from DNR weir dates, not a forecast). ":"Regional month-level windows from forum/angler/agency text; no day-level dates. "}A rise in flow after rain is what usually moves fish — check the gage.</div></details>`}
+// ---- planner bonus ----
+function bonus(id){if(!D)return null;const r=byEx[id];if(!r)return null;const R=roll(r);
+ if(R.top.ph==="peak"){const hub=R.e.some(q=>q.p.ph==="peak"&&q.x.src==="hub-tracker");return{pts:hub?10:5,why:`Run peaking now: ${R.names.join(", ")} (${hub?"Hub typical dates":"regional, month-level"}, +${hub?10:5})`}}
+ if(R.top.ph==="build"&&R.hub)return{pts:3,why:`Run building: ${R.names.join(", ")} (+3)`};return null}
+function inSeason(id){const r=byEx[id];if(!D||!r)return null;return roll(r).e.filter(q=>q.p.ph!=="off"&&q.p.ph!=="soon").map(q=>spName(r,q.x))}
+function runBadge(id){if(!D)return"";const r=byEx[id];if(!r)return"";return chip(r,true)}
+// ---- alerts ----
+function alerts(){if(!D)return[];const L=[],E=[];
+ for(const r of D.rivers){const ex=r.explore.map(i=>XS[i]).filter(Boolean),hm=r.home.length;if(!ex.length&&!hm)continue;
+  const dm=ex.length?Math.min(...ex.map(s=>s.drive_min)):0,R=roll(r),nm=r.name,pk=R.e.filter(q=>q.p.ph==="peak"),en=R.e.filter(q=>q.p.ph==="ends");
+  const tr=ex.length?` · ${dm} min away, tier ${ex[0].tier}`:"";
+  if(pk.length)L.push({dm,html:`<b>${esc(nm)}</b> — ${pk.map(q=>`${esc(spName(r,q.x))} <span class="rsm">(${esc(pkTxt(q.x))}, ${q.x.src==="hub-tracker"?"Hub typical dates":"regional"})</span>`).join(", ")}${tr}`});
+  if(en.length)E.push({dm,html:`<b>${esc(nm)}</b> — ${en.map(q=>esc(spName(r,q.x))+" ends in "+q.p.left+" d").join(", ")}`})}
+ L.sort((a,b)=>a.dm-b.dm);E.sort((a,b)=>a.dm-b.dm);if(!L.length&&!E.length)return[];
+ return[{id:"run",sev:"run",icon:"🐟",title:L.length?"Run peaking now":"Run ending soon",html:true,
+  text:`${L.length?"Peak window today on rivers you track or explore (closest first). ":""}Dates are typical windows — the Michigan Fly Fishing Hub's modeled dates, or month-level regional reports where marked — not a forecast. Rising flow after rain is what actually moves fish. Check the gage, the state regs and a local shop before you drive.`,
+  list:[...L.map(x=>x.html),...E.slice(0,4).map(x=>"⏳ "+x.html)]}]}
+// ---- Home Waters river group headings ----
+function decorate(){if(!D)return;document.querySelectorAll(".rvh[data-rv]").forEach(h=>{const r=byHome[h.dataset.rv],sp=h.querySelector(".rvrun");if(!sp)return;const html=r?chip(r,true):"";if(sp.dataset.h!==html){sp.dataset.h=html;sp.innerHTML=html}})}
+// ---- Run calendar ----
+const cellRange=c=>{const m=Math.ceil(c/2),first=c%2===1;return[ORDV(m,first?1:16),ORDV(m,first?15:DIM[m-1])]};
+function cells(x){const a=ordOf(x.start),b=ordOf(x.end),pa=x.peak?ordOf(x.peak[0]):0,pb=x.peak?ordOf(x.peak[1]):0,out=[];
+ for(let c=1;c<=24;c++){const[s,e]=cellRange(c);let w=0,p=0;for(let d=s;d<=e;d++){if(inW(d,a,b)){w++;if(x.peak&&inW(d,pa,pb))p++}}out[c]=!w?0:(p&&p>=Math.min(4,Math.ceil((e-s+1)/3)))?2:1}return out}
+function seg(x,c0){const st=cells(x),c=SPC[x.sp]||"#6b6b52",o=[];let i=1;while(i<=24){if(!st[i]){i++;continue}let j=i;while(j+1<=24&&st[j+1]===st[i])j++;
+ o.push(`<span class="hb${x.grain==="month"?" mg":""}" style="grid-column:${i}/${j+2};background:${st[i]===2?c:c+"55"}" title="${esc(spName(null,x))}: ${st[i]===2?"peak":"in window"} · ${esc(winTxt(x))} · ${esc(pkTxt(x))}"></span>`);i=j+1}return o.join("")}
+function rowsFor(){let rs=D.rivers.filter(r=>SC==="all"||r.explore.length||r.home.length);
+ const dm=r=>r.explore.length?Math.min(...r.explore.map(i=>XS[i]?.drive_min??999)):r.home.length?10:9999;
+ rs=rs.filter(r=>!SP||r.runs.some(x=>x.sp===SP));rs.sort((a,b)=>dm(a)-dm(b));return{rs,dm}}
+function renderCalendar(){const g=$("runGrid");if(!g||!D)return;const now=new Date(),frac=(now.getMonth()+(now.getDate()-1)/DIM[now.getMonth()])/12*100,{rs,dm}=rowsFor();
+ $("runFilt").innerHTML=PILLS.map(([k,l])=>`<button data-sp="${k}" class="${k===SP?"on":""}">${l}</button>`).join("")+`<span style="flex:1"></span><button data-sc="mine" class="${SC==="mine"?"on":""}">My waters</button><button data-sc="all" class="${SC==="all"?"on":""}">All Hub run rivers</button>`;
+ $("runFilt").querySelectorAll("button").forEach(b=>b.onclick=()=>{if("sp"in b.dataset){SP=b.dataset.sp;try{localStorage.setItem("runSp",SP)}catch(e){}}else{SC=b.dataset.sc;try{localStorage.setItem("runScope",SC)}catch(e){}}renderCalendar()});
+ let h=`<div class="hhead"><div class="hl">RUN</div><div class="hmon">${MON.map((m,i)=>`<span class="${i===now.getMonth()?"now":""}">${m.toUpperCase()}</span>`).join("")}</div></div>`;
+ if(!rs.length)h+=`<div class="sub" style="padding:14px">No rivers with ${esc(D.species[SP]||SP)} runs in this view. Try “All Hub run rivers”.</div>`;
+ for(const r of rs){const R=roll(r),ex=r.explore.map(i=>XS[i]).filter(Boolean),s=ex[0],open=!!OPEN[r.id],meta=ex.length?`Tier ${s.tier} · ${Math.min(...ex.map(q=>q.drive_min))} min`:r.home.length?"Home Waters":"Hub tracker only (not in Explore)";
+  h+=`<div class="hrow rrh${open?" open":""}" data-id="${r.id}" role="button" tabindex="0" aria-expanded="${open}"><div class="hlab"><b>${esc(r.name)}</b><i>${esc(meta)} · ${r.src==="hub-tracker"?"Hub tracker":"Regional"}</i></div><div class="rrc">${chip(r,true)}</div>${open?`<div class="hdet">${detailHTML(r,s)}<div class="sub">${r.src==="hub-tracker"?"Confidence: Hub's typical windows (modeled). ":"Confidence: lower — month-level regional/agency text. "}${esc(r.note||"")}</div></div>`:""}</div>`;
+  for(const x of r.runs){if(SP&&x.sp!==SP)continue;const c=SPC[x.sp]||"#6b6b52",p=phase(x);
+   h+=`<div class="hrow rsp" data-id="${r.id}"><div class="hlab"><b><span class="gdot" style="background:${c}"></span>${esc(spName(r,x))}</b><i>${esc(winTxt(x))}</i></div><div class="htrack"><span class="hnow" style="left:${(now.getMonth()/12*100).toFixed(3)}%"></span>${seg(x)}<span class="htoday" style="left:${frac.toFixed(2)}%"></span></div></div>`}}
+ g.innerHTML=h;g.querySelectorAll(".rrh").forEach(r=>{const t=()=>{OPEN[r.dataset.id]=!OPEN[r.dataset.id];renderCalendar()};r.onclick=e=>{if(e.target.closest(".hdet,a"))return;t()};r.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();t()}}});
+ $("runLeg").innerHTML=`<span><i style="background:#1f5a3a"></i>peak</span><span><i style="background:#1f5a3a55"></i>in window (early / late)</span><span><i class="mg" style="background:#1f5a3a55"></i>striped = month-level regional dates (low resolution)</span><span><i style="background:#9a3b22"></i>today</span>`;
+ const peaking=D.rivers.filter(r=>(r.explore.length||r.home.length)&&roll(r).top.ph==="peak").sort((a,b)=>rowsFor().dm(a)-rowsFor().dm(b));
+ const ends=D.rivers.filter(r=>(r.explore.length||r.home.length)&&roll(r).e.some(q=>q.p.ph==="ends"));
+ $("runNow").innerHTML=`<div id="rNow"><h4>📌 Run status today (${MON[now.getMonth()]} ${now.getDate()}) <span class="sub">— waters on this dashboard</span></h4>${peaking.length?peaking.map(r=>`<div class="rn"><b>${esc(r.name)}</b> <span class="sub">${r.explore.length?"· "+Math.min(...r.explore.map(i=>XS[i]?.drive_min??0))+" min · tier "+XS[r.explore[0]]?.tier:"· Home Waters"}</span><br>${chip(r)}</div>`).join(""):'<div class="sub">Nothing is at peak on the rivers this dashboard tracks today.</div>'}${ends.length?`<div class="sub" style="margin-top:4px">⏳ Ending soon: ${ends.map(r=>esc(r.name)+" ("+roll(r).e.filter(q=>q.p.ph==="ends").map(q=>spName(r,q.x)+" "+q.p.left+" d").join(", ")+")").join("; ")}</div>`:""}</div>`;
+ $("runSrc").innerHTML=`<b>Sources &amp; confidence.</b> Windows for ${D.rivers.filter(r=>r.src==="hub-tracker").length} rivers come from the <a href="${esc(D.sources.tracker)}" target="_blank" rel="noopener">Michigan Fly Fishing Hub Run tracker</a> (hub data as of ${esc(D.hub_asof||"?")}). ${esc(D.method)} The Hub's SE-Michigan Clinton page only gives a qualitative spring steelhead window; Belle, St. Clair, lower Huron, Mill Creek (Yale) and Ohio windows are month-level regional text and shown striped. Paint Creek has no documented run (a few steelhead may pass the Yates bypass). Hub "Big Huron" is a Lake Superior river in Baraga Co., not the Huron River near Detroit. Rebuild: <code>python3 tools/build_runs.py</code>.`}
+// ---- boot ----
+async function boot(){try{[D]=await Promise.all([fetch("run-calendar.json?v=1").then(r=>r.json())]);
+  try{const X=await (await fetch("explore-streams.json?v=3")).json();X.streams.forEach(s=>XS[s.id]=s)}catch(e){console.warn("run: explore data",e)}
+  for(const r of D.rivers){r.explore.forEach(i=>byEx[i]=r);r.home.forEach(n=>byHome[n]=r);if(r.src==="hub-tracker"&&HOOK.has(r.id))r.hook=HOOKTXT}
+  renderCalendar();decorate();dispatchEvent(new Event("run-ready"))}catch(e){console.warn("run",e);const g=$("runGrid");if(g)g.innerHTML='<div class="sub" style="padding:14px">Could not load run-calendar.json</div>'}}
+const HOOK=new Set(["manistee-lower","little-manistee","pere-marquette","muskegon","white","betsie","bear-creek"]),HOOKTXT="the Hub says most of these rivers limit hooks to single hooks ½ in or less point-to-shank until Nov 15 (trebles only on a body bait). Check the current DNR guide. Snagging is illegal statewide.";
+window.RUN={inSeason,has:id=>!!(D&&byEx[id]),strip,bonus,alerts,badge:runBadge,decorate,ready:()=>!!D,phase,draw:renderCalendar};
+const mo=new MutationObserver(()=>{if(D)decorate()});
+const app=document.getElementById("app");if(app)mo.observe(app,{childList:true,subtree:true});
+boot();
 })();
 </script></body></html>
