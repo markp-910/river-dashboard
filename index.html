@@ -164,6 +164,14 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 .wxd{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:8px 6px;text-align:center;cursor:pointer;font-size:.84em;min-height:44px;box-shadow:var(--shadow-sm)}.wxd:hover{border-color:var(--brass)}.wxd.on{border-color:var(--g800);box-shadow:0 0 0 2px var(--g800) inset}
 .wxd .dn{font-weight:700;color:var(--g800);font-family:var(--serif)}.wxd .em{font-size:1.7em;line-height:1.2}.wxd .hl b{font-size:1.1em}.wxd .hl span{color:var(--mute)}.wxd .pr{color:var(--water);font-weight:600}
 .bite{display:inline-block;border-radius:10px;padding:2px 8px;font-weight:700;font-size:.82em;color:#fff;white-space:nowrap}.bite.b1{background:var(--bad)}.bite.b2{background:var(--warn)}.bite.b3{background:var(--fair)}.bite.b4{background:var(--good)}.bite.b5{background:#1f5a2c;box-shadow:0 0 0 2px var(--brass-l)}.bite.bx{background:var(--none)}
+.bdbtn{font:inherit;font-weight:700;color:inherit;background:transparent;border:1px solid transparent;border-radius:12px;display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px;min-height:44px;padding:3px 6px;margin:-3px -6px;cursor:pointer;text-align:left;-webkit-tap-highlight-color:transparent}
+.bdbtn:hover{border-color:var(--brass);background:rgba(176,138,46,.10)}.bdbtn:focus-visible{outline:2px solid var(--brass);outline-offset:1px}
+.bdbtn .bite{font-family:var(--sans);font-size:.8em;padding:2px 7px}.bdbtn .bite.tod{outline:2px solid rgba(31,58,43,.35);outline-offset:0}
+.bdbtn .ext{display:none}.bdbtn[aria-expanded=true] .ext{display:inline-block}
+.bdbtn .bdt{font-family:var(--sans);font-size:.76em;font-weight:700;color:var(--link);white-space:nowrap;padding:0 2px}.bdbtn .bdt .on5,.bdbtn[aria-expanded=true] .bdt .on3{display:none}.bdbtn[aria-expanded=true] .bdt .on5{display:inline}
+#banner .bdbtn .bdt{color:var(--brass-l)}#banner .bdbtn:hover{background:rgba(246,240,225,.12)}#banner .bdbtn .bite.tod{outline-color:rgba(246,240,225,.5)}
+.wxline .bdbtn,.top5 .bdbtn{margin:-3px -6px -3px 0}
+@media (max-width:700px){.bdbtn{gap:3px}.bdbtn .bite{padding:2px 6px;font-size:.78em}}
 #banner .bite.b3{background:#ecd176;color:#3a2b05}#banner .bite.b4{background:#bfe0a4;color:#14301c}#banner .bite.b5{background:#d9f0b8;color:#14301c}#banner .bite.b2{background:#efaa6f;color:#3a1c05}#banner .bite.b1{background:#ee9b8c;color:#3d0d06}
 .wxdet{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);padding:10px 14px;margin:8px 0;font-size:.9em}.wxdet h4{margin:0 0 4px;font-family:var(--serif);color:var(--g800)}
 .why{margin:4px 0;padding-left:0;list-style:none}.why li{padding:2px 0;border-bottom:1px dotted var(--line)}.why .dl{display:inline-block;min-width:34px;font-weight:700;text-align:right;margin-right:8px}.why .pos{color:var(--good)}.why .neg{color:var(--bad)}.why .zer{color:var(--mute)}
@@ -726,6 +734,18 @@ const GCAP={g:5,y:4,o:2,r:1};
 function rateSite(id,k){const W=ST.W[id]||ST.W.home;if(!W)return null;const r=rateDay(W,k);if(!r)return null;const i=INFO[id];
  if(k===0&&i&&i.t){const cap=GCAP[i.t.cls]??5,R=[...r.R];let n=r.n;if(cap<n){n=cap;R.push([`Gage rating “${i.t.label}” caps today at ${cap}/5`,0])}else R.push([`Gage rating “${i.t.label}” — no cap`,0]);return{...r,n,R,gage:true}}return r}
 const bite=(n,x)=>`<span class="bite b${n}" title="Rule-of-thumb score from weather${x?" and the gage":""} — not scientific">🎣 ${n}/5 ${LBL[n]}</span>`;
+
+// ---------- 3-day / 5-day bite chips (tap to expand) ----------
+const BD5_KEY="bite5";let BD5=false;try{BD5=localStorage.getItem(BD5_KEY)==="1"}catch(e){}
+const BDN=5;
+function biteDays(fn){const out=[];for(let k=0;k<BDN;k++){let r=null;try{r=fn(k)}catch(e){}if(r&&r.n)out.push({k,n:r.n,date:r.m&&r.m.date,gage:!!r.gage})}return out}
+function biteBtn(fn){const d=biteDays(fn);if(!d.length)return"";const lbl=x=>x.k===0?"Today":x.date?dName(x.date):"Day "+(x.k+1);
+ const chips=d.map(x=>`<span class="bite b${x.n} ${x.k>=3?"ext":""}${x.k===0?" tod":""}" title="${lbl(x)}: ${LBL[x.n]} (${x.n}/5)${x.k===0&&x.gage?" — weather + gage":" — weather only"}">${lbl(x)} ${x.n}/5</span>`).join("");
+ const more=d.some(x=>x.k>=3);const aria="Bite rating, rule of thumb: "+d.map(x=>`${lbl(x)} ${x.n} of 5 ${LBL[x.n]}`).join(", ");
+ return`<button type="button" class="bdbtn" data-bd="1" ${more?`aria-expanded="${BD5}" aria-label="${aria}. ${"Shows"} ${BD5?"5":"3"} days; activate to show ${BD5?"3":"5"} days."`:`aria-label="${aria}"`} title="Tap to switch between 3 and 5 day bite ratings">${chips}${more?'<span class="bdt" aria-hidden="true"><span class="on3">+2 days ▾</span><span class="on5">3 days ▴</span></span>':""}</button>`}
+function setBD5(v){BD5=v;try{localStorage.setItem(BD5_KEY,v?"1":"0")}catch(e){}document.querySelectorAll(".bdbtn[aria-expanded]").forEach(b=>{b.setAttribute("aria-expanded",v);b.setAttribute("aria-label",b.getAttribute("aria-label").replace(/Shows [35] days; activate to show [35] days\./,`Shows ${v?5:3} days; activate to show ${v?3:5} days.`))})}
+document.addEventListener("click",e=>{const b=e.target.closest&&e.target.closest(".bdbtn");if(!b)return;e.stopPropagation();e.preventDefault();if(b.hasAttribute("aria-expanded"))setBD5(!BD5)},true);
+document.addEventListener("keydown",e=>{if((e.key==="Enter"||e.key===" ")&&e.target.closest&&e.target.closest(".bdbtn"))e.stopPropagation()},true);
 const whyH=R=>`<ul class="why">${R.map(([t,d])=>`<li><span class="dl ${d>0?"pos":d<0?"neg":"zer"}">${d>0?"+":""}${d||"·"}</span>${esc(t)}</li>`).join("")}</ul>`;
 const winTxt=r=>r.wins.map(w=>`<b>${esc(w.n)}</b> ${hr12(w.a)}–${hr12(w.b)}`).join(" · ");
 // ---------- data load ----------
@@ -811,11 +831,11 @@ function renderPanel(){const el=$("wxBody");if(!el)return;
  el.querySelectorAll(".wxd").forEach(d=>{const go=()=>{ST.k=+d.dataset.k;renderPanel()};d.onclick=go;d.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}}})}
 // ---------- per-card / river / top5 ----------
 function curLine(id){const W=ST.W[id]||ST.W.home;if(!W)return"";const c=W.cur,[em,tx]=WC(c.weather_code);return`${em} <b>${Math.round(c.temperature_2m)}°F</b> ${tx.toLowerCase()} · 💨 ${Math.round(c.wind_speed_10m)} mph · 💧 ${past(W,24).toFixed(2)}″ /24 h`}
-function fillCards(){document.querySelectorAll(".wxline[data-wxid]").forEach(el=>{const id=el.dataset.wxid;if(!ST.ready){el.innerHTML="";return}const r=rateSite(id,0);el.innerHTML=r?`${curLine(id)} ${bite(r.n,r.gage)}`:""});
- document.querySelectorAll(".rvh[data-ids]").forEach(h=>{const sp=h.querySelector(".rvwx");if(!sp)return;if(!ST.ready){sp.innerHTML="";return}const ids=h.dataset.ids.split(",").filter(id=>INFO[id]);const ns=ids.map(id=>rateSite(id,0)?.n).filter(Boolean);sp.innerHTML=ns.length?`${bite(Math.max(...ns),true)} <span class="sub">today</span>`:""})}
+function fillCards(){document.querySelectorAll(".wxline[data-wxid]").forEach(el=>{const id=el.dataset.wxid;if(!ST.ready){el.innerHTML="";return}const r=rateSite(id,0);el.innerHTML=r?`${curLine(id)} ${biteBtn(k=>rateSite(id,k))}`:`${curLine(id)}`});
+ document.querySelectorAll(".rvh[data-ids]").forEach(h=>{const sp=h.querySelector(".rvwx");if(!sp)return;if(!ST.ready){sp.innerHTML="";return}const ids=h.dataset.ids.split(",").filter(id=>INFO[id]);sp.innerHTML=ids.length?biteBtn(k=>{let best=null;for(const id of ids){const r=rateSite(id,k);if(r&&(!best||r.n>best.n))best=r}return best}):""})}
 const WX={ready:()=>ST.ready,st:ST,
  adj(id){if(!ST.ready)return 0;const r=rateSite(id,0);return r?(r.n-3)*.6:0},
- top5(id){if(!ST.ready)return"";const r=rateSite(id,0);if(!r)return"";return` · ${curLine(id)} · ${bite(r.n,r.gage)}${PAINT.has(id)&&paintClosed()?' · <b title="Type 1 stream: fishing/possession last Sat in April–Sep 30">🚫 closed to trout till '+paintOpens()+"</b>":""}`},
+ top5(id){if(!ST.ready)return"";const r=rateSite(id,0);if(!r)return"";return` · ${curLine(id)} · ${biteBtn(k=>rateSite(id,k))}${PAINT.has(id)&&paintClosed()?' · <b title="Type 1 stream: fishing/possession last Sat in April–Sep 30">🚫 closed to trout till '+paintOpens()+"</b>":""}`},
  fillModal(id,el){const draw=()=>{if(!el.isConnected)return;if(!ST.ready){el.innerHTML=`<div class="wxbox"><h4>🌦️ Weather &amp; bite rating</h4><div class="sub">${ST.err?"Weather unavailable right now.":"Loading weather…"}</div></div>`;return}
    const r=rateSite(id,0),W=ST.W[id]||ST.W.home;const rr=rg()[RIVER_OF[id]]||[id];const b=rainRiver(RIVER_OF[id]||id,rr);
    const days=[1,2,3].map(k=>{const q=rateDay(W,k);if(!q)return"";return`<div><b>${dName(q.m.date)}</b><br>${WC(q.m.code)[0]} ${Math.round(q.m.tmax)}°/${Math.round(q.m.tmin)}°<br>${q.m.precip>=.01?q.m.precip.toFixed(2)+"″":"dry"}<br>${bite(q.n)}</div>`}).join("");
