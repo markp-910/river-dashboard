@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-15",
+ "generated": "2026-10-19",
  "home": {
   "address": "12459 Plumbrook Rd, Sterling Heights, MI 48312",
   "lat": 42.5743976,
@@ -6091,7 +6091,7 @@
     "cls": "unknown",
     "type": "",
     "gr": true,
-    "note": "TroutRoutes class not checked yet \u2014 send me the class and I'll fill it in."
+    "note": "TroutRoutes class is app-gated (PRO Guide Mode); no public stream page found (checked Oct 2026)."
    },
    "dnr": "Designated trout stream (FO-210.26). FO-200.25: Type 2 above CR 612, lures-only CR 612\u2013M-72, flies-only M-72\u2013CCC Bridge, Type 4 CCC Bridge\u2013M-115.",
    "state": {
@@ -6489,15 +6489,20 @@
     }
    ],
    "catches": [],
-   "access": "M-72 Bridge, CCC Bridge, M-66 Bridge, US-131 (Michigan Fly Fishing Hub; FO-200). Public forest access; marker approximate (Sharon area).",
+   "access": "Flies-only reach, upstream first: M-72 State Forest Campground (RM 166.6), Hole in the Wall, Hole in the Fence, Tree Farm, Yellowtrees Landing, Burnt Cabin, CCC Bridge State Forest Campground (drift-boat launches per DNR SFR 2020-283; river miles per BirdTrout/MDNR). Below CCC: 3 Mile Bend, 4 Mile Bend, Thayer Rd. Most road crossings allow wade access. Hub lists M-72 Bridge, CCC Bridge, M-66 Bridge, US-131. Marker approximate (Sharon area).",
    "gages": [
     {
+     "id": "04123500",
+     "label": "Manistee R near Grayling (at M-72, top of the flies-only reach)",
+     "proxy": false
+    },
+    {
      "id": "04124000",
-     "label": "Manistee R near Sherman (downstream of the flies-only reach)",
+     "label": "Manistee R near Sherman (far downstream)",
      "proxy": true
     }
    ],
-   "gage_note": "04124000 Manistee River near Sherman (live, has water temp; downstream \u2014 proxy for this stretch)",
+   "gage_note": "04123500 Manistee River near Grayling sits at the M-72 crossing (live flow, gage height and water temp); 04124000 near Sherman is far downstream (proxy only)",
    "confidence": "Medium-High (regs from FO; marker approximate)",
    "flags": [
     "The marker is the river near Sharon (Kalkaska Co.), between the CCC Bridge and M-115 (Type 4). The flies-only water is upstream (M-72 \u2192 CCC Bridge) \u2014 pick your reach from the order, not the pin."
@@ -6507,7 +6512,9 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_213.pdf (FO-213.15, gear-restriction criteria)",
     "https://michiganflyfishinghub.com/rivers/upper-manistee-river/",
-    "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
+    "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
+    "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/StatusoftheFisheryResourceReports/0345_2020_UpperManisteeRiver.pdf (DNR SFR 2020-283, access sites)",
+    "https://waterdata.usgs.gov/monitoring-location/04123500/ (USGS gage at M-72)"
    ],
    "rank": 29,
    "tier": 4,

@@ -10,12 +10,12 @@ def inat_catches(key, n=3):
         out.append({"date": o["date"], "text": f"{o['sp']} photo observation — {(o.get('place') or '').strip(', ')} (iNaturalist, {o['q'].replace('_', ' ')}; a photo within ~5 mi, not a verified catch report)", "url": o["url"]})
         if len(out) >= n: break
     return out
-def mk(id, name, county, key, species, wild, repro, st, season, regs, dnr, seasons_text, best, runs, stock, stock_extra, gages, gage_note, conf, flags, sources, access, catches_key=None, tr_cls="unknown"):
+def mk(id, name, county, key, species, wild, repro, st, season, regs, dnr, seasons_text, best, runs, stock, stock_extra, gages, gage_note, conf, flags, sources, access, catches_key=None, tr_cls="unknown", tr_note=None):
     d = DT[key]
     evs = stock_for(**stock) if stock else []
     return {"id": id, "name": name, "county": county, "lat": d["lat"], "lng": d["lng"], "drive_min": d["min"], "drive_miles": d["miles"], "drive_min_alt": d["alt_min"],
         "species": species, "species_groups": groups(species), "wild": wild, "reproduction": repro,
-        "tr": dict(cls=tr_cls, type="", gr=("GR" in st["types"]), note="TroutRoutes class not checked yet — send me the class and I'll fill it in."),
+        "tr": dict(cls=tr_cls, type="", gr=("GR" in st["types"]), note=tr_note or "TroutRoutes class not checked yet — send me the class and I'll fill it in."),
         "dnr": dnr, "state": st, "season": season, "regs": regs, "seasons_text": seasons_text, "best_months": best, "runs": runs,
         "stocking_summary": stock_summary(evs, stock_extra), "stocking_events": evs[:40], "catches": inat_catches(catches_key or key), "access": access,
         "gages": [{"id": i, "label": l, "proxy": p} for i, l, p in gages], "gage_note": gage_note, "confidence": conf, "flags": flags, "sources": sources}
@@ -63,9 +63,10 @@ NEW.append(mk("manistee-upper", "Upper Manistee River (flies-only M-72 → CCC B
   "Flies-only M-72 → CCC Bridge (16.7 mi); lures-only CR 612 → M-72; Type 2 upstream of CR 612. Browns 18 in minimum on the GR reaches, 2 trout (one ≥18 in).",
   "Designated trout stream (FO-210.26). FO-200.25: Type 2 above CR 612, lures-only CR 612–M-72, flies-only M-72–CCC Bridge, Type 4 CCC Bridge–M-115.",
   "Evening Sulphur and Brown Drake; wild browns on dries and nymphs; cool water through summer (Hub).", [5, 6, 7, 9], [], dict(waters=["Manistee River"], counties=["Kalkaska", "Wexford", "Missaukee"]), "",
-  [("04124000", "Manistee R near Sherman (downstream of the flies-only reach)", True)], "04124000 Manistee River near Sherman (live, has water temp; downstream — proxy for this stretch)", "Medium-High (regs from FO; marker approximate)",
+  [("04123500", "Manistee R near Grayling (at M-72, top of the flies-only reach)", False), ("04124000", "Manistee R near Sherman (far downstream)", True)], "04123500 Manistee River near Grayling sits at the M-72 crossing (live flow, gage height and water temp); 04124000 near Sherman is far downstream (proxy only)", "Medium-High (regs from FO; marker approximate)",
   ["The marker is the river near Sharon (Kalkaska Co.), between the CCC Bridge and M-115 (Type 4). The flies-only water is upstream (M-72 → CCC Bridge) — pick your reach from the order, not the pin."],
-  [FO210, FO200, FO213, HUB("upper-manistee-river"), HUBBEST], "M-72 Bridge, CCC Bridge, M-66 Bridge, US-131 (Michigan Fly Fishing Hub; FO-200). Public forest access; marker approximate (Sharon area)."))
+  [FO210, FO200, FO213, HUB("upper-manistee-river"), HUBBEST, "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/StatusoftheFisheryResourceReports/0345_2020_UpperManisteeRiver.pdf (DNR SFR 2020-283, access sites)", "https://waterdata.usgs.gov/monitoring-location/04123500/ (USGS gage at M-72)"], "Flies-only reach, upstream first: M-72 State Forest Campground (RM 166.6), Hole in the Wall, Hole in the Fence, Tree Farm, Yellowtrees Landing, Burnt Cabin, CCC Bridge State Forest Campground (drift-boat launches per DNR SFR 2020-283; river miles per BirdTrout/MDNR). Below CCC: 3 Mile Bend, 4 Mile Bend, Thayer Rd. Most road crossings allow wade access. Hub lists M-72 Bridge, CCC Bridge, M-66 Bridge, US-131. Marker approximate (Sharon area).",
+  tr_note="TroutRoutes class is app-gated (PRO Guide Mode); no public stream page found (checked Oct 2026)."))
 NEW.append(mk("pere-marquette", "Pere Marquette River (Baldwin) — flies-only M-37 → Gleason's Landing", "Lake / Mason", "pere-marquette",
   ["steelhead", "brown trout", "chinook", "coho"], "both", "Stocked brown trout plus wild-reproducing steelhead/brown (Michigan Fly Fishing Hub); DNR stocks browns in Lake and Mason Cos.",
   state(["GR"], True, "Gear-restricted flies-only M-37 → Gleason's (state-designated)", ["M-37 → Gleason's Landing (8.5 mi): artificial flies only, fishing open all year, possession CLOSED all year (kids <12: 1 trout/salmon 8–12 in).", "Gleason's Landing → Rainbow Rapids (10.5 mi): Sep 1 – Fri before last Sat Apr is Type 4 with 0 brook, 0 brown, 1 rainbow; the rest of the year has its own gear-restricted rule that wasn't fully legible in the parsed text — check the order.", "Rainbow Rapids → Reek Rd: Type 4, max 1 rainbow; Reek Rd → Old US-31: Type 3, max 1 rainbow."], "FO-210.26 p.23 · FO-200.25 p.18 (PM GR), p.4/p.6 (Type 3/4 reaches)", True, "FO-200/FO-210 text read; one reach partly legible"),
