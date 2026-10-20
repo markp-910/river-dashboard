@@ -1182,8 +1182,13 @@
     "note": ""
    },
    "season": {
-    "rule": "closed_oct1_mar31",
-    "label": "Closed Oct 1 \u2013 Mar 31; Apr 1\u201325 flies-only catch & release, then open to Sep 30"
+    "rule": "type1_gr_spring",
+    "gr": {
+     "tackle": "flies",
+     "cr": true
+    },
+    "label": "Closed Oct 1 \u2013 Mar 31. Apr 1 \u2013 Fri before the last Sat in April: gear-restricted, artificial flies only, possession closed. Last Sat in April \u2013 Sep 30: Type 1 rules (bait allowed).",
+    "src": "2026 Michigan Fishing Regulations p.45 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR12)"
    },
    "regs": "Apr 1 \u2013 Fri before the last Sat in April: artificial flies only, possession closed (kids <12 may keep 1 trout 8\u201312 in). Last Sat in April \u2013 Sep 30: Type 1 (5 trout, max 3 \u226515 in; brook 7 in, brown 8 in). Closed Oct 1 \u2013 Mar 31. Huron River Do-Not-Eat fish advisory applies north of I-275 \u2014 check the Eat Safe Fish guide.",
    "seasons_text": "Spring only effectively (stocked late March; open Apr 1-Sep 30); fish pressure drops after May.",
@@ -3079,7 +3084,8 @@
    },
    "season": {
     "rule": "last_sat_apr_sep30",
-    "label": "Type 2 (M-43 \u2192 Freeport): last Sat Apr \u2013 Sep 30; Type 4 below Freeport: fishing all year"
+    "label": "Type 2 (M-43 \u2192 Freeport): last Sat Apr \u2013 Sep 30; Type 4 below Freeport: fishing all year",
+    "also": "Type 4 below Freeport Rd is open all year (brook/brown catch & release until the last Sat in April)"
    },
    "regs": "Type 2 reach: last Sat Apr \u2013 Sep 30, 5 trout (max 3 \u226515 in), brook 10 in, brown 12 in. Type 4 below Freeport Rd: fishing all year, brook/brown kept last Sat Apr \u2013 Sep 30.",
    "seasons_text": "Spring (after stocking) through early fall; check water temperature July\u2013August.",
@@ -5134,18 +5140,24 @@
     "badge": "Gear-restricted flies-only, no-kill (state-designated)",
     "lines": [
      "Chase Bridge Rd \u2192 Lower High Banks (4.3 mi, Mason Tract): artificial flies only, fishing open all year, possession CLOSED (kids <12 may keep 1 trout 8\u201312 in).",
-     "Lower High Banks \u2192 confluence with the mainstream (11.5 mi): artificial lures only, 2 trout, max 1 brown; brook 10 in, brown 12 in, rainbow 10 in."
+     "Lower High Banks \u2192 confluence with the mainstream (11.5 mi): fishing open all year, artificial flies only (not lures), 2 trout (max 1 \u226518 in); brook & rainbow 10 in, brown 18 in; brook/brown possession last Sat Apr \u2013 Sep 30, rainbow all year."
     ],
-    "refs": "FO-210.26 p.36 (South Branch to Co. Rd 602) \u00b7 FO-200.25 p.13 (South Branch GR)",
+    "refs": "FO-210.26 p.36 (South Branch to Co. Rd 602) \u00b7 FO-200.25 p.13 (South Branch GR) \u00b7 2026 Fishing Regulations p.44",
     "prio": true,
     "verified": "FO text read",
     "note": ""
    },
    "season": {
-    "rule": "gr_noharvest",
-    "label": "Chase Bridge \u2192 Lower High Banks: flies-only, open all year, catch-and-release (possession closed)"
+    "rule": "gr",
+    "gr": {
+     "tackle": "flies",
+     "cr": true
+    },
+    "label": "Chase Bridge \u2192 Lower High Banks (Mason Tract): flies only, open all year, possession closed all year. Lower High Banks \u2192 mainstream: flies only, open all year, brook/brown kept last Sat Apr \u2013 Sep 30 (2 trout, brown 18 in).",
+    "also": "below Lower High Banks: also flies only; brook/brown may be kept last Sat Apr \u2013 Sep 30",
+    "src": "2026 Michigan Fishing Regulations p.44 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR5/GR6)"
    },
-   "regs": "Flies-only no-kill Chase Bridge \u2192 Lower High Banks (4.3 mi); lures-only below to the mainstream (2 trout, 1 brown max). No bait, scent or beads on GR water.",
+   "regs": "Flies only on the whole South Branch GR water: no-kill Chase Bridge \u2192 Lower High Banks (4.3 mi); below Lower High Banks to the mainstream (11.5 mi) still flies only, 2 trout (max 1 \u226518 in), brown 18 in, kept only last Sat Apr \u2013 Sep 30. No bait, scent or beads on flies-only water.",
    "seasons_text": "Afternoon BWO, evening Sulphur / Brown Drake; Hex late June. Walk-in wilderness water.",
    "best_months": [
     5,
@@ -5224,7 +5236,7 @@
     "badge": "Type 2 + GR flies-only (state-designated)",
     "lines": [
      "Burton's Landing \u2192 South Wakeley Bridge Rd (9.0 mi, the Holy Water): artificial flies only, fishing open all year, possession CLOSED all year (kids <12 may keep 1 trout 8\u201312 in); bait, scent banned.",
-     "Wakeley Bridge \u2192 McMasters Bridge (8.0 mi): artificial lures only, 2 trout (max 1 \u226518 in), browns 18 in minimum; brook/brown possession last Sat Apr \u2013 Sep 30.",
+     "Wakeley Bridge \u2192 McMasters Bridge (8.0 mi): fishing open all year, artificial lures only, 2 trout (max 1 \u226518 in); brook & rainbow 10 in, brown 18 in; brook/brown possession last Sat Apr \u2013 Sep 30, rainbow all year.",
      "James St (Business Loop 75) \u2192 Burton's Landing: Type 2 (last Sat Apr \u2013 Sep 30; brook 10 in, brown 12 in)."
     ],
     "refs": "FO-210.26 p.36 \u00b7 FO-200.25 p.3 (Type 2), p.12 (Au Sable GR) \u00b7 FO-213 (GR criteria)",
@@ -5233,8 +5245,14 @@
     "note": ""
    },
    "season": {
-    "rule": "gr_noharvest",
-    "label": "Holy Water: fishing open all year, catch-and-release flies only (possession closed). Type 2 above Burton's Landing: last Sat Apr \u2013 Sep 30"
+    "rule": "gr",
+    "gr": {
+     "tackle": "flies",
+     "cr": true
+    },
+    "label": "Holy Water (Burton's Landing \u2192 Wakeley Bridge): fishing open all year, artificial flies only, possession closed all year (kids <12 may keep 1 trout 8\u201312 in). Wakeley \u2192 McMasters: open all year, lures only, brook/brown kept last Sat Apr \u2013 Sep 30. Type 2 above Burton's Landing: last Sat Apr \u2013 Sep 30.",
+    "also": "Type 2 water above Burton's Landing is closed Oct 1 \u2013 last Sat in April",
+    "src": "2026 Michigan Fishing Regulations p.44 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR1/GR2)"
    },
    "regs": "Flies-only no-kill Holy Water; lures-only Wakeley\u2013McMasters (2 trout, brown 18 in); Type 2 above Burton's Landing. Chumming/bait banned on GR reaches.",
    "seasons_text": "Hendrickson (May), Sulphur and Brown Drake (June), Hex (late June\u2013July nights); fall BWO and streamers.",
@@ -6192,9 +6210,9 @@
     "badge": "Type 2 + GR (flies-only M-72 \u2192 CCC Bridge; state-designated)",
     "lines": [
      "Type 2 (CR 612 upstream to the headwaters): last Sat Apr \u2013 Sep 30; brook 10 in, brown 12 in.",
-     "CR 612 \u2192 M-72 (9.2 mi): artificial lures only, 2 trout (1 \u226518 in), browns 18 in.",
-     "M-72 \u2192 Sunset Trail Rd/CCC Bridge (16.7 mi): artificial flies only, 2 trout (1 \u226518 in), browns 18 in; brook/brown kept last Sat Apr \u2013 Sep 30.",
-     "CCC Bridge \u2192 M-115: Type 4."
+     "CR 612 \u2192 M-72 (9.2 mi): fishing open all year, artificial lures only, 2 trout (1 \u226518 in), browns 18 in; brook/brown kept last Sat Apr \u2013 Sep 30.",
+     "M-72 \u2192 Sunset Trail Rd/CCC Bridge (16.7 mi): fishing open all year, artificial flies only, 2 trout (1 \u226518 in); brook & rainbow 10 in, brown 18 in; brook/brown kept last Sat Apr \u2013 Sep 30, rainbow all year.",
+     "CCC Bridge \u2192 M-115: Type 4 (fishing all year; brook/brown kept last Sat Apr \u2013 Sep 30)."
     ],
     "refs": "FO-210.26 p.20/22 \u00b7 FO-200.25 p.3 (Type 2), p.17 (Manistee GR), p.11 (Type 4)",
     "prio": true,
@@ -6202,8 +6220,14 @@
     "note": ""
    },
    "season": {
-    "rule": "last_sat_apr_sep30",
-    "label": "Type 2 / GR water: plan on last Sat Apr \u2013 Sep 30 for keeping brook/brown (flies-only reach fishable all year)"
+    "rule": "gr",
+    "gr": {
+     "tackle": "flies",
+     "cr": false
+    },
+    "label": "M-72 \u2192 CCC Bridge: fishing open all year, artificial flies only. CR 612 \u2192 M-72: open all year, artificial lures only. Both: brook/brown possession last Sat Apr \u2013 Sep 30, rainbow all year; 2 trout (max 1 \u226518 in). Type 2 above CR 612: last Sat Apr \u2013 Sep 30. CCC Bridge \u2192 M-115: Type 4 (open all year).",
+    "also": "lures only CR 612 \u2192 M-72; Type 2 water above CR 612 closed Oct 1 \u2013 last Sat in April",
+    "src": "2026 Michigan Fishing Regulations p.45 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR14/GR15)"
    },
    "regs": "Flies-only M-72 \u2192 CCC Bridge (16.7 mi); lures-only CR 612 \u2192 M-72; Type 2 upstream of CR 612. Browns 18 in minimum on the GR reaches, 2 trout (one \u226518 in).",
    "seasons_text": "Evening Sulphur and Brown Drake; wild browns on dries and nymphs; cool water through summer (Hub).",
@@ -6653,8 +6677,13 @@
     "note": ""
    },
    "season": {
-    "rule": "gr_noharvest",
-    "label": "Flies-only: fishing open all year; brook/brown kept only last Sat Apr \u2013 Sep 30 (rainbow year-round)"
+    "rule": "gr",
+    "gr": {
+     "tackle": "flies",
+     "cr": false
+    },
+    "label": "Sheep Ranch \u2192 mainstream: fishing open all year, artificial flies only; brook/brown possession last Sat Apr \u2013 Sep 30, rainbow all year; 2 trout (max 1 \u226518 in).",
+    "src": "2026 Michigan Fishing Regulations p.44 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR4)"
    },
    "regs": "Flies-only 20.7 mi: 2 trout (one \u226518 in), browns 18 in minimum, brook 10 in; no bait or scent.",
    "seasons_text": "Evening Sulphur and Brown Drake; wild brookies take small attractors; Hex in late June.",
@@ -6849,17 +6878,23 @@
     "badge": "Gear-restricted flies-only M-37 \u2192 Gleason's (state-designated)",
     "lines": [
      "M-37 \u2192 Gleason's Landing (8.5 mi): artificial flies only, fishing open all year, possession CLOSED all year (kids <12: 1 trout/salmon 8\u201312 in).",
-     "Gleason's Landing \u2192 Rainbow Rapids (10.5 mi): Sep 1 \u2013 Fri before last Sat Apr is Type 4 with 0 brook, 0 brown, 1 rainbow; the rest of the year has its own gear-restricted rule that wasn't fully legible in the parsed text \u2014 check the order.",
+     "Gleason's Landing \u2192 Rainbow Rapids (10.5 mi): last Sat Apr \u2013 Aug 31 gear-restricted, artificial lures only, 2 trout/salmon (max 1 brown \u226518 in, max 1 rainbow; no brook/brown 14\u201318 in kept); Sep 1 \u2013 Fri before last Sat Apr Type 4 rules (bait allowed) with 0 brook, 0 brown, 1 rainbow (10 in).",
      "Rainbow Rapids \u2192 Reek Rd: Type 4, max 1 rainbow; Reek Rd \u2192 Old US-31: Type 3, max 1 rainbow."
     ],
     "refs": "FO-210.26 p.23 \u00b7 FO-200.25 p.18 (PM GR), p.4/p.6 (Type 3/4 reaches)",
     "prio": true,
-    "verified": "FO-200/FO-210 text read; one reach partly legible",
+    "verified": "FO-200/FO-210 text read; Gleason's \u2192 Rainbow Rapids confirmed in the 2026 guide p.46 and DNR regulations layer",
     "note": ""
    },
    "season": {
-    "rule": "gr_noharvest",
-    "label": "Flies-only M-37 \u2192 Gleason's: open all year, zero possession; other reaches change by date"
+    "rule": "gr",
+    "gr": {
+     "tackle": "flies",
+     "cr": true
+    },
+    "label": "M-37 \u2192 Gleason's Landing: fishing open all year, artificial flies only, possession closed all year (kids <12: 1 trout/salmon 8\u201312 in). Gleason's \u2192 Rainbow Rapids: Sep 1 \u2013 Fri before last Sat Apr Type 4 with 0 brook/0 brown/1 rainbow; last Sat Apr \u2013 Aug 31 lures only.",
+    "also": "below Gleason's the rules switch on Sep 1 (Type 4, bait OK, 1 rainbow, no brook/brown) and the last Sat in April (lures only)",
+    "src": "2026 Michigan Fishing Regulations p.46 \u00b7 FO-200.25 \u00b7 DNR Trout & Salmon Regulations layer (GR18/GR19)"
    },
    "regs": "Flies-only no-kill M-37 \u2192 Gleason's Landing; lower reaches Type 4/3 with a 1-rainbow limit. Rules change on Sep 1 and the last Sat in April \u2014 check the reach/date.",
    "seasons_text": "Fall run Sep\u2013Nov (kings, coho, lake-run browns), steelhead Oct\u2013Apr; Hendrickson (May), Sulphur / Brown Drake (June). Run windows are the Michigan Fly Fishing Hub's typical timing, not a forecast.",

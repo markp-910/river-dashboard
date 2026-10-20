@@ -527,12 +527,19 @@ addEventListener("explore-open",e=>{const id=e.detail;setTab("explore");let n=0;
 // ---- season logic ----
 const lastSat=y=>{const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d};
 const fmtD=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
-function status(s,now=new Date()){const y=now.getFullYear(),r=s.season.rule,inf=s.season.inferred?" (inferred)":"";
- if(r==="year_round")return{st:"open",txt:"OPEN year-round",cls:"open",score:100};
- if(r==="type4")return{st:"open",txt:"OPEN (fishing all year) · brook/brown kept only last Sat Apr–Sep 30; steelhead year-round",cls:"open",score:100};
- if(r==="gr_noharvest")return{st:"open",txt:"OPEN all year (flies-only / gear-restricted) · brook/brown kept only last Sat Apr–Sep 30 where allowed",cls:"open",score:100};
- if(r==="last_sat_apr_sep30"){const op=lastSat(y),cl=new Date(y,8,30,23,59);if(now>=op&&now<=cl)return{st:"open",txt:"OPEN"+inf+" · closes Sep 30",cls:"open",score:100};const nx=now<op?op:lastSat(y+1);return{st:"closed",txt:"CLOSED"+inf+" · opens "+fmtD(nx),cls:"closed",score:-100}}
- if(r==="closed_oct1_mar31"){const m=now.getMonth()+1;if(m>=4&&m<=9)return{st:"open",txt:"OPEN · closes Sep 30",cls:"open",score:100};const nx=new Date(m>=10?y+1:y,3,1);return{st:"closed",txt:"CLOSED · opens "+fmtD(nx)+" (flies-only C&R to ~Apr 25)",cls:"closed",score:-100}}
+function status(s,now=new Date()){const y=now.getFullYear(),se=s.season,r=se.rule,inf=se.inferred?" (inferred, confirm with DNR)":"",al=se.also?" · "+se.also:"";
+ const op=lastSat(y),cl=new Date(y,8,30,23,59),nxt=now<op?op:lastSat(y+1),inPoss=now>=op&&now<=cl,g=se.gr||{},tk=g.tackle==="flies"?"flies only":g.tackle==="lures"?"artificial lures only":"gear-restricted (confirm with DNR)";
+ if(r==="year_round")return{st:"open",txt:"OPEN year-round"+al,cls:"open",score:100};
+ if(r==="type3")return{st:"open",txt:"OPEN all year (Type 3)"+al,cls:"open",score:100};
+ if(r==="type4")return{st:"open",txt:(inPoss?"OPEN (fishing all year) · brook/brown may be kept until Sep 30; steelhead/rainbow year-round":"OPEN (fishing all year) · brook & brown catch & release until "+fmtD(nxt)+"; steelhead/rainbow may be kept")+al,cls:"open",score:100};
+ if(r==="gr"){const t=g.cr?`OPEN all year · catch & release only · ${tk}`:inPoss?`OPEN all year · ${tk} · brook/brown may be kept until Sep 30 (see limits)`:`OPEN all year · ${tk} · catch & release for brook & brown until ${fmtD(nxt)}${g.rbt===false?"":" (rainbow may be kept)"}`;return{st:"open",txt:t+al,cls:"open",score:100,gr:1}}
+ if(r==="gr_noharvest")return{st:"open",txt:"OPEN all year (gear-restricted) · confirm possession rules with DNR"+al,cls:"open",score:100};
+ if(r==="last_sat_apr_sep30"){if(inPoss)return{st:"open",txt:"OPEN"+inf+" · closes Sep 30"+al,cls:"open",score:100};return{st:"closed",txt:"CLOSED"+inf+" · opens "+fmtD(nxt)+al,cls:"closed",score:-100}}
+ if(r==="type1_gr_spring"){const fri=new Date(nxt.getFullYear(),nxt.getMonth(),nxt.getDate()-1);
+  if(inPoss)return{st:"open",txt:"OPEN (Type 1 rules, bait allowed) · closes Sep 30"+al,cls:"open",score:100};
+  if(now>=new Date(y,3,1)&&now<op)return{st:"open",txt:`OPEN · catch & release only · ${tk} until ${fmtD(fri)} (Type 1 from ${fmtD(op)})`+al,cls:"open",score:100,gr:1};
+  return{st:"closed",txt:`CLOSED · opens ${fmtD(new Date(now.getMonth()>=9?y+1:y,3,1))} for ${tk}, catch & release only (Type 1 from the last Sat in April)`+al,cls:"closed",score:-100}}
+ if(r==="closed_oct1_mar31"){const m=now.getMonth()+1;if(m>=4&&m<=9)return{st:"open",txt:"OPEN · closes Sep 30",cls:"open",score:100};const nx=new Date(m>=10?y+1:y,3,1);return{st:"closed",txt:"CLOSED · opens "+fmtD(nx)+" (confirm with DNR)",cls:"closed",score:-100}}
  return{st:"unk",txt:"Season unverified",cls:"unk",score:30}}
 const inRun=(s,m)=>s.runs.filter(r=>r.months.includes(m));
 const clsB=t=>{const c=t.cls;return `<span class="cls ${c==="gold"?"cG":c==="unknown"?"cU":"c"+c}">${c==="gold"?"Gold":c==="unknown"?"Class ?":"Class "+c}</span>`};
@@ -584,7 +591,7 @@ const FK="exploreFilter";let F={v:2,max:240,sp:"",cls:"",tiers:["1","2","3","4"]
 function desOk(s){const t=s.state.types||[],d=s.state.designated;switch(F.des){case"des":return d===true||d==="partial";case"t1":return t.includes("1");case"t2":return t.includes("2");case"t12":return t.includes("1")||t.includes("2");case"gr":return t.includes("GR");case"t3":return t.includes("3");case"t4":return t.includes("4");case"none":return !t.length&&!d;default:return true}}
 function passes(s){if(s.drive_min>F.max)return false;if(!desOk(s))return false;if(F.sp&&!s.species_groups.includes(F.sp))return false;if(F.cls&&s.tr.cls!==F.cls)return false;if(!F.tiers.includes(String(s.tier)))return false;const st=status(s).st;if(F.open==="open"&&st!=="open")return false;if(F.open==="closed"&&st!=="closed")return false;return true}
 async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="sub" style="padding:14px">Loading streams…</div>';
- try{XD=await (await fetch("explore-streams.json?v=4")).json()}catch(e){v.textContent="Couldn't load explore-streams.json";return}
+ try{XD=await (await fetch("explore-streams.json?v=5")).json()}catch(e){v.textContent="Couldn't load explore-streams.json";return}
  try{const sv=JSON.parse(localStorage.getItem(FK)||"{}");if(sv.v!==2){delete sv.max;delete sv.tiers}F={...F,...sv,v:2}}catch(e){}
  const sp=[...new Set([...XD.streams.flatMap(s=>s.species_groups),...EXTRA_SP])].sort();
  v.innerHTML=`<h2 style="margin:18px 0 4px;color:var(--g800);font-family:var(--serif)">🧭 Explore nearby trout & steelhead water</h2>
@@ -635,7 +642,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xRun"></div><div id="xHatch"></div><div id="xWx"></div>
  <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div>${s.history?`<div class="kv"><b>📖 History:</b> ${esc(s.history)}</div>`:""}<div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
  <details open><summary>📡 Nearest USGS gage (live)</summary><div id="xGl">${gageHtml(s)}</div><div class="sub">${esc(s.gage_note)}</div></details>
- <details open><summary>📜 Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div><div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
+ <details open><summary>📜 Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Today:</b> <span class="stt ${status(s).cls}">${esc(status(s).txt)}</span></div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div>${s.season.src?`<div class="sub">Season source: ${esc(s.season.src)}</div>`:""}<div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
  <details><summary>🐟 Stocking history (last 5 yrs, DNR)</summary><div class="kv sub">${esc(s.stocking_summary)}</div><ul>${stk}</ul></details>
  <details><summary>📸 Recent confirmed catches / reports (${s.catches.length})</summary><ul>${s.catches.length?s.catches.map(c=>`<li>${esc(c.date)} — ${esc(c.text)} <a href="${esc(c.url)}" target="_blank">source ↗</a></li>`).join(""):"<li>None found with date + place.</li>"}</ul></details>
  <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
@@ -644,7 +651,7 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.RUN)RUN.strip(s.id,$("xRun"),s);if(window.HATCH)HATCH.strip(s.id,$("xHatch"));if(window.WX)WX.fillExplore(s,$("xWx"))}
 function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
 $("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
-window._openStream=openStream;window._closeX=closeX;window._setTab=setTab;window._xd=()=>({XD,LIVE});
+window._openStream=openStream;window._closeX=closeX;window._status=status;window._setTab=setTab;window._xd=()=>({XD,LIVE});
 setTab(localStorage.getItem(TK)==="explore"?"explore":"home");
 })();
 </script><script>
@@ -662,7 +669,7 @@ function states(h){const st=Array(25).fill(0);for(const w of h.windows){for(cons
 const now=()=>{const t=new Date();return {m:t.getMonth(),d:t.getDate(),i:t.getMonth()*2+(t.getDate()<=15?1:2),dim:new Date(t.getFullYear(),t.getMonth()+1,0).getDate()}};
 let HD=null,GD=null,flt=localStorage.getItem("hatchWater")||"all",openRow=null;
 const load=async()=>{if(!HD)HD=await (await fetch("hatch-calendar.json?v=1")).json();return HD};
-const loadG=async()=>{if(!GD)GD=await (await fetch("gear-guide.json?v=10")).json();return GD};
+const loadG=async()=>{if(!GD)GD=await (await fetch("gear-guide.json?v=11")).json();return GD};
 const forWater=w=>HD.hatches.filter(h=>w==="all"||h.waters.includes(w));
 const yearRound=st=>st.slice(1).filter(x=>x>0).length>=22;
 function nowList(w){const n=now();return forWater(w).map(h=>({h,s:states(h)[n.i]})).filter(x=>x.s>0&&(!yearRound(states(x.h))||x.s===2)).sort((a,b)=>b.s-a.s||GO.indexOf(a.h.group)-GO.indexOf(b.h.group))}
@@ -1032,7 +1039,7 @@ function renderCalendar(){const g=$("runGrid");if(!g||!D)return;const now=new Da
  $("runSrc").innerHTML=`<b>Sources &amp; confidence.</b> Windows for ${D.rivers.filter(r=>r.src==="hub-tracker").length} rivers come from the <a href="${esc(D.sources.tracker)}" target="_blank" rel="noopener">Michigan Fly Fishing Hub Run tracker</a> (hub data as of ${esc(D.hub_asof||"?")}). ${esc(D.method)} The Hub's SE-Michigan Clinton page only gives a qualitative spring steelhead window; Belle, St. Clair, lower Huron, Mill Creek (Yale) and Ohio windows are month-level regional text and shown striped. Paint Creek has no documented run (a few steelhead may pass the Yates bypass). Hub "Big Huron" is a Lake Superior river in Baraga Co., not the Huron River near Detroit. Rebuild: <code>python3 tools/build_runs.py</code>.`}
 // ---- boot ----
 async function boot(){try{[D]=await Promise.all([fetch("run-calendar.json?v=1").then(r=>r.json())]);
-  try{const X=await (await fetch("explore-streams.json?v=4")).json();X.streams.forEach(s=>XS[s.id]=s)}catch(e){console.warn("run: explore data",e)}
+  try{const X=await (await fetch("explore-streams.json?v=5")).json();X.streams.forEach(s=>XS[s.id]=s)}catch(e){console.warn("run: explore data",e)}
   for(const r of D.rivers){r.explore.forEach(i=>byEx[i]=r);r.home.forEach(n=>byHome[n]=r);if(r.src==="hub-tracker"&&HOOK.has(r.id))r.hook=HOOKTXT}
   renderCalendar();decorate();dispatchEvent(new Event("run-ready"))}catch(e){console.warn("run",e);const g=$("runGrid");if(g)g.innerHTML='<div class="sub" style="padding:14px">Could not load run-calendar.json</div>'}}
 const HOOK=new Set(["manistee-lower","little-manistee","pere-marquette","muskegon","white","betsie","bear-creek"]),HOOKTXT="the Hub says most of these rivers limit hooks to single hooks ½ in or less point-to-shank until Nov 15 (trebles only on a body bait). Check the current DNR guide. Snagging is illegal statewide.";
@@ -1041,4 +1048,4 @@ const mo=new MutationObserver(()=>{if(D)decorate()});
 const app=document.getElementById("app");if(app)mo.observe(app,{childList:true,subtree:true});
 boot();
 })();
-</script><script src="lands.js?v=1"></script></body></html>
+</script><script src="lands.js?v=2"></script></body></html>

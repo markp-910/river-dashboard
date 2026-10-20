@@ -31,6 +31,7 @@ const PARCELS=[
   f:p=>({id:p.Tparcel,own:null,noown:"not published in Barry's open data",ac:p.Acres})}
 ];
 const MISSING="No free public parcel service found for Washtenaw or Livingston (county services need a login), or for Crawford, Kalkaska, Lake, Wexford, Manistee, Oscoda, Otsego, Missaukee, Osceola, Newaygo, Roscommon and the other northern counties (paid or viewer-only systems). Up north, use the public-land, DNR and Commercial Forest layers.";
+const rcol=p=>{const g=p.GearRestriction,t=p.StreamType||"";if(g)return"#d0282e";if(/^Type 1/.test(t))return"#2e9e46";if(/^Type 2/.test(t))return"#e3c21b";if(/^Type 3/.test(t))return"#ef8a1c";if(/^Type 4/.test(t))return"#2c6fd6";return"#777"};
 const LAY={
  pub:{lab:"🏛️ Public land",def:1,minZ:10,url:PADUS,where:"FeatClass='Fee' AND Own_Type<>'PVT'",out:"FeatClass,Own_Type,Loc_Own,Mang_Type,Loc_Mang,Des_Tp,Unit_Nm,GIS_Acres,Pub_Access",
   st:f=>({color:mcol(f.properties.Mang_Type),weight:1,opacity:.9,fillColor:mcol(f.properties.Mang_Type),fillOpacity:.3})},
@@ -41,9 +42,12 @@ const LAY={
  cfa:{lab:"🪓 Commercial Forest",minZ:10,url:DNR+"CommercialForestOPENDATA/FeatureServer/0",where:"1=1",out:"parid,GISAcres",
   st:()=>({color:"#c0602a",weight:1.2,opacity:.9,fillColor:"#e08a3c",fillOpacity:.22,dashArray:"2 3"})},
  bal:{lab:"🚤 DNR boat launches",minZ:9,pt:1,url:DNR+"Boat_Launches/FeatureServer/0",where:"1=1",out:"SiteName,WaterBody,Owner,Type,SiteManager,TotalParking,AccessFee,AccessCost,County,RampCode,CarryDown,PublicPhone"},
+ regs:{lab:"🎣 Trout regs (DNR)",minZ:10,line:1,url:DNR+"DNRFisheriesTroutRegsOPENDATA/FeatureServer/0",where:"isActive=1 AND (StreamType<>'Unclassified' OR GearRestriction IS NOT NULL)",out:"DNRName,StreamType,GearRestriction,RegulationDesc,FSeasonStart,FSeasonEnd,PSeasonStart,PSeasonEnd,DPL,Tackle,GRFSeasonStart,GRFSeasonEnd,GRPSeasonStart,GRPSeasonEnd,GRDPL,GRTackle,GRSL,GRLocDesc,GRMileage",
+  st:f=>({color:rcol(f.properties),weight:f.properties.GearRestriction?4.5:3,opacity:.9})},
+ tt:{lab:"⭐ DNR Trout Trails",minZ:7,pt:1,col:"#b8860b",url:DNR+"TroutTrailPointsOpenData/FeatureServer/0",where:"1=1",out:"locationname,locationdesignation,speciesdescription,locationcounty,locationdescription,locationdirections,regionalvisitorurl"},
  par:{lab:"📐 Parcel lines",minZ:14,par:1}
 };
-const SW=k=>({pub:"",ease:'<i style="border:2px dashed #b8860b;background:rgba(184,134,11,.08)"></i>',lots:'<i style="border:1px solid #1e5e22;background:rgba(58,154,62,.45)"></i>',cfa:'<i style="border:2px dotted #c0602a;background:rgba(224,138,60,.3)"></i>',bal:'<i style="background:#1d5fa8;border-radius:50%"></i>',par:'<i style="border:2px solid #7a2e1d;background:transparent"></i>'}[k]);
+const SW=k=>({pub:"",ease:'<i style="border:2px dashed #b8860b;background:rgba(184,134,11,.08)"></i>',lots:'<i style="border:1px solid #1e5e22;background:rgba(58,154,62,.45)"></i>',cfa:'<i style="border:2px dotted #c0602a;background:rgba(224,138,60,.3)"></i>',bal:'<i style="background:#1d5fa8;border-radius:50%"></i>',par:'<i style="border:2px solid #7a2e1d;background:transparent"></i>',tt:'<i style="background:#b8860b;border-radius:50%"></i>'}[k]);
 const css=`.lndc{background:rgba(251,247,236,.97);border:1px solid var(--line2);border-radius:10px;box-shadow:var(--shadow-sm);color:var(--ink);font-size:13px;max-width:min(300px,78vw)}
 .lndc>.lndt{display:block;min-height:40px;padding:8px 12px;font-weight:700;color:var(--g800);background:none;border:0;cursor:pointer;font-size:13px;width:100%;text-align:left}
 .lndc .lndb{padding:0 10px 10px;max-height:min(52vh,430px);overflow:auto}.lndc.shut .lndb{display:none}
@@ -85,7 +89,7 @@ function attach(map,opt){
  const BASE={osm:["Street",osm],topo:["USGS Topo",topo],img:["Imagery + labels",img]};
  const setBase=k=>{if(!BASE[k]||!BASE[k][1])k="osm";for(const b in BASE){const l=BASE[b][1];if(!l)continue;if(b===k){if(!map.hasLayer(l)){l.addTo(map);l.bringToBack&&l.bringToBack()}}else if(map.hasLayer(l))map.removeLayer(l)}S.base=k;save()};
  // data layers
- const G={};for(const k in LAY){const d=LAY[k];G[k]=d.pt?L.layerGroup():L.geoJSON(null,{pane:k==="par"?"parcels":(k==="pub"?"lands":"landsTop"),interactive:false,style:d.st||(()=>({color:"#7a2e1d",weight:1.3,opacity:.9,fill:false}))});G[k].addTo(map)}
+ const G={};for(const k in LAY){const d=LAY[k];G[k]=d.pt?L.layerGroup():d.line?L.geoJSON(null,{pane:"landsTop",interactive:true,bubblingMouseEvents:false,style:d.st,onEachFeature:(f,l)=>l.bindPopup(popRegs(f.properties),{maxWidth:300})}):L.geoJSON(null,{pane:k==="par"?"parcels":(k==="pub"?"lands":"landsTop"),interactive:false,style:d.st||(()=>({color:"#7a2e1d",weight:1.3,opacity:.9,fill:false}))});G[k].addTo(map)}
  const data={};const stat={};
  const ui=L.control({position:"topright"});let box;
  ui.onAdd=()=>{box=L.DomUtil.create("div","lndc"+(S.open?"":" shut"));
@@ -94,7 +98,7 @@ function attach(map,opt){
   <div class="lnh">Layers</div><div class="lnr" data-g="lay">${Object.keys(LAY).map(k=>`<button type="button" data-k="${k}">${LAY[k].lab}</button>`).join("")}</div>
   <div class="lns" aria-live="polite"></div>
   <div class="lnwarn">⚠️ <b>Reference only, not a legal survey.</b></div><details class="lnkd"><summary>Legend, sources &amp; disclaimer</summary><div class="lnk"><b>Public land</b> (USGS PAD-US, by manager, zoom 10+):<br>${["FED","STAT","LOC","NGO"].map(t=>`<i style="background:${MT[t][1]};opacity:.6"></i>${MT[t][0]}`).join("<br>")}<br>
-  ${SW("ease")}Conservation easement: usually private, no public access<br>${SW("lots")}DNR state land (DNR's own ownership records, zoom 11+)<br>${SW("cfa")}Commercial Forest: private, open to foot traffic for fishing/hunting<br>${SW("bal")}DNR boat launch / access site<br>${SW("par")}County tax parcel (zoom 14+)</div>
+  ${SW("ease")}Conservation easement: usually private, no public access<br>${SW("lots")}DNR state land (DNR's own ownership records, zoom 11+)<br>${SW("cfa")}Commercial Forest: private, open to foot traffic for fishing/hunting<br>${SW("bal")}DNR boat launch / access site<br><b>Trout regs</b> (DNR, zoom 10+): <i style="background:#2e9e46"></i>Type 1 <i style="background:#e3c21b"></i>Type 2 <i style="background:#ef8a1c"></i>Type 3 <i style="background:#2c6fd6"></i>Type 4 <i style="background:#d0282e"></i>Gear-restricted · tap a line for the season, tackle and limits<br>${SW("tt")}DNR Trout Trails (biologist-picked spots)<br>${SW("par")}County tax parcel (zoom 14+)</div>
   <div class="lnd">Lines come from county, state and federal GIS and can be offset or out of date. Unshaded land is usually private. Private land needs the owner's permission, and on a non-navigable (private) stream the public can neither wade nor float. Parcels: Macomb, Oakland, Lapeer (2023), St. Clair, Genesee, Kent, Barry. ${esc(MISSING)} Tap the map for details.</div></details></div>`;
   L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);const kd=box.querySelector('.lnkd');if(kd&&map.getSize().x>=560)kd.open=true;
   box.querySelector(".lndt").onclick=()=>{S.open=S.open?0:1;save();box.classList.toggle("shut",!S.open);const t=box.querySelector(".lndt");t.setAttribute("aria-expanded",String(!!S.open));t.innerHTML=`🗺️ Land &amp; parcels ${S.open?"▴":"▾"}`};
@@ -118,7 +122,7 @@ function attach(map,opt){
      stat[k]=`Parcels: ${n} (${srcs.map(s=>s.c).join(", ")})${part?" — partial, zoom in":""}${bad.length?" — failed: "+bad.join(", "):""}`}));continue}
    stat[k]=d.lab.replace(/^\S+\s/,"")+": loading…";
    jobs.push(query(d.url,d.where,d.out,b,map,d.pt?{pt:1}:null).then(j=>{if(my!==seq)return;G[k].clearLayers();data[k]=j.features||[];
-    if(d.pt){data[k].forEach(f=>{const c=f.geometry&&f.geometry.coordinates;if(!c)return;L.circleMarker([c[1],c[0]],{radius:6,color:"#fff",weight:1.5,fillColor:"#1d5fa8",fillOpacity:.95}).bindPopup(popBal(f.properties),{maxWidth:260}).addTo(G[k])})}
+    if(d.pt){data[k].forEach(f=>{const c=f.geometry&&f.geometry.coordinates;if(!c)return;L.circleMarker([c[1],c[0]],{radius:k==="tt"?7:6,color:"#fff",weight:1.5,fillColor:d.col||"#1d5fa8",fillOpacity:.95}).bindPopup(k==="tt"?popTT(f.properties):popBal(f.properties),{maxWidth:280}).addTo(G[k])})}
     else G[k].addData(j);stat[k]=`${d.lab.replace(/^\S+\s/,"")}: ${data[k].length}${j.exceededTransferLimit||(j.properties&&j.properties.exceededTransferLimit)?" (partial)":""}`})
     .catch(e=>{if(my===seq)stat[k]=`${d.lab.replace(/^\S+\s/,"")}: couldn't load (${e.message})`}));}
   paint();await Promise.allSettled(jobs);if(my===seq){paint();map.getContainer().dataset.landsready=String(my)}}
@@ -152,6 +156,12 @@ function popCfa(p){return `<h4>🪓 Commercial Forest (private)</h4><div>Private
 function popBal(p){const fee=trim(p.AccessFee)||trim(p.AccessCost);return `<div class="lnpop"><h4>🚤 ${esc(p.SiteName||"Access site")}</h4><div>${esc(p.WaterBody||"")}${p.Type?" · "+esc(p.Type):""}</div>
  <div>Managed by: ${esc(p.SiteManager||"—")}${p.Owner?" · owner "+esc(DIV[p.Owner]||p.Owner):""}</div><div>${p.TotalParking!=null?"Parking: "+esc(p.TotalParking):""}${fee?" · Fee: "+esc(fee):""}</div>
  <div class="sm">Michigan DNR boat launch data</div></div>`}
+function popRegs(p){const g=p.GearRestriction,t=trim(p.StreamType),cut=v=>trim(v).replace(/Artifical/g,"Artificial").replace(/limt/g,"limit").replace(/Minmum/g,"Minimum");
+ const base=p.FSeasonStart?`<div><b>Fishing:</b> ${esc(p.FSeasonStart)} – ${esc(p.FSeasonEnd)}<br><b>Possession:</b> ${esc(p.PSeasonStart)} – ${esc(p.PSeasonEnd)}<br><b>Tackle:</b> ${esc(cut(p.Tackle))}<br><b>Limit:</b> ${esc(cut(p.DPL))}</div>`:"";
+ const grh=g?`<div style="margin-top:4px"><b>Gear-restricted (${esc(g)})</b>${p.GRLocDesc?": "+esc(p.GRLocDesc):""}<br><b>Fishing:</b> ${esc(p.GRFSeasonStart)} – ${esc(p.GRFSeasonEnd)}<br><b>Possession:</b> ${esc(cut(p.GRPSeasonStart))}${/^Closed/.test(p.GRPSeasonStart||"")?"":" – "+esc(cut(p.GRPSeasonEnd))}<br><b>Tackle:</b> ${esc(cut(p.GRTackle))}<br><b>Limit:</b> ${esc(cut(p.GRDPL))}${p.GRSL?"<br><b>Size:</b> "+esc(cut(p.GRSL)):""}</div>`:"";
+ const typ=!g&&!base&&/^Type/.test(t)?`<div>${/^Type [12]/.test(t)?"Fishing &amp; possession last Sat in April – Sep 30.":/^Type 3/.test(t)?"Open all year.":/^Type 4/.test(t)?"Fishing all year; brook/brown kept last Sat in April – Sep 30.":""} See the Fishing Guide p.43 for limits.</div>`:"";
+ return `<div class="lnpop"><h4>🎣 ${esc(p.DNRName||"Stream")}</h4><div>${esc(t||"")}${t&&g?" + ":""}${g?"Gear-restricted":""}</div>${base}${grh}${typ}<div class="sm">Michigan DNR Trout &amp; Salmon Regulations layer (FO-200/FO-210). Check the current Fishing Guide.</div></div>`}
+function popTT(p){const d=trim(p.locationdescription).replace(/<[^>]*>/g," ");return `<div class="lnpop"><h4>⭐ ${esc(p.locationname)}</h4><div>${esc([p.locationdesignation,p.locationcounty&&p.locationcounty+" Co."].filter(Boolean).join(" · "))}</div>${p.speciesdescription?`<div>${esc(trim(p.speciesdescription).slice(0,200))}</div>`:""}${d?`<div class="sm">${esc(d.slice(0,260))}${d.length>260?"…":""}</div>`:""}${p.regionalvisitorurl&&/^https?:\/\//.test(p.regionalvisitorurl)?`<div><a href="${esc(p.regionalvisitorurl)}" target="_blank" rel="noopener">Area visitor info</a></div>`:""}<div class="sm">Michigan DNR Trout Trails</div></div>`}
 function popPar(f){const s=f._src,v=s.f(f.properties||{});
  return `<h4>📐 Parcel ${esc(v.id||"")}</h4><div>Owner: ${v.own?esc(v.own):"<i>"+esc(v.noown||"not listed")+"</i>"}</div>${v.addr?`<div>Site: ${esc(v.addr)}</div>`:""}
  ${v.cvt?`<div>${esc(v.cvt)}</div>`:""}${v.cls?`<div>Class: ${pcls(v.cls)}</div>`:""}${v.zon?`<div>Zoning: ${esc(v.zon)}</div>`:""}${v.ac?`<div>${v.acapprox?"≈":""}${num(v.ac,2)} ac</div>`:""}
