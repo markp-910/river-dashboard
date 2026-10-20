@@ -7,7 +7,7 @@ import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from explore_common import *
 from explore_meta import META
-from explore_new import NEW
+from explore_new import NEW, DT
 reg = json.load(open(R("regional-streams.json")))
 home = reg["home"]
 FLAGW = re.compile(r"not verified|inference|inferred|unverified|verify|unreconciled|conflict|no dated|none found|not confirmed|absence", re.I)
@@ -18,21 +18,27 @@ for c in reg["candidates"]:
         print("no meta for", c["name"]); continue
     m = META[key]
     evs = stock_for(**m["stock"]) if m["stock"].get("waters") else []
-    flags = [f"{f}: {c[f]}" for f in ("reproduction", "access", "stocking", "gage") if c.get(f) and FLAGW.search(c[f])] + m.get("flag_extra", [])
+    flags = ([] if m.get("own_flags") else [f"{f}: {c[f]}" for f in ("reproduction", "access", "stocking", "gage") if c.get(f) and FLAGW.search(c[f])]) + m.get("flag_extra", [])
     if str(c["confidence"]).lower().startswith("low"): flags.append("overall confidence is low")
     sp = list(c["species"]) + [x for x in m.get("extra_species", []) if x not in c["species"]]
     src = [u for u in c["sources"] if not any(d in u for d in m.get("drop_sources", []))]
+    if m.get("pin"): src = [u for u in src if "FO_2" not in u]  # re-add the canonical labelled FO links below
     for u in (FO210, FO200):
         if u not in src: src.append(u)
-    lat, lng = c["drive"]["lat"], c["drive"]["lng"]
+    if m.get("pin"):  # re-pinned entry: drive times from research/drive_times_new.json
+        dv = DT[m["pin"]]; lat, lng, dmin, dmi, dalt = dv["lat"], dv["lng"], dv["min"], dv["miles"], dv["alt_min"]
+    else:
+        lat, lng, dmin, dmi = c["drive"]["lat"], c["drive"]["lng"], c["drive"]["min"], c["drive"]["miles"]; dalt = alt_min(m["id"], lat, lng, home)
+    if "species" in m: sp = m["species"]
+    src += [u for u in m.get("sources_extra", []) if u not in src]
     streams.append({"id": m["id"], "name": m.get("rename", c["name"]), "county": m.get("county", c["county"]), "lat": lat, "lng": lng,
-        "drive_min": c["drive"]["min"], "drive_miles": c["drive"]["miles"], "drive_min_alt": alt_min(m["id"], lat, lng, home),
-        "species": sp, "species_groups": groups(sp), "wild": m["wild"], "reproduction": c["reproduction"],
-        "tr": m["tr"], "dnr": m["dnr"] if "dnr" in m else c["dnr"], "state": m["state"], "season": m["season"], "regs": m.get("regs", c["regs"]), "seasons_text": c["seasons"],
-        "best_months": m["best"], "runs": m["run"], "stocking_summary": c["stocking"] if not evs else stock_summary(evs), "stocking_events": evs[:40],
+        "drive_min": dmin, "drive_miles": dmi, "drive_min_alt": dalt,
+        "species": sp, "species_groups": groups(sp), "wild": m["wild"], "reproduction": m.get("reproduction", c["reproduction"]),
+        "tr": m["tr"], "dnr": m["dnr"] if "dnr" in m else c["dnr"], "state": m["state"], "season": m["season"], "regs": m.get("regs", c["regs"]), "seasons_text": m.get("seasons_text", c["seasons"]),
+        "best_months": m["best"], "runs": m["run"], "stocking_summary": m.get("stocking_summary", c["stocking"]) if not evs else stock_summary(evs), "stocking_events": evs[:40],
         "catches": [{"date": a, "text": b, "url": u} for a, b, u in c["catches"]], "access": m.get("access", c["access"]),
-        "gages": [{"id": i, "label": l, "proxy": p} for i, l, p in m["gages"]], "gage_note": c["gage"],
-        "confidence": c["confidence"], "flags": flags, "sources": src})
+        "gages": [{"id": i, "label": l, "proxy": p} for i, l, p in m["gages"]], "gage_note": m.get("gage_note", c["gage"]),
+        "confidence": m.get("confidence", c["confidence"]), "flags": flags, "sources": src, **({"history": m["history"]} if m.get("history") else {})})
 streams.extend(NEW)
 streams.sort(key=lambda s: s["drive_min"])
 for i, s in enumerate(streams, 1):

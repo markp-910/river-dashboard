@@ -65,3 +65,21 @@ def state(types, designated, badge, lines, refs, prio=False, verified="FO text r
     return dict(types=types, designated=designated, badge=badge, lines=lines, refs=refs, prio=prio, verified=verified, note=note)
 NONE = lambda why, refs="FO-210.26 and FO-200.25 searched": state([], False, "Not state-designated", [why], refs, False, "not listed in FO-210/FO-200")
 TR_NOTE = "TroutRoutes class read by Mark from his Pro account (county labels in the app are unreliable). Class: 1 best … 3; 'unknown' = not checked."
+# Upper North Branch Clinton brook trout water (research/nb-clinton-brookies.md, 2026-10-20)
+SR39 = "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/Special-ManagementReports/SR39.pdf (DNR Fisheries Special Report 39, Clinton River Assessment, Francis & Haas 2006)"
+CRWC_CW = "https://www.crwc.org/clinton-river-coldwater-conservation-project (Clinton River Watershed Council: North Branch headwaters brook trout)"
+CRWC_FISH = "https://www.crwc.org/recreation/fishing"
+UMMZ = ["https://www.gbif.org/occurrence/1888987618 (UMMZ 82625, 1927, 'Almont Creek (=N Branch of Clinton River)' at the county-line bridges)",
+        "https://www.gbif.org/occurrence/1888987648 (UMMZ 82620, 1927, Burr Creek, Bruce Twp)"]
+NAS98 = "https://nas.er.usgs.gov/queries/SpecimenViewer.aspx?SpecimenID=1420679 (USGS NAS: brook trout 1998-08-04, McKay Ditch-North Branch Clinton HUC12, 'established')"
+NAVSRC = ["https://www.eastgrmi.gov/DocumentCenter/View/2415/Public-Rights-on-Michigan-Waters-History-State-of-Michigan (State of Michigan, 'Public Rights on Michigan Waters', D. Public Rights in Streams)",
+          "https://www.canr.msu.edu/michiganlakes/uploads/files/FAQPage/MI%20Water%20Laws.pdf (same document, MSU mirror)"]
+NBHIST = ("Stocked with brook trout 1949–64, when the headwaters were called 'Townsend Creek'; DNR has no record of why it stopped (SR39 p.50). "
+          "Brook trout were already here before any stocking: University of Michigan museum specimens collected in 1927 at the county-line bridges and in Burr Creek, Bruce Twp. "
+          "Conservation-officer creel checks logged brookies on opening days 1930–63 (e.g. 48 anglers kept 112 on 4/30/1960; SR39 App. 2). "
+          "Brown trout were stocked 1971–91 with 'marginal' survival; no trout stocked on the North Branch since 2009 (steelhead) and no brook trout since 1964 (DNR stocking DB). "
+          "The 2001–02 DNR survey found brook trout only in Kidder Creek (8.6% of the catch at Boardman Rd), none at the three North Branch sites (all below Almont); "
+          "SR39 still says the North Branch above Almont 'continues to have a self-sustaining brook trout population', and CRWC says native brookies were 'rediscovered' and are being monitored with DNR.")
+NAVCAUTION = ("Private water caution: in Michigan the riparian landowner owns the streambed, and on a non-navigable (private) stream 'the public can neither wade nor float' "
+              "(State of Michigan, Public Rights on Michigan Waters). Creeks this small are very likely non-navigable, so treat them as private: fish only from the public road right-of-way "
+              "and get the landowner's permission before wading or walking past it. Don't park on the shoulder where it is posted or unsafe.")

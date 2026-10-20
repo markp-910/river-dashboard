@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-19",
+ "generated": "2026-10-20",
  "home": {
   "address": "12459 Plumbrook Rd, Sterling Heights, MI 48312",
   "lat": 42.5743976,
@@ -821,31 +821,117 @@
    "tier_name": "Back Yard"
   },
   {
-   "id": "north-branch-headwaters",
-   "name": "North Branch Clinton River headwaters (above 32 Mile Rd; Almont/Bruce Twp)",
-   "county": "Macomb / Lapeer",
-   "lat": 42.9206,
-   "lng": -83.0449,
-   "drive_min": 35,
-   "drive_miles": 26.4,
+   "id": "kidder-creek",
+   "name": "Kidder Creek (wild brookies)",
+   "county": "Macomb (Bruce Twp)",
+   "lat": 42.88878,
+   "lng": -83.02766,
+   "drive_min": 33,
+   "drive_miles": 23.9,
    "drive_min_alt": 30,
    "species": [
-    "native brook trout",
-    "brown trout (strays?)"
+    "wild brook trout",
+    "brown trout"
    ],
    "species_groups": [
     "Brook trout",
     "Brown trout"
    ],
    "wild": "wild",
-   "reproduction": "Natural (CRWC: self-sustaining native brook trout)",
+   "reproduction": "Wild brook trout: the 2002 DNR survey at Boardman Rd found brook trout (8.6% of the catch) and a few browns (1.4%) and called it 'a good cold water stream' (SR39 p.38, Table 20). Brook trout were collected here in 1927 (UMMZ 82620, 'Burr Creek', same Kidder Rd culvert location). No newer survey found.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "TroutRoutes class not checked yet \u2014 send me the class and I'll fill it in."
+   },
+   "dnr": "FO-210.26 lists the North Branch Clinton above 32 Mile Rd with an italicized exception for Macomb tributaries upstream of the East Pond Creek confluence; whether that removes Kidder Creek has not been confirmed with DNR.",
+   "state": {
+    "types": [
+     "1"
+    ],
+    "designated": "partial",
+    "badge": "Type 1? \u00b7 designation unclear \u2014 confirm with DNR",
+    "lines": [
+     "FO-210.26 designates the North Branch Clinton and its tributaries above 32 Mile Rd, but italicizes an exception for 'Tributaries to North Branch upstream from confluence of East Pond Creek (T5N, R13E, S31)' in Macomb Co. Kidder Creek is a Macomb tributary above that confluence, so it may be excluded.",
+     "If excluded it is non-designated water (FO-200 general rule: trout season open all year; 5 trout, brook 7 in). If designated, Type 1 (last Sat Apr \u2013 Sep 30). Confirm with DNR Southfield Fisheries, 248-359-9040, before fishing outside the Type 1 season."
+    ],
+    "refs": "FO-210.26 p.39 \u00b7 FO-200.25 p.1\u20132",
+    "prio": false,
+    "verified": "FO text read; application to Kidder Creek not confirmed",
+    "note": ""
+   },
+   "season": {
+    "rule": "last_sat_apr_sep30",
+    "label": "Treated as Type 1 (last Sat in April \u2013 Sep 30) until DNR confirms \u2014 it may be non-designated (open all year)",
+    "inferred": true
+   },
+   "regs": "If designated: Type 1 \u2014 5 trout (max 3 \u226515 in), brook trout 7 in, brown 8 in, last Sat in April \u2013 Sep 30. If excluded from FO-210: statewide default (open all year, 5 trout, brook 7 in). Confirm with DNR Southfield 248-359-9040.",
+   "seasons_text": "Tiny spring creek: opener through June and September; summer only in cool spells. Dap or roll-cast small dries and terrestrials.",
+   "best_months": [
+    4,
+    5,
+    6,
+    9
+   ],
+   "runs": [],
+   "stocking_summary": "No trout/salmon stocking records found in the DNR database (Oct 2021\u2013now). History: 500 brown trout in 1972 (SR39 Table 25); no other stocking found. No trout stocked since (DNR stocking DB).",
+   "stocking_events": [],
+   "catches": [],
+   "access": "No public land found. Road crossings: Kidder Rd (the pin; old USGS site 04164022 and the 1927 museum collection spot) and Bordman Rd (the 2002 DNR survey site). Private water caution: in Michigan the riparian landowner owns the streambed, and on a non-navigable (private) stream 'the public can neither wade nor float' (State of Michigan, Public Rights on Michigan Waters). Creeks this small are very likely non-navigable, so treat them as private: fish only from the public road right-of-way and get the landowner's permission before wading or walking past it. Don't park on the shoulder where it is posted or unsafe.",
+   "gages": [
+    {
+     "id": "04164151",
+     "label": "N Branch Clinton R at 26 Mile (flow only, no temp; far downstream)",
+     "proxy": true
+    }
+   ],
+   "gage_note": "No gage on Kidder Creek. Nearest live gage is 04164151 North Branch Clinton at 26 Mile Rd (flow and gage height only, no temperature) \u2014 context only. USGS 04164022 at Kidder Rd is an inactive sampling site.",
+   "confidence": "Medium-Low (wild brookies last documented 2002; designation and access unconfirmed)",
+   "flags": [
+    "regulation: may be excluded from the designated trout-stream list (Macomb tributaries above the East Pond Creek confluence) \u2014 confirm with DNR Southfield 248-359-9040",
+    "access: no public land found \u2014 road crossings only; see the private-water caution",
+    "no fish survey since 2002 found"
+   ],
+   "sources": [
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
+    "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/Special-ManagementReports/SR39.pdf (DNR Fisheries Special Report 39, Clinton River Assessment, Francis & Haas 2006)",
+    "https://www.crwc.org/clinton-river-coldwater-conservation-project (Clinton River Watershed Council: North Branch headwaters brook trout)",
+    "https://www.gbif.org/occurrence/1888987648 (UMMZ 82620, 1927, Burr Creek, Bruce Twp)",
+    "https://nas.er.usgs.gov/queries/SpecimenViewer.aspx?SpecimenID=1420679 (USGS NAS: brook trout 1998-08-04, McKay Ditch-North Branch Clinton HUC12, 'established')",
+    "https://www.eastgrmi.gov/DocumentCenter/View/2415/Public-Rights-on-Michigan-Waters-History-State-of-Michigan (State of Michigan, 'Public Rights on Michigan Waters', D. Public Rights in Streams)",
+    "https://www.canr.msu.edu/michiganlakes/uploads/files/FAQPage/MI%20Water%20Laws.pdf (same document, MSU mirror)"
+   ],
+   "history": "Stocked with brook trout 1949\u201364, when the headwaters were called 'Townsend Creek'; DNR has no record of why it stopped (SR39 p.50). Brook trout were already here before any stocking: University of Michigan museum specimens collected in 1927 at the county-line bridges and in Burr Creek, Bruce Twp. Conservation-officer creel checks logged brookies on opening days 1930\u201363 (e.g. 48 anglers kept 112 on 4/30/1960; SR39 App. 2). Brown trout were stocked 1971\u201391 with 'marginal' survival; no trout stocked on the North Branch since 2009 (steelhead) and no brook trout since 1964 (DNR stocking DB). The 2001\u201302 DNR survey found brook trout only in Kidder Creek (8.6% of the catch at Boardman Rd), none at the three North Branch sites (all below Almont); SR39 still says the North Branch above Almont 'continues to have a self-sustaining brook trout population', and CRWC says native brookies were 'rediscovered' and are being monitored with DNR.",
+   "rank": 4,
+   "tier": 2,
+   "tier_name": "Quick Trip"
+  },
+  {
+   "id": "north-branch-headwaters",
+   "name": "North Branch Clinton above Almont (wild brookies)",
+   "county": "Macomb / Lapeer",
+   "lat": 42.88376,
+   "lng": -83.07842,
+   "drive_min": 37,
+   "drive_miles": 26.5,
+   "drive_min_alt": 33,
+   "species": [
+    "wild brook trout"
+   ],
+   "species_groups": [
+    "Brook trout"
+   ],
+   "wild": "wild",
+   "reproduction": "Wild, self-sustaining brook trout (DNR SR39: 'the North Branch above Almont continues to have a self-sustaining brook trout population'; CRWC). Tiny, shaded, groundwater-fed headwater upstream of Almont village and its wastewater plant.",
    "tr": {
     "cls": "unknown",
     "type": "",
     "gr": false,
     "note": ""
    },
-   "dnr": "Designated trout stream (FO-210.26): North Branch Clinton River upstream from 32 Mile Rd (Macomb/Lapeer), with listed exceptions. Not in FO-200's Type 2\u20134 lists, so Type 1 rules apply (FO-200 note 1). Downstream of 32 Mile Rd it is Type 4.",
+   "dnr": "Designated trout stream (FO-210.26 p.39): North Branch Clinton River upstream from 32 Mile Rd (Macomb/Lapeer). Not in FO-200's Type 2\u20134 lists, so Type 1 rules apply (FO-200 note 1). FO-210 italicizes an exception for 'Tributaries to North Branch upstream from confluence of East Pond Creek' (Macomb) \u2014 the main stem stays designated. Downstream of 32 Mile Rd it is Type 4.",
    "state": {
     "types": [
      "1"
@@ -853,7 +939,7 @@
     "designated": true,
     "badge": "Type 1 \u00b7 state-designated",
     "lines": [
-     "North Branch Clinton R above 32 Mile Rd: Type 1 (last Sat Apr \u2013 Sep 30).",
+     "North Branch Clinton R above 32 Mile Rd (main stem): Type 1, last Sat Apr \u2013 Sep 30; 5 trout (max 3 \u226515 in); brook 7 in.",
      "Below 32 Mile Rd to the Clinton: Type 4."
     ],
     "refs": "FO-210.26 p.39 \u00b7 FO-200.25 p.2 (Type 1 rule), p.9",
@@ -865,47 +951,50 @@
     "rule": "last_sat_apr_sep30",
     "label": "Type 1 (designated, verified): last Sat in April \u2013 Sep 30"
    },
-   "regs": "Type 1: fishing and possession last Sat in April \u2013 Sep 30; 5 trout (max 3 \u226515 in); brook 7 in, brown 8 in.",
-   "seasons_text": "Spring-fall; tiny stream, stealth",
+   "regs": "Type 1: fishing and possession last Sat in April \u2013 Sep 30; 5 trout (max 3 \u226515 in); brook trout 7 in minimum, brown 8 in; bait and lures legal.",
+   "seasons_text": "Small wild brookies in brushy water: opener (late April) through June, and September before the Sep 30 close. Summer grab samples at Fisher Rd (USGS 04164007) read ~62\u00b0F in July\u2013Aug 2004/2009.",
    "best_months": [
     4,
     5,
     6,
-    9,
-    10
+    9
    ],
    "runs": [],
-   "stocking_summary": "None found in DB",
+   "stocking_summary": "No stocking on this reach in the DNR database window (Oct 2021\u2013now). History: brook trout 1949\u201364 ('Townsend Creek'), browns 1971\u201391, steelhead at 33 Mile Rd through 2009.",
    "stocking_events": [],
    "catches": [],
-   "access": "Limited; Wolcott Mill Metropark area; roadside crossings (verify public)",
+   "access": "Almost no public land: Almont Community Park (819 N. Main St, village/township park in town) is the only public parcel found on the designated reach. Otherwise access means public road crossings \u2014 the pin is the Fisher Rd crossing (Bruce Twp, upstream of the village; also USGS sampling site 04164007 and near the 1998 brook trout record); Bordman Rd also crosses just downstream. Private water caution: in Michigan the riparian landowner owns the streambed, and on a non-navigable (private) stream 'the public can neither wade nor float' (State of Michigan, Public Rights on Michigan Waters). Creeks this small are very likely non-navigable, so treat them as private: fish only from the public road right-of-way and get the landowner's permission before wading or walking past it. Don't park on the shoulder where it is posted or unsafe.",
    "gages": [
     {
      "id": "04164151",
-     "label": "N Branch Clinton R at 26 Mile",
-     "proxy": false
-    },
-    {
-     "id": "04164100",
-     "label": "East Pond Creek at Romeo",
-     "proxy": false
+     "label": "N Branch Clinton R at 26 Mile (flow only, no temp; far downstream)",
+     "proxy": true
     }
    ],
-   "gage_note": "04164151 N Branch Clinton R at 26 Mile (11.9 cfs live); 04164100 East Pond Creek at Romeo (5.5 cfs)",
-   "confidence": "Medium (existence), Low (angling quality, access)",
+   "gage_note": "Nearest live gage is 04164151 North Branch Clinton at 26 Mile Rd: flow and gage height only, no water temperature, and well downstream of the brook trout water. USGS 04164007 at Fisher Rd (the pin) has only occasional grab samples (16.6\u201316.9 \u00b0C in Jul\u2013Sep 2004/2009).",
+   "confidence": "Medium (wild brookies documented by DNR 2006 and USGS 1998; no public survey data since 2002); Low for access",
    "flags": [
-    "access: Limited; Wolcott Mill Metropark area; roadside crossings (verify public)",
-    "stocking: None found in DB"
+    "access: nearly all banks are private \u2014 see the private-water caution under Access",
+    "no public fish survey since 2002 found; CRWC/DNR monitoring results not published",
+    "gage: the live USGS gage (26 Mile Rd) is far downstream and has no water temperature"
    ],
    "sources": [
     "https://www.crwc.org/recreation/fishing",
     "https://www.crwc.org/clinton-river-coldwater-conservation-project",
-    "https://www.michigan.gov/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf",
-    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
-    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
+    "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/Special-ManagementReports/SR39.pdf (DNR Fisheries Special Report 39, Clinton River Assessment, Francis & Haas 2006)",
+    "https://www.crwc.org/clinton-river-coldwater-conservation-project (Clinton River Watershed Council: North Branch headwaters brook trout)",
+    "https://www.gbif.org/occurrence/1888987618 (UMMZ 82625, 1927, 'Almont Creek (=N Branch of Clinton River)' at the county-line bridges)",
+    "https://www.gbif.org/occurrence/1888987648 (UMMZ 82620, 1927, Burr Creek, Bruce Twp)",
+    "https://nas.er.usgs.gov/queries/SpecimenViewer.aspx?SpecimenID=1420679 (USGS NAS: brook trout 1998-08-04, McKay Ditch-North Branch Clinton HUC12, 'established')",
+    "https://www.waterqualitydata.us/ (USGS 04164007 grab-sample water temps)",
+    "https://www.almonttownship.org/download/13274/almont-community-recreation-plan-2023-2027.pdf",
+    "https://www.eastgrmi.gov/DocumentCenter/View/2415/Public-Rights-on-Michigan-Waters-History-State-of-Michigan (State of Michigan, 'Public Rights on Michigan Waters', D. Public Rights in Streams)",
+    "https://www.canr.msu.edu/michiganlakes/uploads/files/FAQPage/MI%20Water%20Laws.pdf (same document, MSU mirror)"
    ],
-   "rank": 4,
+   "history": "Stocked with brook trout 1949\u201364, when the headwaters were called 'Townsend Creek'; DNR has no record of why it stopped (SR39 p.50). Brook trout were already here before any stocking: University of Michigan museum specimens collected in 1927 at the county-line bridges and in Burr Creek, Bruce Twp. Conservation-officer creel checks logged brookies on opening days 1930\u201363 (e.g. 48 anglers kept 112 on 4/30/1960; SR39 App. 2). Brown trout were stocked 1971\u201391 with 'marginal' survival; no trout stocked on the North Branch since 2009 (steelhead) and no brook trout since 1964 (DNR stocking DB). The 2001\u201302 DNR survey found brook trout only in Kidder Creek (8.6% of the catch at Boardman Rd), none at the three North Branch sites (all below Almont); SR39 still says the North Branch above Almont 'continues to have a self-sustaining brook trout population', and CRWC says native brookies were 'rediscovered' and are being monitored with DNR.",
+   "rank": 5,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1046,7 +1135,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 5,
+   "rank": 6,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1443,7 +1532,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 6,
+   "rank": 7,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1522,7 +1611,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 7,
+   "rank": 8,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1600,7 +1689,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 8,
+   "rank": 9,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1710,7 +1799,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 9,
+   "rank": 10,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -1829,7 +1918,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 10,
+   "rank": 11,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -2026,7 +2115,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 11,
+   "rank": 12,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -2115,7 +2204,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 12,
+   "rank": 13,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -2280,7 +2369,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 13,
+   "rank": 14,
    "tier": 2,
    "tier_name": "Quick Trip"
   },
@@ -2487,7 +2576,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 14,
+   "rank": 15,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -2764,7 +2853,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 15,
+   "rank": 16,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -2942,7 +3031,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 16,
+   "rank": 17,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -3399,7 +3488,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 17,
+   "rank": 18,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -3665,7 +3754,7 @@
     "https://michiganflyfishinghub.com/rivers/au-gres-river/",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 18,
+   "rank": 19,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -3860,7 +3949,7 @@
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 19,
+   "rank": 20,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -4314,7 +4403,7 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 20,
+   "rank": 21,
    "tier": 3,
    "tier_name": "Half Day"
   },
@@ -4454,7 +4543,7 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)"
    ],
-   "rank": 21,
+   "rank": 22,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -4898,7 +4987,7 @@
     "https://michiganflyfishinghub.com/rivers/rogue-river/",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 22,
+   "rank": 23,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5005,7 +5094,7 @@
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/laws-regs-licenses/OhioFishingRegs_English.pdf",
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/river-stream-fishing/vermilionriver.pdf"
    ],
-   "rank": 23,
+   "rank": 24,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5094,7 +5183,7 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-south-branch/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 24,
+   "rank": 25,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5195,7 +5284,7 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-holy-water/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 25,
+   "rank": 26,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5301,7 +5390,7 @@
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/fish-management/Ohio_Steelhead_Stockings_2021-2025.pdf",
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/laws-regs-licenses/OhioFishingRegs_English.pdf"
    ],
-   "rank": 26,
+   "rank": 27,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5583,7 +5672,7 @@
     "https://michiganflyfishinghub.com/rivers/kalamazoo-river/",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 27,
+   "rank": 28,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6062,7 +6151,7 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 28,
+   "rank": 29,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6516,7 +6605,7 @@
     "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/StatusoftheFisheryResourceReports/0345_2020_UpperManisteeRiver.pdf (DNR SFR 2020-283, access sites)",
     "https://waterdata.usgs.gov/monitoring-location/04123500/ (USGS gage at M-72)"
    ],
-   "rank": 29,
+   "rank": 30,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6605,7 +6694,7 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-north-branch/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 30,
+   "rank": 31,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6719,7 +6808,7 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-foote-dam/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 31,
+   "rank": 32,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -7215,7 +7304,7 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 32,
+   "rank": 33,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   }

@@ -190,6 +190,22 @@ NEW.append(mk("st-joseph-maumee", "St. Joseph River of the Maumee (Pittsford, Hi
   "Spring after stocking through early summer.", [4, 5, 6], [], dict(waters=["St Joseph of the Maumee"]), "",
   [], "No USGS gage found near Pittsford for this creek-scale water.", "Medium",
   ["No gage; the pin is the village of Pittsford — put-in points not researched. This is not the St. Joseph River of Lake Michigan."], [FO210, FO200, DBURL], "Pittsford Rd to Trail Rd reach, Hillsdale Co. Public access sites not researched — verify."))
+KIDDER = mk("kidder-creek", "Kidder Creek (wild brookies)", "Macomb (Bruce Twp)", "kidder-creek",
+  ["wild brook trout", "brown trout"], "wild", "Wild brook trout: the 2002 DNR survey at Boardman Rd found brook trout (8.6% of the catch) and a few browns (1.4%) and called it 'a good cold water stream' (SR39 p.38, Table 20). Brook trout were collected here in 1927 (UMMZ 82620, 'Burr Creek', same Kidder Rd culvert location). No newer survey found.",
+  state(["1"], "partial", "Type 1? · designation unclear — confirm with DNR", ["FO-210.26 designates the North Branch Clinton and its tributaries above 32 Mile Rd, but italicizes an exception for 'Tributaries to North Branch upstream from confluence of East Pond Creek (T5N, R13E, S31)' in Macomb Co. Kidder Creek is a Macomb tributary above that confluence, so it may be excluded.", "If excluded it is non-designated water (FO-200 general rule: trout season open all year; 5 trout, brook 7 in). If designated, Type 1 (last Sat Apr – Sep 30). Confirm with DNR Southfield Fisheries, 248-359-9040, before fishing outside the Type 1 season."], "FO-210.26 p.39 · FO-200.25 p.1–2", False, "FO text read; application to Kidder Creek not confirmed"),
+  dict(rule="last_sat_apr_sep30", label="Treated as Type 1 (last Sat in April – Sep 30) until DNR confirms — it may be non-designated (open all year)", inferred=True),
+  "If designated: Type 1 — 5 trout (max 3 ≥15 in), brook trout 7 in, brown 8 in, last Sat in April – Sep 30. If excluded from FO-210: statewide default (open all year, 5 trout, brook 7 in). Confirm with DNR Southfield 248-359-9040.",
+  "FO-210.26 lists the North Branch Clinton above 32 Mile Rd with an italicized exception for Macomb tributaries upstream of the East Pond Creek confluence; whether that removes Kidder Creek has not been confirmed with DNR.",
+  "Tiny spring creek: opener through June and September; summer only in cool spells. Dap or roll-cast small dries and terrestrials.", [4, 5, 6, 9], [], None,
+  "History: 500 brown trout in 1972 (SR39 Table 25); no other stocking found. No trout stocked since (DNR stocking DB).",
+  [("04164151", "N Branch Clinton R at 26 Mile (flow only, no temp; far downstream)", True)],
+  "No gage on Kidder Creek. Nearest live gage is 04164151 North Branch Clinton at 26 Mile Rd (flow and gage height only, no temperature) — context only. USGS 04164022 at Kidder Rd is an inactive sampling site.",
+  "Medium-Low (wild brookies last documented 2002; designation and access unconfirmed)",
+  ["regulation: may be excluded from the designated trout-stream list (Macomb tributaries above the East Pond Creek confluence) — confirm with DNR Southfield 248-359-9040", "access: no public land found — road crossings only; see the private-water caution", "no fish survey since 2002 found"],
+  [FO210, FO200, SR39, CRWC_CW, UMMZ[1], NAS98] + NAVSRC,
+  "No public land found. Road crossings: Kidder Rd (the pin; old USGS site 04164022 and the 1927 museum collection spot) and Bordman Rd (the 2002 DNR survey site). " + NAVCAUTION)
+KIDDER["history"] = NBHIST
+NEW.append(KIDDER)
 OHSRC = ["https://ohiodnr.gov/buy-and-apply/hunting-fishing-boating/fishing-resources/steelhead-fishing-promo", "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/fish-management/Ohio_Steelhead_Stockings_2021-2025.pdf", "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/laws-regs-licenses/OhioFishingRegs_English.pdf"]
 OHREG = "Ohio rules (2026-27 regs): Lake Erie tributaries Mar 1 – May 15: 2/day; May 16 – Aug 31: 5/day, 12 in min; Sep 1 – Feb 28: 2/day, 12 in min. Snagging illegal Sep 1 – Apr 30. Ohio fishing license required (not a Michigan license)."
 OHRUN = {"label": "Steelhead run (Ohio DNR: fall through spring)", "months": [10, 11, 12, 1, 2, 3, 4]}

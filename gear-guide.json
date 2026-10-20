@@ -69,6 +69,10 @@
   "hub_rifle-river": {
    "label": "Michigan Fly Fishing Hub - Rifle River (Ogemaw Co.) (gear recommendations)",
    "url": "https://michiganflyfishinghub.com/rivers/rifle-river/"
+  },
+  "hub_fox": {
+   "label": "Michigan Fly Fishing Hub - Fox River (UP wild brook trout: gear recommendations)",
+   "url": "https://michiganflyfishinghub.com/rivers/fox-river/"
   }
  },
  "profiles": {
@@ -1801,6 +1805,160 @@
     "hub_best"
    ],
    "hatch_water": "all"
+  },
+  "brookie-creek": {
+   "title": "Tiny brook trout headwater (SE Michigan)",
+   "confidence": "Rigs and fly sizes from the Michigan Fly Fishing Hub's wild brook trout page (Fox River, UP); rod/leader lengths shortened for brushy headwaters (* = adapted)",
+   "summary": "Tiny, brushy, spring-fed creeks with small wild brook trout. Short rod, short leader, roll casts and dapping; stay low and fish upstream. Type 1 season (last Sat in April - Sep 30) on the designated reach; nearly all banks are private - stay in the road right-of-way unless you have permission.",
+   "rigs": {
+    "dry": {
+     "rod": "6-7.5 ft 3- or 4-weight (hub lists 7.5\u20138ft 3-weight or 4-weight)",
+     "line": "DT3F or WF4F",
+     "leader": "6-7.5 ft to 5X (shortened for brush)",
+     "tippet": "5X\u20136X",
+     "waders": "Hip waders or wet wading (tiny creek)",
+     "boots": "Light rubber-soled boots",
+     "general": true
+    },
+    "nymph": {
+     "rod": "6-7.5 ft 3- or 4-weight (hub lists 8ft 3-weight)",
+     "line": "WF floating",
+     "leader": "7.5ft to 5X",
+     "tippet": "5X",
+     "waders": "Hip waders or wet wading (tiny creek)",
+     "boots": "Light rubber-soled boots",
+     "general": true
+    },
+    "euro": {
+     "rod": "10ft 3-weight",
+     "line": "Level mono rig",
+     "leader": "Short mono rig",
+     "tippet": "5X\u20136X",
+     "waders": "Hip waders or wet wading (tiny creek)",
+     "boots": "Light rubber-soled boots",
+     "general": false
+    },
+    "streamer": {
+     "rod": "8ft 4-weight",
+     "line": "WF floating",
+     "leader": "6ft to 1X",
+     "tippet": "1X\u20132X",
+     "waders": "Hip waders or wet wading (tiny creek)",
+     "boots": "Light rubber-soled boots",
+     "general": false
+    }
+   },
+   "flies": [
+    [
+     "Dry flies",
+     [
+      [
+       "Elk Hair Caddis",
+       [
+        14,
+        16
+       ]
+      ],
+      [
+       "Adams / Parachute Adams",
+       [
+        14,
+        16
+       ]
+      ],
+      [
+       "Royal Wulff",
+       [
+        14,
+        16
+       ]
+      ]
+     ],
+     "hub_fox"
+    ],
+    [
+     "Terrestrials (summer; general guidance)",
+     [
+      [
+       "Foam ant / beetle",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Small hopper",
+       [
+        14
+       ]
+      ]
+     ],
+     null
+    ],
+    [
+     "Nymphs / wets",
+     [
+      [
+       "Small bead-head nymphs (Hare's Ear, Pheasant Tail)",
+       [
+        14,
+        16,
+        18
+       ]
+      ],
+      [
+       "Soft hackles",
+       [
+        14,
+        16
+       ]
+      ]
+     ],
+     "hub_fox"
+    ],
+    [
+     "Streamers",
+     [
+      [
+       "Small Muddler Minnow / sculpin",
+       [
+        8,
+        10
+       ]
+      ],
+      [
+       "Small black Woolly Bugger",
+       [
+        10,
+        12
+       ]
+      ]
+     ],
+     "hub_fox"
+    ]
+   ],
+   "lures": null,
+   "steelhead": null,
+   "tips": [
+    "Hub (Fox River brook trout): wild brookies are aggressive on any visible adult dry - focus on pool tail-outs morning and evening; small bead-heads #14-16 and soft hackles below.",
+    "Roll-cast or dap from the bank; one good first cast per pocket, then move on (general guidance).",
+    "Terrestrials (ants, beetles) #14-18 under overhanging grass in July-September (general guidance).",
+    "Brook trout spawn in fall - the Type 1 season closes Sep 30; avoid wading over gravel redds Oct-Nov (general guidance)."
+   ],
+   "safety": [
+    "Stop fishing for trout when water temperature is above ~68\u00b0F (dashboard rule); fish early in warm spells and land fish quickly (general guidance).",
+    "Check flow before wading: high or rising water (this dashboard's % of median) means stay on the bank. Wear a belt, use a wading staff in fast/cold water (general guidance).",
+    "Private land: on non-navigable streams the riparian owner owns the bed and the public may not wade without permission (MSU/DNR 'Public Rights on Michigan Waters')."
+   ],
+   "shops": [
+    "Motor City Anglers (Rochester Hills) - fly shop and guide service (the hub lists them for Paint Creek)."
+   ],
+   "sources": [
+    "hub_fox",
+    "hub_paint"
+   ],
+   "hatch_water": "small"
   }
  },
  "gage_profile": {
@@ -1827,7 +1985,7 @@
   "mill-creek-dexter": "small-stream",
   "belle-river": "big-water",
   "mill-creek-yale": "big-water",
-  "north-branch-headwaters": "small-stream",
+  "north-branch-headwaters": "brookie-creek",
   "kearsley-creek": "small-stream",
   "st-clair-river": "big-water",
   "johnson-creek": "small-stream",
@@ -1851,6 +2009,7 @@
   "rice-nottawa": "small-stream",
   "st-joseph-maumee": "small-stream",
   "vermilion-oh": "big-water",
-  "rocky-river-oh": "big-water"
+  "rocky-river-oh": "big-water",
+  "kidder-creek": "brookie-creek"
  }
 }
