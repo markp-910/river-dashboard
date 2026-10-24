@@ -31,6 +31,11 @@
    "count": 3
   },
   {
+   "name": "Mark's catches",
+   "color": "#7f6118",
+   "count": 2
+  },
+  {
    "name": "Michigan DNR",
    "color": "#00838f",
    "count": 1
@@ -40,7 +45,7 @@
   "updated": "2026-10-16",
   "text": "Fishbrain sweep (updated Oct 16, 2026): Paint Creek covered Oct 2025\u2013Oct 2026 (a few cards skipped); Clinton River covered back to about mid-Aug 2026 only (newest ~100 of ~200 cards, partly skimmed); East Pond Creek covered for the last year. North Branch Clinton, Belle, Kearsley, Huron, Johnson, Mill Creek and St. Clair River not yet read."
  },
- "generated": "2026-10-16",
+ "generated": "2026-10-24",
  "dropped_captive": 5,
  "timing_source": "research/seasonal-timing.json (2026-10-14)",
  "species": [
@@ -692,6 +697,36 @@
   }
  ],
  "catches": [
+  {
+   "date": "2026-10-24",
+   "species": "Creek chub",
+   "size": null,
+   "location": "Clinton River at Innovation Hills, Rochester Hills",
+   "lat": 42.65438,
+   "lng": -83.1834,
+   "precision": "exact",
+   "source": "Mark \u2014 own catch (Apple Maps pin)",
+   "url": "https://maps.apple.com/?ll=42.65438,-83.18340&q=Creek%20chub",
+   "note": "Your catch \u00b7 Held in hand over clear gravel water, net in frame \u00b7 Catch & release \u00b7 About 5:30 pm EDT (time approximate)",
+   "type": "catch/observation",
+   "group": "Creek chub",
+   "source_group": "Mark's catches"
+  },
+  {
+   "date": "2026-10-24",
+   "species": "Creek chub",
+   "size": null,
+   "location": "Clinton River at Innovation Hills, Rochester Hills",
+   "lat": 42.6528,
+   "lng": -83.18252,
+   "precision": "exact",
+   "source": "Mark \u2014 own catch (Apple Maps pin)",
+   "url": "https://maps.apple.com/?ll=42.65280,-83.18252&q=Creek%20chub",
+   "note": "Your catch \u00b7 Gear/bait: small inline spinner (silver blade, red/pink accents) \u00b7 Catch & release \u00b7 A little downstream of the first chub",
+   "type": "catch/observation",
+   "group": "Creek chub",
+   "source_group": "Mark's catches"
+  },
   {
    "date": "2026-10-15",
    "species": "Northern pike",

@@ -73,7 +73,7 @@ def group(sp):
 # New groups appear on the map automatically; give them a color in SOURCE_COLORS (else the page assigns one from a fallback palette).
 SOURCE_COLORS = {  # chosen to read on cream UI, OSM and satellite (all markers get a white outline)
     "iNaturalist": "#8fb800", "Michigan DNR": "#00838f", "Michigan Sportsman": "#d9480f", "Reddit": "#d6336c",
-    "X / Social": "#343a40", "News & press": "#d4a017", "Fishbrain": "#1c7ed6"}
+    "X / Social": "#343a40", "News & press": "#d4a017", "Fishbrain": "#1c7ed6", "Mark's catches": "#7f6118"}
 RESERVED = ["Fishbrain"]  # always listed on the map (count 0 until data arrives)
 
 def source_group(x):
