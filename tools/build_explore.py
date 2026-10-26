@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from explore_common import *
 from explore_meta import META
 from explore_new import NEW, DT
+import explore_grayling as GR
 reg = json.load(open(R("regional-streams.json")))
 home = reg["home"]
 FLAGW = re.compile(r"not verified|inference|inferred|unverified|verify|unreconciled|conflict|no dated|none found|not confirmed|absence", re.I)
@@ -40,6 +41,8 @@ for c in reg["candidates"]:
         "gages": [{"id": i, "label": l, "proxy": p} for i, l, p in m["gages"]], "gage_note": m.get("gage_note", c["gage"]),
         "confidence": m.get("confidence", c["confidence"]), "flags": flags, "sources": src, **({"history": m["history"]} if m.get("history") else {})})
 streams.extend(NEW)
+streams.extend(GR.NEW_G)
+GR.apply(streams)
 streams.sort(key=lambda s: s["drive_min"])
 for i, s in enumerate(streams, 1):
     s["rank"] = i
@@ -62,7 +65,7 @@ out = {"generated": datetime.date.today().isoformat(), "home": home,
   "tiers": [dict(n=n, name=nm, max=mx, min=(0 if n == 1 else TIERS[n - 2][2])) for n, nm, mx in TIERS],
   "troutroutes_note": TR_NOTE,
   "regs_note": "Designations/Types come from FO-210.26 (designated trout streams, effective Apr 1, 2026) and FO-200.25 (trout & salmon regulations, effective Apr 1, 2025); FO-213.15 explains the gear-restriction criteria (not a stream list). A stream listed in FO-210 but absent from FO-200's Type 2–4 and gear-restricted lists is Type 1 (FO-200 note 1). Page numbers are PDF page indexes. The ArcGIS 'designated trout streams' experience is a JavaScript app that could not be read programmatically, so the order text was used. Always check the current Michigan Fishing Guide.",
-  "streams": streams, "outside_4h": OUT4H, "excluded": EXCL, "no_evidence": reg["no_evidence"], "notes": [n for n in reg["notes"] if "Spring Mill" not in n and "Ontario" not in n]}
+  "trips": [GR.TRIP], "streams": streams, "outside_4h": OUT4H, "excluded": EXCL, "no_evidence": reg["no_evidence"], "notes": [n for n in reg["notes"] if "Spring Mill" not in n and "Ontario" not in n]}
 json.dump(out, open(os.path.join(ROOT, "explore-streams.json"), "w"), indent=1)
 cnt = {}
 for s in streams: cnt[s["tier"]] = cnt.get(s["tier"], 0) + 1

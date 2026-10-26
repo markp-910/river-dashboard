@@ -39,11 +39,11 @@ ev = {}
 def _feats(f):
     d = json.load(open(R(f)))
     return d["features"] if isinstance(d, dict) and "features" in d else [x for v in d.values() for x in v]
-for f in ("stock_region.json", "stock_named.json", "stock_new.json"):
+for f in ("stock_region.json", "stock_named.json", "stock_new.json", "stock_grayling.json"):
     if os.path.exists(R(f)):
         for x in _feats(f):
             a = x["attributes"]
-            if not a.get("stocking_date"): continue
+            if not a.get("stocking_date") or any(a.get(f) is None for f in ("Water_Body_Name", "County_Name", "sitename", "SPEC_COMM_Alt")): continue
             d = datetime.datetime.fromtimestamp(a["stocking_date"] / 1000, datetime.timezone.utc).strftime("%Y-%m-%d")
             k = (a["Water_Body_Name"].strip(), a["County_Name"].strip(), a["sitename"].strip(), a["SPEC_COMM_Alt"].strip(), d, a["Number_Fish_Stocked"])
             ev[k] = {"water": k[0], "county": k[1], "site": k[2].title() if k[2].isupper() else k[2], "species": k[3], "date": d, "count": k[5], "len_cm": a.get("Average_Length")}

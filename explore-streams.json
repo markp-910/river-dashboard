@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-20",
+ "generated": "2026-10-26",
  "home": {
   "address": "12459 Plumbrook Rd, Sterling Heights, MI 48312",
   "lat": 42.5743976,
@@ -35,6 +35,51 @@
  ],
  "troutroutes_note": "TroutRoutes class read by Mark from his Pro account (county labels in the app are unreliable). Class: 1 best \u2026 3; 'unknown' = not checked.",
  "regs_note": "Designations/Types come from FO-210.26 (designated trout streams, effective Apr 1, 2026) and FO-200.25 (trout & salmon regulations, effective Apr 1, 2025); FO-213.15 explains the gear-restriction criteria (not a stream list). A stream listed in FO-210 but absent from FO-200's Type 2\u20134 and gear-restricted lists is Type 1 (FO-200 note 1). Page numbers are PDF page indexes. The ArcGIS 'designated trout streams' experience is a JavaScript app that could not be read programmatically, so the order text was used. Always check the current Michigan Fishing Guide.",
+ "trips": [
+  {
+   "id": "grayling-2027",
+   "name": "Grayling trip",
+   "dates": "Fri Apr 30 \u2013 Sun May 2, 2027",
+   "house": {
+    "lat": 44.659,
+    "lng": -84.7266,
+    "label": "Trip house (Circle Ct, Au Sable)",
+    "note": "Rental on the Au Sable just off M-72 on the west side of Grayling (pin approximate). The river behind the house is Type 1 trout water: open from Apr 24, 2027, worms and spinners legal for the boys. Flies-only water starts ~5 mi downstream at Burton's Landing."
+   },
+   "bounds": [
+    [
+     44.5,
+     -84.95
+    ],
+    [
+     44.84,
+     -84.44
+    ]
+   ],
+   "summary": [
+    "Last Saturday in April 2027 is Apr 24, so the trip (Fri Apr 30 \u2013 Sun May 2) is the second weekend of the season.",
+    "Kids' water (bait + spinners legal): the house stretch and town water (Type 1/2), East Branch, Bright Lake, Kneff Lake, Howes Lake. Lures-only (spinners, no worms): Manistee CR 612 \u2192 M-72.",
+    "Adults' fly water: Holy Water (Burton's Landing \u2192 Wakeley), Manistee M-72 \u2192 CCC, North & South Branch GR reaches \u2014 flies only, no beads.",
+    "Hendricksons usually come off in the early\u2013mid afternoon in late April/May; median water temps on these dates are ~48\u201352\u00b0F at nearby gages, so afternoons fish best.",
+    "Licences: Mark, his brother and brother-in-law each need a 2027 Michigan fishing licence (2026 licences expire Mar 31, 2027). The boys (under 17) need none but must follow the rules. An adult actively helping a child fish should be licensed."
+   ],
+   "plan": [
+    [
+     "Fri Apr 30",
+     "Arrive \u00b7 settle in \u00b7 kids fish the house water with worms/spinners until dark; adults scout Burton's Landing (9 min)."
+    ],
+    [
+     "Sat May 1",
+     "AM: Bright Lake pier (stocked rainbows) + East Branch trail walk at Hartwick Pines. Afternoon: dads take turns on the Holy Water for the Hendrickson hatch (1\u20134 pm) while kids fish the house. Evening: house water."
+    ],
+    [
+     "Sun May 2",
+     "AM: Manistee \u2014 13-yr-old spins the lures-only reach (CR 612 \u2192 M-72); fly guys fish M-72 flies-only. Late AM: Kneff Lake or Howes Lake for the younger boys if the river is slow. Head home after lunch (~3.5 h)."
+    ]
+   ],
+   "plan_note": "Full game plan with sources: research/grayling-trip-2027.md (not published)."
+  }
+ ],
  "streams": [
   {
    "id": "clinton-river",
@@ -5195,7 +5240,120 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-south-branch/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 28,
+    "house_mi": 19.6,
+    "kids": "flies",
+    "kids_txt": "\ud83e\udeb0 Flies only (no spinners/bait)",
+    "open": "Open on the trip: YES (open all year), flies only; no-kill through the Mason Tract.",
+    "tactics": "Adults' walk-and-wade (Mason Tract) \u2014 longer hike, not ideal for the younger boys."
+   },
    "rank": 25,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "au-sable-grayling",
+   "name": "Au Sable River at Grayling \u2014 trip-house & town water (Type 1 / Type 2)",
+   "county": "Crawford",
+   "lat": 44.6598,
+   "lng": -84.7128,
+   "drive_min": 207,
+   "drive_miles": 192.5,
+   "drive_min_alt": 176,
+   "species": [
+    "brown trout",
+    "brook trout",
+    "rainbow trout"
+   ],
+   "species_groups": [
+    "Brown trout",
+    "Brook trout",
+    "Rainbow trout"
+   ],
+   "wild": "wild",
+   "reproduction": "Wild brown and brook trout (DNR Trout Trails, Burton's Landing: wild brook to 12 in, brown 20 in+). Not stocked on this reach per the DNR database.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "TroutRoutes class not checked (app-gated)."
+   },
+   "dnr": "Designated trout stream (FO-210.26: Au Sable mainstream and tributaries). Type 1 / Type 2 per the DNR regs layer and FO-200.25.",
+   "state": {
+    "types": [
+     "1",
+     "2"
+    ],
+    "designated": true,
+    "badge": "Type 1 (house water) \u2192 Type 2 (James St \u2192 Burton's Landing)",
+    "lines": [
+     "Kolke/Bradford Creek confluence \u2192 Business Loop 75 (James St) bridge in Grayling: Type 1 \u2014 season last Sat Apr \u2013 Sep 30; artificial lures and all natural bait allowed; 5 trout (max 3 \u226515 in); brook 7 in, brown 8 in, rainbow 10 in. (DNR regs layer)",
+     "James St bridge \u2192 Burton's Landing: Type 2 \u2014 season last Sat Apr \u2013 Sep 30; bait and lures allowed; brook 10 in, brown 12 in (FO-200.25 p.3).",
+     "Burton's Landing \u2192 Wakeley Bridge (Holy Water): artificial flies only \u2014 a separate Explore entry."
+    ],
+    "refs": "DNR Trout & Salmon Regulations layer \u00b7 FO-200.25 p.3 (Type 2) \u00b7 FO-210.26 (designated)",
+    "prio": true,
+    "verified": "regs layer queried Oct 2026",
+    "note": ""
+   },
+   "season": {
+    "rule": "last_sat_apr_sep30",
+    "label": "Type 1 above James St and Type 2 James St \u2192 Burton's Landing: last Saturday in April \u2013 Sep 30 (opens Apr 24, 2027). Bait and lures legal on both.",
+    "src": "DNR Trout & Salmon Regulations layer \u00b7 FO-200.25"
+   },
+   "regs": "Type 1 at the house (bait + lures; brook 7 in, brown 8 in) and Type 2 through town to Burton's Landing (bait + lures; brook 10 in, brown 12 in). Flies-only starts at Burton's Landing. No chumming.",
+   "seasons_text": "Early season: nymphs, small spinners and worms drifted through bends; Hendricksons in the afternoon when water nears 50\u201355\u00b0F.",
+   "best_months": [
+    5,
+    6,
+    7,
+    9
+   ],
+   "runs": [],
+   "stocking_summary": "No trout/salmon stocking records found in the DNR database (Oct 2021\u2013now). DNR stocking DB: none on the mainstream at Grayling (Oct 2021\u2013now).",
+   "stocking_events": [],
+   "catches": [],
+   "access": "Trip house frontage (river right there, inside a meander bend). Public: Au Sable River Public Access at 103 S James St (canoe put-in, parking/restrooms per ausableaccess.com \u2014 third-party site); Burton's Landing (DNR, end of Burton's Landing Rd ~0.5 mi north of M-72, ~3 mi east of Bus. I-75). Marker = James St bridge, the Type 1 / Type 2 boundary.",
+   "gages": [
+    {
+     "id": "04135800",
+     "label": "North Branch Au Sable at Kelloggs Bridge (nearest live gage with temp; different branch)",
+     "proxy": true
+    },
+    {
+     "id": "04136500",
+     "label": "Au Sable R at Mio (far downstream)",
+     "proxy": true
+    }
+   ],
+   "gage_note": "No live gage on this reach: USGS 04135500 Au Sable at Grayling was discontinued in 1993 (records 1942\u20131993; median flow about 90\u201397 cfs for Apr 30 \u2013 May 2, USGS daily stats). The North Branch and Mio gages are shown for context only.",
+   "confidence": "High (regs from DNR layer + FO-200; house pin approximate)",
+   "flags": [
+    "The house pin is approximate and the street number is hidden on purpose. River access at the house = the rental's own frontage; elsewhere use public sites.",
+    "Canoe and kayak traffic launches in Grayling \u2014 expect boats on weekends; fish edges and let them pass.",
+    "Water is cold in early May (nearby gages median ~48\u201352\u00b0F on Apr 30 \u2013 May 2): kids need waders or should fish from the bank."
+   ],
+   "sources": [
+    "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/0 (DNR Trout & Salmon Regulations layer \u2014 StreamType / GearRestriction, queried Oct 2026)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
+    "https://www.michigandnr.com/publications/PDFS/ArcGISOnline/StoryMaps/fish_troutTrails/PDFs/TT2017071.pdf (DNR Trout Trails: Au Sable at Burton's Landing)",
+    "https://ausableaccess.com/ (Au Sable River Public Access, 103 S James St, Grayling \u2014 canoe/kayak put-in)",
+    "https://waterservices.usgs.gov/nwis/stat/ (USGS daily statistics, Apr 30 \u2013 May 2)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/LED/digests/2026-Michigan-Fishing-Regulations_web_accessible.pdf (2026 Michigan Fishing Regulations: definitions p.8, licences)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 3,
+    "house_mi": 1.2,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (Type 1/Type 2 season opens Apr 24, 2027). The water behind the house is Type 1 \u2014 the boys can fish worms and spinners right out the back door, and on through town to Burton's Landing (Type 2).",
+    "tactics": "Best kids' water of the trip. Mornings: worm under a small split shot dead-drifted into the bend pools; #0\u2013#1 inline spinner across and down. Afternoons: watch for Hendricksons (#14) when water warms."
+   },
+   "rank": 26,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5302,7 +5460,144 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-holy-water/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 26,
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 9,
+    "house_mi": 4.9,
+    "kids": "flies",
+    "kids_txt": "\ud83e\udeb0 Flies only (no spinners/bait)",
+    "open": "Open on the trip: YES (open all year), but artificial flies only and no-kill from Burton's Landing to Wakeley Bridge. No spinners, no bait, no beads.",
+    "tactics": "Adults' water. Hendricksons are the first big hatch (Hub: mid Apr \u2013 late May, early\u2013mid afternoon, best near 55\u00b0F water). Nymph (#14\u201316 Pheasant Tail / Hare's Ear) in the morning, Hendrickson dun/emerger 1\u20134 pm, spinner fall toward evening if warm. Access: Burton's Landing, Louie's, Keystone, Whirlpool, Thendara, Stephan Bridge, Wakeley."
+   },
+   "rank": 27,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "bright-lake",
+   "name": "Bright Lake \u2014 Hartwick Pines SP (Type B, fishing pier, stocked)",
+   "county": "Crawford",
+   "lat": 44.7296,
+   "lng": -84.6846,
+   "drive_min": 213,
+   "drive_miles": 197.9,
+   "drive_min_alt": 180,
+   "species": [
+    "rainbow trout"
+   ],
+   "species_groups": [
+    "Rainbow trout"
+   ],
+   "wild": "stocked",
+   "reproduction": "Small state-park lake (Alexander Lakes) stocked with rainbow trout every April.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "Lake \u2014 not on TroutRoutes streams."
+   },
+   "dnr": "Type B trout lake (not a designated trout lake \u2014 only Types A and D are).",
+   "state": {
+    "types": [
+     "B"
+    ],
+    "designated": false,
+    "badge": "Type B trout lake (FO-254.26)",
+    "lines": [
+     "Type B lake: fishing open all year; all natural bait and artificial lures allowed; 5 trout (max 3 \u226515 in); rainbow 12 in, brook 10 in, brown 12 in."
+    ],
+    "refs": "FO-254.26 (Type B list: Crawford \u2014 Bright Lake)",
+    "prio": false,
+    "verified": "FO-254 text read",
+    "note": ""
+   },
+   "season": {
+    "rule": "year_round",
+    "label": "Type B lake: open all year; bait and lures legal.",
+    "src": "FO-254.26"
+   },
+   "regs": "Type B: open all year, bait and lures legal \u2014 easy kid spot.",
+   "seasons_text": "Bobber + worm from the accessible fishing pier; small spinners along the edges.",
+   "best_months": [
+    4,
+    5,
+    6,
+    9,
+    10
+   ],
+   "runs": [],
+   "stocking_summary": "DNR DB (Oct 2021\u2013now): 3,586 rainbow trout in 5 stockings (2022\u20132026). Stocked \u2248700\u2013770 rainbows each April (720 on 2026-04-16).",
+   "stocking_events": [
+    {
+     "water": "Bright Lake (Alexander Lakes)",
+     "county": "Crawford",
+     "site": "Bright Lake",
+     "species": "Rainbow trout",
+     "date": "2026-04-16",
+     "count": 720,
+     "len_cm": 18.84
+    },
+    {
+     "water": "Bright Lake (Alexander Lakes)",
+     "county": "Crawford",
+     "site": "Bright Lake",
+     "species": "Rainbow trout",
+     "date": "2025-04-24",
+     "count": 727,
+     "len_cm": 20.76
+    },
+    {
+     "water": "Bright Lake (Alexander Lakes)",
+     "county": "Crawford",
+     "site": "Bright Lake",
+     "species": "Rainbow trout",
+     "date": "2024-04-09",
+     "count": 770,
+     "len_cm": 18.81
+    },
+    {
+     "water": "Bright Lake (Alexander Lakes)",
+     "county": "Crawford",
+     "site": "Bright Lake",
+     "species": "Rainbow trout",
+     "date": "2023-04-13",
+     "count": 669,
+     "len_cm": 16.42
+    },
+    {
+     "water": "Bright Lake (Alexander Lakes)",
+     "county": "Crawford",
+     "site": "Bright Lake",
+     "species": "Rainbow trout",
+     "date": "2022-04-26",
+     "count": 700,
+     "len_cm": 19.3
+    }
+   ],
+   "catches": [],
+   "access": "Hartwick Pines State Park \u2014 accessible fishing piers on Bright and Glory Lakes, 0.25-mi Bright & Glory Lakes Trail from the modern campground.",
+   "gages": [],
+   "gage_note": "No gage (lake).",
+   "confidence": "High (regs + stocking from DNR)",
+   "flags": [
+    "Recreation Passport required to enter Hartwick Pines State Park."
+   ],
+   "sources": [
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_254.pdf (FO-254.26, inland lakes trout & salmon regulations, effective Sep 10, 2026)",
+    "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)",
+    "https://www.michigan.gov/recsearch/parks/hartwick (Hartwick Pines State Park: fishing piers on Bright & Glory Lakes)",
+    "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer/0 (USGS PAD-US land ownership)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 12,
+    "house_mi": 6.7,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (Type B, open all year). Bait and lures legal.",
+    "tactics": "Easiest sure-thing for the 8- and 9-year-olds: fishing pier, rainbows stocked every April. Pair with the East Branch trail walk."
+   },
+   "rank": 28,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5408,7 +5703,7 @@
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/fish-management/Ohio_Steelhead_Stockings_2021-2025.pdf",
     "https://dam.assets.ohio.gov/image/upload/ohiodnr.gov/documents/wildlife/laws-regs-licenses/OhioFishingRegs_English.pdf"
    ],
-   "rank": 27,
+   "rank": 29,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -5690,7 +5985,332 @@
     "https://michiganflyfishinghub.com/rivers/kalamazoo-river/",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 28,
+   "rank": 30,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "au-sable-east-branch",
+   "name": "East Branch Au Sable \u2014 Hartwick Pines (Type 1 small stream)",
+   "county": "Crawford",
+   "lat": 44.7389,
+   "lng": -84.641,
+   "drive_min": 220,
+   "drive_miles": 200.6,
+   "drive_min_alt": 186,
+   "species": [
+    "brook trout",
+    "brown trout"
+   ],
+   "species_groups": [
+    "Brook trout",
+    "Brown trout"
+   ],
+   "wild": "both",
+   "reproduction": "Small spring creek; DNR Better Fishing Waters lists the East Branch for brook and brown trout. DNR planted 200 small brown trout (1.5 cm, likely fry) on 2024-05-17.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "TroutRoutes class not checked (app-gated)."
+   },
+   "dnr": "Designated trout stream (FO-210.26: Au Sable tributaries). Type 1 per the DNR regs layer.",
+   "state": {
+    "types": [
+     "1"
+    ],
+    "designated": true,
+    "badge": "Type 1 (state-designated, per DNR regs layer)",
+    "lines": [
+     "East Branch Au Sable from Hartwick Pines down to the mainstream in Grayling: Type 1 \u2014 last Sat Apr \u2013 Sep 30; bait and lures allowed; brook 7 in, brown 8 in."
+    ],
+    "refs": "DNR Trout & Salmon Regulations layer (StreamType = Type 1)",
+    "prio": false,
+    "verified": "regs layer queried Oct 2026",
+    "note": "BirdTrout lists the East Branch as Type 2/3 \u2014 conflicts with the DNR layer; trust the DNR layer and the posted signs."
+   },
+   "season": {
+    "rule": "last_sat_apr_sep30",
+    "label": "Type 1: last Saturday in April \u2013 Sep 30 (opens Apr 24, 2027). Bait and lures legal.",
+    "src": "DNR Trout & Salmon Regulations layer"
+   },
+   "regs": "Type 1: bait and lures allowed; brook 7 in, brown 8 in. Small, brushy water \u2014 short rods.",
+   "seasons_text": "Short-line drift a worm or small nymph under cut banks; a #0 spinner where there is room.",
+   "best_months": [
+    5,
+    6
+   ],
+   "runs": [],
+   "stocking_summary": "DNR DB (Oct 2021\u2013now): 200 brown trout in 1 stockings (2024\u20132024).",
+   "stocking_events": [
+    {
+     "water": "East Branch Au Sable River",
+     "county": "Crawford",
+     "site": "E Br Ausable River",
+     "species": "Brown trout",
+     "date": "2024-05-17",
+     "count": 200,
+     "len_cm": 1.54
+    }
+   ],
+   "catches": [],
+   "access": "Hartwick Pines State Park: the Au Sable River Trail (about 3 mi, west of M-93) has a footbridge over the East Branch; fishing allowed along it (park map). Marker = trail/river point in the park.",
+   "gages": [],
+   "gage_note": "No USGS gage on the East Branch.",
+   "confidence": "Medium (Type 1 from DNR layer; BirdTrout disagrees)",
+   "flags": [
+    "Type conflict: DNR layer says Type 1, BirdTrout says Type 2/3. Both allow bait and lures in season; read the signs.",
+    "Hartwick Pines needs a Michigan Recreation Passport on the vehicle (state park).",
+    "Part of the East Branch corridor touches Camp Grayling land (PAD-US) \u2014 stay on the state-park side."
+   ],
+   "sources": [
+    "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/0 (DNR Trout & Salmon Regulations layer \u2014 StreamType / GearRestriction, queried Oct 2026)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
+    "https://www.michigan.gov/dnr/things-to-do/fishing/where/better-fishing-waters (DNR Better Fishing Waters)",
+    "https://www.michigan.gov/recsearch/parks/hartwick (Hartwick Pines State Park: fishing piers on Bright & Glory Lakes)",
+    "https://michigandnr.com/Publications/PDFS/RecreationCamping/hartwick_pines_map.pdf (Hartwick Pines map: Au Sable River Trail)",
+    "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer/0 (USGS PAD-US land ownership)",
+    "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 19,
+    "house_mi": 9.4,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (Type 1 season opens Apr 24, 2027). Bait and lures legal.",
+    "tactics": "Small, brushy water \u2014 better for the 13-year-old with a short rod than for the younger boys."
+   },
+   "rank": 31,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "howes-lake",
+   "name": "Howes Lake (Camp Grayling) \u2014 tip from the Old AuSable Fly Shop",
+   "county": "Crawford",
+   "lat": 44.6874,
+   "lng": -84.8146,
+   "drive_min": 221,
+   "drive_miles": 199.3,
+   "drive_min_alt": 187,
+   "species": [
+    "rainbow trout",
+    "brown trout",
+    "brook trout",
+    "largemouth bass"
+   ],
+   "species_groups": [
+    "Rainbow trout",
+    "Brown trout",
+    "Brook trout",
+    "Largemouth bass"
+   ],
+   "wild": "stocked",
+   "reproduction": "About 14 acres, ~24 ft deep (third-party lake sites). DNR Better Fishing Waters lists Howes Lake for rainbow trout. Trout are stocked, not wild.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "Lake \u2014 not on TroutRoutes streams."
+   },
+   "dnr": "Not a designated trout lake. Listed on DNR Better Fishing Waters for rainbow trout.",
+   "state": {
+    "types": [],
+    "designated": false,
+    "badge": "Inland lake \u2014 not a classified trout lake (FO-254.26)",
+    "lines": [
+     "Howes Lake is not listed in FO-254.26 (Types A\u2013E), so the default inland-lake trout rule applies: trout season open all year, all natural bait and artificial lures allowed, 8 in minimum, 5 trout (max 3 \u226515 in)."
+    ],
+    "refs": "FO-254.26 (searched; not listed) \u00b7 2026 Michigan Fishing Regulations",
+    "prio": false,
+    "verified": "FO-254 text read",
+    "note": ""
+   },
+   "season": {
+    "rule": "year_round",
+    "label": "Unclassified inland lake: trout season open all year; all bait and lures legal (FO-254.26 default).",
+    "src": "FO-254.26 \u00b7 2026 Michigan Fishing Regulations"
+   },
+   "regs": "Open all year; bait and lures legal (kids can use worms, spinners, bobbers). Catch and release by choice.",
+   "seasons_text": "Shore-cast a worm or PowerBait-style dough under a bobber, or a small spinner; trout cruise near drop-offs in cool spring water.",
+   "best_months": [
+    4,
+    5,
+    6,
+    9,
+    10
+   ],
+   "runs": [],
+   "stocking_summary": "DNR DB (Oct 2021\u2013now): 935 rainbow trout in 1 stockings (2021\u20132021). Full DNR history: rainbows 1980\u201384 (\u2248600/yr); 2019-11-06: 701 rainbow (~15 in), 203 brown (~8.5 in), 205 brook (~9 in); 2021-10-27: 935 Eagle Lake rainbow (~12 in). Nothing recorded 2022 \u2013 Oct 2026, so 'stocked at times' is right but recent plants are not on record \u2014 the shop may know more.",
+   "stocking_events": [
+    {
+     "water": "Howes Lake",
+     "county": "Crawford",
+     "site": "Howes Lake",
+     "species": "Rainbow trout",
+     "date": "2021-10-27",
+     "count": 935,
+     "len_cm": 30.1
+    }
+   ],
+   "catches": [],
+   "access": "West of Grayling off M-72 via N Howes Lake Rd / Arrowhead Rd (matches Mark's screenshot, ~1,144 ft). Inside Camp Grayling per PAD-US \u2014 public fishing allowed when not closed for training (confirm). Shore / carry-in only.",
+   "gages": [],
+   "gage_note": "No gage (lake).",
+   "confidence": "Medium (regs/stocking verified; access needs confirming)",
+   "flags": [
+    "Access unverified: PAD-US maps the lake inside Camp Grayling (National Guard maneuver training area). The Grayling visitors bureau says much of Camp Grayling is open to public hunting and fishing when training is not happening; roads can be gated during exercises. Call ahead or check Camp Grayling's public notices.",
+    "No DNR boat launch is listed \u2014 plan on shore fishing or a carry-in.",
+    "Last DNR stocking on record is Oct 2021; trout may be sparse by 2027 unless it is stocked again."
+   ],
+   "sources": [
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_254.pdf (FO-254.26, inland lakes trout & salmon regulations, effective Sep 10, 2026)",
+    "https://www.michigan.gov/dnr/things-to-do/fishing/where/better-fishing-waters (DNR Better Fishing Waters)",
+    "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)",
+    "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer/0 (USGS PAD-US land ownership)",
+    "https://www.fishroulette.com/lakes/e041891a4b66c6b68c9d-howes-lake (third-party: 14 acres, species list)",
+    "https://www.oldausable.com/ (Old AuSable Fly Shop, 200 Ingham St, Grayling \u2014 recommended Howes Lake)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 12,
+    "house_mi": 5.9,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (unclassified lake, trout open all year). Bait and lures legal.",
+    "tactics": "Plan B from the fly shop \u2014 but access (Camp Grayling) must be confirmed and the last DNR trout plant on record is Oct 2021. Mark's note: \u201cThey stock this with Trout at times so if the river is slow we can try this spot.\u201d"
+   },
+   "rank": 32,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "kneff-lake",
+   "name": "Kneff Lake \u2014 Type A trout lake (Huron NF, stocked every April)",
+   "county": "Crawford",
+   "lat": 44.6384,
+   "lng": -84.5786,
+   "drive_min": 223,
+   "drive_miles": 200.7,
+   "drive_min_alt": 195,
+   "species": [
+    "rainbow trout"
+   ],
+   "species_groups": [
+    "Rainbow trout"
+   ],
+   "wild": "stocked",
+   "reproduction": "Put-and-take rainbow trout lake (DNR Type A).",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "Lake \u2014 not on TroutRoutes streams."
+   },
+   "dnr": "Designated trout lake (all Type A lakes are designated, 2026 Fishing Regulations definitions).",
+   "state": {
+    "types": [
+     "A"
+    ],
+    "designated": true,
+    "badge": "Type A designated trout lake (FO-254.26)",
+    "lines": [
+     "Type A lake: fishing season last Sat Apr \u2013 Oct 31 (opens Apr 24, 2027); natural bait except minnows (dead or alive) and artificial lures may be used; 5 trout (max 3 \u226515 in); rainbow 12 in, brook 10 in, brown 12 in."
+    ],
+    "refs": "FO-254.26 (Type A list: Crawford \u2014 Kneff Lake)",
+    "prio": false,
+    "verified": "FO-254 text read",
+    "note": ""
+   },
+   "season": {
+    "rule": "last_sat_apr_oct31",
+    "label": "Type A lake: last Saturday in April \u2013 Oct 31 (opens Apr 24, 2027). Worms and lures legal; no minnows.",
+    "src": "FO-254.26"
+   },
+   "regs": "Type A: worms/dough/lures legal, no minnows. Stocked rainbows are mostly under the 12 in keep size \u2014 catch and release anyway.",
+   "seasons_text": "Bobber + worm or small spinner from shore; stocked rainbows school up and bite well in spring.",
+   "best_months": [
+    4,
+    5,
+    6,
+    9,
+    10
+   ],
+   "runs": [],
+   "stocking_summary": "DNR DB (Oct 2021\u2013now): 5,044 rainbow trout in 5 stockings (2022\u20132026). Stocked every April with yearling rainbows (\u22481,000/yr, ~7\u20138 in) \u2014 the 2026 plant was 994 on Apr 21, a week before the opener.",
+   "stocking_events": [
+    {
+     "water": "Kneff Lake",
+     "county": "Crawford",
+     "site": "Kneff Lake",
+     "species": "Rainbow trout",
+     "date": "2026-04-21",
+     "count": 994,
+     "len_cm": 19.02
+    },
+    {
+     "water": "Kneff Lake",
+     "county": "Crawford",
+     "site": "Kneff Lake",
+     "species": "Rainbow trout",
+     "date": "2025-04-24",
+     "count": 1000,
+     "len_cm": 20.76
+    },
+    {
+     "water": "Kneff Lake",
+     "county": "Crawford",
+     "site": "Kneff Lake",
+     "species": "Rainbow trout",
+     "date": "2024-04-09",
+     "count": 1100,
+     "len_cm": 18.81
+    },
+    {
+     "water": "Kneff Lake",
+     "county": "Crawford",
+     "site": "Kneff Lake",
+     "species": "Rainbow trout",
+     "date": "2023-04-13",
+     "count": 950,
+     "len_cm": 16.42
+    },
+    {
+     "water": "Kneff Lake",
+     "county": "Crawford",
+     "site": "Kneff Lake",
+     "species": "Rainbow trout",
+     "date": "2022-04-26",
+     "count": 1000,
+     "len_cm": 19.3
+    }
+   ],
+   "catches": [],
+   "access": "Kneff Lake Campground, Huron National Forest (public land, open access per PAD-US), east of Grayling off M-72.",
+   "gages": [],
+   "gage_note": "No gage (lake).",
+   "confidence": "High (regs + stocking from DNR)",
+   "flags": [
+    "USFS lists the Kneff Lake Campground season as May 1 \u2013 Sep 30 \u2014 whether the day-use area/launch is open on Fri Apr 30 is unverified.",
+    "Shupac Lake (also Type A, stocked ~5,500 rainbows every April; 43 min from the house near Lovells) is the bigger backup, but it is 244 min from home so it sits outside the 4-hour Explore cap."
+   ],
+   "sources": [
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_254.pdf (FO-254.26, inland lakes trout & salmon regulations, effective Sep 10, 2026)",
+    "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)",
+    "https://www.fs.usda.gov/r09/huron-manistee/recreation/kneff-lake-campground (USFS Kneff Lake Campground)",
+    "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer/0 (USGS PAD-US land ownership)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 20,
+    "house_mi": 10.0,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (Type A season opens Apr 24, 2027). Worms and lures legal; no minnows.",
+    "tactics": "Reliable Plan B for the kids: ~1,000 rainbows stocked every April. Campground opens May 1 (USFS)."
+   },
+   "rank": 33,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6169,7 +6789,195 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 29,
+   "rank": 34,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "manistee-headwaters",
+   "name": "Upper Manistee headwaters \u2014 lures-only CR 612 \u2192 M-72 & Type 2 above",
+   "county": "Crawford / Kalkaska",
+   "lat": 44.7712,
+   "lng": -84.8417,
+   "drive_min": 231,
+   "drive_miles": 209.3,
+   "drive_min_alt": 194,
+   "species": [
+    "brook trout",
+    "brown trout",
+    "rainbow trout"
+   ],
+   "species_groups": [
+    "Brook trout",
+    "Brown trout",
+    "Rainbow trout"
+   ],
+   "wild": "wild",
+   "reproduction": "Wild brook and brown trout headwaters (Michigan Fly Fishing Hub; DNR SFR 2020-283 Upper Manistee).",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": true,
+    "note": "TroutRoutes class not checked (app-gated)."
+   },
+   "dnr": "Designated trout stream (FO-210.26). FO-200.25: Type 2 above CR 612, lures-only CR 612 \u2013 M-72.",
+   "state": {
+    "types": [
+     "2",
+     "GR"
+    ],
+    "designated": true,
+    "badge": "Type 2 above CR 612 \u00b7 GR lures-only CR 612 \u2192 M-72",
+    "lines": [
+     "Above CR 612: Type 2 \u2014 last Sat Apr \u2013 Sep 30; bait and lures allowed; brook 10 in, brown 12 in.",
+     "CR 612 \u2192 M-72 (9.2 mi): artificial lures only (spinners, spoons, plugs, flies \u2014 no live/natural bait); fishing open all year; 2 trout (max 1 \u226518 in), brown 18 in; brook/brown kept last Sat Apr \u2013 Sep 30.",
+     "M-72 \u2192 CCC Bridge: artificial flies only (see the Upper Manistee entry)."
+    ],
+    "refs": "DNR Trout & Salmon Regulations layer (GR14) \u00b7 FO-200.25 p.3, p.17",
+    "prio": true,
+    "verified": "regs layer queried Oct 2026",
+    "note": ""
+   },
+   "season": {
+    "rule": "gr",
+    "gr": {
+     "tackle": "lures",
+     "cr": false
+    },
+    "label": "CR 612 \u2192 M-72: artificial lures only, open all year. Type 2 above CR 612: last Sat Apr \u2013 Sep 30 (open Apr 24, 2027), bait allowed.",
+    "also": "Type 2 water above CR 612 is closed Oct 1 \u2013 last Sat in April",
+    "src": "DNR regs layer (GR14) \u00b7 FO-200.25"
+   },
+   "regs": "Lures-only CR 612 \u2192 M-72: kids can throw spinners, no worms. Type 2 above CR 612: worms OK in season.",
+   "seasons_text": "Small spinners (#0\u2013#1) and small nymph/streamer swings in the lures-only reach; afternoon Hendricksons.",
+   "best_months": [
+    5,
+    6,
+    7,
+    9
+   ],
+   "runs": [],
+   "stocking_summary": "No trout/salmon stocking records found in the DNR database (Oct 2021\u2013now). No DNR stocking records for the headwaters reach.",
+   "stocking_events": [],
+   "catches": [],
+   "access": "CR 612 bridge (state land, marker) and M-72 bridge / Manistee River Bridge State Forest Campground (bottom of the lures-only reach, top of flies-only). Banks between are mostly state forest; check signs.",
+   "gages": [
+    {
+     "id": "04123500",
+     "label": "Manistee R near Grayling (at M-72, bottom of the lures-only reach)",
+     "proxy": false
+    }
+   ],
+   "gage_note": "04123500 Manistee River near Grayling at M-72 (live flow + temp). Median about 200 cfs and ~48\u201350\u00b0F for Apr 29 \u2013 May 2 (USGS daily stats).",
+   "confidence": "High (regs from DNR layer + FO-200)",
+   "flags": [
+    "CR 612 bridge sits in state land (DNR Kirtland's Warbler Unit Manistee, open access per PAD-US). Occupied Kirtland's warbler nesting areas are posted closed to entry May 1 \u2013 Aug 15 \u2014 obey any signs (May 1\u20132 falls in the closure window)."
+   ],
+   "sources": [
+    "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/0 (DNR Trout & Salmon Regulations layer \u2014 StreamType / GearRestriction, queried Oct 2026)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_200.pdf (FO-200.25, trout & salmon regulations)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
+    "https://michiganflyfishinghub.com/rivers/upper-manistee-river/",
+    "https://services.arcgis.com/v01gqwM5QqNysAAi/arcgis/rest/services/Manager_Name_PADUS/FeatureServer/0 (USGS PAD-US land ownership)",
+    "https://www.fws.gov/refuge/kirtlands-warbler-wildlife-management-area/visit-us/activities (occupied Kirtland's warbler nesting areas closed to entry May 1 \u2013 Aug 15, posted)",
+    "https://waterdata.usgs.gov/monitoring-location/04123500/ (USGS gage at M-72)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 26,
+    "house_mi": 13.2,
+    "kids": "lures",
+    "kids_txt": "\ud83e\uddd2 Kids: spinners OK, no bait",
+    "open": "Open on the trip: YES. CR 612 \u2192 M-72 is lures only (spinners OK, no worms); above CR 612 is Type 2 (bait OK).",
+    "tactics": "Good water for the 13-year-old with a spinning rod: small spinners through the lures-only reach on state land."
+   },
+   "rank": 35,
+   "tier": 4,
+   "tier_name": "Fishing Trip!"
+  },
+  {
+   "id": "grayling-creeks",
+   "name": "Small blue lines near Grayling \u2014 Kolke, Bradford, Simpson, Goose & Portage Creeks (Type 1)",
+   "county": "Crawford / Kalkaska",
+   "lat": 44.8058,
+   "lng": -84.758,
+   "drive_min": 231,
+   "drive_miles": 206.5,
+   "drive_min_alt": 197,
+   "species": [
+    "brook trout",
+    "brown trout"
+   ],
+   "species_groups": [
+    "Brook trout",
+    "Brown trout"
+   ],
+   "wild": "wild",
+   "reproduction": "Small Type 1 brook-trout feeders of the upper Au Sable and Manistee (DNR regs layer). Not stocked per the DNR database. Fish populations not surveyed here \u2014 unverified.",
+   "tr": {
+    "cls": "unknown",
+    "type": "",
+    "gr": false,
+    "note": "TroutRoutes class not checked (app-gated)."
+   },
+   "dnr": "Designated trout streams (Au Sable / Manistee tributaries, FO-210.26). Type 1 per the DNR regs layer.",
+   "state": {
+    "types": [
+     "1"
+    ],
+    "designated": true,
+    "badge": "Type 1 small streams (DNR regs layer)",
+    "lines": [
+     "Kolke Creek and Bradford Creek (Au Sable headwaters, meet at ~44.806 N, -84.758 W): Type 1.",
+     "Simpson Creek (enters the Au Sable right by the trip house): Type 1.",
+     "Goose Creek (Manistee tributary, joins ~44.716 N, -84.824 W): Type 1.",
+     "Portage Creek (Manistee tributary): Type 1 below ~44.662 N; the stretch just below Portage Lake is unclassified.",
+     "Type 1 = last Sat Apr \u2013 Sep 30, bait and lures allowed, brook 7 in, brown 8 in."
+    ],
+    "refs": "DNR Trout & Salmon Regulations layer (queried Oct 2026)",
+    "prio": false,
+    "verified": "regs layer",
+    "note": ""
+   },
+   "season": {
+    "rule": "last_sat_apr_sep30",
+    "label": "Type 1: last Saturday in April \u2013 Sep 30 (opens Apr 24, 2027). Bait and lures legal.",
+    "src": "DNR Trout & Salmon Regulations layer"
+   },
+   "regs": "Type 1: worms and spinners legal; brook 7 in.",
+   "seasons_text": "Dap a worm or a small dry along undercut banks; quiet approach. Good 'adventure' outing for the 13-year-old.",
+   "best_months": [
+    5,
+    6,
+    7
+   ],
+   "runs": [],
+   "stocking_summary": "No trout/salmon stocking records found in the DNR database (Oct 2021\u2013now). No DNR stocking records.",
+   "stocking_events": [],
+   "catches": [],
+   "access": "Not verified. Road crossings only unless the land is posted public (state forest). Simpson Creek near the house: fish only where you have permission.",
+   "gages": [],
+   "gage_note": "No USGS gages on these creeks.",
+   "confidence": "Low\u2013Medium (regs verified; access and fish numbers not verified)",
+   "flags": [
+    "Access not verified for any of these creeks. Private water caution: in Michigan the riparian landowner owns the streambed, and on a non-navigable (private) stream 'the public can neither wade nor float' (State of Michigan, Public Rights on Michigan Waters). Creeks this small are very likely non-navigable, so treat them as private: fish only from the public road right-of-way and get the landowner's permission before wading or walking past it. Don't park on the shoulder where it is posted or unsafe.",
+    "Marker is the Kolke/Bradford confluence (approximate). Use the DNR regs map or onX/TroutRoutes to find public crossings."
+   ],
+   "sources": [
+    "https://services3.arcgis.com/Jdnp1TjADvSDxMAX/arcgis/rest/services/DNRFisheriesTroutRegsOPENDATA/FeatureServer/0 (DNR Trout & Salmon Regulations layer \u2014 StreamType / GearRestriction, queried Oct 2026)",
+    "https://www.michigan.gov/dnr/-/media/Project/Websites/dnr/Documents/Orders/Fish-Orders/FO_210.pdf (FO-210.26, designated trout streams)",
+    "https://www.eastgrmi.gov/DocumentCenter/View/2415/Public-Rights-on-Michigan-Waters-History-State-of-Michigan (State of Michigan, 'Public Rights on Michigan Waters', D. Public Rights in Streams)"
+   ],
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 28,
+    "house_mi": 12.1,
+    "kids": "bait",
+    "kids_txt": "\ud83e\uddd2 Kids: worms & spinners OK",
+    "open": "Open on the trip: YES (Type 1 season opens Apr 24, 2027). Bait and lures legal.",
+    "tactics": "Exploration only \u2014 public access not verified."
+   },
+   "rank": 36,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6629,7 +7437,16 @@
     "https://www2.dnr.state.mi.us/publications/pdfs/DNRFishLibrary/StatusoftheFisheryResourceReports/0345_2020_UpperManisteeRiver.pdf (DNR SFR 2020-283, access sites)",
     "https://waterdata.usgs.gov/monitoring-location/04123500/ (USGS gage at M-72)"
    ],
-   "rank": 30,
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 11,
+    "house_mi": 7.1,
+    "kids": "flies",
+    "kids_txt": "\ud83e\udeb0 Flies only (no spinners/bait)",
+    "open": "Open on the trip: YES (open all year), artificial flies only from M-72 down to the CCC Bridge.",
+    "tactics": "Adults' water near the house: M-72 State Forest Campground access at the USGS gage. Same Hendrickson playbook; swing a small streamer if nothing is rising."
+   },
+   "rank": 37,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6723,7 +7540,16 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-north-branch/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 31,
+   "trip": {
+    "id": "grayling-2027",
+    "house_min": 36,
+    "house_mi": 20.5,
+    "kids": "flies",
+    "kids_txt": "\ud83e\udeb0 Flies only (no spinners/bait)",
+    "open": "Open on the trip: YES (open all year). Flies only from Sheep Ranch down; the Type 1 water above Sheep Ranch allows bait (not independently verified).",
+    "tactics": "Farthest; Lovells water. Adults' water, wild brookies on small dries if the hatch is on."
+   },
+   "rank": 38,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -6837,7 +7663,7 @@
     "https://michiganflyfishinghub.com/rivers/au-sable-river-foote-dam/",
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
    ],
-   "rank": 32,
+   "rank": 39,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   },
@@ -7339,7 +8165,7 @@
     "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html",
     "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
    ],
-   "rank": 33,
+   "rank": 40,
    "tier": 4,
    "tier_name": "Fishing Trip!"
   }
