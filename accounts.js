@@ -270,6 +270,16 @@
     if (x.photo_path) await sb.storage.from(BUCKET).remove([x.photo_path]).catch(() => {});
     return "Deleted locally and from your account";
   };
+  // "Move pin": patch only location + nearest-gage fields of my own row (RLS: own rows only)
+  FRA.move = async function (x, patch) {
+    if (x.shared) return { ok: false, msg: "That catch belongs to " + (x.owner_name || "someone else") + " — only they can move it" };
+    const p = { lat: +patch.lat, lng: +patch.lng };
+    for (const f of ["nearest_gage", "gage_name", "gage_dist_mi"]) if (f in patch) p[f] = patch[f] === "" || patch[f] == null ? null : String(patch[f]);
+    const { data, error } = await sb.from("catches").update(p).eq("user_id", session.user.id).eq("client_id", String(x.id)).select("id");
+    if (error) return { ok: false, msg: "Pin moved on this device — account update failed (" + error.message + "), will retry on next sync" };
+    if (!data || !data.length) return { ok: false, msg: "Pin moved on this device — not found in your account yet, will sync" };
+    return { ok: true, msg: "Pin moved and saved to your account" };
+  };
   FRA.isShared = x => !!x?.shared;
 
   // ---------- Explore "Want to fish" → saved_spots ----------

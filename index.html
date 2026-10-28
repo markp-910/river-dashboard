@@ -472,6 +472,19 @@ input[type=checkbox]{accent-color:var(--g800)}
 @media (max-width:640px){#lb .lbn{top:auto;bottom:max(14px,env(safe-area-inset-bottom));margin:0}#lb img{max-height:calc(100dvh - 210px)}}
 @media (prefers-reduced-motion:reduce){#lb,#lb figure,#lb img{transition:none!important}#lb figure{transform:none}#lb .spin{animation-duration:2.4s}}
 body.lbopen{overflow:hidden}
+/* move pin */
+.movepin{border:0;background:rgba(31,58,43,.09);color:var(--g800);border-radius:var(--pill,999px);min-height:36px;padding:6px 12px;cursor:pointer;margin:4px 6px 0 0;font-weight:600}.movepin:hover{background:rgba(31,58,43,.16)}
+.popacts{display:flex;flex-wrap:wrap;align-items:center;gap:0}
+.pin.moving{filter:drop-shadow(0 0 0 #fff) drop-shadow(0 2px 6px rgba(0,0,0,.45));font-size:30px;line-height:24px;cursor:grab}
+.pin.moving:after{content:"";position:absolute;left:50%;top:50%;width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;border:2px solid var(--brass,#b08a2e);background:rgba(212,175,55,.18);z-index:-1;animation:mvpulse 1.6s ease-out infinite}
+@keyframes mvpulse{0%{transform:scale(.7);opacity:1}100%{transform:scale(1.35);opacity:.15}}
+.mvbar{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);z-index:1000;display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 24px);box-sizing:border-box;padding:8px 8px 8px 14px;border-radius:18px;background:rgba(27,52,38,.92);color:var(--cream);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.28);font-size:.9em;line-height:1.25}
+.mvbar .tx{flex:1 1 160px;min-width:0}.mvbar .tx small{display:block;color:#cdd6b8;font-size:.86em}
+.mvbar button{min-height:40px;padding:6px 14px;border-radius:999px;border:0;font-weight:700;cursor:pointer}
+.mvbar .sv{background:var(--brass,#b08a2e);color:#1d2214}.mvbar .sv:disabled{opacity:.5;cursor:default}.mvbar .cx{background:rgba(246,240,225,.16);color:var(--cream)}
+.mvpend{font-size:.8em;color:var(--brass,#8a6a1c);font-weight:600}
+@media (max-width:640px){.mvbar{left:10px;right:10px;bottom:10px;transform:none;max-width:none}}
+@media (prefers-reduced-motion:reduce){.pin.moving:after{animation:none}}
 </style></head><body>
 <header class="appbar"><a class="brand" href="./" aria-label="MI Blue Lining home"><img src="icon.svg?v=3" width="32" height="32" alt=""><h1>MI Blue Lining</h1></a>
 <nav id="tabs" aria-label="Sections"><button data-t="home" class="on">Home Waters</button><button data-t="explore">Explore</button></nav></header>
@@ -619,7 +632,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
 const esc=x=>String(x??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const mi=(a,b,c,d)=>{const r=Math.PI/180,x=Math.sin((c-a)*r/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin((d-b)*r/2)**2;return 7917.6*Math.asin(Math.sqrt(x))};
 const GEO={enableHighAccuracy:true,maximumAge:0,timeout:15000};let AD={gages:{},access:[]},map,tagLayer;const KEY="fishTags",URLK="sheetUrl";
-const tags=()=>JSON.parse(localStorage.getItem(KEY)||"[]"),saveTags=t=>{localStorage.setItem(KEY,JSON.stringify(t));renderTags()};
+let MV=null;const MK={};const tags=()=>JSON.parse(localStorage.getItem(KEY)||"[]"),saveTags=t=>{localStorage.setItem(KEY,JSON.stringify(t));renderTags()};
 const icon=(e)=>L.divIcon({className:"pin",html:e,iconSize:[24,24],iconAnchor:[12,12]});
 const dataReady=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
 async function init(){
@@ -757,6 +770,40 @@ async function delTag(id){const t=tags(),x=t.find(v=>String(v.id)===String(id));
   if(r.action==="delete")msg(r.deleted?"Deleted locally and from Sheet"+(r.photosTrashed?" (photo trashed)":""):"Deleted locally (not found in Sheet)");
   else{msg("Deleted locally — Sheet copy remains: update the Apps Script (new Code.gs) to enable Sheet deletes");toast("Sheet script is outdated — row not removed from Sheet")}}
  catch(err){msg("Deleted locally — Sheet delete failed: "+err.message)}}
+// ---- Move pin: drag (or tap the map) to fix a catch's location; patches lat/lng + nearest gage only ----
+document.addEventListener("click",e=>{const b=e.target.closest("[data-move]");if(!b)return;e.preventDefault();e.stopPropagation();mvStart(b.dataset.move)});
+function mvStart(id){const x=tags().find(v=>String(v.id)===String(id));if(!x)return;if(MV)mvEnd(true);map.closePopup();
+ const grp=x.type==="fish"?_LY.fish:_LY.spot;if(!map.hasLayer(grp))map.addLayer(grp);const mk=MK[x.id];if(!mk)return;
+ const from=L.latLng(+x.lat,+x.lng);mk.unbindPopup();mk.setZIndexOffset(2000);mk.dragging?.enable();mk.getElement()?.classList.add("moving");
+ const bar=document.createElement("div");bar.className="mvbar";bar.setAttribute("role","toolbar");bar.setAttribute("aria-label","Move pin");
+ bar.innerHTML=`<span class="tx">Drag the ${x.type==="fish"?"fish":"pin"} to where you were<small>or tap the map to drop it there</small></span><button type="button" class="cx">Cancel</button><button type="button" class="sv" disabled>Save</button>`;
+ L.DomEvent.disableClickPropagation(bar);L.DomEvent.disableScrollPropagation(bar);map.getContainer().appendChild(bar);
+ const onDown=e=>{MV&&(MV.dn=[e.clientX,e.clientY])},onMap=e=>{const d=MV&&MV.dn;if(d&&Math.hypot(e.clientX-d[0],e.clientY-d[1])>8)return;if(e.target.closest(".mvbar,.leaflet-control,.leaflet-marker-icon.moving,.pin.moving"))return;e.stopPropagation();e.preventDefault();mk.setLatLng(map.mouseEventToLatLng(e));upd()},upd=()=>{const p=mk.getLatLng();bar.querySelector(".sv").disabled=from.distanceTo(p)<1;const n=nearestGage(p.lat,p.lng);
+  bar.querySelector("small").textContent=`${p.lat.toFixed(5)}, ${p.lng.toFixed(5)}${n?" · nearest gage "+NAME[n.id]+" ("+n.d.toFixed(1)+" mi)":""}`};
+ const onKey=e=>{if(e.key==="Escape"){e.stopImmediatePropagation();mvEnd(true)}};
+ mk.on("drag dragend",upd);map.getContainer().addEventListener("click",onMap,true);map.getContainer().addEventListener("pointerdown",onDown,true);addEventListener("keydown",onKey,true);
+ bar.querySelector(".cx").onclick=()=>{mvEnd(true);msg("Move cancelled")};bar.querySelector(".sv").onclick=()=>mvSave();
+ MV={id:x.id,mk,bar,from,onMap,onDown,onKey,upd};if(!map.getBounds().pad(-.15).contains(from))map.panTo(from);bar.querySelector(".cx").focus({preventScroll:true})}
+function mvEnd(revert){const m=MV;if(!m)return;MV=null;map.getContainer().removeEventListener("click",m.onMap,true);map.getContainer().removeEventListener("pointerdown",m.onDown,true);removeEventListener("keydown",m.onKey,true);m.mk.off("drag dragend",m.upd);m.mk.dragging?.disable();m.mk.getElement()?.classList.remove("moving");m.bar.remove();
+ if(revert){m.mk.setLatLng(m.from);renderTags()}}
+async function mvSave(){const m=MV;if(!m)return;const p=m.mk.getLatLng(),la=+p.lat.toFixed(6),ln=+p.lng.toFixed(6),n=nearestGage(la,ln);
+ const patch={lat:la,lng:ln};if(n){patch.nearest_gage=n.id;patch.gage_name=NAME[n.id];patch.gage_dist_mi=+n.d.toFixed(2)}
+ MV=null;map.getContainer().removeEventListener("click",m.onMap,true);map.getContainer().removeEventListener("pointerdown",m.onDown,true);removeEventListener("keydown",m.onKey,true);m.bar.remove();
+ const t=tags(),i=t.findIndex(v=>String(v.id)===String(m.id));if(i<0)return renderTags();const x=t[i]={...t[i],...patch};if(x.synced)x.move_pending=true;saveTags(t);
+ MK[x.id]?.openPopup();const r=await pushMove(x,patch);msg(r);toast(r);if(!MV&&!map._popup?.isOpen?.())MK[x.id]?.openPopup()}
+async function pushMove(x,patch){
+ if(!x.synced)return "Pin moved — it will sync with the new spot";
+ if(window.FRA&&FRA.on){if(x.shared)return "Pin moved on this device only";const r=FRA.move?await FRA.move(x,patch):{ok:false,msg:"Pin moved on this device"};if(r.ok)mvDone(x.id);else{const t=tags(),i=t.findIndex(v=>String(v.id)===String(x.id));if(i>=0){t[i].synced=false;delete t[i].move_pending;saveTags(t)}}return r.msg}
+ const u=localStorage.getItem(URLK);if(!u)return "Pin moved on this device — no Sheet link set, so the Sheet still has the old spot";
+ try{const r=await post(u,{action:"update",id:String(x.id),patch});
+  if(r.action==="update"){mvDone(x.id);return r.updated?"Pin moved and saved to your Sheet":"Pin moved on this device (row not found in Sheet)"}
+  return "Pin moved on this device — your Sheet script needs the new “update” action (see docs/SHEET_SCRIPT.md). It'll retry on the next sync."}
+ catch(e){return "Pin moved on this device — Sheet update failed ("+e.message+"). It'll retry on the next sync."}}
+function mvDone(id){const t=tags(),i=t.findIndex(v=>String(v.id)===String(id));if(i>=0&&t[i].move_pending){delete t[i].move_pending;saveTags(t)}}
+async function syncMoves(quiet){const u=localStorage.getItem(URLK);if(!u||window.FRA&&FRA.on)return 0;const q=tags().filter(x=>x.move_pending&&x.synced);let n=0;
+ for(const x of q){const patch={lat:x.lat,lng:x.lng,nearest_gage:x.nearest_gage,gage_name:x.gage_name,gage_dist_mi:x.gage_dist_mi};
+  try{const r=await post(u,{action:"update",id:String(x.id),patch});if(r.action!=="update")break;mvDone(x.id);n++}catch(e){break}}
+ if(n&&!quiet)msg(`Saved ${n} moved pin${n>1?"s":""} to Sheet`);return n}
 const IDB=new Promise((ok,no)=>{const r=indexedDB.open("fishlog",1);r.onupgradeneeded=()=>r.result.createObjectStore("photos");r.onsuccess=()=>ok(r.result);r.onerror=()=>no(r.error)});
 const idb=async(mode,fn)=>{const db=await IDB;return new Promise((ok,no)=>{const tx=db.transaction("photos",mode),q=fn(tx.objectStore("photos"));tx.oncomplete=()=>ok(q&&q.result);tx.onerror=()=>no(tx.error)})};
 const photoGet=id=>idb("readonly",s=>s.get(id)),photoPut=(id,v)=>idb("readwrite",s=>s.put(v,id)),photoDel=id=>idb("readwrite",s=>s.delete(id));
@@ -804,19 +851,19 @@ function lbClose(){const d=LB.el;if(!d)return;LB.tok=null;d.classList.remove("vi
 document.addEventListener("click",e=>{const b=e.target.closest("[data-lb]");if(!b)return;e.preventDefault();e.stopPropagation();lbOpen(b.dataset.lb)});
 document.addEventListener("keydown",e=>{const b=(e.key==="Enter"||e.key===" ")&&e.target.closest&&e.target.closest("img[data-lb]");if(b){e.preventDefault();lbOpen(b.dataset.lb)}});
 window.openCatchPhoto=lbOpen;
-function renderTags(){const t=tags();document.getElementById("tagCount").textContent=t.length+(t.some(x=>!x.synced)?` · ${t.filter(x=>!x.synced).length} unsynced`:"")+(!t.length&&!localStorage.getItem(URLK)&&!(window.FRA&&FRA.configured)?" · paste your Sheet link to load":"");if(!tagLayer)return;tagLayer.clearLayers();
- for(const x of t){const mk=L.marker([x.lat,x.lng],{icon:icon(x.type==="fish"?"🐟":"📍")}).bindPopup(`<b>${x.type==="fish"?esc(x.species||"Fish"):"Tagged spot"}</b>${x.length_in?" · "+esc(x.length_in)+" in":""}<br>${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York"})} ET<br>${x.fly_lure?"Fly/lure: "+esc(x.fly_lure)+"<br>":""}${x.note?esc(x.note)+"<br>":""}${placeOf(x)!==x.gage_name?esc(placeOf(x))+"<br>Nearest gage ":""}${esc(x.gage_name)}: ${esc(x.flow_cfs)} cfs ${x.temp_f!==""?esc(x.temp_f)+"°F":""} ${esc(x.rating)}<br><a href="${GM(x.lat,x.lng)}" target="_blank">Open in Google Maps</a> · <a href="${DIR(x.lat,x.lng)}" target="_blank">Directions</a>${x.has_photo||x.photo_thumb?`<br><img class="thumb" data-pid="${esc(x.id)}" data-lb="${esc(x.id)}" role="button" tabindex="0" title="Tap to enlarge" src="${esc(x.photo_thumb||"")}" alt="catch photo, tap to enlarge">`:""}${x.owner_name?"<br>Shared by "+esc(x.owner_name):""}${x.shared?"":`<br><button class="trash" data-del="${esc(x.id)}">🗑 Delete</button>`}`).addTo(x.type==="fish"?_LY.fish:_LY.spot);
-  mk.on("popupopen",async ev=>{const im=ev.popup.getElement().querySelector("img[data-pid]");if(!im)return;const d=await photoGet(x.id).catch(()=>null);if(d)im.src=d})}
- document.getElementById("tagList").innerHTML=(!t.length?`<div class="sub logempty">${window.FRA&&FRA.on?"No spots or catches yet.":localStorage.getItem(URLK)?"No spots or catches yet. Tap Refresh from Sheet to check again.":"Paste your Sheet link to load your log."}</div>`:"")+t.slice().reverse().map(x=>`<div class="t">${x.type==="fish"?"🐟":"📍"} ${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",...(new Date(x.timestamp).getFullYear()!==new Date().getFullYear()?{year:"numeric"}:{}),hour:"numeric",minute:"2-digit"})} ET · ${esc(x.species||"")} ${x.length_in?esc(x.length_in)+'"':""} · ${esc(placeOf(x))} ${hasPh(x)?`<button type="button" class="phbtn" data-lb="${esc(x.id)}" aria-label="View photo: ${esc(x.species||"catch")}">📷</button>`:""} ${x.synced?"✅":"⏳"}${x.owner_name?" · 👥 "+esc(x.owner_name):""} · <a href="${GM(x.lat,x.lng)}" target="_blank">Map</a>${x.shared?"":` <button class="trash" data-del="${esc(x.id)}" aria-label="Delete">🗑</button>`}</div>`).join("")}
+function renderTags(){const t=tags();if(MV)mvEnd(false);for(const k in MK)delete MK[k];document.getElementById("tagCount").textContent=t.length+(t.some(x=>!x.synced)?` · ${t.filter(x=>!x.synced).length} unsynced`:"")+(!t.length&&!localStorage.getItem(URLK)&&!(window.FRA&&FRA.configured)?" · paste your Sheet link to load":"");if(!tagLayer)return;tagLayer.clearLayers();
+ for(const x of t){const mk=L.marker([x.lat,x.lng],{icon:icon(x.type==="fish"?"🐟":"📍")}).bindPopup(`<b>${x.type==="fish"?esc(x.species||"Fish"):"Tagged spot"}</b>${x.length_in?" · "+esc(x.length_in)+" in":""}<br>${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York"})} ET<br>${x.fly_lure?"Fly/lure: "+esc(x.fly_lure)+"<br>":""}${x.note?esc(x.note)+"<br>":""}${placeOf(x)!==x.gage_name?esc(placeOf(x))+"<br>Nearest gage ":""}${esc(x.gage_name)}: ${esc(x.flow_cfs)} cfs ${x.temp_f!==""?esc(x.temp_f)+"°F":""} ${esc(x.rating)}<br><a href="${GM(x.lat,x.lng)}" target="_blank">Open in Google Maps</a> · <a href="${DIR(x.lat,x.lng)}" target="_blank">Directions</a>${x.has_photo||x.photo_thumb?`<br><img class="thumb" data-pid="${esc(x.id)}" data-lb="${esc(x.id)}" role="button" tabindex="0" title="Tap to enlarge" src="${esc(x.photo_thumb||"")}" alt="catch photo, tap to enlarge">`:""}${x.owner_name?"<br>Shared by "+esc(x.owner_name):""}${x.move_pending?'<br><span class="mvpend">⏳ New location not yet saved</span>':""}${x.shared?"":`<div class="popacts"><button type="button" class="movepin" data-move="${esc(x.id)}" aria-label="Move this pin">✥ Move pin</button><button class="trash" data-del="${esc(x.id)}">🗑 Delete</button></div>`}`).addTo(x.type==="fish"?_LY.fish:_LY.spot);
+  MK[x.id]=mk;mk.on("popupopen",async ev=>{const im=ev.popup.getElement().querySelector("img[data-pid]");if(!im)return;const d=await photoGet(x.id).catch(()=>null);if(d)im.src=d})}
+ document.getElementById("tagList").innerHTML=(!t.length?`<div class="sub logempty">${window.FRA&&FRA.on?"No spots or catches yet.":localStorage.getItem(URLK)?"No spots or catches yet. Tap Refresh from Sheet to check again.":"Paste your Sheet link to load your log."}</div>`:"")+t.slice().reverse().map(x=>`<div class="t">${x.type==="fish"?"🐟":"📍"} ${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",...(new Date(x.timestamp).getFullYear()!==new Date().getFullYear()?{year:"numeric"}:{}),hour:"numeric",minute:"2-digit"})} ET · ${esc(x.species||"")} ${x.length_in?esc(x.length_in)+'"':""} · ${esc(placeOf(x))} ${hasPh(x)?`<button type="button" class="phbtn" data-lb="${esc(x.id)}" aria-label="View photo: ${esc(x.species||"catch")}">📷</button>`:""} ${x.synced&&!x.move_pending?"✅":"⏳"}${x.owner_name?" · 👥 "+esc(x.owner_name):""} · <a href="${GM(x.lat,x.lng)}" target="_blank">Map</a>${x.shared?"":` <button class="trash" data-del="${esc(x.id)}" aria-label="Delete">🗑</button>`}</div>`).join("")}
 const COLS=["id","type","timestamp","lat","lng","nearest_gage","gage_name","gage_dist_mi","flow_cfs","pct_median","temp_f","rating","species","length_in","fly_lure","note","photo_url"];
 function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 document.getElementById("expCsv").onclick=()=>{const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;dl("fishing-log.csv",[COLS.join(","),...tags().map(x=>COLS.map(c=>q(x[c])).join(","))].join("\n"),"text/csv")};
 document.getElementById("expKml").onclick=()=>{const x=s=>esc(s);dl("fishing-log.kml",`<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Fishing Log</name>${tags().map(t=>`<Placemark><name>${x(t.type==="fish"?(t.species||"Fish")+(t.length_in?" "+t.length_in+" in":""):"Spot")}</name><description>${x(`${t.timestamp} | ${t.gage_name}: ${t.flow_cfs} cfs ${t.temp_f}F ${t.rating} | ${t.fly_lure} ${t.note}`)}</description><ExtendedData>${COLS.map(c=>`<Data name="${c}"><value>${x(t[c])}</value></Data>`).join("")}</ExtendedData><Point><coordinates>${t.lng},${t.lat}</coordinates></Point></Placemark>`).join("")}</Document></kml>`,"application/vnd.google-earth.kml+xml")};
 const msg=m=>document.getElementById("syncMsg").textContent=m;
 document.getElementById("saveUrl").onclick=()=>{const u=document.getElementById("sheetUrl").value.trim();if(/docs\.google\.com\/spreadsheets/.test(u))return msg("That's the Sheet itself — paste the Apps Script web app link (…/exec)");if(u&&!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return msg("That doesn't look like an Apps Script URL");localStorage.setItem(URLK,u);msg(u?"Saved":"Cleared");renderTags();if(u)pullSheet(false)};
-const clean=({synced,has_photo,photo_thumb,...x})=>x;
+const clean=({synced,has_photo,photo_thumb,move_pending,...x})=>x;
 async function post(u,body){const r=await (await fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)})).json();if(!r.ok)throw new Error(r.error||"script error");return r}
-async function sync(){if(window.FRA&&FRA.on)return FRA.sync();const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");const q=tags().filter(x=>!x.synced);if(!q.length)return msg("Nothing to sync");
+async function sync(){if(window.FRA&&FRA.on)return FRA.sync();const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");const q=tags().filter(x=>!x.synced);if(!q.length){const k=await syncMoves(false);return k?0:msg(tags().some(x=>x.move_pending)?"Moved pins still pending — update the Sheet script (docs/SHEET_SCRIPT.md)":"Nothing to sync")}
  msg("Syncing…");const done={};let n=0,warn="";
  try{const plain=q.filter(x=>!x.has_photo);if(plain.length){await post(u,plain.map(clean));plain.forEach(x=>done[x.id]={})}
   for(const x of q.filter(x=>x.has_photo)){const ph=await photoGet(x.id).catch(()=>null);
@@ -841,7 +888,7 @@ function pullSheet(quiet){if(window.FRA&&FRA.configured)return FRA.on?FRA.load()
    else if(t[i].synced&&e.photo_file_id&&!t[i].photo_file_id){t[i]={...t[i],photo_url:e.photo_url,photo_file_id:e.photo_file_id,photo_thumb:e.photo_thumb};upd++}}
   t.sort((a,b)=>String(a.timestamp).localeCompare(String(b.timestamp)));if(n||upd)saveTags(t);
   if(!quiet||n)msg(n?`Loaded ${n} from Sheet`:"Up to date with Sheet");
-  if(t.some(x=>!x.synced))sync();return n}
+  if(t.some(x=>!x.synced))sync();else if(t.some(x=>x.move_pending))syncMoves(true);return n}
  catch(e){msg("Couldn't load from Sheet: "+e.message);return 0}finally{pulling=null}})()}
 document.getElementById("loadBtn").onclick=()=>pullSheet(false);
 addEventListener("online",()=>(window.FRA&&FRA.on||localStorage.getItem(URLK))&&tags().some(x=>!x.synced)&&sync());
