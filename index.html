@@ -450,6 +450,7 @@ input[type=checkbox]{accent-color:var(--g800)}
  .card{padding:14px var(--s2)}
  .xbar{grid-template-columns:1fr 1fr;gap:12px}
 }
+.zhint{position:absolute;inset:0;z-index:1100;display:flex;align-items:center;justify-content:center;pointer-events:none;background:rgba(20,42,29,.34);color:var(--cream);font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:-.01em;text-shadow:0 1px 3px rgba(0,0,0,.35);opacity:0;transition:opacity .35s var(--ease)}.zhint.on{opacity:1;transition-duration:.15s}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 </style></head><body>
 <header class="appbar"><a class="brand" href="./" aria-label="MI Blue Lining home"><img src="icon.svg?v=3" width="32" height="32" alt=""><h1>MI Blue Lining</h1></a>
@@ -489,6 +490,15 @@ input[type=checkbox]{accent-color:var(--g800)}
 <div id="xmodal"><div class="box" id="xbox"></div></div><div id="gmodal"><div class="box" id="gbox"></div></div>
 <div id="modal"><div class="box" id="mbox"></div></div>
 <script>
+// Ctrl/Cmd + wheel (and trackpad pinch, which arrives as ctrl+wheel) zooms the map at the cursor; plain wheel keeps scrolling the page.
+function ctrlZoom(m){const el=m.getContainer(),mac=/Mac|iP(hone|ad|od)/.test(navigator.platform||navigator.userAgent);
+ const hint=L.DomUtil.create("div","zhint",el);hint.setAttribute("aria-hidden","true");hint.textContent=mac?"Hold ⌘ or pinch to zoom":"Hold Ctrl to zoom";let ht=0,acc=0,last=0,idle=0;
+ el.addEventListener("wheel",e=>{if(m.scrollWheelZoom.enabled())return;
+  if(!(e.ctrlKey||e.metaKey)){if(Math.abs(e.deltaY)>=Math.abs(e.deltaX)){hint.classList.add("on");clearTimeout(ht);ht=setTimeout(()=>hint.classList.remove("on"),1100)}return}
+  e.preventDefault();e.stopPropagation();hint.classList.remove("on");clearTimeout(idle);idle=setTimeout(()=>acc=0,250);
+  acc+=L.DomEvent.getWheelDelta(e);const now=Date.now();if(Math.abs(acc)<40||now-last<180)return;
+  const z=Math.max(m.getMinZoom(),Math.min(m.getMaxZoom(),m.getZoom()+(acc>0?1:-1)));acc=0;last=now;
+  if(z!==m.getZoom())m.setZoomAround(m.mouseEventToContainerPoint(e),z)},{passive:false,capture:true})}
 const EXTRA_SP=["Largemouth bass","Smallmouth bass","Northern pike","Creek chub"];
 const GROUPS={"Tier 1 · Paint Creek":[["04161540","Paint Creek at Rochester"],["04161500","Paint Creek near Lake Orion"]],
 "Tier 2 · Clinton River & branches":[["04161000","Clinton R at Auburn Hills"],["04161820","Clinton R at Sterling Heights"],["04164000","Clinton R near Fraser"],["04165500","Clinton R at Moravian Dr, Mt. Clemens"],["04164151","N Branch at 26 Mile nr Meade"],["04164500","N Branch near Mt. Clemens"],["04164800","Middle Branch at Macomb"]],
@@ -594,7 +604,7 @@ const icon=(e)=>L.divIcon({className:"pin",html:e,iconSize:[24,24],iconAnchor:[1
 const dataReady=new Promise(r=>document.body.dataset.ready?r():addEventListener("dataready",r,{once:true}));
 async function init(){
  try{AD=await (await fetch("access-data.json")).json()}catch(e){console.warn("access data",e)}
- map=L.map("map",{scrollWheelZoom:false}).setView([42.62,-83.05],10);
+ map=L.map("map",{scrollWheelZoom:false}).setView([42.62,-83.05],10);ctrlZoom(map);
  {const sec=document.getElementById("mapsec"),body=document.getElementById("mapBody"),hd=document.getElementById("mapHead"),K="mapCollapsed";
   const setOpen=o=>{body.style.display=o?"":"none";hd.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(K,o?"0":"1");if(o)setTimeout(()=>map.invalidateSize(),50)};
   hd.onclick=()=>setOpen(body.style.display==="none");setOpen(localStorage.getItem(K)!=="1");
@@ -880,7 +890,7 @@ async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="s
  $("fTrip").value=F.trip||"";$("fMax").value=F.max;$("fSpx").value=F.sp;$("fCls").value=F.cls;$("fOpen").value=F.open;$("fDes").value=F.des;document.querySelectorAll("[data-tier]").forEach(c=>c.checked=F.tiers.includes(c.dataset.tier));
  const chg=()=>{const ot=F.trip;F={v:2,trip:$("fTrip").value,max:+$("fMax").value,sp:$("fSpx").value,cls:$("fCls").value,open:$("fOpen").value,des:$("fDes").value,tiers:[...document.querySelectorAll("[data-tier]")].filter(c=>c.checked).map(c=>c.dataset.tier)};localStorage.setItem(FK,JSON.stringify(F));draw();if(ot!==F.trip)fitTrip()};
  ["fTrip","fMax","fSpx","fCls","fOpen","fDes"].forEach(i=>$(i).oninput=chg);window._xchg=chg;document.querySelectorAll("[data-tier]").forEach(c=>c.onchange=chg);
- xmap=L.map("xmap",{scrollWheelZoom:false,minZoom:6,maxBounds:[[40.6,-88.8],[46.4,-79.6]],maxBoundsViscosity:.7}).fitBounds([[41.2,-86.6],[45.2,-81.2]]);xmap.createPane("bands").style.zIndex=350;xmap.createPane("cmask").style.zIndex=360;window._xmap=xmap;window.addLocate&&window.addLocate(xmap,(la,ln)=>{let b=null;const r=Math.PI/180;for(const s of XD.streams){const d=7917.6*Math.asin(Math.sqrt(Math.sin((s.lat-la)*r/2)**2+Math.cos(la*r)*Math.cos(s.lat*r)*Math.sin((s.lng-ln)*r/2)**2));if(!b||d<b.d)b={s,d}}return b?`Nearest Explore stream: <b>${esc(b.s.name)}</b> (${b.d.toFixed(1)} mi)<br><span class="stt ${status(b.s).cls}" style="font-size:.85em">${esc(status(b.s).txt)}</span><br><a href="#" data-popen="${b.s.id}">Details</a> · <a href="${DIR(b.s.lat,b.s.lng)}" target="_blank">Directions</a>`:""});L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(xmap);window.STK&&STK.attachX(xmap);
+ xmap=L.map("xmap",{scrollWheelZoom:false,minZoom:6,maxBounds:[[40.6,-88.8],[46.4,-79.6]],maxBoundsViscosity:.7}).fitBounds([[41.2,-86.6],[45.2,-81.2]]);ctrlZoom(xmap);xmap.createPane("bands").style.zIndex=350;xmap.createPane("cmask").style.zIndex=360;window._xmap=xmap;window.addLocate&&window.addLocate(xmap,(la,ln)=>{let b=null;const r=Math.PI/180;for(const s of XD.streams){const d=7917.6*Math.asin(Math.sqrt(Math.sin((s.lat-la)*r/2)**2+Math.cos(la*r)*Math.cos(s.lat*r)*Math.sin((s.lng-ln)*r/2)**2));if(!b||d<b.d)b={s,d}}return b?`Nearest Explore stream: <b>${esc(b.s.name)}</b> (${b.d.toFixed(1)} mi)<br><span class="stt ${status(b.s).cls}" style="font-size:.85em">${esc(status(b.s).txt)}</span><br><a href="#" data-popen="${b.s.id}">Details</a> · <a href="${DIR(b.s.lat,b.s.lng)}" target="_blank">Directions</a>`:""});L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"© OpenStreetMap contributors"}).addTo(xmap);window.STK&&STK.attachX(xmap);
  L.marker([XD.home.lat,XD.home.lng],{icon:L.divIcon({className:"",html:'<div class="xdot" style="background:#7f6118;font-size:14px">🏠</div>',iconSize:[22,22],iconAnchor:[11,11]})}).bindPopup("<b>Home</b><br>"+esc(XD.home.address)).addTo(xmap);
  for(const t of XD.trips||[]){const h=t.house;L.marker([h.lat,h.lng],{zIndexOffset:900,icon:L.divIcon({className:"",html:'<div class="xdot" style="background:#4b5320;border-color:#f6f0e1;font-size:13px;width:26px;height:26px;line-height:22px">🏕️</div>',iconSize:[26,26],iconAnchor:[13,13]})}).bindPopup(`<b>${esc(h.label)}</b><br>${esc(t.dates)}<br><span class="sub">${esc(h.note)}</span><br><a href="#" data-trip="${esc(t.id)}">Show trip waters</a>`,{maxWidth:260}).addTo(xmap)}
  fetch("explore-tiers.geojson?v=1").then(r=>r.json()).then(G=>{bandLayer=L.geoJSON(G,{pane:"bands",interactive:false,style:f=>({color:COL[f.properties.tier],weight:1.4,opacity:.8,fillColor:COL[f.properties.tier],fillOpacity:.16})}).addTo(xmap)}).catch(()=>{});
@@ -1330,4 +1340,4 @@ const mo=new MutationObserver(()=>{if(D)decorate()});
 const app=document.getElementById("app");if(app)mo.observe(app,{childList:true,subtree:true});
 boot();
 })();
-</script><script src="stockings.js?v=3"></script><script src="lands.js?v=3"></script><script src="secnav.js?v=1"></script></body></html>
+</script><script src="stockings.js?v=3"></script><script src="lands.js?v=3"></script><script src="secnav.js?v=2"></script></body></html>
