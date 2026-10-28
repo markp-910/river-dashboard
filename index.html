@@ -365,6 +365,7 @@ html,body{overflow-x:clip}
 .maplegend button:hover,.srcbar button:hover,.hfilt button:hover{background:#fff;border-color:rgba(31,58,43,.28)}
 .maplegend button.off,.srcbar button.off{opacity:1;background:transparent;color:var(--mute);font-weight:500;text-decoration:none;border-style:dashed}
 .srcbar button.off .nm{text-decoration:none}
+.maplegend button.lgall{background:transparent;border:.5px solid rgba(31,58,43,.32);color:var(--g800);font-weight:600;box-shadow:none;letter-spacing:.01em}.maplegend button.lgall:hover{background:rgba(31,58,43,.06)}.maplegend button.lgall:focus-visible{outline:2px solid var(--g800);outline-offset:2px}
 .hfilt button.on{background:var(--g800);border-color:var(--g800);color:var(--cream)}
 .srcttl{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
 @media (pointer:coarse){.maplegend button,.srcbar button,.hfilt button{min-height:44px}}
@@ -462,7 +463,7 @@ input[type=checkbox]{accent-color:var(--g800)}
 <section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
 <div class="tagbar"><button id="btnTag" class="big"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>Tag spot</button><button id="btnFish" class="big fish"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12c3-4.5 8.5-6 13-3.2L21 5.5v13l-5.5-3.3C11 18 5.5 16.5 2.5 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="11" r="1.2" fill="currentColor"/></svg>Fish caught</button></div>
 <div id="map"></div>
-<div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
+<div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button><button class="lgall" id="lgAll" type="button" aria-label="Turn all map layers off">All off</button></div>
 <div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button><details class="srcnote" id="srcNote" hidden><summary>Fishbrain sweep status</summary><p id="srcNoteTxt"></p></details></div>
 <div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
@@ -612,8 +613,15 @@ async function init(){
  const hid=new Set(JSON.parse(localStorage.getItem("hiddenLayers")||"[]"));if(!localStorage.getItem("satInit")){hid.add("satellite");localStorage.setItem("satInit","1");localStorage.setItem("hiddenLayers",JSON.stringify([...hid]))}
  const saveHid=()=>localStorage.setItem("hiddenLayers",JSON.stringify([...hid]));
  const bindLayer=(b,k)=>{const ap=()=>{const off=hid.has(k);b.classList.toggle("off",off);b.setAttribute("aria-pressed",String(!off));off?map.removeLayer(LY[k]):LY[k].addTo(map)};ap();
-  b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);saveHid();ap();window._srcSync&&window._srcSync()};b._ap=ap};window._bindLayer=bindLayer;window._hid=hid;window._saveHid=saveHid;
- document.querySelectorAll(".maplegend button").forEach(b=>bindLayer(b,b.dataset.l));
+  b.onclick=()=>{hid.has(k)?hid.delete(k):hid.add(k);saveHid();ap();window._srcSync&&window._srcSync();window._lgSync&&window._lgSync()};b._ap=ap};window._bindLayer=bindLayer;window._hid=hid;window._saveHid=saveHid;
+ document.querySelectorAll(".maplegend button[data-l]").forEach(b=>bindLayer(b,b.dataset.l));
+ {const lb=[...document.querySelectorAll(".maplegend button[data-l]")],ks=lb.map(b=>b.dataset.l),allL=document.getElementById("lgAll"),PK="layersAllOffPrev";
+  window._lgSync=()=>{const anyOn=ks.some(k=>!hid.has(k));allL.textContent=anyOn?"All off":"All on";allL.setAttribute("aria-label",anyOn?"Turn all map layers off":"Turn map layers back on")};
+  allL.onclick=()=>{const anyOn=ks.some(k=>!hid.has(k));
+   if(anyOn){localStorage.setItem(PK,JSON.stringify(ks.filter(k=>!hid.has(k))));ks.forEach(k=>hid.add(k))}
+   else{let prev=null;try{prev=JSON.parse(localStorage.getItem(PK)||"null")}catch(e){}const satWas=Array.isArray(prev)&&prev.includes("satellite");
+    ks.forEach(k=>k==="satellite"?(satWas?hid.delete(k):hid.add(k)):hid.delete(k))}
+   saveHid();lb.forEach(b=>b._ap());window._lgSync()};window._lgSync()}
  for(const p of AD.access){const col=p.type==="bridge"?"#8b5a2b":p.type==="fishing"?"#c9971c":"#3f7a4a";
   L.circleMarker([p.lat,p.lng],{radius:p.type==="fishing"?7:5,color:col,fillColor:col,fillOpacity:.8,weight:1}).bindPopup(`<b>${esc(p.name)}</b><br>${p.type} · ${p.mi} mi from ${esc(NAME[p.near]||p.near)}<br><a href="${DIR(p.lat,p.lng)}" target="_blank">Directions</a>`).addTo(LY[p.type]||LY.park)}
  window._map=map;addLocate();loadExternal();loadRivers(LY.rivers,RR);await dataReady;colorRivers();
