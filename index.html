@@ -279,7 +279,8 @@ details[open]>summary.sec2:before{transform:rotate(45deg) translate(-2px,-2px)}
 .sub{font-size:13px;color:var(--mute);line-height:1.45}
 .note{font-size:14px;color:var(--ink2)}
 .legend{font-size:12px;color:var(--mute);padding:0 var(--s2);margin:var(--s1) 0;line-height:1.9}.legend i{width:8px;height:8px;border-radius:50%;margin:0 4px 0 10px}
-#wxsec,#mapsec,#calsec,#runsec,#hatchsec{padding:0 var(--s2)}
+#wxsec,#mapsec,#regsec,#runsec,#hatchsec{padding:0 var(--s2)}
+.stkcal{margin:14px 0 4px}.stkcal .calwrap{margin:6px 0}
 
 /* ---- Unified pill (chips, badges, statuses) ---- */
 .badge,.bite,.st,.stt,.kchip,.dsg,.cls,.rchip,.rph,.ptag,.cf,.chip,.wxal .chip,.usgl .usk,#cal .ev{display:inline-flex;align-items:center;border-radius:var(--pill);padding:2px 9px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0;line-height:1.5;border-width:0;white-space:nowrap;vertical-align:middle}
@@ -470,14 +471,15 @@ input[type=checkbox]{accent-color:var(--g800)}
 <div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
 <div class="row"><button id="syncBtn">Sync queued</button><button id="loadBtn">Refresh from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></div></section>
-<section id="calsec"><details id="calDet" open><summary class="sec2">Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
-<section id="runsec"><details id="runDet" open><summary class="sec2">Run Calendar</summary>
+<details class="xsec stkcal" id="calDet"><summary>Typical stocking months · DNR 2021–2026</summary><div id="calNow"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details>
+<section id="regsec"><details id="regDet" open><summary class="sec2">Seasons &amp; regs</summary><div id="regs"></div></details></section>
+<section id="runsec"><details id="runDet" open><summary class="sec2">Run calendar</summary>
 <div class="sub">Salmon, steelhead and lake-run brown runs on the rivers this dashboard tracks or explores. Tap a river for dams, access, crowding and sources. Bright bar = peak, light bar = in window. These are typical dates, not a forecast.</div>
 <div id="runNow"></div><div class="hfilt" id="runFilt"></div><div class="hscroll"><div class="hgrid" id="runGrid"><div class="sub" style="padding:12px">Loading run data…</div></div></div><div class="hleg" id="runLeg"></div><div class="sub" id="runSrc"></div></details></section>
-<section id="hatchsec"><details id="hatchDet" open><summary class="sec2">Hatch Calendar</summary>
+<section id="hatchsec"><details id="hatchDet" open><summary class="sec2">Hatch calendar</summary>
 <div class="sub">Tap a row for patterns, sizes, time of day, waters &amp; sources. Bright bar = peak, light bar = early/late (tail). SE Michigan usually runs ~1–2 weeks earlier than northern-Michigan dates.</div>
 <div class="hfilt" id="hFilt"></div><div id="hNow"></div><div class="hscroll"><div class="hgrid" id="hGrid"></div></div><div class="hleg" id="hLeg"></div><div class="sub" id="hSrc"></div></details></section>
-<div id="app"></div>
+<section id="gagesec"><div id="app"></div></section>
 </div>
 <div id="exploreView" hidden></div>
 <div id="tagdlg"><form class="box" id="tagform"><h3 id="tagTitle"></h3><div class="sub" id="tagCtx"></div>
@@ -672,20 +674,22 @@ async function loadExternal(){let X;try{X=await (await fetch("external-catches.j
   document.getElementById("fCount").textContent=`${ns} stocking events · ${nc} reports`};
  [y1,y2,sp].forEach(el=>el.onchange=draw);draw();renderCal(X)}
 function lastSatApr(y){const d=new Date(y,3,30);d.setDate(30-((d.getDay()+1)%7));return d}
+function seasonRow(X,river){const r=(X.timing||[]).find(t=>t.river===river&&/season/i.test(t.label));if(!r)return"";const b=r.note.split(/Best:\s*/)[1];
+ return `<br><b>Best months:</b> ${(r.peak||[]).map(m=>MON[m-1]).join(", ")}${b?` — ${esc(b)}`:""} <a href="${esc(r.url)}" target="_blank">src</a>`}
 function renderRegs(X){const S=X.seasonal,t=new Date(),y=t.getFullYear(),op=lastSatApr(y),cl=new Date(y,8,30,23,59),open=t>=op&&t<=cl,nxt=t<op?op:lastSatApr(y+1),f=d=>d.toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"});
  const P=S?.rivers?.["Paint Creek"],C=S?.rivers?.["Clinton River"],src=a=>(a||[]).map((u,i)=>`<a href="${esc(u)}" target="_blank">[${i+1}]</a>`).join(" ");
  document.getElementById("regs").innerHTML=`<div class="regs"><div class="reg"><h4>Paint Creek <span class="st ${open?"open":"closed"}">${open?"OPEN for trout":"CLOSED now"}</span></h4>
  <b>Type 1 trout stream.</b> Season: last Sat in April – Sept 30. ${open?`Closes ${f(cl)}.`:`Next opener: <b>${f(nxt)}</b>.`}<br><b>Gunn Rd → Tienken Rd (5 mi):</b> artificial lures only, <b>2 trout/day, 14-in minimum</b>, no live bait.<br>Elsewhere Type 1 rules (bait allowed).
- ${P?.hatches?`<br><span class="sub">Hatches: ${P.hatches.items.map(esc).join(" · ")}</span>`:""}<br><span class="sub">Sources ${src(P?.regulations?.sources)} · verify current DNR regs before fishing</span></div>
+ ${seasonRow(X,"Paint Creek")}${P?.hatches?`<br><span class="sub">Hatches: ${P.hatches.items.map(esc).join(" · ")}</span>`:""}<br><span class="sub">Sources ${src(P?.regulations?.sources)} · verify current DNR regs before fishing</span></div>
  <div class="reg"><h4>Clinton River <span class="st open">OPEN year-round</span></h4>Not a designated Type 1/2 trout stream — trout open all year.<br>${C?esc(C.regulations.limits)+".<br>"+esc(C.regulations.other)+".":""}<br><span class="sub">Sources ${src(C?.regulations?.sources)} · verify current DNR regs before fishing</span></div></div>`}
-function renderCal(X){renderRegs(X);const now=new Date().getMonth()+1,t=document.getElementById("cal"),hd=`<tr><th>Site / run</th>${MON.map((m,i)=>`<th class="${i+1===now?"now":""}">${m}</th>`).join("")}<th>Last stocked</th></tr>`;
- const runRows=X.timing.map(r=>`<tr><td class="nm" title="${esc(r.note)}">${esc(r.label)}</td>${MON.map((m,i)=>{const k=i+1,on=r.months.includes(k),pk=(r.peak||[]).includes(k);return `<td class="${on?(pk?"peak":"run"):""} ${k===now?"now":""}">${pk?"★":on?"●":""}</td>`}).join("")}<td><a href="${esc(r.url)}" target="_blank">src</a></td></tr>`).join("");
+function renderCal(X){renderRegs(X);const now=new Date().getMonth()+1,t=document.getElementById("cal"),STK_T=X.timing.filter(r=>/stocking/i.test(r.label)),hd=`<tr><th>Site / stocking</th>${MON.map((m,i)=>`<th class="${i+1===now?"now":""}">${m}</th>`).join("")}<th>Last stocked</th></tr>`;
+ const runRows=STK_T.map(r=>`<tr><td class="nm" title="${esc(r.note)}">${esc(r.label)}</td>${MON.map((m,i)=>{const k=i+1,on=r.months.includes(k),pk=(r.peak||[]).includes(k);return `<td class="${on?(pk?"peak":"run"):""} ${k===now?"now":""}">${pk?"★":on?"●":""}</td>`}).join("")}<td><a href="${esc(r.url)}" target="_blank">src</a></td></tr>`).join("");
  const siteRows=X.sites.map(s=>{const by={};s.events.forEach(e=>{const m=+e.date.slice(5,7);(by[m]??=[]).push(e)});
   return `<tr><td class="nm" title="${esc(s.name)}">${esc(s.name)}</td>${MON.map((m,i)=>`<td class="${i+1===now?"now":""}">${Object.entries((by[i+1]||[]).reduce((o,e)=>{(o[e.date.slice(0,4)]??=[]).push(e);return o},{})).sort().reverse().map(([y,es])=>`<span class="ev" title="${esc(es.map(e=>e.date+" "+e.species+" "+(e.size||"")).join("\n"))}">'${y.slice(2)}${es.length>1?"×"+es.length:""}</span>`).join("")}</td>`).join("")}<td>${esc(s.last)}</td></tr>`}).join("");
- t.innerHTML=`<thead>${hd}</thead><tbody><tr class="grp"><td colspan="14">Run & seasonal windows (● season, ★ peak)</td></tr>${runRows}<tr class="grp"><td colspan="14">DNR stocking events by month (year shown)</td></tr>${siteRows}</tbody>`;
- const runs=X.timing.filter(r=>r.months.includes(now)),stk=X.sites.flatMap(s=>s.events.filter(e=>+e.date.slice(5,7)===now).map(e=>({s,e}))),nx=X.timing.filter(r=>r.months.includes(now%12+1)&&!r.months.includes(now));
- document.getElementById("calNow").innerHTML=`<b>Happening now (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no major runs in the data for this month"}.
-  ${stk.length?`<br>Past ${MON[now-1]} stockings: ${[...new Set(stk.map(x=>x.s.name))].map(esc).join(", ")}.`:`<br>No DNR stockings recorded in ${MON[now-1]} (2021–2026).`}${nx.length?`<br>Coming next month: ${nx.map(r=>esc(r.label)).join(", ")}.`:""}`;
+ t.innerHTML=`<thead>${hd}</thead><tbody><tr class="grp"><td colspan="14">Typical stocking windows (● window, ★ peak)</td></tr>${runRows}<tr class="grp"><td colspan="14">DNR stocking events by month (year shown)</td></tr>${siteRows}</tbody>`;
+ const runs=STK_T.filter(r=>r.months.includes(now)),stk=X.sites.flatMap(s=>s.events.filter(e=>+e.date.slice(5,7)===now).map(e=>({s,e}))),nx=STK_T.filter(r=>r.months.includes(now%12+1)&&!r.months.includes(now));
+ document.getElementById("calNow").innerHTML=`<b>This month (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no regular DNR stocking window on these waters this month"}.
+  ${stk.length?`<br>Past ${MON[now-1]} stockings: ${[...new Set(stk.map(x=>x.s.name))].map(esc).join(", ")}.`:`<br>No DNR stockings recorded in ${MON[now-1]} (2021–2026).`}${nx.length?`<br>Coming next month: ${nx.map(r=>esc(r.label)).join(", ")}.`:""}<br><span class="sub">Steelhead and salmon timing is in Run below; Paint Creek's season is in Seasons &amp; regs.</span>`;
  document.getElementById("calSrc").textContent=`Data generated ${X.generated}; timing ${X.timing_source}; ${X.dropped_captive} likely-captive records excluded. Stocking coordinates are approximate.`}
 let RIV=null,RLAB=null;const RSTY={1:{w:5,c:9,col:"#1e90ff"},2:{w:3.5,c:6,col:"#2a9df4"},3:{w:2,c:4,col:"#5bb5f7"}};
 async function loadRivers(grp,renderer){let G;try{G=await (await fetch("rivers.geojson?v=1")).json()}catch(e){console.warn("rivers",e);return}RIV=G;
@@ -862,7 +866,7 @@ async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="s
  const sp=[...new Set([...XD.streams.flatMap(s=>s.species_groups),...EXTRA_SP])].sort();
  v.innerHTML=`<h2 class="ptitle">Explore nearby trout &amp; steelhead water</h2>
  <div class="sub plead">US waters only. <b>Drive tiers</b> are one-way minutes from home (${esc(XD.home.address)}): <b>1 Back Yard</b> ≤30 · <b>2 Quick Trip</b> 30–90 · <b>3 Half Day</b> 90–180 · <b>4 Fishing Trip!</b> 180–240. These are separate from the Home Waters sections above. Estimates are free-flow — add ~10–25% for traffic. 🏛️ badges show the State of Michigan's designated-trout-stream Type (FO-210 / FO-200).</div>
- <div class="xbar"><label>Trip focus<select id="fTrip"><option value="">All waters</option>${(XD.trips||[]).map(t=>`<option value="${esc(t.id)}">${esc(t.name)} · ${esc(t.dates)}</option>`).join("")}</select></label><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="240" step="5"></label>
+ <div class="xbar" id="xFiltSec"><label>Trip focus<select id="fTrip"><option value="">All waters</option>${(XD.trips||[]).map(t=>`<option value="${esc(t.id)}">${esc(t.name)} · ${esc(t.dates)}</option>`).join("")}</select></label><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="240" step="5"></label>
  <label>State trout-stream status<select id="fDes"><option value="">All streams</option><option value="des">Designated trout streams only</option><option value="t12">Type 1 or Type 2</option><option value="t1">Type 1</option><option value="t2">Type 2</option><option value="gr">Gear-restricted (flies / lures only)</option><option value="t3">Type 3</option><option value="t4">Type 4</option><option value="none">Not designated / other</option></select></label>
  <label>Species<select id="fSpx"><option value="">All</option>${sp.map(x=>`<option>${x}</option>`).join("")}</select></label>
  <label>TroutRoutes class<select id="fCls"><option value="">All</option><option value="gold">Gold</option><option value="1">Class 1</option><option value="2">Class 2</option><option value="3">Class 3</option><option value="unknown">Unknown</option></select></label>
@@ -870,9 +874,9 @@ async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="s
  <div class="tiers"><span>Drive tier</span><br>${["1","2","3","4"].map(t=>`<label><input type="checkbox" data-tier="${t}"> <span class="tierb t${t}" style="min-width:20px;padding:1px 0;font-size:.85em">${t}</span> ${TNAME[t]}</label>`).join("")}</div></div>
  <div id="xmap"></div><div class="sub" id="xCount"></div>
  ${(XD.trips||[]).map(t=>`<details class="xsec" open id="xTripSec"><summary>${esc(t.name)} · ${esc(t.dates)} (<span id="xTripN"></span>)</summary><div id="xTrip"></div></details>`).join("")}
- <details class="xsec" open><summary>Trip planner — best bets right now (<span id="xPlanN"></span>)</summary><div id="xPlan"></div></details>
- <details class="xsec"><summary>Want to fish (<span id="xWishN">0</span>)</summary><div id="xWish"></div></details>
- <details class="xsec"><summary>Notes & what was left out</summary><div class="sub" style="padding:6px 0">${XD.notes.map(n=>`<p>${esc(n)}</p>`).join("")}<p><b>Just beyond the 4-hour cap (OSRM minutes):</b> ${XD.outside_4h.map(o=>esc(o.name)+" ("+o.min+" min)").join("; ")}.</p><p><b>Left out on purpose:</b> ${XD.excluded.map(esc).join(" ")}</p><p>${esc(XD.regs_note)}</p><p><b>Checked, no trout evidence:</b> ${XD.no_evidence.map(o=>esc(o.name)).join("; ")}.</p><p>${esc(XD.troutroutes_note)}</p><p>Drive method: ${esc(XD.drive_method)}. Data generated ${esc(XD.generated)}.</p></div></details>`;
+ <details class="xsec" open id="xPlanSec"><summary>Trip planner — best bets right now (<span id="xPlanN"></span>)</summary><div id="xPlan"></div></details>
+ <details class="xsec" id="xWishSec"><summary>Want to fish (<span id="xWishN">0</span>)</summary><div id="xWish"></div></details>
+ <details class="xsec" id="xNotesSec"><summary>Notes & what was left out</summary><div class="sub" style="padding:6px 0">${XD.notes.map(n=>`<p>${esc(n)}</p>`).join("")}<p><b>Just beyond the 4-hour cap (OSRM minutes):</b> ${XD.outside_4h.map(o=>esc(o.name)+" ("+o.min+" min)").join("; ")}.</p><p><b>Left out on purpose:</b> ${XD.excluded.map(esc).join(" ")}</p><p>${esc(XD.regs_note)}</p><p><b>Checked, no trout evidence:</b> ${XD.no_evidence.map(o=>esc(o.name)).join("; ")}.</p><p>${esc(XD.troutroutes_note)}</p><p>Drive method: ${esc(XD.drive_method)}. Data generated ${esc(XD.generated)}.</p></div></details>`;
  $("fTrip").value=F.trip||"";$("fMax").value=F.max;$("fSpx").value=F.sp;$("fCls").value=F.cls;$("fOpen").value=F.open;$("fDes").value=F.des;document.querySelectorAll("[data-tier]").forEach(c=>c.checked=F.tiers.includes(c.dataset.tier));
  const chg=()=>{const ot=F.trip;F={v:2,trip:$("fTrip").value,max:+$("fMax").value,sp:$("fSpx").value,cls:$("fCls").value,open:$("fOpen").value,des:$("fDes").value,tiers:[...document.querySelectorAll("[data-tier]")].filter(c=>c.checked).map(c=>c.dataset.tier)};localStorage.setItem(FK,JSON.stringify(F));draw();if(ot!==F.trip)fitTrip()};
  ["fTrip","fMax","fSpx","fCls","fOpen","fDes"].forEach(i=>$(i).oninput=chg);window._xchg=chg;document.querySelectorAll("[data-tier]").forEach(c=>c.onchange=chg);
@@ -1316,7 +1320,7 @@ function renderCalendar(){const g=$("runGrid");if(!g||!D)return;const now=new Da
  $("runNow").innerHTML=`<div id="rNow"><h4>Run status today (${MON[now.getMonth()]} ${now.getDate()}) <span class="sub">— waters on this dashboard</span></h4>${peaking.length?peaking.map(r=>`<div class="rn"><b>${esc(r.name)}</b> <span class="sub">${r.explore.length?"· "+Math.min(...r.explore.map(i=>XS[i]?.drive_min??0))+" min · tier "+XS[r.explore[0]]?.tier:"· Home Waters"}</span><br>${chip(r)}</div>`).join(""):'<div class="sub">Nothing is at peak on the rivers this dashboard tracks today.</div>'}${ends.length?`<div class="sub" style="margin-top:4px">⏳ Ending soon: ${ends.map(r=>esc(r.name)+" ("+roll(r).e.filter(q=>q.p.ph==="ends").map(q=>spName(r,q.x)+" "+q.p.left+" d").join(", ")+")").join("; ")}</div>`:""}</div>`;
  $("runSrc").innerHTML=`<b>Sources &amp; confidence.</b> Windows for ${D.rivers.filter(r=>r.src==="hub-tracker").length} rivers come from the <a href="${esc(D.sources.tracker)}" target="_blank" rel="noopener">Michigan Fly Fishing Hub Run tracker</a> (hub data as of ${esc(D.hub_asof||"?")}). ${esc(D.method)} The Hub's SE-Michigan Clinton page only gives a qualitative spring steelhead window; Belle, St. Clair, lower Huron, Mill Creek (Yale) and Ohio windows are month-level regional text and shown striped. Paint Creek has no documented run (a few steelhead may pass the Yates bypass). Hub "Big Huron" is a Lake Superior river in Baraga Co., not the Huron River near Detroit. Rebuild: <code>python3 tools/build_runs.py</code>.`}
 // ---- boot ----
-async function boot(){try{[D]=await Promise.all([fetch("run-calendar.json?v=1").then(r=>r.json())]);
+async function boot(){try{[D]=await Promise.all([fetch("run-calendar.json?v=2").then(r=>r.json())]);
   try{const X=await (await fetch("explore-streams.json?v=6")).json();X.streams.forEach(s=>XS[s.id]=s)}catch(e){console.warn("run: explore data",e)}
   for(const r of D.rivers){r.explore.forEach(i=>byEx[i]=r);r.home.forEach(n=>byHome[n]=r);if(r.src==="hub-tracker"&&HOOK.has(r.id))r.hook=HOOKTXT}
   renderCalendar();decorate();dispatchEvent(new Event("run-ready"))}catch(e){console.warn("run",e);const g=$("runGrid");if(g)g.innerHTML='<div class="sub" style="padding:14px">Could not load run-calendar.json</div>'}}
@@ -1326,4 +1330,4 @@ const mo=new MutationObserver(()=>{if(D)decorate()});
 const app=document.getElementById("app");if(app)mo.observe(app,{childList:true,subtree:true});
 boot();
 })();
-</script><script src="stockings.js?v=2"></script><script src="lands.js?v=3"></script></body></html>
+</script><script src="stockings.js?v=3"></script><script src="lands.js?v=3"></script><script src="secnav.js?v=1"></script></body></html>
