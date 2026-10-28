@@ -1,0 +1,40 @@
+name: Refresh DNR stockings
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"   # every 6 hours, off the top of the hour (polite to the DNR server)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: stockings
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build stockings.json
+        run: python3 tools/build_stockings.py
+      - name: Commit if changed
+        run: |
+          git add stockings.json tools/cache
+          if git diff --cached --quiet; then
+            echo "No change in stockings."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Stockings: refresh from Michigan DNR ($(date -u +%Y-%m-%dT%H:%MZ))"
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1
