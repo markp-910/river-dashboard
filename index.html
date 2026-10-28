@@ -791,7 +791,7 @@ async function mvSave(){const m=MV;if(!m)return;const p=m.mk.getLatLng(),la=+p.l
  MK[x.id]?.openPopup();const r=await pushMove(x,patch);msg(r);toast(r);if(!MV&&!map._popup?.isOpen?.())MK[x.id]?.openPopup()}
 async function pushMove(x,patch){
  if(!x.synced)return "Pin moved — it will sync with the new spot";
- if(window.FRA&&FRA.on){if(!FRA.move)return "Pin moved on this device";const r=await FRA.move(x,patch);if(r.ok)mvDone(x.id);return r.msg}
+ if(window.FRA&&FRA.on){if(x.shared)return "Pin moved on this device only";const r=FRA.move?await FRA.move(x,patch):{ok:false,msg:"Pin moved on this device"};if(r.ok)mvDone(x.id);else{const t=tags(),i=t.findIndex(v=>String(v.id)===String(x.id));if(i>=0){t[i].synced=false;delete t[i].move_pending;saveTags(t)}}return r.msg}
  const u=localStorage.getItem(URLK);if(!u)return "Pin moved on this device — no Sheet link set, so the Sheet still has the old spot";
  try{const r=await post(u,{action:"update",id:String(x.id),patch});
   if(r.action==="update"){mvDone(x.id);return r.updated?"Pin moved and saved to your Sheet":"Pin moved on this device (row not found in Sheet)"}
