@@ -95,9 +95,16 @@ function refreshMaps(){if(homeLG)paint(homeLG,window._map,HOMEM);if(xLG&&STK._xm
 async function load(){build();try{D=await (await fetch("stockings.json?v="+Math.floor(Date.now()/36e5))).json()}catch(e){const s=document.getElementById("stkSum");if(s)s.textContent="Couldn't load stocking data.";console.warn("stockings",e);return}
  BYX={};for(const r of D.stockings)for(const id of r.explore||[])(BYX[id]??=[]).push(r);for(const id in BYX)BYX[id].sort((a,b)=>b.date.localeCompare(a.date));
  const m=D.meta;document.getElementById("stkSrc").innerHTML=`Source: <a href="${esc(m.source_url)}" target="_blank">Michigan DNR Fish Stocking Database</a> (public record), checked every 6 hours${m.generated?` · data changed ${esc(new Date(m.generated).toLocaleString("en-US",{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}))} ET`:""} · newest record ${esc(fdate(m.latest_stocking))}. DNR posts plants after a clean-up step, so they can lag a week or two. Locations are approximate (survey-section centers, ~1 mi). Drive times are free-flow from home. By default this hides fish under 6 in and private plants, like StockedMI.`;
- render();STK.ready=true;
+ render();STK.ready=true;rehome();
  const tryHome=()=>{if(!attachHome())setTimeout(tryHome,400)};tryHome();
  if(!STK._xmap&&window._xmap)STK._xmap=window._xmap;if(STK._xmap)STK.attachX(STK._xmap);
  dispatchEvent(new Event("stk-ready"))}
+// Signed-in accounts (accounts.js) can set their own home base: re-estimate drive times from it (straight-line ×1.25 at ~50 mph), no extra network calls.
+function rehome(n=0){const F=window.FRA,p=F&&F.on&&F.profile&&F.profile();if(!p||p.home_lat==null||p.home_lon==null){if(window.FRA&&FRA.configured&&n<20)setTimeout(()=>rehome(n+1),1000);return}
+ const H=D.meta.home||{},hv=(a,b,c,d)=>{const r=Math.PI/180;return 7917.6*Math.asin(Math.sqrt(Math.sin((c-a)*r/2)**2+Math.cos(a*r)*Math.cos(c*r)*Math.sin((d-b)*r/2)**2))};
+ if(H.lat!=null&&hv(H.lat,H.lng,+p.home_lat,+p.home_lon)<=0.6)return;
+ for(const r of D.stockings){if(r.lat==null){r.drive_min=r.drive_miles=null;continue}const mi=hv(+p.home_lat,+p.home_lon,r.lat,r.lng)*1.25;r.drive_miles=Math.round(mi);r.drive_min=Math.round(mi/50*60+5);r.drive_est=true}
+ const s=document.getElementById("stkSrc");if(s)s.innerHTML=s.innerHTML.replace("Drive times are free-flow from home.","Drive times are rough estimates from "+esc(p.home_label||"your home base")+" (straight-line × 1.25 at ~50 mph).");
+ render();refreshMaps()}
 document.readyState==="loading"?addEventListener("DOMContentLoaded",load):load();
 })();
