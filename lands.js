@@ -93,7 +93,7 @@ function attach(map,opt){
  const data={};const stat={};
  const ui=L.control({position:"topright"});let box;
  ui.onAdd=()=>{box=L.DomUtil.create("div","lndc"+(S.open?"":" shut"));
-  box.innerHTML=`<button class="lndt" type="button" aria-expanded="${!!S.open}">🗺️ Land &amp; parcels ${S.open?"▴":"▾"}</button><div class="lndb">
+  box.innerHTML=`<button class="lndt" type="button" aria-expanded="${!!S.open}">Land &amp; parcels ${S.open?"▴":"▾"}</button><div class="lndb">
   <div class="lnh">Basemap</div><div class="lnr" data-g="base">${Object.keys(BASE).filter(k=>BASE[k][1]).map(k=>`<button type="button" data-b="${k}">${BASE[k][0]}</button>`).join("")}</div>
   <div class="lnh">Layers</div><div class="lnr" data-g="lay">${Object.keys(LAY).map(k=>`<button type="button" data-k="${k}">${LAY[k].lab}</button>`).join("")}</div>
   <div class="lns" aria-live="polite"></div>
@@ -101,7 +101,7 @@ function attach(map,opt){
   ${SW("ease")}Conservation easement: usually private, no public access<br>${SW("lots")}DNR state land (DNR's own ownership records, zoom 11+)<br>${SW("cfa")}Commercial Forest: private, open to foot traffic for fishing/hunting<br>${SW("bal")}DNR boat launch / access site<br><b>Trout regs</b> (DNR, zoom 10+): <i style="background:#2e9e46"></i>Type 1 <i style="background:#e3c21b"></i>Type 2 <i style="background:#ef8a1c"></i>Type 3 <i style="background:#2c6fd6"></i>Type 4 <i style="background:#d0282e"></i>Gear-restricted · tap a line for the season, tackle and limits<br>${SW("tt")}DNR Trout Trails (biologist-picked spots)<br>${SW("par")}County tax parcel (zoom 14+)</div>
   <div class="lnd">Lines come from county, state and federal GIS and can be offset or out of date. Unshaded land is usually private. Private land needs the owner's permission, and on a non-navigable (private) stream the public can neither wade nor float. Parcels: Macomb, Oakland, Lapeer (2023), St. Clair, Genesee, Kent, Barry. ${esc(MISSING)} Tap the map for details.</div></details></div>`;
   L.DomEvent.disableClickPropagation(box);L.DomEvent.disableScrollPropagation(box);const kd=box.querySelector('.lnkd');if(kd&&map.getSize().x>=560)kd.open=true;
-  box.querySelector(".lndt").onclick=()=>{S.open=S.open?0:1;save();box.classList.toggle("shut",!S.open);const t=box.querySelector(".lndt");t.setAttribute("aria-expanded",String(!!S.open));t.innerHTML=`🗺️ Land &amp; parcels ${S.open?"▴":"▾"}`};
+  box.querySelector(".lndt").onclick=()=>{S.open=S.open?0:1;save();box.classList.toggle("shut",!S.open);const t=box.querySelector(".lndt");t.setAttribute("aria-expanded",String(!!S.open));t.innerHTML=`Land &amp; parcels ${S.open?"▴":"▾"}`};
   box.querySelectorAll("[data-b]").forEach(b=>b.onclick=()=>{setBase(b.dataset.b);paint()});
   box.querySelectorAll("[data-k]").forEach(b=>b.onclick=()=>{const k=b.dataset.k;S.on[k]=!S.on[k];save();if(!S.on[k]){G[k].clearLayers();data[k]=[]}paint();refresh()});
   return box};
@@ -128,7 +128,7 @@ function attach(map,opt){
   paint();await Promise.allSettled(jobs);if(my===seq){paint();map.getContainer().dataset.landsready=String(my)}}
  map.on("moveend zoomend",()=>{clearTimeout(tmr);tmr=setTimeout(refresh,350)});
  // click → one popup with everything under the point
- const shut=()=>{if(box&&S.open&&map.getSize().x<560){S.open=0;save();box.classList.add('shut');const t=box.querySelector('.lndt');t.setAttribute('aria-expanded','false');t.innerHTML='🗺️ Land &amp; parcels ▾'}};
+ const shut=()=>{if(box&&S.open&&map.getSize().x<560){S.open=0;save();box.classList.add('shut');const t=box.querySelector('.lndt');t.setAttribute('aria-expanded','false');t.innerHTML='Land &amp; parcels ▾'}};
  map.on("click",e=>{shut();const pt=[e.latlng.lng,e.latlng.lat],h=[];
   const hits=k=>S.on[k]?(data[k]||[]).filter(f=>pip(pt,f.geometry)):[];
   hits("pub").sort((a,b)=>(a.properties.GIS_Acres||0)-(b.properties.GIS_Acres||0)).forEach(f=>h.push(popPad(f.properties,0)));
