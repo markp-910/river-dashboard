@@ -114,7 +114,7 @@ REG = [
         note="Forum reports: fish in the system 'since October'; 2025 catches Sep 7 - Nov 23; best after rain + leaf drop. Month-level, forum-based.",
         url="https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"),
    dict(sp="salmon", label="Salmon (species not specified)", start="10-01", end="11-30", peak=["11-01", "11-30"], src="regional", grain="month",
-        note="Late Oct - mid Nov; redds 'peak salmon run' reported Nov 12, 2025 (forum). Minor run.",
+        note="Late Oct - mid Nov; redds 'peak salmon run' reported Nov 12, 2025 (forum). Minor run. Chinook iNaturalist sightings on the North Branch (May) and at Mt. Clemens (June) are likely post-spawn or odd fish.",
         url="https://www.michigan-sportsman.com/threads/clinton-river-2025-2026.772769/"),
    dict(sp="steelhead", label="Steelhead spring run", start="02-01", end="05-31", peak=["03-01", "04-30"], src="regional+hub-page", grain="month",
         note="Hub's Clinton page: 'spring runs from March through May bring the best fishing'. Forum reports add Feb-Apr upper river after snowmelt, dropbacks into early May. Neither gives exact dates.",

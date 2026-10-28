@@ -73,7 +73,7 @@ function render(){const el=document.getElementById("stkList");if(!el||!D)return;
   :`<div class="sub" style="padding:14px 4px">No ${S.sp==="trout"?"trout or salmon ":""}plants posted in the last ${S.days} days${S.all?"":" (catchable size, public)"}. The DNR stocks mostly Mar–Jun with a few fall plants, and records can take a couple of weeks to post. <a href="#" id="stkWiden">Show the last ${S.days<90?90:365} days</a></div>`;
  const mo=document.getElementById("stkMore");if(mo)mo.onclick=e=>{e.stopPropagation();S.n+=30;render()};
  const w=document.getElementById("stkWiden");if(w)w.onclick=e=>{e.preventDefault();S.days=S.days<90?90:365;render()}}
-function build(){const anchor=document.getElementById("calsec");if(!anchor||document.getElementById("stksec"))return;
+function build(){const anchor=document.getElementById("regsec")||document.getElementById("runsec");if(!anchor||document.getElementById("stksec"))return;
  const st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
  const sec=document.createElement("section");sec.id="stksec";
  sec.innerHTML=`<details id="stkDet" open><summary class="sec2">Fresh stockings</summary>
@@ -86,6 +86,7 @@ function build(){const anchor=document.getElementById("calsec");if(!anchor||docu
  <div class="stkleg"><span><i style="background:#b03fd0"></i>≤14 days</span><span><i style="background:#7d5a8a;opacity:.75"></i>15–60 days</span><span><i style="background:#7d5a8a;opacity:.3"></i>older · 🟣 map layer</span></div>
  <div class="stkbox" id="stkList"></div><div class="sub" id="stkSrc" style="margin:8px 0 0"></div></details>`;
  anchor.before(sec);
+ {const c=document.getElementById("calDet");if(c)sec.querySelector("#stkDet").appendChild(c)}
  sec.querySelector("#stkFilt").onclick=e=>{const b=e.target.closest("[data-k]");if(!b)return;const k=b.dataset.k;S[k]=k==="days"?+b.dataset.v:b.dataset.v;S.n=20;render()};
  sec.querySelector("#stkAll").onchange=e=>{S.all=e.target.checked;S.n=20;render();refreshMaps()};
  sec.querySelector("#stkFilt").addEventListener("click",e=>{if(e.target.closest('[data-k="sp"]'))refreshMaps()});
