@@ -1,4 +1,4 @@
-// Mark's Fishing Report — accounts config.
+// MI Blue Lining — accounts config.
 // Leave SUPABASE_URL / SUPABASE_ANON_KEY blank and the site behaves exactly like the
 // no-accounts version (local log + optional Google Sheet sync). Fill both in to turn on
 // sign-in, per-user home base, and the Supabase-backed catch log (see docs/ACCOUNTS_SETUP.md).

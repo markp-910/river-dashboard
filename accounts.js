@@ -1,4 +1,4 @@
-/* Mark's Fishing Report — optional accounts layer (Supabase).
+/* MI Blue Lining — optional accounts layer (Supabase).
  * Loaded before the app scripts. When window.FR_CONFIG has no SUPABASE_URL / SUPABASE_ANON_KEY,
  * window.FRA = {configured:false, on:false} and nothing else happens: no network calls, no UI.
  * Bridges used: window.FRLOG (catch log, set by the Home script), window.FRWISH (Explore wishlist).
@@ -29,34 +29,36 @@
   // ---------- styles (army green + cream) ----------
   const css = document.createElement("style");
   css.textContent = `
-  #acctBtn{position:absolute;top:14px;right:14px;z-index:2;background:rgba(246,240,225,.12);color:var(--cream);border:1px solid rgba(212,175,55,.7);border-radius:22px;min-height:40px;padding:6px 14px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:6px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  #acctBtn:hover{background:rgba(246,240,225,.22)}
-  @media (max-width:560px){#acctBtn{top:8px;right:8px;min-height:36px;padding:4px 10px;font-size:.8em}}
-  #acctdlg{position:fixed;inset:0;background:rgba(20,42,29,.62);display:none;align-items:flex-start;justify-content:center;z-index:10050;overflow:auto}
+  #acctBtn{position:absolute;top:8px;right:16px;z-index:2;background:rgba(31,58,43,.08);color:var(--g800);border:0;border-radius:999px;min-height:40px;padding:6px 14px;font:600 14px/1.2 var(--sans);letter-spacing:-.01em;cursor:pointer;display:inline-flex;align-items:center;gap:6px;max-width:46vw;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:background-color .2s}
+  #acctBtn:hover{background:rgba(31,58,43,.14)}
+  #acctBtn:after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translate(-2px,-2px);opacity:.7}
+  @media (min-width:760px){header.appbar #acctBtn{position:static;grid-column:3;grid-row:1;justify-self:end}}
+  #acctdlg{position:fixed;inset:0;background:rgba(20,30,22,.36);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;z-index:10050;overflow:auto}
   #acctdlg.on{display:flex}
-  #acctGate{position:fixed;inset:0;z-index:10040;display:none;align-items:center;justify-content:center;overflow:auto;background:linear-gradient(160deg,var(--g950),var(--g800) 60%,var(--g700))}
+  #acctGate{position:fixed;inset:0;z-index:10040;display:none;align-items:center;justify-content:center;overflow:auto;background:radial-gradient(120% 90% at 50% 0%,#2a4a37 0%,var(--g800) 45%,var(--g950) 100%)}
   #acctGate.on{display:flex}
-  .acbox{background:var(--paper);margin:24px 12px;padding:20px;border-radius:14px;width:min(440px,100%);box-sizing:border-box;border:1px solid var(--line2);border-top:4px solid var(--brass);box-shadow:0 20px 50px rgba(0,0,0,.35);color:var(--ink)}
-  .acbox h3{font-family:var(--serif);color:var(--g800);margin:0 0 6px;font-size:1.3em;display:flex;align-items:center;gap:10px}
-  .acbox h3 img{width:44px;height:44px;border-radius:50%;box-shadow:0 0 0 2px var(--brass)}
-  .acbox h4{font-family:var(--serif);color:var(--g800);margin:16px 0 4px;border-top:1px solid var(--line);padding-top:12px}
-  .acbox label{display:block;margin:8px 0 2px;font-weight:600;font-size:.9em;color:var(--ink2)}
-  .acbox input,.acbox select{width:100%;box-sizing:border-box;padding:10px;border:1px solid var(--line2);border-radius:8px;background:var(--field);font-size:1em;color:var(--ink)}
-  .acbox .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .acbox{background:var(--paper);margin:max(24px,env(safe-area-inset-top)) 12px 24px;padding:28px 24px 24px;border-radius:22px;width:min(420px,100%);box-sizing:border-box;border:0;box-shadow:0 24px 64px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.12);color:var(--ink);animation:sheetIn .32s cubic-bezier(.25,.1,.25,1)}
+  .acbox h3{font-family:var(--serif);color:var(--g800);margin:0 0 6px;font-size:22px;font-weight:700;letter-spacing:-.022em;display:flex;align-items:center;gap:12px}
+  .acbox h3 img{width:40px;height:40px;border-radius:10px;box-shadow:0 0 0 .5px rgba(20,42,29,.18),0 1px 3px rgba(20,42,29,.12)}
+  .acbox h4{font-family:var(--serif);color:var(--g800);margin:20px 0 4px;border-top:.5px solid var(--line);padding-top:16px;font-size:16px;font-weight:600;letter-spacing:-.016em}
+  .acbox label{display:block;margin:12px 0 6px;font-weight:600;font-size:13px;color:var(--ink2)}
+  .acbox input,.acbox select{width:100%;box-sizing:border-box;padding:10px 12px;min-height:44px;border:.5px solid var(--line2);border-radius:12px;background:var(--field);font-size:16px;color:var(--ink)}
+  .acbox input:focus{outline:0;border-color:rgba(63,134,184,.7);box-shadow:0 0 0 3px rgba(63,134,184,.18)}
+  .acbox .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
   .acbox .row>*{flex:1}
-  .acbox .lnk{background:none;border:0;color:var(--link);text-decoration:underline;padding:4px 0;min-height:32px;cursor:pointer;font-weight:600}
-  .acbox .acmsg{min-height:1.2em;font-size:.88em;color:var(--rust);margin-top:8px}
+  .acbox .lnk{background:none!important;border:0;color:var(--link)!important;text-decoration:none;padding:4px 0;min-height:44px;cursor:pointer;font-weight:600;font-size:14px;flex:0 0 auto}
+  .acbox .acmsg{min-height:1.2em;font-size:13px;color:var(--rust);margin-top:8px}
   .acbox .acmsg.ok{color:var(--good)}
-  .acbox .grp{background:var(--cream2);border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0;font-size:.9em}
-  .acbox .x{float:right;background:none;border:0;font-size:1.4em;min-height:36px;cursor:pointer;color:var(--ink)}
-  .acbox .sub{font-size:.82em;color:var(--mute)}`;
+  .acbox .grp{background:var(--cream2);border:0;border-radius:12px;padding:12px 14px;margin:8px 0;font-size:14px}
+  .acbox .x{float:right;background:rgba(31,58,43,.08)!important;border:0;border-radius:50%;width:36px;height:36px;min-height:36px!important;padding:0!important;font-size:15px;cursor:pointer;color:var(--ink2)!important;margin:-8px -6px 0 8px}
+  .acbox .sub{font-size:13px;color:var(--mute)}`;
   document.head.appendChild(css);
 
   // ---------- auth UI ----------
-  const logo = '<img src="logo.png" alt="">';
+  const logo = '<img src="icon.svg?v=3" alt="">';
   function signInHtml(gate) {
     return `<div class="acbox" role="dialog" aria-label="Sign in">${gate ? "" : '<button class="x" data-acclose aria-label="Close">✕</button>'}
-      <h3>${logo}Mark's Fishing Report</h3>
+      <h3>${logo}MI Blue Lining</h3>
       <div class="sub">Private site for family &amp; fishing buddies. Ask Mark for an invite.</div>
       <form id="acSignIn" autocomplete="on">
         <label for="acEmail">Email</label><input id="acEmail" name="email" type="email" autocomplete="username" required>
@@ -106,8 +108,8 @@
   function headerBtn() {
     const h = document.querySelector("header"); if (!h) return;
     let b = $("acctBtn"); if (!b) { b = document.createElement("button"); b.id = "acctBtn"; b.type = "button"; h.appendChild(b); }
-    if (session) { b.textContent = "👤 " + (profile?.display_name || session.user.email.split("@")[0]) + " ▾"; b.onclick = accountPanel; b.title = "Account"; }
-    else { b.textContent = "🔐 Sign in"; b.onclick = () => wireSignIn(dlg(signInHtml(false))); b.title = "Sign in"; }
+    if (session) { b.textContent = (profile?.display_name || session.user.email.split("@")[0]); b.onclick = accountPanel; b.title = "Account"; }
+    else { b.textContent = "Sign in"; b.onclick = () => wireSignIn(dlg(signInHtml(false))); b.title = "Sign in"; }
   }
   function setPwPanel(kind) {
     const d = dlg(`<div class="acbox"><button class="x" data-acclose aria-label="Close">✕</button><h3>${logo}${kind === "invite" ? "Welcome! Set a password" : "Set a new password"}</h3>

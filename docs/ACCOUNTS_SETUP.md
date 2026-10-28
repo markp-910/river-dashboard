@@ -1,4 +1,4 @@
-# Accounts setup — Mark's Fishing Report
+# Accounts setup — MI Blue Lining
 
 This branch (`accounts`) adds optional sign-in, a per-person home base, and a private catch log
 stored in Supabase. **Nothing turns on until `config.js` has a Supabase URL and key.** With the
@@ -99,7 +99,7 @@ Invites still work with sign-up off; strangers who find the site can't create an
 
 1. Sign in. Anything already in **My log on that phone** is moved into your account and uploaded,
    including photos stored on the phone.
-2. Tap **👤 Mark ▾** (top-right) → set **Home base**: Label `Sterling Heights`, then
+2. Tap your name (top-right) → set **Home base**: Label `Sterling Heights`, then
    **📍 Use my current location** at home or **🔎 Look up town**. Save. Explore redraws its tiers.
 3. **Import from Sheet**: paste your Apps Script `…/exec` URL into the box (it isn't stored in the
    site) → **Import from Sheet**. Re-running it skips rows already imported. Sheet photos stay in
