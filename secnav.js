@@ -63,7 +63,7 @@ function map(){vis.clear();for(const i of items){const r=i.el.getBoundingClientR
 function spy(){if(io)io.disconnect();vis.clear();if(!("IntersectionObserver"in window)||!items.length)return;
  const off=metrics();io=new IntersectionObserver(es=>{for(const e of es)vis.set(e.target.id,e.isIntersecting);pick()},{rootMargin:`-${off}px 0px -60% 0px`,threshold:0});
  items.forEach(i=>io.observe(i.el))}
-let lt=0;function lockFor(ms){lock=1;clearTimeout(lt);lt=setTimeout(unlock,ms)}function unlock(){clearTimeout(lt);if(!lock)return;lock=0;if(pin)pin.y=scrollY;pick()}
+let lt=0;function lockFor(ms){lock=1;clearTimeout(lt);lt=setTimeout(unlock,ms)}function unlock(){clearTimeout(lt);if(!lock)return;lock=0;if(pin){const it=items.find(i=>i.id===pin.id);if(it&&!pin.fixed){pin.fixed=1;const d=Math.round(it.el.getBoundingClientRect().top-metrics());if(Math.abs(d)>3&&innerHeight+scrollY<document.documentElement.scrollHeight-2)scrollBy({top:d,behavior:"instant"})}pin.y=scrollY}pick()}
 let sf=0;addEventListener("scroll",()=>{if(lock)return lockFor(180);if(sf)return;sf=requestAnimationFrame(()=>{sf=0;pick()})},{passive:true});
 if("onscrollend"in window)addEventListener("scrollend",()=>{lock?unlock():pick()});
 let rt=0;const relayout=()=>{clearTimeout(rt);rt=setTimeout(()=>{document.body.classList.toggle("snrail",!nav.hidden&&WIDE.matches);spy();map();pick()},120)};
