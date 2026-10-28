@@ -468,7 +468,7 @@ input[type=checkbox]{accent-color:var(--g800)}
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
 <div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
-<div class="row"><button id="syncBtn">Sync queued</button><button id="loadBtn">Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
+<div class="row"><button id="syncBtn">Sync queued</button><button id="loadBtn">Refresh from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></div></section>
 <section id="calsec"><details id="calDet" open><summary class="sec2">Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
 <section id="runsec"><details id="runDet" open><summary class="sec2">Run Calendar</summary>
@@ -621,7 +621,7 @@ async function init(){
   L.circleMarker([g.lat,g.lng],{radius:9,color:"#fff",weight:2,fillColor:i?"#2f6d8f":"#8a8a76",fillOpacity:1}).bindPopup(`<b>${esc(NAME[id])}</b><br>USGS ${id}<br>${i?`${i.flow??"—"} cfs${i.tempF!=null?" · "+i.tempF.toFixed(0)+"°F":""}<br>🐟 ${esc(i.t.label)}`:"offline"}<br>${esc(g.address)}<br><a href="${DIR(g.lat,g.lng)}" target="_blank">Directions</a> · <a href="#site-${id}" onclick="return window.goCard(\'${id}\')">Card</a>`).addTo(gL);
   const card=document.getElementById("site-"+id);if(card){const a=document.createElement("div");a.className="addr";a.innerHTML=`📍 Near ${esc(g.address)} <a href="${DIR(g.lat,g.lng)}" target="_blank">Directions ↗</a>`;
    a.querySelector("a").onclick=e=>e.stopPropagation();card.querySelector(".sub").after(a)}}
- renderTags();document.getElementById("sheetUrl").value=localStorage.getItem(URLK)||"";document.body.dataset.mapready=1}
+ renderTags();document.getElementById("sheetUrl").value=localStorage.getItem(URLK)||"";document.body.dataset.mapready=1;if(localStorage.getItem(URLK))pullSheet(true)}
 function toast(m){let t=document.getElementById("toast");if(!t){t=document.createElement("div");t.id="toast";document.body.appendChild(t)}t.textContent=m;t.classList.add("on");clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove("on"),4500)}
 window.addLocate=addLocate;function addLocate(map=window._map,near=(la,ln)=>{const n=nearestGage(la,ln);return n?`Nearest gage: ${esc(NAME[n.id])} (${n.d.toFixed(2)} mi)`:""}){let state=0,watch=null,dot=null,circ=null,btn;
  const set=(s)=>{state=s;btn.classList.toggle("on",s>0);btn.classList.toggle("follow",s===2);btn.title=["Show my precise location","Tap for live follow","Following — tap to stop"][s]};
@@ -729,16 +729,16 @@ document.getElementById("tagCancel").onclick=()=>{document.getElementById("tagdl
 document.getElementById("tagform").onsubmit=async e=>{e.preventDefault();if(!pending)return;const fd=new FormData(e.target);for(const [k,v] of fd)if(typeof v==="string")pending[k]=v;const ph=pendingPhoto;pendingPhoto=null;
  if(ph&&pending.type==="fish"){pending.has_photo=true;await photoPut(pending.id,ph)}
  const t=tags();t.push(pending);saveTags(t);document.getElementById("tagdlg").style.display="none";map.setView([pending.lat,pending.lng],14);pending=null;if(window.FRA&&FRA.on||localStorage.getItem(URLK))sync()};
-function renderTags(){const t=tags();document.getElementById("tagCount").textContent=t.length+(t.some(x=>!x.synced)?` · ${t.filter(x=>!x.synced).length} unsynced`:"");if(!tagLayer)return;tagLayer.clearLayers();
+function renderTags(){const t=tags();document.getElementById("tagCount").textContent=t.length+(t.some(x=>!x.synced)?` · ${t.filter(x=>!x.synced).length} unsynced`:"")+(!t.length&&!localStorage.getItem(URLK)&&!(window.FRA&&FRA.configured)?" · paste your Sheet link to load":"");if(!tagLayer)return;tagLayer.clearLayers();
  for(const x of t){const mk=L.marker([x.lat,x.lng],{icon:icon(x.type==="fish"?"🐟":"📍")}).bindPopup(`<b>${x.type==="fish"?esc(x.species||"Fish"):"Tagged spot"}</b>${x.length_in?" · "+esc(x.length_in)+" in":""}<br>${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York"})} ET<br>${x.fly_lure?"Fly/lure: "+esc(x.fly_lure)+"<br>":""}${x.note?esc(x.note)+"<br>":""}${esc(x.gage_name)}: ${esc(x.flow_cfs)} cfs ${x.temp_f!==""?esc(x.temp_f)+"°F":""} ${esc(x.rating)}<br><a href="${GM(x.lat,x.lng)}" target="_blank">Open in Google Maps</a> · <a href="${DIR(x.lat,x.lng)}" target="_blank">Directions</a>${x.has_photo||x.photo_thumb?`<br><img class="thumb" data-pid="${esc(x.id)}" src="${esc(x.photo_thumb||"")}" alt="catch photo">`:""}${x.owner_name?"<br>Shared by "+esc(x.owner_name):""}${x.shared?"":`<br><button class="trash" data-del="${esc(x.id)}">🗑 Delete</button>`}`).addTo(x.type==="fish"?_LY.fish:_LY.spot);
   mk.on("popupopen",async ev=>{const im=ev.popup.getElement().querySelector("img[data-pid]");if(!im)return;const d=await photoGet(x.id).catch(()=>null);if(d)im.src=d})}
- document.getElementById("tagList").innerHTML=t.slice().reverse().map(x=>`<div class="t">${x.type==="fish"?"🐟":"📍"} ${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})} ET · ${esc(x.species||"")} ${x.length_in?esc(x.length_in)+'"':""} · ${esc(x.gage_name)} ${x.has_photo||x.photo_url?"📷":""} ${x.synced?"✅":"⏳"}${x.owner_name?" · 👥 "+esc(x.owner_name):""} · <a href="${GM(x.lat,x.lng)}" target="_blank">Map</a>${x.shared?"":` <button class="trash" data-del="${esc(x.id)}" aria-label="Delete">🗑</button>`}</div>`).join("")}
+ document.getElementById("tagList").innerHTML=(!t.length?`<div class="sub logempty">${window.FRA&&FRA.on?"No spots or catches yet.":localStorage.getItem(URLK)?"No spots or catches yet. Tap Refresh from Sheet to check again.":"Paste your Sheet link to load your log."}</div>`:"")+t.slice().reverse().map(x=>`<div class="t">${x.type==="fish"?"🐟":"📍"} ${new Date(x.timestamp).toLocaleString("en-US",{timeZone:"America/New_York",month:"short",day:"numeric",hour:"numeric",minute:"2-digit"})} ET · ${esc(x.species||"")} ${x.length_in?esc(x.length_in)+'"':""} · ${esc(x.gage_name)} ${x.has_photo||x.photo_url?"📷":""} ${x.synced?"✅":"⏳"}${x.owner_name?" · 👥 "+esc(x.owner_name):""} · <a href="${GM(x.lat,x.lng)}" target="_blank">Map</a>${x.shared?"":` <button class="trash" data-del="${esc(x.id)}" aria-label="Delete">🗑</button>`}</div>`).join("")}
 const COLS=["id","type","timestamp","lat","lng","nearest_gage","gage_name","gage_dist_mi","flow_cfs","pct_median","temp_f","rating","species","length_in","fly_lure","note","photo_url"];
 function dl(name,text,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([text],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
 document.getElementById("expCsv").onclick=()=>{const q=v=>`"${String(v??"").replace(/"/g,'""')}"`;dl("fishing-log.csv",[COLS.join(","),...tags().map(x=>COLS.map(c=>q(x[c])).join(","))].join("\n"),"text/csv")};
 document.getElementById("expKml").onclick=()=>{const x=s=>esc(s);dl("fishing-log.kml",`<?xml version="1.0" encoding="UTF-8"?>\n<kml xmlns="http://www.opengis.net/kml/2.2"><Document><name>Fishing Log</name>${tags().map(t=>`<Placemark><name>${x(t.type==="fish"?(t.species||"Fish")+(t.length_in?" "+t.length_in+" in":""):"Spot")}</name><description>${x(`${t.timestamp} | ${t.gage_name}: ${t.flow_cfs} cfs ${t.temp_f}F ${t.rating} | ${t.fly_lure} ${t.note}`)}</description><ExtendedData>${COLS.map(c=>`<Data name="${c}"><value>${x(t[c])}</value></Data>`).join("")}</ExtendedData><Point><coordinates>${t.lng},${t.lat}</coordinates></Point></Placemark>`).join("")}</Document></kml>`,"application/vnd.google-earth.kml+xml")};
 const msg=m=>document.getElementById("syncMsg").textContent=m;
-document.getElementById("saveUrl").onclick=()=>{const u=document.getElementById("sheetUrl").value.trim();if(u&&!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return msg("That doesn't look like an Apps Script URL");localStorage.setItem(URLK,u);msg(u?"Saved":"Cleared")};
+document.getElementById("saveUrl").onclick=()=>{const u=document.getElementById("sheetUrl").value.trim();if(/docs\.google\.com\/spreadsheets/.test(u))return msg("That's the Sheet itself — paste the Apps Script web app link (…/exec)");if(u&&!/^https:\/\/script\.google(usercontent)?\.com\//.test(u))return msg("That doesn't look like an Apps Script URL");localStorage.setItem(URLK,u);msg(u?"Saved":"Cleared");renderTags();if(u)pullSheet(false)};
 const clean=({synced,has_photo,photo_thumb,...x})=>x;
 async function post(u,body){const r=await (await fetch(u,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(body)})).json();if(!r.ok)throw new Error(r.error||"script error");return r}
 async function sync(){if(window.FRA&&FRA.on)return FRA.sync();const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");const q=tags().filter(x=>!x.synced);if(!q.length)return msg("Nothing to sync");
@@ -751,8 +751,24 @@ async function sync(){if(window.FRA&&FRA.on)return FRA.sync();const u=localStora
  }catch(e){warn=" — sync failed: "+e.message+" (rest kept in queue)"}
  n=Object.keys(done).length;saveTags(tags().map(x=>done[x.id]?{...x,...done[x.id],synced:true}:x));msg(`Synced ${n}/${q.length}`+warn)}
 document.getElementById("syncBtn").onclick=sync;
-document.getElementById("loadBtn").onclick=async()=>{if(window.FRA&&FRA.on)return FRA.load();const u=localStorage.getItem(URLK);if(!u)return msg("Paste your web app URL first");msg("Loading…");
- try{const r=await (await fetch(u)).json();const t=tags(),have=new Set(t.map(x=>x.id));let n=0;const wr=(r.rows||[]).filter(x=>x.type==="wishlist");if(wr.length)dispatchEvent(new CustomEvent("wishlist-merge",{detail:wr}));for(const row of r.rows||[]){if(!row.id||row.type==="wishlist"||have.has(String(row.id)))continue;t.push({...row,id:String(row.id),lat:+row.lat,lng:+row.lng,synced:true,photo_thumb:row.photo_file_id?`https://drive.google.com/thumbnail?id=${row.photo_file_id}&sz=w400`:""});n++}saveTags(t);msg(`Loaded ${n} new from Sheet`)}catch(e){msg("Load failed: "+e.message)}};
+const NUMF=["lat","lng","gage_dist_mi","flow_cfs","pct_median","temp_f"],STRF=["id","type","nearest_gage","gage_name","rating","species","length_in","fly_lure","note","photo_url","photo_file_id"];
+function fromRow(row){const o={};for(const c of STRF)o[c]=row[c]==null?"":String(row[c]);for(const c of NUMF){const v=row[c];o[c]=v===""||v==null||isNaN(+v)?"":+v}
+ const ts=new Date(row.timestamp);o.timestamp=isNaN(ts)?String(row.timestamp||""):ts.toISOString();o.type=o.type==="fish"?"fish":"spot";
+ o.synced=true;o.photo_thumb=o.photo_file_id?`https://drive.google.com/thumbnail?id=${encodeURIComponent(o.photo_file_id)}&sz=w400`:"";return o}
+let pulling=null;
+function pullSheet(quiet){if(window.FRA&&FRA.configured)return FRA.on?FRA.load():Promise.resolve(0);if(pulling)return pulling;const u=localStorage.getItem(URLK);if(!u){if(!quiet)msg("Paste your Sheet link first");return Promise.resolve(0)}
+ if(!quiet)msg("Loading from Sheet…");
+ return pulling=(async()=>{try{const r=await (await fetch(u,{cache:"no-store"})).json();if(r.ok===false)throw new Error(r.error||"script error");
+  const rows=r.rows||[],wr=rows.filter(x=>x.type==="wishlist");if(wr.length)dispatchEvent(new CustomEvent("wishlist-merge",{detail:wr}));
+  const t=tags(),idx=new Map(t.map((x,i)=>[String(x.id),i]));let n=0,upd=0;
+  for(const row of rows){if(row.id==null||row.id===""||row.type==="wishlist")continue;const e=fromRow(row),i=idx.get(e.id);
+   if(i==null){if(isNaN(e.lat)||isNaN(e.lng)||e.lat===""||e.lng==="")continue;idx.set(e.id,t.length);t.push(e);n++}
+   else if(t[i].synced&&e.photo_file_id&&!t[i].photo_file_id){t[i]={...t[i],photo_url:e.photo_url,photo_file_id:e.photo_file_id,photo_thumb:e.photo_thumb};upd++}}
+  t.sort((a,b)=>String(a.timestamp).localeCompare(String(b.timestamp)));if(n||upd)saveTags(t);
+  if(!quiet||n)msg(n?`Loaded ${n} from Sheet`:"Up to date with Sheet");
+  if(t.some(x=>!x.synced))sync();return n}
+ catch(e){msg("Couldn't load from Sheet: "+e.message);return 0}finally{pulling=null}})()}
+document.getElementById("loadBtn").onclick=()=>pullSheet(false);
 addEventListener("online",()=>(window.FRA&&FRA.on||localStorage.getItem(URLK))&&tags().some(x=>!x.synced)&&sync());
 window.FRLOG={tags,saveTags,photoGet,renderTags,msg};
 init()})();
