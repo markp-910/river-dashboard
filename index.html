@@ -773,7 +773,7 @@ function placeOf(x){if(x.water)return String(x.water);const m=String(x.note||"")
  const la=+x.lat,ln=+x.lng;for(const k of LAKES)if(la>=k.s&&la<=k.N&&ln>=k.w&&ln<=k.e)return k.n;return x.gage_name||""}
 const lbSrc=x=>x.photo_file_id?`https://drive.google.com/thumbnail?id=${encodeURIComponent(x.photo_file_id)}&sz=w1600`:"";
 const lbAlt=x=>x.photo_file_id?`https://lh3.googleusercontent.com/d/${encodeURIComponent(x.photo_file_id)}=w1600`:"";
-const hasPh=x=>!!(x.has_photo||x.photo_url||x.photo_file_id);
+const hasPh=x=>!!(x.has_photo||x.photo_url||x.photo_file_id||x.photo_path||x.photo_thumb);
 const LB={list:[],i:0,el:null,last:null};
 function lbBuild(){if(LB.el)return LB.el;const d=document.createElement("div");d.id="lb";d.setAttribute("role","dialog");d.setAttribute("aria-modal","true");d.setAttribute("aria-label","Catch photo");
  d.innerHTML=`<span class="ct" aria-live="polite"></span><button class="lbx" type="button" aria-label="Close photo">✕</button><button class="lbn prev" type="button" aria-label="Previous photo">‹</button><button class="lbn next" type="button" aria-label="Next photo">›</button><figure><div class="stage"><div class="spin" aria-hidden="true"></div><img alt=""></div><figcaption></figcaption></figure>`;
@@ -790,7 +790,7 @@ async function lbShow(){const d=LB.el,x=LB.list[LB.i],img=d.querySelector("img")
  const drive=x.photo_url||(x.photo_file_id?`https://drive.google.com/file/d/${encodeURIComponent(x.photo_file_id)}/view`:"");
  d.querySelector("figcaption").innerHTML=`<b>${esc(x.species||"Catch")}</b>${x.length_in?" · "+esc(x.length_in)+'"':""}<span class="m">${esc(when)} · ${esc(placeOf(x))}</span>${x.fly_lure?`<span class="m">Fly/lure: ${esc(x.fly_lure)}</span>`:""}${drive?`<span class="m"><a href="${esc(drive)}" target="_blank" rel="noopener">Open in Drive</a></span>`:""}`;
  img.alt=(x.species||"Catch")+" photo";const tok=LB.tok=Symbol();
- const srcs=[];const local=x.has_photo?await photoGet(x.id).catch(()=>null):null;if(tok!==LB.tok)return;if(local)srcs.push(local);if(x.photo_file_id)srcs.push(lbSrc(x),lbAlt(x));
+ const srcs=[];const local=x.has_photo?await photoGet(x.id).catch(()=>null):null;if(tok!==LB.tok)return;if(local)srcs.push(local);if(x.photo_path&&x.photo_thumb)srcs.push(x.photo_thumb);if(x.photo_file_id)srcs.push(lbSrc(x),lbAlt(x));else if(x.photo_thumb&&!x.photo_path)srcs.push(x.photo_thumb);
  const fail=()=>{if(tok!==LB.tok)return;sp.hidden=true;img.hidden=true;const f=document.createElement("div");f.className="fail";f.innerHTML=`Couldn't load this photo here.${drive?`<br><a href="${esc(drive)}" target="_blank" rel="noopener">Open in Drive</a>`:""}`;st.appendChild(f)};
  let k=0;const tryNext=()=>{if(tok!==LB.tok)return;if(k>=srcs.length)return fail();img.onload=()=>{if(tok!==LB.tok)return;sp.hidden=true;img.classList.add("ok")};img.onerror=()=>{k++;tryNext()};img.src=srcs[k]};
  img.removeAttribute("src");tryNext();
