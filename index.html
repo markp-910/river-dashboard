@@ -1,10 +1,12 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Mark's Fishing Report</title>
-<meta name="description" content="Live trout conditions, river flows and fishing log for the Clinton River, Paint Creek and nearby streams.">
-<meta property="og:title" content="Mark's Fishing Report"><meta property="og:description" content="Live trout conditions for the Clinton River, Paint Creek and nearby streams."><meta property="og:image" content="https://markp-910.github.io/river-dashboard/og-image.jpg?v=2"><meta property="og:type" content="website">
-<meta name="theme-color" content="#1f3a2b"><meta name="apple-mobile-web-app-title" content="Fishing Report"><meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="icon" href="favicon-32.png?v=2" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=2"><link rel="manifest" href="manifest.webmanifest?v=2">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MI Blue Lining · Michigan trout streams, live</title>
+<meta name="description" content="MI Blue Lining: live trout conditions, river flows, weather, hatch and run calendars, and a fishing log for the Clinton River, Paint Creek and Michigan trout streams.">
+<link rel="canonical" href="https://www.mibluelining.com/">
+<meta property="og:site_name" content="MI Blue Lining"><meta property="og:title" content="MI Blue Lining"><meta property="og:description" content="Live trout conditions, flows and fishing plans for Michigan's blue lines."><meta property="og:url" content="https://www.mibluelining.com/"><meta property="og:image" content="https://www.mibluelining.com/og-card.jpg?v=3"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="MI Blue Lining"><meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="MI Blue Lining"><meta name="twitter:description" content="Live trout conditions, flows and fishing plans for Michigan's blue lines."><meta name="twitter:image" content="https://www.mibluelining.com/og-card.jpg?v=3">
+<meta name="theme-color" content="#f4f0e6"><meta name="application-name" content="MI Blue Lining"><meta name="apple-mobile-web-app-title" content="Blue Lining"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="format-detection" content="telephone=no">
+<link rel="icon" href="icon.svg?v=3" type="image/svg+xml"><link rel="icon" href="favicon-32.png?v=3" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png?v=3" sizes="180x180"><link rel="manifest" href="manifest.webmanifest?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <style>
 /* ===== Army green + cream field-guide theme ===== */
@@ -213,30 +215,265 @@ body.xlock{overflow:hidden}#exploreView{padding:0 16px 30px}#xmap{height:55vh;mi
 .rrh .hdet .kv{margin:4px 0}.runbox{background:var(--sage);border:1px solid var(--sage2);border-radius:var(--r);padding:8px 12px;margin:8px 0}.runbox>summary{cursor:pointer;font-family:var(--serif);font-weight:700;color:var(--g800);min-height:28px}.runbox .rrow{padding:4px 0;border-top:1px solid var(--sage2);font-size:.9em}.runbox .rdot,.rsp .gdot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}.runbox .kv{margin:5px 0;font-size:.9em}
 .rsm{font-size:.82em;color:var(--mute)}.chip.run{background:var(--brass-d)}.al.run{border-left-color:var(--brass-d);background:#f3ecd2}
 @media (max-width:700px){.rrh .rrc{grid-column:1/-1;padding-top:0}.rrh{grid-template-columns:1fr!important}.rrh .hlab{border-right:0}}
+/* =====================================================================
+   MI Blue Lining — refinement layer (Apple-style). Same army green + cream
+   palette, calmer hierarchy: system type, 8pt spacing, hairlines, soft shadows.
+   ===================================================================== */
+:root{
+--sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+--serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+--cream:#f4f0e6;--cream2:#ece6d7;--cream3:#e2dac6;--paper:#fffdf8;--field:#ffffff;--sage:#e9eedd;--sage2:#d3dcbc;
+--line:rgba(31,58,43,.10);--line2:rgba(31,58,43,.16);--hair:rgba(31,58,43,.08);
+--ink:#1c2018;--ink2:#3f4234;--mute:#5d5f50;--link:#2a5b39;
+--r:18px;--r-sm:12px;--r-xs:8px;--pill:999px;
+--shadow:0 1px 1px rgba(20,42,29,.03),0 2px 6px rgba(20,42,29,.04),0 12px 32px rgba(20,42,29,.06);
+--shadow-sm:0 1px 2px rgba(20,42,29,.05),0 2px 8px rgba(20,42,29,.04);
+--shadow-lg:0 24px 64px rgba(20,42,29,.22),0 4px 16px rgba(20,42,29,.08);
+--ease:cubic-bezier(.25,.1,.25,1);
+--s1:8px;--s2:16px;--s3:24px;--s4:32px;
+--safe-l:env(safe-area-inset-left,0px);--safe-r:env(safe-area-inset-right,0px);--safe-b:env(safe-area-inset-bottom,0px);
+}
+*{-webkit-tap-highlight-color:transparent}
+body{font-family:var(--sans);font-size:16px;line-height:1.45;letter-spacing:-.006em;color:var(--ink);background:var(--cream);text-rendering:optimizeLegibility;padding-left:var(--safe-l);padding-right:var(--safe-r)}
+::selection{background:rgba(63,134,184,.22)}
+button,select,input,textarea,summary,a,.card,.xcard,.wxd,.tab{transition:background-color .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease),color .2s var(--ease),opacity .2s var(--ease),transform .2s var(--ease)}
+button:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid rgba(63,134,184,.55);outline-offset:2px;border-radius:var(--r-xs)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
+b,strong{font-weight:600}
+h1,h2,h3,h4,h5{letter-spacing:-.018em}
+
+/* ---- App bar: brand + segmented control, sticky + translucent ---- */
+header.appbar{position:sticky;top:-56px;z-index:4000;display:grid;grid-template-columns:1fr auto;grid-template-rows:56px auto;align-items:center;padding:0 var(--s2);overflow:visible;color:var(--ink);
+ background:rgba(244,240,230,.86);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-bottom:.5px solid var(--line2);box-shadow:none}
+header.appbar:before{display:none}
+header.appbar .brand{display:flex;align-items:center;gap:10px;min-width:0;color:var(--g800);text-decoration:none;min-height:44px}
+header.appbar .brand img{width:32px;height:32px;border-radius:8px;flex:none;box-shadow:0 0 0 .5px rgba(20,42,29,.18),0 1px 3px rgba(20,42,29,.12)}
+header.appbar h1{font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:-.022em;line-height:1;margin:0;color:var(--g800);display:block;white-space:nowrap}
+#tabs{grid-column:1/-1;position:static;display:flex;gap:2px;margin:0 0 10px;padding:3px;border-radius:13px;background:rgba(31,58,43,.08);border:0;box-shadow:none;z-index:auto}
+#tabs button{flex:1;min-height:44px;border-radius:10px;border:0;background:transparent;color:var(--g800);font-size:15px;font-weight:600;letter-spacing:-.01em;box-shadow:none;cursor:pointer}
+#tabs button:hover{background:rgba(31,58,43,.06)}
+#tabs button.on{background:var(--g800);color:var(--cream);box-shadow:0 1px 2px rgba(20,42,29,.25),0 2px 8px rgba(20,42,29,.12)}
+.statusline{max-width:1200px;margin:0 auto;padding:12px var(--s2) 0;font-size:13px;color:var(--mute);letter-spacing:0}
+@media (min-width:760px){
+ header.appbar{top:0;grid-template-columns:1fr auto 1fr;grid-template-rows:64px;padding:0 max(var(--s3),calc((100% - 1200px)/2 + var(--s3)))}
+ header.appbar .brand{grid-column:1;grid-row:1}
+ #tabs{grid-column:2;grid-row:1;justify-self:center;width:340px;margin:0}
+ header.appbar>:nth-child(n+3){grid-column:3;grid-row:1;justify-self:end}
+ header.appbar h1{font-size:20px}
+}
+#homeView,#exploreView{max-width:1200px;margin:0 auto;box-sizing:border-box}
+#exploreView{padding:0 var(--s2) var(--s4)}
+
+/* ---- Page + section titles ---- */
+.ptitle{font-family:var(--serif);font-size:28px;line-height:1.15;font-weight:700;letter-spacing:-.025em;color:var(--g800);margin:var(--s3) 0 var(--s1);padding:0}
+.plead{font-size:14px;line-height:1.5;color:var(--mute);max-width:72ch}
+.plead b{color:var(--ink2)}
+h2{font-family:var(--serif);font-weight:700;color:var(--g800);font-size:22px;letter-spacing:-.022em;margin:var(--s4) 0 var(--s1);padding:0 var(--s2)}
+.sec2{margin:var(--s4) 0 var(--s1)}
+summary.sec2,h2.sec2{padding:0;display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.022em;text-transform:none;color:var(--g800);min-height:44px}
+summary.sec2:after,h2.sec2:after{display:none}
+summary.sec2{list-style:none}
+summary.sec2:before{content:"";order:2;width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(-45deg);margin-left:4px;transition:transform .25s var(--ease);opacity:.7}
+details[open]>summary.sec2:before{transform:rotate(45deg) translate(-2px,-2px)}
+.sec .arr{color:var(--mute);font-size:11px;margin-right:2px;opacity:.8}
+.sub{font-size:13px;color:var(--mute);line-height:1.45}
+.note{font-size:14px;color:var(--ink2)}
+.legend{font-size:12px;color:var(--mute);padding:0 var(--s2);margin:var(--s1) 0;line-height:1.9}.legend i{width:8px;height:8px;border-radius:50%;margin:0 4px 0 10px}
+#wxsec,#mapsec,#calsec,#runsec,#hatchsec{padding:0 var(--s2)}
+
+/* ---- Unified pill (chips, badges, statuses) ---- */
+.badge,.bite,.st,.stt,.kchip,.dsg,.cls,.rchip,.rph,.ptag,.cf,.chip,.wxal .chip,.usgl .usk,#cal .ev{display:inline-flex;align-items:center;border-radius:var(--pill);padding:2px 9px;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0;line-height:1.5;border-width:0;white-space:nowrap;vertical-align:middle}
+.kchip,.dsg{border:1px solid}
+.st,.stt,.kchip,.dsg,.cls,.rchip,.rph,.ptag,.cf,.chip{white-space:normal;max-width:100%;box-sizing:border-box}
+.badge{padding:3px 10px;font-size:12.5px}
+.tierb{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;min-width:0;padding:0;border-radius:50%;font-size:13px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+
+/* ---- Hero banner (Top 5) ---- */
+#banner{margin:var(--s2);padding:var(--s3) var(--s2) var(--s2);border-radius:var(--r);background:radial-gradient(120% 140% at 0% 0%,#2a4a37 0%,var(--g800) 45%,var(--g900) 100%);border:0;border-top:0;box-shadow:0 1px 2px rgba(20,42,29,.2),0 16px 40px rgba(20,42,29,.18)}
+#banner>b{font-family:var(--serif);font-size:20px;font-weight:700;letter-spacing:-.02em;display:block;padding:0 6px var(--s1)}
+.top5 li{padding:12px 6px;border-radius:var(--r-sm);gap:4px 12px}
+.top5 li+li{box-shadow:inset 0 .5px 0 rgba(246,240,225,.14)}
+.top5 li:hover{background:rgba(246,240,225,.06)}
+.top5 .rk{font-family:var(--sans);font-size:17px;font-weight:600;color:var(--brass-l);opacity:.95}
+.top5 .tn{font-weight:600;font-size:16px;letter-spacing:-.01em}
+.top5 .tm{font-size:13px;color:#d3dbc4;line-height:1.5}
+@media (min-width:760px){#banner{margin-top:var(--s3);padding:var(--s3)}}
+
+/* ---- Cards ---- */
+.grid{gap:var(--s2);padding:0 var(--s2) var(--s3)}
+.card{background:var(--paper);border:.5px solid var(--line);border-radius:var(--r);padding:var(--s2);box-shadow:var(--shadow)}
+.card:hover{border-color:var(--line2);box-shadow:0 1px 2px rgba(20,42,29,.05),0 16px 40px rgba(20,42,29,.1);transform:translateY(-1px)}
+.card.flash{box-shadow:0 0 0 3px rgba(63,134,184,.45),var(--shadow)}
+.card h3{font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:-.016em;line-height:1.3;margin:0 0 4px}
+.tabs{gap:6px;margin:12px 0}
+.tab{background:var(--cream2);border:0;border-radius:var(--r-sm);padding:8px 12px;min-height:44px}
+.tab b{font-family:var(--sans);font-size:17px;font-weight:600;letter-spacing:-.01em}
+.tab span{font-size:11.5px}
+.tab.on{background:var(--g800)}
+.chartbox{margin-top:4px}
+.rvh{margin:var(--s3) var(--s2) var(--s1);padding:6px 0;border-bottom:0;font-family:var(--serif);font-size:19px;font-weight:700;letter-spacing:-.02em;min-height:44px}
+.rvh .arr{color:var(--mute);font-size:.6em}
+.rvh .rcnt{font-size:13px;font-weight:400;letter-spacing:0}
+
+/* ---- Grouped panels (details, boxes) ---- */
+.xsec,.logbox,.wxal,.reg,.wxdet,.calwrap,.hscroll{background:var(--paper);border:.5px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow-sm)}
+.xsec{margin:var(--s2) 0;padding:4px var(--s2)}
+.wxal>summary{display:flex;align-items:center;gap:8px}
+.xsec>summary,.logbox summary,.wxal>summary{list-style:none;min-height:44px;box-sizing:border-box;font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:-.016em;color:var(--g800);cursor:pointer}
+.xsec>summary::-webkit-details-marker,.logbox summary::-webkit-details-marker{display:none}
+.xsec>summary,.logbox summary{display:block;position:relative;padding:12px 28px 12px 0;line-height:1.3}
+.xsec>summary:after,.logbox summary:after{content:"";position:absolute;right:6px;top:50%;margin-top:-6px;width:7px;height:7px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);transition:transform .25s var(--ease);opacity:.6}
+.xsec[open]>summary:after,.logbox[open]>summary:after{transform:rotate(-135deg)}
+.wxal>summary:before{content:"";width:7px;height:7px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(-45deg);opacity:.6;transition:transform .25s var(--ease)}
+.wxal[open]>summary:before{transform:rotate(45deg)}
+.wxal>summary{padding:6px var(--s2);font-size:16px}
+.logbox{padding:4px var(--s2);margin:var(--s2) 0}
+.al{border-left-width:3px;padding:12px var(--s2);font-size:14px}
+.al h4{font-family:var(--serif);font-size:15px;font-weight:600}
+.wxok{font-size:14px;padding:12px var(--s2)}
+.xcard{border-top:.5px solid var(--line);padding:12px 4px;gap:4px 12px;min-height:44px;border-radius:0}
+.xcard:hover{background:rgba(31,58,43,.035)}
+.xcard .nm{font-weight:600;letter-spacing:-.01em}
+.xcard .sub2{font-size:13px;line-height:1.5}
+.reg{padding:12px var(--s2);font-size:14px}.reg h4{font-family:var(--serif);font-weight:600;font-size:15px}
+#calNow,#hNow,#rNow,.wxbox,.gnow,.xhatch,.runbox{background:var(--sage);border:0;border-radius:var(--r-sm);padding:12px var(--s2)}
+#hNow h4,#rNow h4,.wxbox h4,.wxdet h4{font-family:var(--serif);font-weight:600;font-size:15px}
+.tripbox,.gl,.trip-days div{background:var(--cream2);border:0;border-radius:var(--r-sm);padding:12px var(--s2)}
+.flag,.gflag,.wxfail{background:var(--flagbg);border-left:3px solid var(--brass);border-radius:var(--r-xs);padding:8px 12px}
+
+/* ---- Buttons ---- */
+.tagbar{gap:var(--s1);margin:var(--s1) 0}
+.big{border-radius:14px;min-height:50px;font-size:16px;font-weight:600;letter-spacing:-.01em;box-shadow:0 1px 2px rgba(20,42,29,.18)}
+.big:active,.wantb:active,.row button:active,#tabs button:active{transform:scale(.98)}
+.big .ic,.wantb .ic{width:18px;height:18px;vertical-align:-3px;margin-right:6px}
+.big.fish{background:var(--brass);color:#1d2214}
+.row button,#tagform button[type=button],.wxfail button{border:0;background:rgba(31,58,43,.07);color:var(--g800);border-radius:var(--r-sm);min-height:44px;padding:10px 16px;font-weight:600}
+.row button:hover,#tagform button[type=button]:hover{background:rgba(31,58,43,.12)}
+.row button.big{background:var(--g800);color:var(--cream)}
+.wantb{border-radius:var(--r-sm);min-height:44px;font-weight:600}
+.row .wantb{background:var(--g800);color:var(--cream)}.row .wantb.alt{background:var(--olive);color:var(--cream)}.row .wantb.on{background:var(--brass-d);color:#fff}.row .wantb:not(.on):not(.alt){background:rgba(31,58,43,.08);color:var(--g800)}
+html,body{overflow-x:clip}
+.gearb{position:relative;border:0;background:rgba(31,58,43,.08);color:var(--g800);border-radius:var(--pill);min-height:36px;padding:4px 12px;font-weight:600;font-size:12px}
+.gearb:hover{background:rgba(31,58,43,.14)}.gearb:after{content:"";position:absolute;inset:-4px}
+.trash{border:0;background:rgba(139,42,31,.09);color:var(--bad);border-radius:var(--pill);min-height:36px;padding:6px 12px}
+.trip-hd button{border:0;border-radius:var(--pill);background:rgba(31,58,43,.08);font-weight:600}.trip-hd button.on{background:var(--g800);color:var(--cream)}
+
+/* ---- Filter chips / layer toggles: one pill style ---- */
+.maplegend,.hfilt,.srcbar{gap:6px}
+.maplegend button,.srcbar button,.hfilt button{min-height:40px;padding:6px 14px;border-radius:var(--pill);border:.5px solid var(--line2);background:var(--paper);color:var(--ink);font-size:13px;font-weight:600;box-shadow:0 1px 1px rgba(20,42,29,.03)}
+.maplegend button:hover,.srcbar button:hover,.hfilt button:hover{background:#fff;border-color:rgba(31,58,43,.28)}
+.maplegend button.off,.srcbar button.off{opacity:1;background:transparent;color:var(--mute);font-weight:500;text-decoration:none;border-style:dashed}
+.srcbar button.off .nm{text-decoration:none}
+.hfilt button.on{background:var(--g800);border-color:var(--g800);color:var(--cream)}
+.srcttl{font-family:var(--sans);font-size:12px;font-weight:600;color:var(--mute);text-transform:uppercase;letter-spacing:.06em;margin-top:8px}
+@media (pointer:coarse){.maplegend button,.srcbar button,.hfilt button{min-height:44px}}
+
+/* ---- Forms ---- */
+.row input,#tagform input,#tagform textarea,.xbar select,.filt select,.wxhd select{border:.5px solid var(--line2);border-radius:var(--r-sm);background:var(--field);color:var(--ink);padding:10px 12px;min-height:44px;font-size:15px;box-shadow:inset 0 1px 1px rgba(20,42,29,.03)}
+.xbar select,.filt select,.wxhd select{-webkit-appearance:none;appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%235d5f50' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;font-weight:500}
+.row input:focus,#tagform input:focus,#tagform textarea:focus,.xbar select:focus{border-color:rgba(63,134,184,.7);box-shadow:0 0 0 3px rgba(63,134,184,.18)}
+#tagform label,.filt label{font-size:13px;font-weight:600;color:var(--ink2)}
+.xbar{gap:var(--s2);padding:var(--s2);border:.5px solid var(--line);border-radius:var(--r);background:var(--paper);box-shadow:var(--shadow-sm);font-size:13px;font-weight:600;color:var(--ink2)}
+.xbar label{display:block}.xbar select,.xbar input[type=range]{margin-top:6px}
+.xbar input[type=range]{accent-color:var(--g800)}
+.xbar .tiers{grid-column:1/-1}
+.xbar .tiers>span{font-size:13px}
+.xbar .tiers label{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px 0 10px;margin:8px 6px 0 0;border-radius:var(--pill);background:var(--cream2);font-weight:600;cursor:pointer}
+.xbar .tiers input{accent-color:var(--g800);width:18px;height:18px;margin:0}
+input[type=checkbox]{accent-color:var(--g800)}
+
+/* ---- Maps, controls, popups ---- */
+#map,#xmap{border:.5px solid var(--line2);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;margin:var(--s1) 0}
+.leaflet-container{font-family:var(--sans);font-size:13px;background:#e9e6dc}
+.leaflet-touch .leaflet-bar,.leaflet-bar{border:0!important;border-radius:var(--r-sm)!important;box-shadow:0 1px 2px rgba(20,42,29,.12),0 4px 14px rgba(20,42,29,.12)!important;overflow:hidden}
+.leaflet-bar a,.leaflet-touch .leaflet-bar a{width:40px;height:40px;line-height:40px;background:rgba(255,253,248,.94);color:var(--g800);border-bottom:.5px solid var(--line)!important;font-weight:400}
+.leaflet-touch .leaflet-bar a{width:44px;height:44px;line-height:44px}
+.leaflet-bar a:hover{background:#fff}
+.locbtn,.fsbtn{display:flex!important;align-items:center;justify-content:center;width:44px;height:44px;line-height:1;font-size:0;border:0;border-radius:var(--r-sm);background:rgba(255,253,248,.94);color:var(--g800);box-shadow:0 1px 2px rgba(20,42,29,.12),0 4px 14px rgba(20,42,29,.12)}
+.locbtn svg,.fsbtn svg{width:20px;height:20px;display:block}
+.locbtn.on{color:#1e88e5}.locbtn.follow{background:#1e88e5;color:#fff}
+.leaflet-popup-content-wrapper{background:rgba(255,253,248,.98);border:0;border-radius:16px;box-shadow:0 2px 6px rgba(20,42,29,.1),0 16px 40px rgba(20,42,29,.18)}
+.leaflet-popup-tip{background:rgba(255,253,248,.98);box-shadow:none}
+.leaflet-popup-content{margin:14px 16px;font-size:13.5px;line-height:1.5}
+.leaflet-popup-content b{font-weight:600}
+.leaflet-container a.leaflet-popup-close-button{width:32px;height:32px;font:20px/30px var(--sans);color:var(--mute);top:4px;right:4px}
+.leaflet-control-attribution{background:rgba(255,253,248,.7)!important;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-radius:8px 0 0 0;font-size:10px}
+.xleg,.lndc{background:rgba(255,253,248,.9)!important;-webkit-backdrop-filter:saturate(180%) blur(16px);backdrop-filter:saturate(180%) blur(16px);border:0!important;border-radius:14px!important;box-shadow:0 1px 2px rgba(20,42,29,.12),0 6px 20px rgba(20,42,29,.14)!important}
+.xleg{padding:10px 12px;font-size:12px;line-height:1.8}
+@media (max-width:700px){.xleg{padding:8px 10px;font-size:11px;line-height:1.6}}.xleg i{border-radius:50%;width:10px;height:10px}
+.lndc>.lndt{min-height:44px!important;font-weight:600!important}
+.lndc .lnr button{border-radius:var(--pill)!important;border:.5px solid var(--line2)!important;font-weight:600}
+.lndc .lnr button.off{text-decoration:none!important;border-style:dashed!important;color:var(--mute)}
+.lndc .lnh{letter-spacing:.06em!important;font-weight:600}
+.xdot{box-shadow:0 1px 3px rgba(0,0,0,.35)}
+#mapsec.full{background:var(--cream);padding:max(6px,env(safe-area-inset-top)) max(6px,var(--safe-r)) max(6px,var(--safe-b)) max(6px,var(--safe-l))}
+#mapsec.full #fsClose{width:44px;height:44px;border-radius:50%;background:rgba(28,32,24,.72);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);font-size:18px;top:max(10px,env(safe-area-inset-top));right:max(10px,var(--safe-r))}
+
+/* ---- Modals as sheets ---- */
+#modal,#xmodal,#gmodal,#tagdlg{background:rgba(20,30,22,.36);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#modal .box,#xmodal .box,#gmodal .box,#tagdlg .box{background:var(--paper);border:0;border-radius:22px;box-shadow:var(--shadow-lg);padding:var(--s3);margin:max(16px,env(safe-area-inset-top)) 12px max(16px,var(--safe-b));animation:sheetIn .32s var(--ease)}
+@keyframes sheetIn{from{opacity:0;transform:translateY(16px) scale(.99)}to{opacity:1;transform:none}}
+#modal .box h3,#xmodal h3,#gmodal h3,#tagdlg h3{font-family:var(--serif);font-size:22px;font-weight:700;letter-spacing:-.022em;line-height:1.2}
+#close,#xclose,#gclose{width:36px!important;height:36px!important;min-width:36px!important;min-height:36px!important;border-radius:50%!important;background:rgba(31,58,43,.08)!important;color:var(--ink2)!important;font-size:15px!important;display:inline-flex;align-items:center;justify-content:center;position:relative;margin:-4px -4px 0 8px}
+#close:after,#xclose:after,#gclose:after{content:"";position:absolute;inset:-4px}
+#xmodal details,#gmodal details{border-top:.5px solid var(--line);padding:4px 0}
+#xmodal summary,#gmodal summary{min-height:44px;box-sizing:border-box;padding:12px 0;line-height:1.35;font-weight:600;font-size:15px}
+#xmodal .kv,#gmodal .kv{font-size:14px}
+@media (max-width:700px){
+ #modal .box,#xmodal .box,#gmodal .box,#tagdlg .box{margin:max(12px,env(safe-area-inset-top)) 8px max(12px,var(--safe-b));padding:20px 16px;border-radius:20px}
+}
+
+/* ---- Tables ---- */
+.calwrap,.hscroll,.gwrap{border-radius:var(--r);overflow:auto}
+#cal th,.gtab th{background:var(--g800);color:#dfe6cf;font-weight:600;letter-spacing:.04em}
+#cal th,#cal td,.gtab th,.gtab td{border:0;border-bottom:.5px solid var(--line);border-right:.5px solid var(--hair)}
+.hhead{font-weight:600;letter-spacing:.08em}
+.hrow{border-top:.5px solid var(--line)}
+.hb{border-radius:6px}
+.wxd{border:.5px solid var(--line);border-radius:var(--r-sm);box-shadow:var(--shadow-sm)}
+.wxd.on{border-color:var(--g800);box-shadow:0 0 0 1.5px var(--g800) inset}
+.wxd .dn{font-family:var(--sans);font-weight:600}
+.wxnow{border-radius:var(--r);border-top:0;background:radial-gradient(120% 140% at 0% 0%,#2a4a37 0%,var(--g800) 45%,var(--g900) 100%);box-shadow:0 12px 32px rgba(20,42,29,.16);padding:var(--s2) 20px}
+.wxnow .tmp{font-family:var(--sans);font-weight:600;letter-spacing:-.03em}
+.hscr{border:.5px solid var(--line);border-radius:var(--r-sm)}
+
+/* ---- Toast ---- */
+#toast{background:rgba(28,40,31,.88);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);border:0;border-radius:var(--pill);padding:12px 20px;font-size:14px;font-weight:500;bottom:calc(20px + var(--safe-b));box-shadow:0 8px 30px rgba(0,0,0,.25);transition:opacity .3s var(--ease),transform .3s var(--ease);transform:translate(-50%,8px)}
+#toast.on{transform:translate(-50%,0)}
+
+@media (max-width:700px){
+ h2,summary.sec2,h2.sec2{font-size:20px}
+ .ptitle{font-size:26px}
+ #banner{margin:12px var(--s2) var(--s2)}
+ .card{padding:14px var(--s2)}
+ .xbar{grid-template-columns:1fr 1fr;gap:12px}
+}
+@media (prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
 </style></head><body>
-<header><h1><img class="logo" src="logo.png" width="72" height="72" alt="Mark's Fishing Report logo">Mark's Fishing Report</h1><div class="sub">USGS real-time data · Oakland & Macomb Co., MI · <span id="now"></span></div></header>
-<nav id="tabs"><button data-t="home" class="on">🏞️ Home Waters</button><button data-t="explore">🧭 Explore</button></nav>
+<header class="appbar"><a class="brand" href="./" aria-label="MI Blue Lining home"><img src="icon.svg?v=3" width="32" height="32" alt=""><h1>MI Blue Lining</h1></a>
+<nav id="tabs" aria-label="Sections"><button data-t="home" class="on">Home Waters</button><button data-t="explore">Explore</button></nav></header>
+<div class="statusline">USGS real-time data · Oakland &amp; Macomb Co., MI · <span id="now"></span></div>
 <div id="homeView">
 <div id="banner">Loading…</div>
 <div id="wxAlerts"></div>
-<section id="wxsec"><details id="wxDet" open><summary class="sec2">🌦️ Weather &amp; bite forecast</summary><div id="wxBody"></div></details></section>
+<section id="wxsec"><details id="wxDet" open><summary class="sec2">Weather &amp; bite forecast</summary><div id="wxBody"></div></details></section>
 <div class="legend">Temp bands: <i style="background:#4a6fa5"></i>&lt;40°F sluggish <i style="background:#6b7f99"></i>40–50 slow <i style="background:#2f8a57"></i>50–65 optimal <i style="background:#b8860b"></i>65–68 stressed <i style="background:#b22222"></i>&gt;68 stop fishing</div>
-<section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> 🗺️ Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
-<div class="tagbar"><button id="btnTag" class="big">📍 Tag spot</button><button id="btnFish" class="big fish">🐟 Fish caught</button></div>
+<section id="mapsec"><h2 class="sec2 sec" id="mapHead"><span class="arr">▼</span> Map, access & fishing log</h2><div id="mapBody"><button id="fsClose" aria-label="Exit full screen">✕</button>
+<div class="tagbar"><button id="btnTag" class="big"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.6" fill="currentColor"/></svg>Tag spot</button><button id="btnFish" class="big fish"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12c3-4.5 8.5-6 13-3.2L21 5.5v13l-5.5-3.3C11 18 5.5 16.5 2.5 12z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="11" r="1.2" fill="currentColor"/></svg>Fish caught</button></div>
 <div id="map"></div>
 <div class="maplegend"><button data-l="rivers">🌊 rivers</button><button data-l="satellite">🛰️ satellite</button><button data-l="gage">🔵 gage</button><button data-l="bridge">🟤 bridge</button><button data-l="park">🟢 park</button><button data-l="fishing">🎣 fishing access</button><button data-l="stock">🟣 stocking sites</button><button data-l="spot">📍 your tag</button><button data-l="fish">🐟 your catch</button></div>
-<div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button><details class="srcnote" id="srcNote" hidden><summary>ℹ️ Fishbrain sweep status</summary><p id="srcNoteTxt"></p></details></div>
+<div class="srcbar" id="srcBar" hidden><span class="srcttl">Reported catches by source</span><span id="srcBtns"></span><button class="srcall" id="srcAll" type="button">All off</button><details class="srcnote" id="srcNote" hidden><summary>Fishbrain sweep status</summary><p id="srcNoteTxt"></p></details></div>
 <div class="row filt"><span class="sub">Stocking & catches:</span><label>From <select id="fY1"></select></label><label>to <select id="fY2"></select></label><label>Species <select id="fSp"><option value="">All</option></select></label><span id="fCount" class="sub"></span></div>
 <details class="logbox"><summary>My log (<span id="tagCount">0</span>) · export · Google Sheet sync</summary>
 <div class="row"><button id="expKml">Export KML</button><button id="expCsv">Export CSV</button></div>
 <div class="row"><input id="sheetUrl" placeholder="Paste Apps Script web app URL (…/exec)"><button id="saveUrl">Save</button></div>
-<div class="row"><button id="syncBtn">⬆ Sync queued</button><button id="loadBtn">⬇ Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
+<div class="row"><button id="syncBtn">Sync queued</button><button id="loadBtn">Load from Sheet</button><span id="syncMsg" class="sub"></span></div>
 <div id="tagList"></div></details></div></section>
-<section id="calsec"><details id="calDet" open><summary class="sec2">📅 Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
-<section id="runsec"><details id="runDet" open><summary class="sec2">🐟 Run Calendar</summary>
+<section id="calsec"><details id="calDet" open><summary class="sec2">Stocking & Run Calendar</summary><div id="calNow"></div><div id="regs"></div><div class="calwrap"><table id="cal"></table></div><div class="sub" id="calSrc"></div></details></section>
+<section id="runsec"><details id="runDet" open><summary class="sec2">Run Calendar</summary>
 <div class="sub">Salmon, steelhead and lake-run brown runs on the rivers this dashboard tracks or explores. Tap a river for dams, access, crowding and sources. Bright bar = peak, light bar = in window. These are typical dates, not a forecast.</div>
 <div id="runNow"></div><div class="hfilt" id="runFilt"></div><div class="hscroll"><div class="hgrid" id="runGrid"><div class="sub" style="padding:12px">Loading run data…</div></div></div><div class="hleg" id="runLeg"></div><div class="sub" id="runSrc"></div></details></section>
-<section id="hatchsec"><details id="hatchDet" open><summary class="sec2">🪰 Hatch Calendar</summary>
+<section id="hatchsec"><details id="hatchDet" open><summary class="sec2">Hatch Calendar</summary>
 <div class="sub">Tap a row for patterns, sizes, time of day, waters &amp; sources. Bright bar = peak, light bar = early/late (tail). SE Michigan usually runs ~1–2 weeks earlier than northern-Michigan dates.</div>
 <div class="hfilt" id="hFilt"></div><div id="hNow"></div><div class="hscroll"><div class="hgrid" id="hGrid"></div></div><div class="hleg" id="hLeg"></div><div class="sub" id="hSrc"></div></details></section>
 <div id="app"></div>
@@ -298,7 +535,7 @@ function mkChart(canvas,series,p,big){const s=p==="00010"?series.map(q=>({x:q.x,
  ...(p==="00010"?{suggestedMin:40,suggestedMax:72}:{})}}}})}
 const SECS=[],RVS=[];let DATA={},MED={},INFO={};
 function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("mbox");
- box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]} <button class="gearb" data-gear="g:${id}">🎒 Gear &amp; flies</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
+ box.innerHTML=`<button id="close" aria-label="Close">✕</button><h3>${NAME[id]} <button class="gearb" data-gear="g:${id}">Gear &amp; flies</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt(i.updated)}</div>
  <p><span class="badge ${i.t.cls}">🐟 ${i.t.label}</span></p><p class="note">${i.t.note}${i.tempMsg?"<br>"+i.tempMsg:""}</p><div id="mwx"></div>`;if(window.WX)WX.fillModal(id,document.getElementById("mwx"));
  for(const p of PORDER)if(d[p]?.length){const w=document.createElement("div");w.className="bigchart";const c=document.createElement("canvas");w.appendChild(c);box.appendChild(w);charts.push(mkChart(c,d[p],p,true))}
  document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
@@ -317,14 +554,14 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
   h2.innerHTML=`<span class="arr">▼</span> ${g} <span class="cnt"></span>`;h2.onclick=()=>setOpen(grid.style.display==="none");const secRank=[];SECS.push([h2,secRank]);
   for(const [id,name] of sites){const d=DATA[id]||{},c=document.createElement("div");c.className="card";c.id="site-"+id;getRv(id).body.appendChild(c);
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
-   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
+   if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">Gear</button></h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
     <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
    const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
    INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null,tt,tn};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>{setOpen(true);getRv(id).so(true)}});secRank.push({id,t,tempF});getRv(id).rank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
-   c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">🎒 Gear</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
+   c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">Gear</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
    <span class="badge ${t.cls}">🐟 ${t.label}</span><p class="note">${t.note||""}${tempMsg?"<br>"+tempMsg:""}</p>
    <div class="sub">${pct!=null?`Median for today: ${med[id]} cfs → <b>${pct}%</b> of normal`:"Median for today: n/a"} · tap card for all charts</div><div class="wxline" data-wxid="${id}"></div><div class="chartbox"><canvas></canvas></div>`;
@@ -340,7 +577,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  window.goCard=id=>{const r=ranked.find(x=>x.id===id);try{window._closeX&&_closeX();window._setTab&&_setTab("home")}catch(e){}if(r)r.open();else{try{setOpen(true);getRv(id).so(true)}catch(e){}}
   setTimeout(()=>{const el=document.getElementById("site-"+id);if(!el)return;el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)},120);return false};
  function renderBanner(){const wx=!!(window.WX&&WX.ready()),key=x=>x.t.score+(wx?WX.adj(x.id):0),top=[...ranked].sort((a,b)=>(key(b)-key(a))||base(a,b)).slice(0,5);
- bn.innerHTML=top.length?`<b>🏆 Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span>${wx?`<span class="tm">🌦️ Weather${WX.top5(r.id)}</span>`:""}</li>`).join("")}</ol><div class="sub" style="color:#cdd6b8;margin-top:6px">${wx?"Ranked by gage rating, nudged up or down (max ±1.2) by today's rule-of-thumb weather bite rating. 🎣 ratings are not scientific — tap a spot for the why.":"Weather unavailable or still loading — ranked by gage rating only."}</div>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
+ bn.innerHTML=top.length?`<b>Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span>${wx?`<span class="tm">🌦️ Weather${WX.top5(r.id)}</span>`:""}</li>`).join("")}</ol><div class="sub" style="color:#cdd6b8;margin-top:6px">${wx?"Ranked by gage rating, nudged up or down (max ±1.2) by today's rule-of-thumb weather bite rating. 🎣 ratings are not scientific — tap a spot for the why.":"Weather unavailable or still loading — ranked by gage rating only."}</div>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
  bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)})}
  window.renderBanner=renderBanner;renderBanner();
  document.body.dataset.ready=1;window.dispatchEvent(new Event("dataready"))})();
@@ -358,10 +595,10 @@ async function init(){
  {const sec=document.getElementById("mapsec"),body=document.getElementById("mapBody"),hd=document.getElementById("mapHead"),K="mapCollapsed";
   const setOpen=o=>{body.style.display=o?"":"none";hd.querySelector(".arr").textContent=o?"▼":"▶";localStorage.setItem(K,o?"0":"1");if(o)setTimeout(()=>map.invalidateSize(),50)};
   hd.onclick=()=>setOpen(body.style.display==="none");setOpen(localStorage.getItem(K)!=="1");
-  let fsBtn;const fs=on=>{sec.classList.toggle("full",on);document.body.classList.toggle("mapfs",on);fsBtn.innerHTML=on?"✕":"⛶";fsBtn.title=on?"Exit full screen":"Full screen map";
+  let fsBtn;const fs=on=>{sec.classList.toggle("full",on);document.body.classList.toggle("mapfs",on);fsBtn.innerHTML=on?'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>':'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';fsBtn.title=on?"Exit full screen":"Full screen map";
    try{if(on&&!document.fullscreenElement&&sec.requestFullscreen)sec.requestFullscreen().catch(()=>{});else if(!on&&document.fullscreenElement)document.exitFullscreen().catch(()=>{})}catch(e){}
    map.dragging.enable();on?map.scrollWheelZoom.enable():map.scrollWheelZoom.disable();setTimeout(()=>map.invalidateSize(),60);setTimeout(()=>map.invalidateSize(),400)};
-  const FC=L.Control.extend({options:{position:"topleft"},onAdd(){fsBtn=L.DomUtil.create("a","fsbtn leaflet-bar");fsBtn.href="#";fsBtn.setAttribute("role","button");fsBtn.innerHTML="⛶";fsBtn.title="Full screen map";
+  const FC=L.Control.extend({options:{position:"topleft"},onAdd(){fsBtn=L.DomUtil.create("a","fsbtn leaflet-bar");fsBtn.href="#";fsBtn.setAttribute("role","button");fsBtn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';fsBtn.setAttribute('aria-label','Full screen map');fsBtn.title="Full screen map";
    L.DomEvent.on(fsBtn,"click",e=>{L.DomEvent.stop(e);fs(!sec.classList.contains("full"))});return fsBtn}});new FC().addTo(map);
   document.getElementById("fsClose").onclick=()=>fs(false);
   addEventListener("keydown",e=>{if(e.key==="Escape"&&sec.classList.contains("full"))fs(false)});
@@ -394,7 +631,7 @@ window.addLocate=addLocate;function addLocate(map=window._map,near=(la,ln)=>{con
   else{dot.setLatLng(ll);circ.setLatLng(ll).setRadius(acc)}
   dot.bindPopup(`<b>You are here</b><br>${la.toFixed(6)}, ${ln.toFixed(6)}<br>±${Math.round(acc*3.28084)} ft<br>${near(la,ln)}`,{maxWidth:220,autoPanPaddingTopLeft:L.point(70,20)});
   if(zoom){map.setView(ll,16,{animate:false});const w=map.getSize().x;if(w<700)map.panBy([-Math.min(70,w/2-125),0],{animate:false});dot.openPopup()}else map.panTo(ll)};
- const C=L.Control.extend({options:{position:"topleft"},onAdd(){btn=L.DomUtil.create("a","locbtn leaflet-bar");btn.href="#";btn.setAttribute("role","button");btn.innerHTML="⌖";set(0);
+ const C=L.Control.extend({options:{position:"topleft"},onAdd(){btn=L.DomUtil.create("a","locbtn leaflet-bar");btn.href="#";btn.setAttribute("role","button");btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 3L3 10.5l7.5 3 3 7.5z" fill="currentColor"/></svg>';btn.setAttribute('aria-label','Show my location');set(0);
   L.DomEvent.on(btn,"click",e=>{L.DomEvent.stop(e);if(!navigator.geolocation)return toast("Geolocation not supported on this device.");
    if(state===0){toast("Getting precise location…");navigator.geolocation.getCurrentPosition(p=>{show(p,true);set(1)},err,GEO)}
    else if(state===1){watch=navigator.geolocation.watchPosition(p=>show(p,false),err,GEO);set(2);toast("Live follow on")}
@@ -439,7 +676,7 @@ function renderCal(X){renderRegs(X);const now=new Date().getMonth()+1,t=document
   return `<tr><td class="nm" title="${esc(s.name)}">${esc(s.name)}</td>${MON.map((m,i)=>`<td class="${i+1===now?"now":""}">${Object.entries((by[i+1]||[]).reduce((o,e)=>{(o[e.date.slice(0,4)]??=[]).push(e);return o},{})).sort().reverse().map(([y,es])=>`<span class="ev" title="${esc(es.map(e=>e.date+" "+e.species+" "+(e.size||"")).join("\n"))}">'${y.slice(2)}${es.length>1?"×"+es.length:""}</span>`).join("")}</td>`).join("")}<td>${esc(s.last)}</td></tr>`}).join("");
  t.innerHTML=`<thead>${hd}</thead><tbody><tr class="grp"><td colspan="14">Run & seasonal windows (● season, ★ peak)</td></tr>${runRows}<tr class="grp"><td colspan="14">DNR stocking events by month (year shown)</td></tr>${siteRows}</tbody>`;
  const runs=X.timing.filter(r=>r.months.includes(now)),stk=X.sites.flatMap(s=>s.events.filter(e=>+e.date.slice(5,7)===now).map(e=>({s,e}))),nx=X.timing.filter(r=>r.months.includes(now%12+1)&&!r.months.includes(now));
- document.getElementById("calNow").innerHTML=`<b>📌 Happening now (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no major runs in the data for this month"}.
+ document.getElementById("calNow").innerHTML=`<b>Happening now (${MON[now-1]}):</b> ${runs.length?runs.map(r=>`<b>${esc(r.label)}</b>${(r.peak||[]).includes(now)?" (peak)":""} — ${esc(r.note)}`).join("; "):"no major runs in the data for this month"}.
   ${stk.length?`<br>Past ${MON[now-1]} stockings: ${[...new Set(stk.map(x=>x.s.name))].map(esc).join(", ")}.`:`<br>No DNR stockings recorded in ${MON[now-1]} (2021–2026).`}${nx.length?`<br>Coming next month: ${nx.map(r=>esc(r.label)).join(", ")}.`:""}`;
  document.getElementById("calSrc").textContent=`Data generated ${X.generated}; timing ${X.timing_source}; ${X.dropped_captive} likely-captive records excluded. Stocking coordinates are approximate.`}
 let RIV=null,RLAB=null;const RSTY={1:{w:5,c:9,col:"#1e90ff"},2:{w:3.5,c:6,col:"#2a9df4"},3:{w:2,c:4,col:"#5bb5f7"}};
@@ -598,19 +835,19 @@ async function initExplore(){const v=$("exploreView");v.innerHTML='<div class="s
  try{XD=await (await fetch("explore-streams.json?v=6")).json()}catch(e){v.textContent="Couldn't load explore-streams.json";return}
  try{const sv=JSON.parse(localStorage.getItem(FK)||"{}");if(sv.v!==2){delete sv.max;delete sv.tiers}F={...F,...sv,v:2}}catch(e){}
  const sp=[...new Set([...XD.streams.flatMap(s=>s.species_groups),...EXTRA_SP])].sort();
- v.innerHTML=`<h2 style="margin:18px 0 4px;color:var(--g800);font-family:var(--serif)">🧭 Explore nearby trout & steelhead water</h2>
- <div class="sub">US waters only. <b>Drive tiers</b> are one-way minutes from home (${esc(XD.home.address)}): <b>1 Back Yard</b> ≤30 · <b>2 Quick Trip</b> 30–90 · <b>3 Half Day</b> 90–180 · <b>4 Fishing Trip!</b> 180–240. These are separate from the Home Waters sections above. Estimates are free-flow — add ~10–25% for traffic. 🏛️ badges show the State of Michigan's designated-trout-stream Type (FO-210 / FO-200).</div>
- <div class="xbar"><label>Trip focus<select id="fTrip"><option value="">All waters</option>${(XD.trips||[]).map(t=>`<option value="${esc(t.id)}">🏕️ ${esc(t.name)} · ${esc(t.dates)}</option>`).join("")}</select></label><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="240" step="5"></label>
+ v.innerHTML=`<h2 class="ptitle">Explore nearby trout &amp; steelhead water</h2>
+ <div class="sub plead">US waters only. <b>Drive tiers</b> are one-way minutes from home (${esc(XD.home.address)}): <b>1 Back Yard</b> ≤30 · <b>2 Quick Trip</b> 30–90 · <b>3 Half Day</b> 90–180 · <b>4 Fishing Trip!</b> 180–240. These are separate from the Home Waters sections above. Estimates are free-flow — add ~10–25% for traffic. 🏛️ badges show the State of Michigan's designated-trout-stream Type (FO-210 / FO-200).</div>
+ <div class="xbar"><label>Trip focus<select id="fTrip"><option value="">All waters</option>${(XD.trips||[]).map(t=>`<option value="${esc(t.id)}">${esc(t.name)} · ${esc(t.dates)}</option>`).join("")}</select></label><label>Max drive: <b id="fMaxV"></b> min<input type="range" id="fMax" min="20" max="240" step="5"></label>
  <label>State trout-stream status<select id="fDes"><option value="">All streams</option><option value="des">Designated trout streams only</option><option value="t12">Type 1 or Type 2</option><option value="t1">Type 1</option><option value="t2">Type 2</option><option value="gr">Gear-restricted (flies / lures only)</option><option value="t3">Type 3</option><option value="t4">Type 4</option><option value="none">Not designated / other</option></select></label>
  <label>Species<select id="fSpx"><option value="">All</option>${sp.map(x=>`<option>${x}</option>`).join("")}</select></label>
  <label>TroutRoutes class<select id="fCls"><option value="">All</option><option value="gold">Gold</option><option value="1">Class 1</option><option value="2">Class 2</option><option value="3">Class 3</option><option value="unknown">Unknown</option></select></label>
  <label>Season now<select id="fOpen"><option value="">Any</option><option value="open">Open now</option><option value="closed">Closed now</option></select></label>
  <div class="tiers"><span>Drive tier</span><br>${["1","2","3","4"].map(t=>`<label><input type="checkbox" data-tier="${t}"> <span class="tierb t${t}" style="min-width:20px;padding:1px 0;font-size:.85em">${t}</span> ${TNAME[t]}</label>`).join("")}</div></div>
  <div id="xmap"></div><div class="sub" id="xCount"></div>
- ${(XD.trips||[]).map(t=>`<details class="xsec" open id="xTripSec"><summary>🏕️ ${esc(t.name)} · ${esc(t.dates)} (<span id="xTripN"></span>)</summary><div id="xTrip"></div></details>`).join("")}
- <details class="xsec" open><summary>🎯 Trip planner — best bets right now (<span id="xPlanN"></span>)</summary><div id="xPlan"></div></details>
- <details class="xsec"><summary>⭐ Want to fish (<span id="xWishN">0</span>)</summary><div id="xWish"></div></details>
- <details class="xsec"><summary>ℹ️ Notes & what was left out</summary><div class="sub" style="padding:6px 0">${XD.notes.map(n=>`<p>${esc(n)}</p>`).join("")}<p><b>Just beyond the 4-hour cap (OSRM minutes):</b> ${XD.outside_4h.map(o=>esc(o.name)+" ("+o.min+" min)").join("; ")}.</p><p><b>Left out on purpose:</b> ${XD.excluded.map(esc).join(" ")}</p><p>${esc(XD.regs_note)}</p><p><b>Checked, no trout evidence:</b> ${XD.no_evidence.map(o=>esc(o.name)).join("; ")}.</p><p>${esc(XD.troutroutes_note)}</p><p>Drive method: ${esc(XD.drive_method)}. Data generated ${esc(XD.generated)}.</p></div></details>`;
+ ${(XD.trips||[]).map(t=>`<details class="xsec" open id="xTripSec"><summary>${esc(t.name)} · ${esc(t.dates)} (<span id="xTripN"></span>)</summary><div id="xTrip"></div></details>`).join("")}
+ <details class="xsec" open><summary>Trip planner — best bets right now (<span id="xPlanN"></span>)</summary><div id="xPlan"></div></details>
+ <details class="xsec"><summary>Want to fish (<span id="xWishN">0</span>)</summary><div id="xWish"></div></details>
+ <details class="xsec"><summary>Notes & what was left out</summary><div class="sub" style="padding:6px 0">${XD.notes.map(n=>`<p>${esc(n)}</p>`).join("")}<p><b>Just beyond the 4-hour cap (OSRM minutes):</b> ${XD.outside_4h.map(o=>esc(o.name)+" ("+o.min+" min)").join("; ")}.</p><p><b>Left out on purpose:</b> ${XD.excluded.map(esc).join(" ")}</p><p>${esc(XD.regs_note)}</p><p><b>Checked, no trout evidence:</b> ${XD.no_evidence.map(o=>esc(o.name)).join("; ")}.</p><p>${esc(XD.troutroutes_note)}</p><p>Drive method: ${esc(XD.drive_method)}. Data generated ${esc(XD.generated)}.</p></div></details>`;
  $("fTrip").value=F.trip||"";$("fMax").value=F.max;$("fSpx").value=F.sp;$("fCls").value=F.cls;$("fOpen").value=F.open;$("fDes").value=F.des;document.querySelectorAll("[data-tier]").forEach(c=>c.checked=F.tiers.includes(c.dataset.tier));
  const chg=()=>{const ot=F.trip;F={v:2,trip:$("fTrip").value,max:+$("fMax").value,sp:$("fSpx").value,cls:$("fCls").value,open:$("fOpen").value,des:$("fDes").value,tiers:[...document.querySelectorAll("[data-tier]")].filter(c=>c.checked).map(c=>c.dataset.tier)};localStorage.setItem(FK,JSON.stringify(F));draw();if(ot!==F.trip)fitTrip()};
  ["fTrip","fMax","fSpx","fCls","fOpen","fDes"].forEach(i=>$(i).oninput=chg);window._xchg=chg;document.querySelectorAll("[data-tier]").forEach(c=>c.onchange=chg);
@@ -655,15 +892,15 @@ function openStream(id){const s=XD.streams.find(x=>x.id===id);if(!s)return;const
  <div class="kv">🚗 <b>${s.drive_min} min</b> (${s.drive_miles} mi) free-flow${s.drive_min_alt?` (a second router says ~${s.drive_min_alt} min)`:""} — plan on <b>${Math.round(s.drive_min*1.1)}–${Math.round(s.drive_min*1.25)} min</b> with traffic. <a href="${DIR(s.lat,s.lng)}" target="_blank">Directions ↗</a></div>
  ${s.trip?(()=>{const t=(XD.trips||[]).find(x=>x.id===s.trip.id)||{},st=status(s,TRIPDAY);return `<div class="tripbox"><b>🏕️ ${esc(t.name||"Trip")} · ${esc(t.dates||"")}</b><br>🚗 <b>${s.trip.house_min} min</b> (${s.trip.house_mi} mi) from the ${esc((t.house||{}).label||"trip house")} · <span class="kchip ${s.trip.kids}">${esc(s.trip.kids_txt)}</span> <span class="stt ${st.cls}">Apr 30, 2027: ${esc(st.txt)}</span><div class="kv">${esc(s.trip.open)}</div><div class="kv">${esc(s.trip.tactics)}</div></div>`})():""}
  ${runs.length&&!(window.RUN&&RUN.has(s.id))?`<div class="kv">📌 <b>Happening now:</b> ${runs.map(r=>esc(r.label)).join(", ")}</div>`:""}
- <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">🎒 Gear &amp; flies</button></div><div id="xRun"></div><div id="xHatch"></div><div id="xWx"></div>
- <details open><summary>🎣 Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div>${s.history?`<div class="kv"><b>📖 History:</b> ${esc(s.history)}</div>`:""}<div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
- <details open><summary>📡 Nearest USGS gage (live)</summary><div id="xGl">${gageHtml(s)}</div><div class="sub">${esc(s.gage_note)}</div></details>
- <details open><summary>📜 Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Today:</b> <span class="stt ${status(s).cls}">${esc(status(s).txt)}</span></div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div>${s.season.src?`<div class="sub">Season source: ${esc(s.season.src)}</div>`:""}<div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
- <details><summary>🐟 Stocking history (last 5 yrs, DNR)</summary><div class="kv sub">${esc(s.stocking_summary)}</div><ul>${stk}</ul></details>
- <details><summary>📸 Recent confirmed catches / reports (${s.catches.length})</summary><ul>${s.catches.length?s.catches.map(c=>`<li>${esc(c.date)} — ${esc(c.text)} <a href="${esc(c.url)}" target="_blank">source ↗</a></li>`).join(""):"<li>None found with date + place.</li>"}</ul></details>
- <details><summary>🅿️ Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
+ <div class="row" style="margin:8px 0"><button class="wantb" data-want="${s.id}"></button><button class="wantb alt" data-gear="x:${s.id}">Gear &amp; flies</button></div><div id="xRun"></div><div id="xHatch"></div><div id="xWx"></div>
+ <details open><summary>Species & fishery</summary><div class="kv">${s.species.map(esc).join(" · ")}</div><div class="kv">${esc(s.reproduction)}</div>${s.history?`<div class="kv"><b>History:</b> ${esc(s.history)}</div>`:""}<div class="kv"><b>Best seasons:</b> ${esc(s.seasons_text)}${s.best_months.length?` <span class="sub">(best months: ${s.best_months.map(x=>MONS[x-1]).join(", ")})</span>`:""}</div></details>
+ <details open><summary>Nearest USGS gage (live)</summary><div id="xGl">${gageHtml(s)}</div><div class="sub">${esc(s.gage_note)}</div></details>
+ <details open><summary>Regulations & season</summary><div class="kv"><b>State status:</b> ${badgeH(s)}</div>${(s.state.lines||[]).map(l=>`<div class="kv">• ${esc(l)}</div>`).join("")}<div class="sub">Source: ${esc(s.state.refs)} · ${esc(s.state.verified)}</div><div class="kv"><b>Today:</b> <span class="stt ${status(s).cls}">${esc(status(s).txt)}</span></div><div class="kv"><b>Season:</b> ${esc(s.season.label)}${s.season.inferred?' <span class="cls cU">inferred</span>':""}</div>${s.season.src?`<div class="sub">Season source: ${esc(s.season.src)}</div>`:""}<div class="kv">${esc(s.regs)}</div><div class="kv"><b>DNR status:</b> ${esc(s.dnr)}</div><div class="kv sub">TroutRoutes: ${esc(s.tr.cls==="unknown"?"class unknown":"Class "+s.tr.cls)}${s.tr.type?" · "+esc(s.tr.type):""}${s.tr.gr?" · gear-restricted":""}. ${esc(s.tr.note||"")}</div><div class="sub">Always check the current Michigan Fishing Guide before fishing.</div></details>
+ <details><summary>Stocking history (last 5 yrs, DNR)</summary><div class="kv sub">${esc(s.stocking_summary)}</div><ul>${stk}</ul></details>
+ <details><summary>Recent confirmed catches / reports (${s.catches.length})</summary><ul>${s.catches.length?s.catches.map(c=>`<li>${esc(c.date)} — ${esc(c.text)} <a href="${esc(c.url)}" target="_blank">source ↗</a></li>`).join(""):"<li>None found with date + place.</li>"}</ul></details>
+ <details><summary>Access & public land</summary><div class="kv">${esc(s.access)}</div></details>
  ${s.flags.length?`<details><summary>⚠️ Unverified / flags (${s.flags.length})</summary>${s.flags.map(f=>`<div class="flag">${esc(f)}</div>`).join("")}</details>`:""}
- <details><summary>🔗 Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
+ <details><summary>Sources</summary><ul>${s.sources.map(u=>`<li><a href="${esc(u.split(" ")[0])}" target="_blank">${esc(u.length>70?u.slice(0,70)+"…":u)}</a></li>`).join("")}</ul></details>`;
  $("xmodal").style.display="flex";document.body.classList.add("xlock");$("xclose").onclick=closeX;$("xbox").querySelector("[data-want]").onclick=()=>toggleWant(s);refreshWantBtns();if(xmap)xmap.closePopup();if(window.RUN)RUN.strip(s.id,$("xRun"),s);if(window.HATCH)HATCH.strip(s.id,$("xHatch"));if(window.WX)WX.fillExplore(s,$("xWx"))}
 function closeX(){$("xmodal").style.display="none";document.body.classList.remove("xlock")}
 $("xmodal").onclick=e=>{if(e.target.id==="xmodal")closeX()};addEventListener("keydown",e=>{if(e.key==="Escape")closeX()});
@@ -693,7 +930,7 @@ function soonList(w){const n=now();return forWater(w).map(h=>{const st=states(h)
 const pats=(h,n=2)=>h.patterns.slice(0,n).map(p=>hesc(p[0])+" #"+p[1].join("/#")).join(" · ");
 function chips(list,max,w){return list.slice(0,max).map(({h,s})=>`<div class="hchip" data-hid="${h.id}"><span class="tg ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span><span class="pt"><b>${hesc(h.name)}</b> — ${pats(h)}</span><span class="tm">🕐 ${hesc(h.time)}${h.confidence==="rule"?" · rule of thumb":""}</span></div>`).join("")}
 function renderNow(){const n=now(),L=nowList(flt),S=soonList(flt),wl=HD.waters.find(x=>x.id===flt).label,mx=6;
- $("hNow").innerHTML=`<h4>📌 Hatching now — ${MN[n.m]} ${n.d}${flt!=="all"?" · "+hesc(wl):""}</h4>${L.length?chips(L,mx):'<div class="sub">Nothing major listed for this water right now.</div>'}${L.length>mx?`<details style="margin-top:4px"><summary class="sub" style="cursor:pointer">+${L.length-mx} more</summary>${chips(L.slice(mx),99)}</details>`:""}
+ $("hNow").innerHTML=`<h4>Hatching now — ${MN[n.m]} ${n.d}${flt!=="all"?" · "+hesc(wl):""}</h4>${L.length?chips(L,mx):'<div class="sub">Nothing major listed for this water right now.</div>'}${L.length>mx?`<details style="margin-top:4px"><summary class="sub" style="cursor:pointer">+${L.length-mx} more</summary>${chips(L.slice(mx),99)}</details>`:""}
  ${S.length?`<div class="sub" style="margin-top:6px;color:var(--ink2)">Coming up: ${S.slice(0,5).map(x=>hesc(x.h.name)).join(", ")}.</div>`:""}
  ${flt==="paint"?'<div class="sub" style="margin-top:6px;color:var(--rust)">Paint Creek is closed to trout Oct 1 → last Saturday in April — the hatches below only matter in-season (red-striped months are closed).</div>':""}`;
  $("hNow").querySelectorAll(".hchip").forEach(c=>c.onclick=()=>{openRowFn(c.dataset.hid,true)})}
@@ -723,7 +960,7 @@ async function init(){try{await load()}catch(e){$("hGrid").innerHTML='<div class
 // ---------- Explore strip ----------
 window.HATCH={async strip(streamId,el){try{await load();await loadG()}catch(e){return}
   const pk=GD.explore_profile[streamId]||"general",w=GD.profiles[pk].hatch_water||"all",L=nowList(w),m=now();
-  el.innerHTML=`<div class="xhatch"><b>🪰 Hatching now (${MN[m.m]} ${m.d})</b>${L.length?L.slice(0,4).map(({h,s})=>`<div style="margin-top:4px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,2)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">Nothing major listed this month.</div>'}
+  el.innerHTML=`<div class="xhatch"><b>Hatching now (${MN[m.m]} ${m.d})</b>${L.length?L.slice(0,4).map(({h,s})=>`<div style="margin-top:4px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,2)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">Nothing major listed this month.</div>'}
   <div class="sub" style="margin-top:6px"><a data-hopen="${w}">Open full hatch calendar ↗</a> · <a data-gear="x:${hesc(streamId)}">🎒 Gear &amp; flies</a></div></div>`;
   const a=el.querySelector("[data-hopen]");if(a)a.onclick=()=>{window._closeX&&_closeX();_setTab("home");setFlt(["paint","clinton","huron","small","big"].includes(w)?w:"all");setTimeout(()=>{$("hatchDet").open=true;$("hatchsec").scrollIntoView({behavior:"smooth"})},80)}}};
 // ---------- Gear modal ----------
@@ -738,19 +975,19 @@ async function openGear(key){try{await load();await loadG()}catch(e){alert("Coul
  const rigRows=[["Rod","rod"],["Line","line"],["Leader","leader"],["Tippet","tippet"],["Waders","waders"],["Boots","boots"]];
  const src=p.sources.map(k=>GD.sources[k]).filter(Boolean);
  $("gbox").innerHTML=`<button id="gclose" style="float:right;font-size:1.5em;background:none;border:0;color:var(--ink);cursor:pointer;min-width:44px;min-height:44px" aria-label="Close">✕</button>
- <h3 style="margin:0 0 4px">🎒 Gear &amp; flies — ${hesc(p.title)}</h3>${nm&&nm!==p.title?`<div class="sub">for ${hesc(nm)}</div>`:""}
+ <h3 style="margin:0 0 4px">Gear &amp; flies — ${hesc(p.title)}</h3>${nm&&nm!==p.title?`<div class="sub">for ${hesc(nm)}</div>`:""}
  <div style="margin:6px 0"><span class="cf ${gen?"rule":"local"}">${gen?"General guidance":"Sourced"}</span> <span class="sub">${hesc(p.confidence)}</span></div>
  ${gen?'<div class="gflag">No river-specific source for this water — this is general trout guidance. Adjust to the stream and check regulations.</div>':""}
  <div class="kv">${hesc(p.summary)}</div>
- <div class="gnow"><b>🌤️ Right now (${MN[n.m]} ${n.d})</b>${pk==="paint-creek"&&(n.m>=9||n.m<3||(n.m===3&&n.d<24))?'<div class="sub" style="color:var(--rust)">Paint Creek is closed to trout Oct 1 → last Saturday in April — these are for the open season or other waters.</div>':""}${cond?`<div style="margin:4px 0">${cond}</div>`:""}${L.length?L.slice(0,5).map(({h,s})=>`<div style="margin-top:3px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,3)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">No major hatches listed for this water this month — try streamers or small nymphs.</div>'}</div>
- <details open><summary>🎣 Rods, lines, leaders &amp; wading</summary><div class="gwrap"><table class="gtab"><tr><th></th>${rigCols.map(c=>`<th>${c[1]}${p.rigs[c[0]].general?" *":""}</th>`).join("")}</tr>${rigRows.map(r=>`<tr><td>${r[0]}</td>${rigCols.map(c=>`<td>${hesc(p.rigs[c[0]][r[1]])}</td>`).join("")}</tr>`).join("")}</table></div>${Object.values(p.rigs).some(r=>r.general)?'<div class="sub">* general guidance, not from a river-specific source</div>':""}</details>
- <details open><summary>🪰 Flies &amp; sizes by technique</summary>${p.flies.map(f=>`<div class="kv"><b>${hesc(f[0])}</b>${f[2]&&GD.sources[f[2]]?` <a class="sub" href="${hesc(GD.sources[f[2]].url)}" target="_blank" rel="noopener">source ↗</a>`:""}<ul>${f[1].map(x=>`<li>${hesc(x[0])}${x[1].length?` — <b>${sizes(x[1])}</b>`:""}</li>`).join("")}</ul></div>`).join("")}<div class="sub">Seasonal patterns by hatch are in the Hatch Calendar (🪰) — tap a row for sizes and times.</div></details>
- ${p.steelhead?`<details><summary>🐟 Steelhead / egg-run gear</summary><div class="kv">${hesc(p.steelhead)}</div></details>`:""}
- ${p.lures?`<details><summary>🎯 Spin / lure / bait options</summary><div class="kv">${hesc(p.lures)}</div></details>`:""}
- ${p.tips.length?`<details><summary>💡 Tips</summary><ul>${p.tips.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
+ <div class="gnow"><b>Right now (${MN[n.m]} ${n.d})</b>${pk==="paint-creek"&&(n.m>=9||n.m<3||(n.m===3&&n.d<24))?'<div class="sub" style="color:var(--rust)">Paint Creek is closed to trout Oct 1 → last Saturday in April — these are for the open season or other waters.</div>':""}${cond?`<div style="margin:4px 0">${cond}</div>`:""}${L.length?L.slice(0,5).map(({h,s})=>`<div style="margin-top:3px"><span class="ptag ${s===2?"pk":"tl"}">${s===2?"PEAK":"early/late"}</span> <b>${hesc(h.name)}</b> — ${pats(h,3)}<span class="sub"> · ${hesc(h.time)}</span></div>`).join(""):'<div class="sub">No major hatches listed for this water this month — try streamers or small nymphs.</div>'}</div>
+ <details open><summary>Rods, lines, leaders &amp; wading</summary><div class="gwrap"><table class="gtab"><tr><th></th>${rigCols.map(c=>`<th>${c[1]}${p.rigs[c[0]].general?" *":""}</th>`).join("")}</tr>${rigRows.map(r=>`<tr><td>${r[0]}</td>${rigCols.map(c=>`<td>${hesc(p.rigs[c[0]][r[1]])}</td>`).join("")}</tr>`).join("")}</table></div>${Object.values(p.rigs).some(r=>r.general)?'<div class="sub">* general guidance, not from a river-specific source</div>':""}</details>
+ <details open><summary>Flies &amp; sizes by technique</summary>${p.flies.map(f=>`<div class="kv"><b>${hesc(f[0])}</b>${f[2]&&GD.sources[f[2]]?` <a class="sub" href="${hesc(GD.sources[f[2]].url)}" target="_blank" rel="noopener">source ↗</a>`:""}<ul>${f[1].map(x=>`<li>${hesc(x[0])}${x[1].length?` — <b>${sizes(x[1])}</b>`:""}</li>`).join("")}</ul></div>`).join("")}<div class="sub">Seasonal patterns by hatch are in the Hatch Calendar (🪰) — tap a row for sizes and times.</div></details>
+ ${p.steelhead?`<details><summary>Steelhead / egg-run gear</summary><div class="kv">${hesc(p.steelhead)}</div></details>`:""}
+ ${p.lures?`<details><summary>Spin / lure / bait options</summary><div class="kv">${hesc(p.lures)}</div></details>`:""}
+ ${p.tips.length?`<details><summary>Tips</summary><ul>${p.tips.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
  <details><summary>⚠️ Safety &amp; wading notes</summary><ul>${p.safety.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>
- ${p.shops.length?`<details><summary>🏪 Local fly shops / guides</summary><ul>${p.shops.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
- <details><summary>🔗 Sources</summary><ul>${src.length?src.map(s=>`<li><a href="${hesc(s.url)}" target="_blank" rel="noopener">${hesc(s.label)}</a></li>`).join(""):"<li>General guidance — no specific source.</li>"}</ul><div class="sub">${hesc(GD.note)}</div></details>`;
+ ${p.shops.length?`<details><summary>Local fly shops / guides</summary><ul>${p.shops.map(t=>`<li>${hesc(t)}</li>`).join("")}</ul></details>`:""}
+ <details><summary>Sources</summary><ul>${src.length?src.map(s=>`<li><a href="${hesc(s.url)}" target="_blank" rel="noopener">${hesc(s.label)}</a></li>`).join(""):"<li>General guidance — no specific source.</li>"}</ul><div class="sub">${hesc(GD.note)}</div></details>`;
  $("gmodal").style.display="flex";$("gclose").onclick=closeGear;$("gmodal").scrollTop=0}
 function closeGear(){$("gmodal").style.display="none"}
 window.openGear=openGear;
@@ -886,7 +1123,7 @@ function renderAlerts(){const el=$("wxAlerts");if(!el)return;let A=[];try{A=buil
  const chips=["high","med","good","run","info"].filter(k=>c[k]).map(k=>`<span class="chip ${k}">${k==="run"?"Run peaking now":c[k]+" "+(k==="high"?"warning":k==="med"?"caution":k==="good"?"good window":"note")+(c[k]>1&&k!=="med"&&k!=="info"&&k!=="run"?"s":"")}</span>`).join(" ");
  const items=A.map(a=>`<div class="al ${a.sev}"><h4>${a.icon} ${a.html?a.title:esc(a.title)}</h4><div>${a.html?a.text:esc(a.text)}</div>${a.list?`<ul>${a.list.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}</div>`).join("");
  const note=ST.ready?"":`<div class="wxok">⚠️ Weather forecast unavailable${ST.err?" ("+esc(ST.err)+")":""} — showing only live USGS-based alerts.</div>`;
- el.innerHTML=`<details class="wxal" open><summary>🚨 Alerts &amp; highlights ${chips||'<span class="chip good">all clear</span>'}</summary>${items||'<div class="wxok">✅ No rain/river-rise, heat, cold, wind or storm alerts right now.</div>'}${note}<div class="wxok sub" style="background:var(--paper)">Alert rules: rain ≥0.5″/24 h or ≥1″/48 h (forecast) · river ≥150% of median or rising · water &gt;68°F (65–68 caution) · highs ≥85°F · lows ≤25°F or highs ≤35°F · wind avg ≥15 / gusts ≥30 mph · thunderstorm codes · NWS watches/warnings. Forecast from Open-Meteo model data; alerts from NWS.</div></details>`}
+ el.innerHTML=`<details class="wxal" open><summary>Alerts &amp; highlights ${chips||'<span class="chip good">all clear</span>'}</summary>${items||'<div class="wxok">✅ No rain/river-rise, heat, cold, wind or storm alerts right now.</div>'}${note}<div class="wxok sub" style="background:var(--paper)">Alert rules: rain ≥0.5″/24 h or ≥1″/48 h (forecast) · river ≥150% of median or rising · water &gt;68°F (65–68 caution) · highs ≥85°F · lows ≤25°F or highs ≤35°F · wind avg ≥15 / gusts ≥30 mph · thunderstorm codes · NWS watches/warnings. Forecast from Open-Meteo model data; alerts from NWS.</div></details>`}
 // ---------- Home weather panel ----------
 function dayCard(W,k,id){const r=id!=="home"?rateSite(id,k):rateDay(W,k);if(!r)return"";const m=r.m,[em,tx]=WC(m.code);return`<div class="wxd${ST.k===k?" on":""}" data-k="${k}" role="button" tabindex="0"><div class="dn">${k===0?"Today":dName(m.date)}</div><div class="em" title="${tx}">${em}</div><div class="hl"><b>${Math.round(m.tmax)}°</b> <span>${Math.round(m.tmin)}°</span></div><div class="pr">${m.precip>=.01?m.precip.toFixed(2)+"″ 💧":"dry"}</div><div class="sub">💨 ${Math.round(m.wind)}${m.gust>=25?"/"+Math.round(m.gust):""}</div>${bite(r.n,r.gage)}</div>`}
 function hourStrip(W,m,r){let h="";for(let i=0;i<24;i++){const ix=m.st+i;if(W.H.time[ix]==null)break;const c=WC(W.H.weather_code[ix]),p=W.H.precipitation[ix]||0,win=r.wins.some(w=>i+.5>=w.a&&i+.5<=w.b),nw=ix===W.i0;
@@ -898,7 +1135,7 @@ function renderPanel(){const el=$("wxBody");if(!el)return;
  const r=id!=="home"?rateSite(id,ST.k):rateDay(W,ST.k),m=r.m;
  const dets=r?`<div class="wxdet"><h4>${ST.k===0?"Today":dName(m.date,1)} · ${MON[m.mon-1]} ${m.d} — ${bite(r.n,r.gage)}</h4>
   <div class="sub">${WC(m.code)[0]} ${WC(m.code)[1]} · high ${Math.round(m.tmax)}° / low ${Math.round(m.tmin)}° · rain ${m.precip.toFixed(2)}″ (${m.pop??"–"}% chance) · wind avg ${Math.round(m.wind)} mph, gusts ${Math.round(m.gust)} · ☀️ ${hr12(m.sr)} → ${hr12(m.ss)} · ${moon(m.y,m.mon,m.d)} <i>(not scored)</i></div>
-  <div style="margin:6px 0"><b>🕐 Suggested windows:</b> ${winTxt(r)}</div><b>Why this rating</b>${whyH(r.R)}${hourStrip(W,m,r)}</div>`:"";
+  <div style="margin:6px 0"><b>Suggested windows:</b> ${winTxt(r)}</div><b>Why this rating</b>${whyH(r.R)}${hourStrip(W,m,r)}</div>`:"";
  el.innerHTML=`<div class="wxhd"><label class="sub">Location <select id="wxLoc">${PSEL.map(([k,n])=>`<option value="${k}"${k===id?" selected":""}>${n}</option>`).join("")}</select></label><span class="sub">Updated ${new Date(ST.at).toLocaleTimeString("en-US",{timeZone:"America/New_York",hour:"numeric",minute:"2-digit"})} ET · refreshes every 20 min</span></div>
  <div class="wxnow"><div class="big" title="${tx}">${em}</div><div><div class="tmp">${Math.round(c.temperature_2m)}°F <span style="font-size:.45em;font-weight:400;font-family:var(--sans)">feels ${Math.round(c.apparent_temperature)}°</span></div><div class="cond">${tx} · cloud ${c.cloud_cover}%</div></div>
   <div class="kvs"><span>💨 Wind <b>${Math.round(c.wind_speed_10m)} mph ${cmp(c.wind_direction_10m)}</b> (gusts ${Math.round(c.wind_gusts_10m)})</span><span>🧭 Pressure <b>${(c.pressure_msl*.02953).toFixed(2)} inHg</b> ${Math.abs(pd)<.03?"steady":pd>0?"▲ rising":"▼ falling"} (${pd>0?"+":""}${pd.toFixed(2)} / 3 h)</span><span>💧 Rain last 24 h <b>${i24.toFixed(2)}″</b> · next 24 h <b>${n24.toFixed(2)}″</b></span><span>💦 Humidity <b>${c.relative_humidity_2m}%</b></span></div></div>
@@ -922,10 +1159,10 @@ function fillCards(){document.querySelectorAll(".wxline[data-wxid]").forEach(el=
 const WX={ready:()=>ST.ready,st:ST,
  adj(id){if(!ST.ready)return 0;const r=rateSite(id,0);return r?(r.n-3)*.6:0},
  top5(id){if(!ST.ready)return"";const r=rateSite(id,0);if(!r)return"";return` · ${curLine(id)} · ${biteBtn(k=>rateSite(id,k))}${PAINT.has(id)&&paintClosed()?' · <b title="Type 1 stream: fishing/possession last Sat in April–Sep 30">🚫 closed to trout till '+paintOpens()+"</b>":""}`},
- fillModal(id,el){const draw=()=>{if(!el.isConnected)return;if(!ST.ready){el.innerHTML=`<div class="wxbox"><h4>🌦️ Weather &amp; bite rating</h4><div class="sub">${ST.err?"Weather unavailable right now.":"Loading weather…"}</div></div>`;return}
+ fillModal(id,el){const draw=()=>{if(!el.isConnected)return;if(!ST.ready){el.innerHTML=`<div class="wxbox"><h4>Weather &amp; bite rating</h4><div class="sub">${ST.err?"Weather unavailable right now.":"Loading weather…"}</div></div>`;return}
    const r=rateSite(id,0),W=ST.W[id]||ST.W.home;const rr=rg()[RIVER_OF[id]]||[id];const b=rainRiver(RIVER_OF[id]||id,rr);
    const days=[1,2,3].map(k=>{const q=rateDay(W,k);if(!q)return"";return`<div><b>${dName(q.m.date)}</b><br>${WC(q.m.code)[0]} ${Math.round(q.m.tmax)}°/${Math.round(q.m.tmin)}°<br>${q.m.precip>=.01?q.m.precip.toFixed(2)+"″":"dry"}<br>${bite(q.n)}</div>`}).join("");
-   el.innerHTML=`<div class="wxbox"><h4>🌦️ Weather &amp; bite rating here</h4><div style="margin-bottom:4px">${curLine(id)} · <b>Today:</b> ${bite(r.n,r.gage)}${PAINT.has(id)&&paintClosed()?` <span class="cls cU">closed to trout until ${paintOpens()}</span>`:""}</div>
+   el.innerHTML=`<div class="wxbox"><h4>Weather &amp; bite rating here</h4><div style="margin-bottom:4px">${curLine(id)} · <b>Today:</b> ${bite(r.n,r.gage)}${PAINT.has(id)&&paintClosed()?` <span class="cls cU">closed to trout until ${paintOpens()}</span>`:""}</div>
    <div class="sub">🕐 ${winTxt(r)}</div>${b?`<div class="sub">Rain next 24 h ${b.p24.toFixed(2)}″ · next 48 h ${b.p48.toFixed(2)}″ · last 24 h ${b.q24.toFixed(2)}″${b.p24>=.5||b.p48>=1?' · <b style="color:var(--bad)">⚠️ rise/stain risk</b>':""}</div>`:""}
    <details><summary style="cursor:pointer;color:var(--link);min-height:28px">Why ${r.n}/5 today (rule of thumb)</summary>${whyH(r.R)}</details>
    <div class="wxmini">${days}</div><div class="sub">Rule-of-thumb score from weather${r.gage?" + the gage rating":""} — not scientific. Gage rating applies to now only; later days use weather alone. Open-Meteo model data.</div></div>`};
@@ -1009,7 +1246,7 @@ function detailHTML(r,s){const x=[];
 // ---- Explore detail strip ----
 function strip(id,el,s){if(!D||!el)return;const r=byEx[id];if(!r){el.innerHTML="";return}const R=roll(r);
  const rows=R.e.map(q=>{const c=SPC[q.x.sp]||"#6b6b52";return `<div class="rrow"><span class="rdot" style="background:${c}"></span><b>${esc(spName(r,q.x))}</b> <span class="rph ${CLS[q.p.ph]}">${esc(q.p.txt)}</span> <span class="sub">${esc(winTxt(q.x))} · ${esc(pkTxt(q.x))} · ${esc(srcTag(q.x))}${q.x.note?" · "+esc(q.x.note):""}</span></div>`}).join("");
- el.innerHTML=`<details class="runbox" open><summary>🐟 Run status — ${chip(r,true)}</summary>${rows}${detailHTML(r,s)}<div class="sub" style="margin-top:6px">${r.src==="hub-tracker"?"Windows are the Michigan Fly Fishing Hub's typical dates (modeled from DNR weir dates, not a forecast). ":"Regional month-level windows from forum/angler/agency text; no day-level dates. "}A rise in flow after rain is what usually moves fish — check the gage.</div></details>`}
+ el.innerHTML=`<details class="runbox" open><summary>Run status — ${chip(r,true)}</summary>${rows}${detailHTML(r,s)}<div class="sub" style="margin-top:6px">${r.src==="hub-tracker"?"Windows are the Michigan Fly Fishing Hub's typical dates (modeled from DNR weir dates, not a forecast). ":"Regional month-level windows from forum/angler/agency text; no day-level dates. "}A rise in flow after rain is what usually moves fish — check the gage.</div></details>`}
 // ---- planner bonus ----
 function bonus(id){if(!D)return null;const r=byEx[id];if(!r)return null;const R=roll(r);
  if(R.top.ph==="peak"){const hub=R.e.some(q=>q.p.ph==="peak"&&q.x.src==="hub-tracker");return{pts:hub?10:5,why:`Run peaking now: ${R.names.join(", ")} (${hub?"Hub typical dates":"regional, month-level"}, +${hub?10:5})`}}
@@ -1051,7 +1288,7 @@ function renderCalendar(){const g=$("runGrid");if(!g||!D)return;const now=new Da
  $("runLeg").innerHTML=`<span><i style="background:#1f5a3a"></i>peak</span><span><i style="background:#1f5a3a55"></i>in window (early / late)</span><span><i class="mg" style="background:#1f5a3a55"></i>striped = month-level regional dates (low resolution)</span><span><i style="background:#9a3b22"></i>today</span>`;
  const peaking=D.rivers.filter(r=>(r.explore.length||r.home.length)&&roll(r).top.ph==="peak").sort((a,b)=>rowsFor().dm(a)-rowsFor().dm(b));
  const ends=D.rivers.filter(r=>(r.explore.length||r.home.length)&&roll(r).e.some(q=>q.p.ph==="ends"));
- $("runNow").innerHTML=`<div id="rNow"><h4>📌 Run status today (${MON[now.getMonth()]} ${now.getDate()}) <span class="sub">— waters on this dashboard</span></h4>${peaking.length?peaking.map(r=>`<div class="rn"><b>${esc(r.name)}</b> <span class="sub">${r.explore.length?"· "+Math.min(...r.explore.map(i=>XS[i]?.drive_min??0))+" min · tier "+XS[r.explore[0]]?.tier:"· Home Waters"}</span><br>${chip(r)}</div>`).join(""):'<div class="sub">Nothing is at peak on the rivers this dashboard tracks today.</div>'}${ends.length?`<div class="sub" style="margin-top:4px">⏳ Ending soon: ${ends.map(r=>esc(r.name)+" ("+roll(r).e.filter(q=>q.p.ph==="ends").map(q=>spName(r,q.x)+" "+q.p.left+" d").join(", ")+")").join("; ")}</div>`:""}</div>`;
+ $("runNow").innerHTML=`<div id="rNow"><h4>Run status today (${MON[now.getMonth()]} ${now.getDate()}) <span class="sub">— waters on this dashboard</span></h4>${peaking.length?peaking.map(r=>`<div class="rn"><b>${esc(r.name)}</b> <span class="sub">${r.explore.length?"· "+Math.min(...r.explore.map(i=>XS[i]?.drive_min??0))+" min · tier "+XS[r.explore[0]]?.tier:"· Home Waters"}</span><br>${chip(r)}</div>`).join(""):'<div class="sub">Nothing is at peak on the rivers this dashboard tracks today.</div>'}${ends.length?`<div class="sub" style="margin-top:4px">⏳ Ending soon: ${ends.map(r=>esc(r.name)+" ("+roll(r).e.filter(q=>q.p.ph==="ends").map(q=>spName(r,q.x)+" "+q.p.left+" d").join(", ")+")").join("; ")}</div>`:""}</div>`;
  $("runSrc").innerHTML=`<b>Sources &amp; confidence.</b> Windows for ${D.rivers.filter(r=>r.src==="hub-tracker").length} rivers come from the <a href="${esc(D.sources.tracker)}" target="_blank" rel="noopener">Michigan Fly Fishing Hub Run tracker</a> (hub data as of ${esc(D.hub_asof||"?")}). ${esc(D.method)} The Hub's SE-Michigan Clinton page only gives a qualitative spring steelhead window; Belle, St. Clair, lower Huron, Mill Creek (Yale) and Ohio windows are month-level regional text and shown striped. Paint Creek has no documented run (a few steelhead may pass the Yates bypass). Hub "Big Huron" is a Lake Superior river in Baraga Co., not the Huron River near Detroit. Rebuild: <code>python3 tools/build_runs.py</code>.`}
 // ---- boot ----
 async function boot(){try{[D]=await Promise.all([fetch("run-calendar.json?v=1").then(r=>r.json())]);
@@ -1064,4 +1301,4 @@ const mo=new MutationObserver(()=>{if(D)decorate()});
 const app=document.getElementById("app");if(app)mo.observe(app,{childList:true,subtree:true});
 boot();
 })();
-</script><script src="lands.js?v=2"></script></body></html>
+</script><script src="lands.js?v=3"></script></body></html>
