@@ -33,7 +33,7 @@ HOME = (42.5743976, -83.0018873)
 TZ = ZoneInfo("America/Detroit")
 DAYS = int(os.environ.get("STOCK_DAYS", "370"))
 SMALL_CM = 15.24  # 6 in
-UA = {"User-Agent": "mibluelining.com stocking builder (personal, non-commercial; github.com/markp-910/river-dashboard)"}
+UA = {"User-Agent": "mybluelining.com stocking builder (personal, non-commercial; github.com/markp-910/river-dashboard)"}
 TROUT = {"brown trout", "rainbow trout", "brook trout", "lake trout", "splake", "tiger trout", "steelhead", "cutthroat trout"}
 SALMON = {"coho salmon", "chinook salmon", "atlantic salmon", "pink salmon", "arctic grayling"}
 
