@@ -1,0 +1,39 @@
+name: Refresh USGS flow normals
+
+on:
+  schedule:
+    - cron: "41 9 3 * *"   # monthly; normals only change when USGS approves another water year
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: normals
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Build gage-normals.json
+        env:
+          USGS_API_KEY: ${{ secrets.USGS_API_KEY }}   # optional; works without it
+        run: python3 tools/build_normals.py
+      - name: Commit if changed
+        run: |
+          git add gage-normals.json
+          if git diff --cached --quiet; then echo "No change in normals."; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Normals: refresh from USGS statistics API ($(date -u +%Y-%m-%d))"
+          for i in 1 2 3; do
+            git pull --rebase -q origin main && git push -q origin HEAD:main && exit 0
+            sleep 10
+          done
+          exit 1

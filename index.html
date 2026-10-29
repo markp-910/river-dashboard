@@ -551,11 +551,24 @@ const bandPlugin={id:"bands",beforeDraw(ch,a,o){if(!o.on)return;const {ctx,chart
   const t=Math.max(ca.top,y.getPixelForValue(hi)),b=Math.min(ca.bottom,y.getPixelForValue(lo));if(b>t){ctx.save();ctx.globalAlpha=.25;ctx.fillStyle=c;ctx.fillRect(ca.left,t,ca.right-ca.left,b-t);ctx.restore()}})}};
 Chart.register(bandPlugin);Chart.defaults.font.family="'Source Sans 3',system-ui,sans-serif";Chart.defaults.color="#5e5c49";Chart.defaults.borderColor="rgba(120,100,50,.16)";
 async function fetchRetry(u,n=3){for(let i=0;;i++){try{const r=await fetch(u);if(r.ok)return r;throw new Error("HTTP "+r.status)}catch(e){if(i>=n-1)throw e;await new Promise(z=>setTimeout(z,1500*(i+1)))}}}
-async function medians(){const t=new Date(),m=t.getMonth()+1,d=t.getDate(),out={};
- try{const ch=[];for(let i=0;i<ALL.length;i+=8)ch.push(ALL.slice(i,i+8));
- const r=(await Promise.all(ch.map(c=>fetchRetry(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${c.join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`).then(x=>x.text())))).join("\n");
- let h=null;for(const l of r.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(c[0]==="agency_cd"){h=c;continue}if(!h)continue;if(c[0]!=="USGS")continue;
- const o=Object.fromEntries(h.map((k,i)=>[k,c[i]]));if(+o.month_nu===m&&+o.day_nu===d)out[o.site_no]=+o.p50_va;}}catch(e){console.warn(e)}return out}
+// ---- USGS data: modern Water Data API (api.waterdata.usgs.gov), legacy waterservices retires Feb 2027 ----
+// 1) our Supabase "gages" function (one shared, cached copy for everyone; optional key lives server-side)
+// 2) if that is down, the browser asks USGS directly (keyless, batched in one request)
+const GAGE_API=((window.FR_CONFIG&&FR_CONFIG.SUPABASE_URL)||"https://lqbetpvutttwbumjnglk.supabase.co").replace(/\/$/,"")+"/functions/v1/gages";
+async function usgsSeries(ids,params,hours){const out={},put=(s,p,v)=>{if(v.length)(out[s]??={})[p]=v};
+ try{const j=await (await fetchRetry(`${GAGE_API}?sites=${ids.join(",")}&params=${params.join(",")}&hours=${hours}`,2)).json();if(!j.series)throw new Error(j.error||"bad gage response");
+  for(const [s,ps] of Object.entries(j.series))for(const [p,v] of Object.entries(ps))put(s,p,v.map(q=>({x:q[0]*1000,y:q[1]})));return out}catch(e){console.warn("gages proxy, trying USGS directly",e)}
+ const st=new Date(Date.now()-hours*3600e3).toISOString().replace(/\.\d+Z$/,"Z"),ts={};
+ let u=`https://api.waterdata.usgs.gov/ogcapi/v1/collections/continuous/items?f=json&skipGeometry=true&limit=50000&monitoring_location_id=${ids.map(i=>"USGS-"+i).join(",")}&parameter_code=${params.join(",")}&datetime=${st}/..&properties=time_series_id,monitoring_location_id,parameter_code,time,value`;
+ for(let pg=0;u&&pg<10;pg++){const j=await (await fetchRetry(u)).json();
+  for(const f of j.features||[]){const q=f.properties,y=q.value==null?NaN:+q.value;if(!isFinite(y)||y<=-999999)continue;(ts[q.time_series_id]??={s:String(q.monitoring_location_id).replace(/^USGS-/,""),p:q.parameter_code,v:[]}).v.push({x:Date.parse(q.time),y})}
+  u=(j.links||[]).find(l=>l.rel==="next")?.href||null}
+ for(const o of Object.values(ts)){o.v.sort((a,b)=>a.x-b.x);const c=out[o.s]?.[o.p],lo=o.v[o.v.length-1].x,lc=c&&c[c.length-1].x;if(!c||lo>lc||(lo===lc&&o.v.length>c.length))put(o.s,o.p,o.v)}
+ return out}
+// day-of-year median daily flow (USGS statistics API), prebuilt by tools/build_normals.py
+let NORMALS_P;function normals(){return NORMALS_P??=fetch("gage-normals.json?v=1").then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(j=>{const t=new Date(),i=Math.round((Date.UTC(2024,t.getMonth(),t.getDate())-Date.UTC(2024,0,1))/864e5),o={};
+  for(const [s,a] of Object.entries(j.p50||{}))if(a[i]!=null)o[s]=a[i];return o}).catch(e=>{console.warn("normals",e);return {}})}
+async function medians(){return {...await normals()}}
 function trend(v){if(v.length<5)return["—","",0];const L=v[v.length-1],ago=v.find(p=>p.x>=L.x-6*3600e3)?.y;if(!ago)return["—","",0];const p=(L.y-ago)/ago*100;
  return p>5?["▲ Rising","up",1]:p<-5?["▼ Falling","down",-1]:["● Steady","steady",0]}
 function trout(tempF,pct,tr){let score=0,parts=[],cls="g";
@@ -589,9 +602,8 @@ function openModal(id){const d=DATA[id],i=INFO[id],box=document.getElementById("
  document.getElementById("modal").style.display="flex";document.getElementById("close").onclick=closeModal}
 function closeModal(){document.getElementById("modal").style.display="none"}
 document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal()};document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-(async()=>{let iv,med;try{[iv,med]=await Promise.all([fetchRetry(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ALL.join(",")}&parameterCd=00060,00065,00010,00300,63680&period=P7D&siteStatus=all`).then(r=>r.json()),medians()])}catch(e){document.getElementById("banner").textContent="⚠️ USGS data service is not responding right now ("+e.message+"). Map, tags and log still work — reload in a few minutes.";iv={value:{timeSeries:[]}};med={}};MED=med;
- for(const ts of iv.value.timeSeries){const s=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;
-  const vals=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(vals.length)(DATA[s]??={})[p]=vals}
+(async()=>{let iv,med;try{[iv,med]=await Promise.all([usgsSeries(ALL,PORDER,168),medians()])}catch(e){document.getElementById("banner").textContent="⚠️ USGS gage data is unavailable right now ("+e.message+"). Map, tags and log still work — reload in a few minutes.";iv={};med=await medians()};MED=med;
+ for(const [s,ps] of Object.entries(iv))for(const [p,vals] of Object.entries(ps))(DATA[s]??={})[p]=vals;
  const last=a=>a&&a.length?a[a.length-1]:null,app=document.getElementById("app"),ranked=[];
  for(const [g,sites] of Object.entries(GROUPS)){const key="collapsed:"+g,h2=document.createElement("h2");h2.className="sec";app.appendChild(h2);const grid=document.createElement("div");grid.className="tierbody";app.appendChild(grid);
   const rvs={},getRv=id=>{const rv=RIVER_OF[id]||id;if(rvs[rv])return rvs[rv];const hd=document.createElement("div");hd.className="rvh";hd.setAttribute("role","button");hd.tabIndex=0;const body=document.createElement("div");body.className="grid rvbody";grid.appendChild(hd);grid.appendChild(body);
@@ -938,10 +950,8 @@ const badgeH=s=>{const st=s.state||{};const c=st.prio?"p":(st.types&&st.types.le
 // ---- live gage data ----
 let LIVE={},LIVE_DONE=false,OPEN_S=null;
 async function loadLive(){const ids=[...new Set(XD.streams.flatMap(s=>s.gages.map(g=>g.id)))];
- try{const r=await (await fetchRetry(`https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${ids.join(",")}&parameterCd=00060,00065,00010&period=P1D&siteStatus=all`)).json();
-  for(const ts of r.value.timeSeries){const id=ts.sourceInfo.siteCode[0].value,p=ts.variable.variableCode[0].value;const v=ts.values[0].value.filter(x=>+x.value>-9999).map(x=>({x:Date.parse(x.dateTime),y:+x.value}));if(v.length)((LIVE[id]??={name:ts.sourceInfo.siteName})[p]=v)}}catch(e){console.warn("live",e)}
- const med={};for(let i=0;i<ids.length;i+=6){try{const t=await (await fetchRetry(`https://waterservices.usgs.gov/nwis/stat/?format=rdb&sites=${ids.slice(i,i+6).join(",")}&statReportType=daily&statTypeCd=p50&parameterCd=00060`)).text();let h=null;const n=new Date();
-  for(const l of t.split("\n")){if(l.startsWith("#")||!l)continue;const c=l.split("\t");if(c[0]==="agency_cd"){h=c;continue}if(!h)continue;const o=Object.fromEntries(h.map((k,j)=>[k,c[j]]));if(+o.month_nu===n.getMonth()+1&&+o.day_nu===n.getDate())med[o.site_no]=+o.p50_va}}catch(e){console.warn("stat",e)}}
+ try{const r=await usgsSeries(ids,["00060","00065","00010"],24);for(const [id,ps] of Object.entries(r))for(const [p,v] of Object.entries(ps))(LIVE[id]??={})[p]=v}catch(e){console.warn("live",e)}
+ const med=await medians();
  for(const [id,L] of Object.entries(LIVE)){const q=L["00060"],w=L["00010"],ql=q&&q[q.length-1],wl=w&&w[w.length-1];if(!ql)continue;const pct=med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(q),tf=wl?C2F(wl.y):null;L.view={flow:ql.y,pct,tempF:tf,tt,tc,t:trout(tf,pct,tn),when:ql.x,gh:(L["00065"]||[]).slice(-1)[0]?.y}}LIVE_DONE=true}
 // ---- USGS display helpers (Explore) ----
 const gShort=l=>String(l||"").replace(/\s*\((has|no) [^)]*\)/i,"").trim();
