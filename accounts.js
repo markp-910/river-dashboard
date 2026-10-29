@@ -139,7 +139,7 @@
       <h4>👥 Buddy groups</h4><div class="sub">Catches are private unless you share them to a group. Everyone in the group can see what's shared to it.</div>
       <div id="apGroups">${groups.length ? groups.map(g => `<div class="grp"><b>${esc(g.name)}</b>${g.owner_id === session.user.id ? " · you own this" : ""}<br><span class="sub">${g.members.map(u => esc(names[u] || "member")).join(", ")}</span>${g.owner_id === session.user.id ? `<div class="row"><input placeholder="invited person's email" data-addto="${g.id}"><button type="button" data-addbtn="${g.id}">Add</button></div>` : ""}</div>`).join("") : '<div class="sub">No groups yet.</div>'}</div>
       <div class="row"><input id="apNewG" placeholder="New group name, e.g. Grayling crew"><button type="button" id="apMkG">Create group</button></div>
-      <label for="apShare">New catches are shared with</label><select id="apShare"><option value="">Only me (private)</option>${groups.map(g => `<option value="${g.id}"${def === g.id ? " selected" : ""}>${esc(g.name)}</option>`).join("")}</select>
+      <label for="apShare">New catches are shared with</label><select id="apShare"><option value="">Only me (+ site admin)</option>${groups.map(g => `<option value="${g.id}"${def === g.id ? " selected" : ""}>${esc(g.name)}</option>`).join("")}</select>
       <h4>⬇ Import my existing Google Sheet log</h4><div class="sub">One-time copy of your Sheet rows (catches, tagged spots, want-to-fish list) into your account. Re-running skips rows already imported.</div>
       <label for="apSheet">Apps Script web app URL (…/exec)</label><input id="apSheet" type="password" autocomplete="off" placeholder="${localStorage.getItem("sheetUrl") ? "using the URL saved on this device" : "paste your …/exec URL"}">
       <div class="row"><button type="button" id="apImport">Import from Sheet</button></div>
@@ -351,7 +351,13 @@
       const lab = document.createElement("label"); lab.innerHTML = 'Share with<select name="share" id="acShare"></select>';
       const notes = f.querySelector("textarea[name=note]")?.closest("label"); f.insertBefore(lab, notes || f.lastElementChild);
     }
-    const sel = $("acShare"); if (sel) { const def = LS.getItem(SHARE_K) || ""; sel.innerHTML = `<option value="">Only me (private)</option>` + groups.map(g => `<option value="${g.id}"${def === g.id ? " selected" : ""}>${esc(g.name)}</option>`).join(""); }
+    if (f && !$("acAdminNote")) {
+      const n = document.createElement("p"); n.id = "acAdminNote";
+      n.style.cssText = "font-size:12px;opacity:.7;margin:6px 0 2px;line-height:1.4";
+      n.textContent = "Heads-up: site admins and owners can view all logged catches, photos and locations. Other members only see what you share with a group.";
+      f.insertBefore(n, f.lastElementChild);
+    }
+    const sel = $("acShare"); if (sel) { const def = LS.getItem(SHARE_K) || ""; sel.innerHTML = `<option value="">Only me (+ site admin)</option>` + groups.map(g => `<option value="${g.id}"${def === g.id ? " selected" : ""}>${esc(g.name)}</option>`).join(""); }
   }
 
   // ---------- boot ----------
