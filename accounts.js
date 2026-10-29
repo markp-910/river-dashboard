@@ -179,7 +179,7 @@
   }
   async function saveProfile(patch) {
     const { data, error } = await sb.from("profiles").upsert({ id: session.user.id, ...patch }).select().single();
-    if (!error) profile = data; return error;
+    if (!error) { profile = data; try { LOG()?.renderTags(); } catch (e) {} } return error;
   }
   async function loadGroups() {
     const [{ data: g }, { data: mem }] = await Promise.all([sb.from("groups").select("id,name,owner_id").order("created_at"), sb.from("group_members").select("group_id,user_id")]);
@@ -383,7 +383,7 @@
     if (switchOwner(session.user.id)) { location.reload(); return; }
     showGate(false); closeDlg();
     if (ev !== "INITIAL" && prev === session.user.id) { headerBtn(); return; }
-    const { data } = await sb.from("profiles").select("*").eq("id", session.user.id).maybeSingle(); profile = data;
+    const { data } = await sb.from("profiles").select("*").eq("id", session.user.id).maybeSingle(); profile = data; try { LOG()?.renderTags(); } catch (e) {}
     await loadGroups().catch(() => {});
     headerBtn(); decorateLog();
     const need = sessionStorage.getItem("fr_needPw"); if (need || ev === "PASSWORD_RECOVERY") setPwPanel(need || "recovery");
