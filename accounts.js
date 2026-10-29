@@ -1,4 +1,4 @@
-/* MI Blue Lining — optional accounts layer (Supabase).
+/* My Blue Lining — optional accounts layer (Supabase).
  * Loaded before the app scripts. When window.FR_CONFIG has no SUPABASE_URL / SUPABASE_ANON_KEY,
  * window.FRA = {configured:false, on:false} and nothing else happens: no network calls, no UI.
  * Bridges used: window.FRLOG (catch log, set by the Home script), window.FRWISH (Explore wishlist).
@@ -58,7 +58,7 @@
   const logo = '<img src="icon.svg?v=3" alt="">';
   function signInHtml(gate) {
     return `<div class="acbox" role="dialog" aria-label="Sign in">${gate ? "" : '<button class="x" data-acclose aria-label="Close">✕</button>'}
-      <h3>${logo}MI Blue Lining</h3>
+      <h3>${logo}My Blue Lining</h3>
       <div class="sub">Private site for family &amp; fishing buddies. Ask Mark for an invite.</div>
       <form id="acSignIn" autocomplete="on">
         <label for="acEmail">Email</label><input id="acEmail" name="email" type="email" autocomplete="username" required>

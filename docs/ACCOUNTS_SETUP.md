@@ -1,4 +1,4 @@
-# Accounts setup — MI Blue Lining
+# Accounts setup — My Blue Lining
 
 This branch (`accounts`) adds optional sign-in, a per-person home base, and a private catch log
 stored in Supabase. **Nothing turns on until `config.js` has a Supabase URL and key.** With the
