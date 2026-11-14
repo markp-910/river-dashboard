@@ -29,10 +29,25 @@ DASH = "https://www.michigandnr.com/fishstock/"
 BLM = "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query"
 TIGER = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query"
 OSRM = "https://router.project-osrm.org/table/v1/driving/"
-HOME = (42.5743976, -83.0018873)   # precise, for OSRM routing only; never published
-# stockings.json is served publicly by GitHub Pages, so publish a town-level home only.
-PUBLIC_HOME = dict(name="Sterling Heights, MI", lat=round(HOME[0], 2), lng=round(HOME[1], 2),
+# stockings.json is served publicly by GitHub Pages, so the published home is a fixed
+# town-level point. stockings.js reads it for haversine distances; do not change it.
+PUBLIC_HOME = dict(name="Sterling Heights, MI", lat=42.57, lng=-83.0,
                    precision="town (coordinates rounded to ~1 km)")
+# The precise home is personal data and this repo is public, so it is never committed.
+# Set STOCK_HOME="lat,lng" locally, or as the STOCK_HOME repository secret for Actions.
+# Without it the builder routes from the published town point: drive times shift by about
+# a minute, and a fresh clone still runs.
+def _home():
+    raw = os.environ.get("STOCK_HOME", "").strip()
+    if not raw:
+        return (PUBLIC_HOME["lat"], PUBLIC_HOME["lng"]), False
+    try:
+        lat, lng = (float(x) for x in raw.split(",", 1))
+    except ValueError:
+        print("STOCK_HOME is not 'lat,lng'; routing from the town point instead", file=sys.stderr)
+        return (PUBLIC_HOME["lat"], PUBLIC_HOME["lng"]), False
+    return (lat, lng), True
+HOME, HOME_EXACT = _home()
 TZ = ZoneInfo("America/Detroit")
 DAYS = int(os.environ.get("STOCK_DAYS", "370"))
 SMALL_CM = 15.24  # 6 in
