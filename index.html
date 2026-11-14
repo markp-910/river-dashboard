@@ -571,12 +571,12 @@ let NORMALS_P;function normals(){return NORMALS_P??=fetch("gage-normals.json?v=1
 async function medians(){return {...await normals()}}
 function trend(v){if(v.length<5)return["—","",0];const L=v[v.length-1],ago=v.find(p=>p.x>=L.x-6*3600e3)?.y;if(!ago)return["—","",0];const p=(L.y-ago)/ago*100;
  return p>5?["▲ Rising","up",1]:p<-5?["▼ Falling","down",-1]:["● Steady","steady",0]}
-function trout(tempF,pct,tr){let score=0,parts=[],cls="g";
- if(tempF!=null){if(tempF>68){score-=5;parts.push(`water ${tempF.toFixed(0)}°F is too warm — stop fishing to protect trout`);cls="r"}
-  else if(tempF>=65){score-=2;parts.push(`${tempF.toFixed(0)}°F is stressful; fish early and land fish fast`);cls="o"}
-  else if(tempF>=50){score+=3;parts.push(`${tempF.toFixed(0)}°F is in the optimal range`)}
-  else if(tempF>=40){score+=1;parts.push(`${tempF.toFixed(0)}°F is cool; fish slower and deeper`);cls="y"}
-  else{score-=1;parts.push(`${tempF.toFixed(0)}°F — trout sluggish, slow presentations`);cls="y"}}
+function trout(tempF,pct,tr,inh){let score=0,parts=[],cls="g";const ts=inh?" at the nearest gage":"";
+ if(tempF!=null){if(tempF>68){score-=5;parts.push(`water ${tempF.toFixed(0)}°F${ts} is too warm — stop fishing to protect trout`);cls="r"}
+  else if(tempF>=65){score-=2;parts.push(`${tempF.toFixed(0)}°F${ts} is stressful; fish early and land fish fast`);cls="o"}
+  else if(tempF>=50){score+=3;parts.push(`${tempF.toFixed(0)}°F${ts} is in the optimal range`)}
+  else if(tempF>=40){score+=1;parts.push(`${tempF.toFixed(0)}°F${ts} is cool; fish slower and deeper`);cls="y"}
+  else{score-=1;parts.push(`${tempF.toFixed(0)}°F${ts} — trout sluggish, slow presentations`);cls="y"}}
  let flow="";if(pct!=null){if(pct<50){flow="Very low";score-=1;parts.push(`flow very low (${pct}% of median) — spooky fish, go light/stealthy`)}
   else if(pct<80){flow="Low";score+=1;parts.push(`flow lowish (${pct}% of median), clear water likely`)}
   else if(pct<=150){flow="Normal";score+=2;parts.push(`flow near normal (${pct}% of median)`)}
@@ -616,10 +616,13 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
    const ql=last(d["00060"]),hl=last(d["00065"]),wl=last(d["00010"]);
    if(!ql&&!hl){c.classList.add("off");c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">Gear</button></h3><div class="sub">USGS ${id}</div><p class="note">No live data currently reported (gage offline/discontinued).${med[id]?` Historical median for today: ${med[id]} cfs.`:""}</p>
     <p class="note">👉 Nearest live proxy: <b>Clinton R at Auburn Hills (04161000)</b>, just upstream of the Paint Creek confluence. Nearest water temp: Clinton R at Sterling Heights (04161820).</p>`;continue}
-   const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null,t=trout(tempF,pct,tn);
+   const pct=ql&&med[id]?Math.round(ql.y/med[id]*100):null,[tt,tc,tn]=trend(d["00060"]||d["00065"]),tempF=wl?C2F(wl.y):null;
    const px=TEMP_PROXY[id],pw=px&&last(DATA[px]?.["00010"]);
+   // Score on the proxy temp when this gage has no thermometer, so a missing reading
+   // can no longer skip the temperature penalty and out-badge a gage that reported honestly.
+   const tempEff=tempF??(pw?C2F(pw.y):null),tInh=tempF==null&&tempEff!=null,t=trout(tempEff,pct,tn,tInh);
    const tempMsg=wl?"":`🌡️ Water temp unavailable here${pw?` — nearest temp: ${NAME[px]} ${C2F(pw.y).toFixed(0)}°F`:""}.`;
-   INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,flow:ql?ql.y:null,tt,tn};ranked.push({id,t,tempF,pct,q:ql?ql.y:null,tt,tc,open:()=>{setOpen(true);getRv(id).so(true)}});secRank.push({id,t,tempF});getRv(id).rank.push({id,t,tempF});
+   INFO[id]={t,updated:(ql||hl).x,tempMsg,pct,tempF,tempEff,tInh,flow:ql?ql.y:null,tt,tn};ranked.push({id,t,tempF,tempEff,tInh,pct,q:ql?ql.y:null,tt,tc,open:()=>{setOpen(true);getRv(id).so(true)}});secRank.push({id,t,tempF});getRv(id).rank.push({id,t,tempF});
    const tabs=PORDER.filter(p=>d[p]).map(p=>{const v=last(d[p]).y;return `<button class="tab" data-p="${p}"><b>${p==="00010"?C2F(v).toFixed(1)+"°F":v}</b><span>${PARAMS[p][0]}</span></button>`}).join("");
    c.innerHTML=`<h3>${name} <button class="gearb" data-gear="g:${id}">Gear</button></h3><div class="sub">USGS <a href="https://waterdata.usgs.gov/monitoring-location/${id}/" target="_blank">${id}</a> · updated ${fmt((ql||hl).x)}</div>
    <div class="tabs">${tabs}<div class="trend"><b class="${tc}">${tt}</b><span class="sub">6-hr trend</span></div></div>
@@ -637,7 +640,7 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  window.goCard=id=>{const r=ranked.find(x=>x.id===id);try{window._closeX&&_closeX();window._setTab&&_setTab("home")}catch(e){}if(r)r.open();else{try{setOpen(true);getRv(id).so(true)}catch(e){}}
   setTimeout(()=>{const el=document.getElementById("site-"+id);if(!el)return;el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)},120);return false};
  function renderBanner(){const wx=!!(window.WX&&WX.ready()),key=x=>x.t.score+(wx?WX.adj(x.id):0),top=[...ranked].sort((a,b)=>(key(b)-key(a))||base(a,b)).slice(0,5);
- bn.innerHTML=top.length?`<b>Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span>${wx?`<span class="tm">🌦️ Weather${WX.top5(r.id)}</span>`:""}</li>`).join("")}</ol><div class="sub" style="color:#cdd6b8;margin-top:6px">${wx?"Ranked by gage rating, nudged up or down (max ±1.2) by today's rule-of-thumb weather bite rating. 🎣 ratings are not scientific — tap a spot for the why.":"Weather unavailable or still loading — ranked by gage rating only."}</div>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
+ bn.innerHTML=top.length?`<b>Top 5 spots right now</b><ol class="top5">${top.map((r,i)=>`<li data-i="${i}"><span class="rk">${i+1}</span><span class="tn">${NAME[r.id]}</span><span class="badge ${r.t.cls}">${r.t.label.split(" · ")[0]}</span><span class="tm">${r.tempF!=null?r.tempF.toFixed(0)+"°F":r.tempEff!=null?"~"+r.tempEff.toFixed(0)+"°F":"no temp"} · ${r.q??"—"} cfs${r.pct!=null?` (${r.pct}%)`:""} · <span class="${r.tc}">${r.tt}</span></span>${wx?`<span class="tm">🌦️ Weather${WX.top5(r.id)}</span>`:""}</li>`).join("")}</ol><div class="sub" style="color:#cdd6b8;margin-top:6px">${wx?"Ranked by gage rating, nudged up or down (max ±1.2) by today's rule-of-thumb weather bite rating. 🎣 ratings are not scientific — tap a spot for the why.":"Weather unavailable or still loading — ranked by gage rating only."}</div>`:(bn.textContent.startsWith("⚠")?bn.innerHTML:"No live data.");
  bn.querySelectorAll("li").forEach(li=>li.onclick=()=>{const r=top[+li.dataset.i];r.open();const el=document.getElementById("site-"+r.id);el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1600)})}
  window.renderBanner=renderBanner;renderBanner();
  document.body.dataset.ready=1;window.dispatchEvent(new Event("dataready"))})();
