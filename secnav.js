@@ -11,7 +11,7 @@ const css=`#secnav{position:sticky;top:var(--sntop,0px);z-index:3900;background:
 #secnav a{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border-radius:var(--pill);background:rgba(31,58,43,.07);color:var(--g800);font-size:13px;font-weight:600;letter-spacing:-.005em;text-decoration:none;white-space:nowrap;transition:background-color .2s var(--ease),color .2s var(--ease)}
 #secnav a:hover{background:rgba(31,58,43,.12)}
 #secnav a.on{background:var(--g800);color:var(--cream);box-shadow:0 1px 2px rgba(20,42,29,.22)}
-@media (min-width:960px){
+@media (min-width:821px){
  #secnav{position:fixed;top:calc(var(--sntop,64px) + var(--s3));left:max(16px,calc((100vw - 1200px)/2 - 184px));width:168px;max-height:calc(100vh - var(--sntop,64px) - 48px);overflow-y:auto;background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border:0}
  #secnav .snh{display:block;padding:0 12px 8px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
  #secnav ol{flex-direction:column;gap:2px;padding:0;overflow:visible}
@@ -26,7 +26,7 @@ const css=`#secnav{position:sticky;top:var(--sntop,0px);z-index:3900;background:
 }
 body.xlock #secnav{visibility:hidden}`;
 const st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
-const RM=matchMedia("(prefers-reduced-motion: reduce)"),WIDE=matchMedia("(min-width:960px)");
+const RM=matchMedia("(prefers-reduced-motion: reduce)"),WIDE=matchMedia("(min-width:821px)");
 const $=id=>document.getElementById(id),bar=document.querySelector("header.appbar");
 const nav=document.createElement("nav");nav.id="secnav";nav.setAttribute("aria-label","Jump to section");nav.hidden=true;
 nav.innerHTML=`<div class="snh">On this page</div><ol></ol>`;(bar?bar.after(nav):document.body.prepend(nav));
