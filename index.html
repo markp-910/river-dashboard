@@ -635,7 +635,13 @@ document.getElementById("modal").onclick=e=>{if(e.target.id==="modal")closeModal
  const rk=x=>x.t.score+(x.tempF!=null?.5:0);
  for(const [h2,r] of SECS){r.sort((a,b)=>rk(b)-rk(a));const c=h2.querySelector(".cnt");c.innerHTML=`(${c.dataset.n} sites)`+(r[0]?` · best: <span class="badge ${r[0].t.cls}">${r[0].t.label.split(" · ")[0]}</span> <small>${NAME[r[0].id]}</small>`:" · no live data")}
  for(const v of RVS){v.rank.sort((a,b)=>rk(b)-rk(a));const c=v.hd.querySelector(".rcnt"),b=v.rank[0];c.innerHTML=`(${v.n} gage${v.n>1?"s":""})`+(b?` · best: <span class="badge ${b.t.cls}">${b.t.label.split(" · ")[0]}</span>`+(v.n>1?` <small>${NAME[b.id]}</small>`:""):" · no live data")}
- const base=(a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100));ranked.sort(base);
+ // Percent of median is the right way to rate ONE gage: minimum flow scales with stream
+ // size, so a small creek at 93% of its median is genuinely normal and should not be
+ // marked down. It is the wrong way to compare gages against each other, which is why a
+ // 0.69 cfs creek could outrank a 256 cfs river. Size breaks ties, bucketed by order of
+ // magnitude so similar water is left in its existing order.
+ const mag=x=>x.q==null?-9:Math.round(Math.log10(Math.max(x.q,.01)));
+ const base=(a,b)=>(b.t.score-a.t.score)||((b.tempF!=null)-(a.tempF!=null))||(mag(b)-mag(a))||(Math.abs((a.pct??1e4)-100)-Math.abs((b.pct??1e4)-100));ranked.sort(base);
  const bn=document.getElementById("banner");
  window.goCard=id=>{const r=ranked.find(x=>x.id===id);try{window._closeX&&_closeX();window._setTab&&_setTab("home")}catch(e){}if(r)r.open();else{try{setOpen(true);getRv(id).so(true)}catch(e){}}
   setTimeout(()=>{const el=document.getElementById("site-"+id);if(!el)return;el.scrollIntoView({behavior:"smooth",block:"center"});el.classList.add("flash");setTimeout(()=>el.classList.remove("flash"),1800)},120);return false};
