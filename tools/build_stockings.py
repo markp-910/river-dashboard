@@ -13,7 +13,7 @@ Geocoding (in order, cached in tools/cache/ so scheduled runs only look up new p
   1. PLSS section centroid from BLM CadNSDI (town/range/sec, Michigan Meridian) -> precision "section" (~1 mi)
   2. Most common section for the same waters_id+county in older DNR records -> "section (past plants)"
   3. County centroid (US Census TIGERweb) -> "county" (very approximate)
-Drive time: OSRM public demo table API from home (12459 Plumbrook Rd, Sterling Heights), cached per point;
+Drive time: OSRM public demo table API from home (Sterling Heights, MI), cached per point;
   falls back to a straight-line estimate (flagged drive_est) if the router is unreachable.
 
 Run: python3 tools/build_stockings.py   (polite: ~1-2 DNR requests + lookups only for new places)
@@ -29,7 +29,10 @@ DASH = "https://www.michigandnr.com/fishstock/"
 BLM = "https://gis.blm.gov/arcgis/rest/services/Cadastral/BLM_Natl_PLSS_CadNSDI/MapServer/2/query"
 TIGER = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/1/query"
 OSRM = "https://router.project-osrm.org/table/v1/driving/"
-HOME = (42.5743976, -83.0018873)
+HOME = (42.5743976, -83.0018873)   # precise, for OSRM routing only; never published
+# stockings.json is served publicly by GitHub Pages, so publish a town-level home only.
+PUBLIC_HOME = dict(name="Sterling Heights, MI", lat=round(HOME[0], 2), lng=round(HOME[1], 2),
+                   precision="town (coordinates rounded to ~1 km)")
 TZ = ZoneInfo("America/Detroit")
 DAYS = int(os.environ.get("STOCK_DAYS", "370"))
 SMALL_CM = 15.24  # 6 in
@@ -276,7 +279,7 @@ def main():
                 license="Public record; DNR states no restrictions on use, reproduction or distribution (provided AS IS)",
                 note="DNR enters plants in FSIS; they reach this public table after a DTMB clean-up step, so records can lag the actual stocking by days to weeks. "
                      "Locations are PLSS section centroids (~1 mi), not exact put-ins. 'catchable' = not a private plant and avg length >= 6 in.",
-                home=dict(name="12459 Plumbrook Rd, Sterling Heights", lat=HOME[0], lng=HOME[1]),
+                home=PUBLIC_HOME,
                 drive_method="OSRM public demo router (free-flow car) from home; drive_est=true means straight-line estimate",
                 window_days=DAYS, since=since, latest_stocking=recs[0]["date"] if recs else None, count=len(recs))
     out = dict(meta=meta, stockings=recs)

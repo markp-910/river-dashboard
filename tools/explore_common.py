@@ -10,6 +10,16 @@ HUB = lambda s: f"https://michiganflyfishinghub.com/rivers/{s}/"
 HUBBEST = "https://michiganflyfishinghub.com/best-fly-fishing-rivers-michigan.html"
 DBURL = "https://www.dnr.state.mi.us/fishstock/ (DNR Fish Stocking Database, queried via its ArcGIS FishStockingReport service)"
 TIERS = [(1, "Back Yard", 30), (2, "Quick Trip", 90), (3, "Half Day", 180), (4, "Fishing Trip!", 240)]
+# Every file in this repo is served publicly by GitHub Pages, so the published home
+# must never carry a street address or house-level coordinates. Builders keep the
+# precise home for routing and publish this coarsened copy instead.
+PUBLIC_HOME_LABEL = "Sterling Heights, MI"
+def public_home(home):
+    """Town-level copy of the home point, safe to publish. Keeps the 'address' key
+    because index.html renders it under the Explore drive tiers."""
+    return {"address": PUBLIC_HOME_LABEL,
+            "lat": round(float(home["lat"]), 2), "lng": round(float(home["lng"]), 2),
+            "precision": "town (coordinates rounded to ~1 km)"}
 def tier_of(m):
     for n, _, mx in TIERS:
         if m <= mx: return n

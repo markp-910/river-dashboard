@@ -60,7 +60,7 @@ EXCL = [
  "Cold Creek / Castalia, OH (164 min) — lottery-only access per Ohio DNR; not listed.",
  "Maumee River, OH (134 min) — not a stocked trout stream. Huron River (OH) gets only stray steelhead per Ohio DNR; not listed.",
  "Spring Mill Pond (Island Lake RA, ~61 min) is a pond, not a stream; left out of the stream list."]
-out = {"generated": datetime.date.today().isoformat(), "home": home,
+out = {"generated": datetime.date.today().isoformat(), "home": public_home(home),
   "drive_method": "One-way free-flow minutes from home by OSRM public demo server (car). A Valhalla cross-check (drive_min_alt) is typically 10–20% shorter on long highway legs, and real traffic can add 10–25%. Tiers use the OSRM minutes.",
   "tiers": [dict(n=n, name=nm, max=mx, min=(0 if n == 1 else TIERS[n - 2][2])) for n, nm, mx in TIERS],
   "troutroutes_note": TR_NOTE,

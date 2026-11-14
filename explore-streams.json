@@ -1,10 +1,10 @@
 {
  "generated": "2026-10-26",
  "home": {
-  "address": "12459 Plumbrook Rd, Sterling Heights, MI 48312",
-  "lat": 42.5743976,
-  "lng": -83.0018873,
-  "geocoder": "OSM Nominatim (house-level)"
+  "address": "Sterling Heights, MI",
+  "lat": 42.57,
+  "lng": -83.0,
+  "precision": "town (coordinates rounded to ~1 km)"
  },
  "drive_method": "One-way free-flow minutes from home by OSRM public demo server (car). A Valhalla cross-check (drive_min_alt) is typically 10\u201320% shorter on long highway legs, and real traffic can add 10\u201325%. Tiers use the OSRM minutes.",
  "tiers": [
